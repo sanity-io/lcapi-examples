@@ -9,6 +9,7 @@
     "start": "vinxi start"
   },
   "dependencies": {
+    "@sanity/client": "^6.22.5",
     "@tanstack/react-router": "^1.82.1",
     "@tanstack/router-devtools": "^1.82.1",
     "@tanstack/start": "^1.82.1",
