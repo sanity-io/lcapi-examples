@@ -46,7 +46,18 @@ function generateThemeColors() {
   }
 }
 
-export default async function handler() {
+export default async function handler(request: Request) {
+  if (request.method === 'OPTIONS') {
+    return new Response(null, {
+      status: 200,
+      headers: {'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Methods': 'OPTIONS, PUT'},
+    })
+  }
+
+  if (request.method !== 'PUT') {
+    return new Response('Method not allowed', {status: 405})
+  }
+
   try {
     const client = createClient({
       projectId: 'hiomol4a',
@@ -61,11 +72,7 @@ export default async function handler() {
 
     return new Response(JSON.stringify({patch}), {
       status: 200,
-      headers: {
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Methods': 'OPTIONS, PUT',
-        'Content-Type': 'application/json',
-      },
+      headers: {'Content-Type': 'application/json'},
     })
   } catch (err) {
     return new Response(err?.message || err?.name || 'Unknown error', {
