@@ -17,6 +17,9 @@ importers:
 
   api:
     dependencies:
+      '@sanity/client':
+        specifier: ^6.22.5
+        version: 6.22.5(debug@4.3.7)
       color2k:
         specifier: ^2.0.3
         version: 2.0.3
