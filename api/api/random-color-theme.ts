@@ -49,31 +49,37 @@ function generateThemeColors() {
 }
 
 export default async function handler(req: Request) {
-  const client = createClient({
-    projectId: 'hiomol4a',
-    dataset: 'lcapi',
-    apiVersion: '2024-09-18',
-    useCdn: false,
-    token: process.env.SANITY_API_WRITE_TOKEN,
-  })
-  const _id = 'theme'
-  const patch = client.patch(_id).set(generateThemeColors())
-  await client.transaction().createIfNotExists({_id, _type: _id}).patch(patch).commit()
-
-  return new Response(
-    JSON.stringify({
-      patch,
+  try {
+    const client = createClient({
+      projectId: 'hiomol4a',
+      dataset: 'lcapi',
+      apiVersion: '2024-09-18',
+      useCdn: false,
       token: process.env.SANITY_API_WRITE_TOKEN,
-      unstable__adapter,
-      unstable__environment,
-    }),
-    {
-      status: 200,
-      headers: {
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Methods': 'OPTIONS, PUT',
-        'Content-Type': 'application/json',
+    })
+    const _id = 'theme'
+    const patch = client.patch(_id).set(generateThemeColors())
+    // await client.transaction().createIfNotExists({_id, _type: _id}).patch(patch).commit()
+
+    return new Response(
+      JSON.stringify({
+        patch,
+        token: process.env.SANITY_API_WRITE_TOKEN,
+        unstable__adapter,
+        unstable__environment,
+      }),
+      {
+        status: 200,
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Methods': 'OPTIONS, PUT',
+          'Content-Type': 'application/json',
+        },
       },
-    },
-  )
+    )
+  } catch (err) {
+    return new Response(err?.message || err?.name || 'Unknown error', {
+      status: 500,
+    })
+  }
 }
