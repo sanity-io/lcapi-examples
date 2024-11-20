@@ -2,9 +2,8 @@
  * It's a bit annoying to handle tokens in 50 different apps and frameworks, so this edge API contains the logic for us in one place
  */
 
-import {lchToHex} from 'lch-color-utils'
-
 import {createClient} from '@sanity/client'
+import {lch} from 'd3-color'
 
 export const config = {runtime: 'edge'}
 
@@ -40,9 +39,9 @@ function generateThemeColors() {
 
   return {
     // background: `lch(5% 25 ${bgHue})`,
-    background: lchToHex({l: 5, c: 25, h: bgHue, isPrecise: true, forceinGamut: true}).value,
+    background: lch(5, 25, bgHue).formatHex(),
     // text: `lch(30% 50 ${textHue})`,
-    text: lchToHex({l: 30, c: 50, h: textHue, isPrecise: true, forceinGamut: true}).value,
+    text: lch(30, 50, textHue).formatHex(),
   }
 }
 
