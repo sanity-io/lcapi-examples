@@ -2,10 +2,11 @@
  * It's a bit annoying to handle tokens in 50 different apps and frameworks, so this edge API contains the logic for us in one place
  */
 
-import {formatHex, parse} from 'culori'
+import {lchToHex} from 'lch-color-utils'
+
 import {createClient} from '@sanity/client'
 
-console.log(formatHex, createClient, parse)
+console.log({lchToHex, createClient})
 
 export const config = {
   runtime: 'edge',
