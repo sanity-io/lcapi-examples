@@ -3,6 +3,7 @@
   "private": true,
   "version": "1.0.0",
   "scripts": {
+    "schema:extract": "sanity schema extract",
     "dev": "sanity dev",
     "start": "sanity start",
     "build": "sanity build",
