@@ -16,6 +16,10 @@ importers:
         version: 3.3.3
 
   api:
+    dependencies:
+      color2k:
+        specifier: ^2.0.3
+        version: 2.0.3
     devDependencies:
       '@edge-runtime/types':
         specifier: ^3.0.3
