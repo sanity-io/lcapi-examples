@@ -22,7 +22,7 @@ jobs:
           node-version: lts/*
       - run: pnpm install
       - run: pnpm format
-      - run: git restore .github/workflows
+      - run: git restore .github/workflows pnpm-lock.yaml
       - uses: actions/create-github-app-token@v1
         id: generate-token
         with:
