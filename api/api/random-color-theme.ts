@@ -6,8 +6,6 @@ import {lchToHex} from 'lch-color-utils'
 
 import {createClient} from '@sanity/client'
 
-console.log({lchToHex, createClient})
-
 export const config = {
   runtime: 'edge',
 }
@@ -42,7 +40,11 @@ function generateThemeColors() {
       Math.floor((crypto.getRandomValues(new Uint8Array(1))[0] / 256) * harmonicHues.length)
     ]
 
-  return {background: `lch(5% 25 ${bgHue})`, text: `lch(30% 50 ${textHue})`}
+  return {
+    background: `lch(5% 25 ${bgHue})`,
+    text: `lch(30% 50 ${textHue})`,
+    debug: typeof process.env.SANITY_API_WRITE_TOKEN,
+  }
 }
 
 export default async function handler(req: Request) {
