@@ -41,14 +41,14 @@ function generateThemeColors() {
     ]
 
   return {
-    background2: lchToHex({l: 5, c: 25, h: bgHue, isPrecise: true, forceinGamut: true}),
+    background2: lchToHex({l: 5, c: 25, h: bgHue, isPrecise: true, forceinGamut: true}).value,
     background: `lch(5% 25 ${bgHue})`,
-    text2: lchToHex({l: 30, c: 50, h: textHue, isPrecise: true, forceinGamut: true}),
+    text2: lchToHex({l: 30, c: 50, h: textHue, isPrecise: true, forceinGamut: true}).value,
     text: `lch(30% 50 ${textHue})`,
   }
 }
 
-export default async function handler(req: Request) {
+export default async function handler() {
   try {
     const client = createClient({
       projectId: 'hiomol4a',
@@ -59,24 +59,16 @@ export default async function handler(req: Request) {
     })
     const _id = 'theme'
     const patch = client.patch(_id).set(generateThemeColors())
-    // await client.transaction().createIfNotExists({_id, _type: _id}).patch(patch).commit()
+    await client.transaction().createIfNotExists({_id, _type: _id}).patch(patch).commit()
 
-    return new Response(
-      JSON.stringify({
-        patch,
-        token: process.env.SANITY_API_WRITE_TOKEN,
-        unstable__adapter,
-        unstable__environment,
-      }),
-      {
-        status: 200,
-        headers: {
-          'Access-Control-Allow-Origin': '*',
-          'Access-Control-Allow-Methods': 'OPTIONS, PUT',
-          'Content-Type': 'application/json',
-        },
+    return new Response(JSON.stringify({patch}), {
+      status: 200,
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'OPTIONS, PUT',
+        'Content-Type': 'application/json',
       },
-    )
+    })
   } catch (err) {
     return new Response(err?.message || err?.name || 'Unknown error', {
       status: 500,
