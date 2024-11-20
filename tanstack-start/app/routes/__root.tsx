@@ -1,4 +1,5 @@
-import {Outlet, ScrollRestoration, createRootRoute} from '@tanstack/react-router'
+import {createRootRoute, Outlet, ScrollRestoration} from '@tanstack/react-router'
+import {TanStackRouterDevtools} from '@tanstack/router-devtools'
 import {Meta, Scripts} from '@tanstack/start'
 import type {ReactNode} from 'react'
 
@@ -24,6 +25,7 @@ function RootComponent() {
   return (
     <RootDocument>
       <Outlet />
+      <TanStackRouterDevtools />
     </RootDocument>
   )
 }
