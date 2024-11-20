@@ -41,9 +41,9 @@ function generateThemeColors() {
     ]
 
   return {
-    background2: lchToHex({l: 5, c: 25, h: bgHue, isPrecise: true, forceinGamut: true}),
+    // background2: lchToHex({l: 5, c: 25, h: bgHue, isPrecise: true, forceinGamut: true}),
     background: `lch(5% 25 ${bgHue})`,
-    text2: lchToHex({l: 30, c: 50, h: textHue, isPrecise: true, forceinGamut: true}),
+    // text2: lchToHex({l: 30, c: 50, h: textHue, isPrecise: true, forceinGamut: true}),
     text: `lch(30% 50 ${textHue})`,
   }
 }
@@ -58,7 +58,7 @@ export default async function handler(req: Request) {
   })
   const _id = 'theme'
   const patch = client.patch(_id).set(generateThemeColors())
-  await client.transaction().createIfNotExists({_id, _type: _id}).patch(patch).commit()
+  // await client.transaction().createIfNotExists({_id, _type: _id}).patch(patch).commit()
 
   return new Response(JSON.stringify(patch), {
     status: 200,
