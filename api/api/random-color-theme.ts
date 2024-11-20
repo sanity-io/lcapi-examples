@@ -3,6 +3,9 @@
  */
 
 import {formatHex, parse} from 'culori'
+import {createClient} from '@sanity/client'
+
+console.log(formatHex, createClient, parse)
 
 export const config = {
   runtime: 'edge',
