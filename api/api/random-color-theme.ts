@@ -58,7 +58,7 @@ export default async function handler(req: Request) {
   })
   const _id = 'theme'
   const patch = client.patch(_id).set(generateThemeColors())
-  // await client.transaction().createIfNotExists({_id, _type: _id}).patch(patch).commit()
+  await client.transaction().createIfNotExists({_id, _type: _id}).patch(patch).commit()
 
   return new Response(JSON.stringify(patch), {
     status: 200,
