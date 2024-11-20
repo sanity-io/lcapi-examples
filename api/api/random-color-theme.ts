@@ -7,6 +7,12 @@ import {lch} from 'd3-color'
 
 export const config = {runtime: 'edge'}
 
+const headers = new Headers({
+  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Methods': 'OPTIONS, PUT',
+  'Content-Type': 'application/json',
+})
+
 function getRandomHue() {
   // Get a cryptographically strong random number between 0-360
   const array = new Uint16Array(1)
@@ -47,14 +53,11 @@ function generateThemeColors() {
 
 export default async function handler(request: Request) {
   if (request.method === 'OPTIONS') {
-    return new Response(null, {
-      status: 200,
-      headers: {'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Methods': 'OPTIONS, PUT'},
-    })
+    return new Response(JSON.stringify(null), {status: 200, headers})
   }
 
   if (request.method !== 'PUT') {
-    return new Response('Method not allowed', {status: 405})
+    return new Response(JSON.stringify('Method not allowed'), {status: 405, headers})
   }
 
   try {
@@ -69,13 +72,11 @@ export default async function handler(request: Request) {
     const patch = client.patch(_id).set(generateThemeColors())
     await client.transaction().createIfNotExists({_id, _type: _id}).patch(patch).commit()
 
-    return new Response(JSON.stringify({patch}), {
-      status: 200,
-      headers: {'Content-Type': 'application/json'},
-    })
+    return new Response(JSON.stringify({patch}), {status: 200, headers})
   } catch (err) {
-    return new Response(err?.message || err?.name || 'Unknown error', {
+    return new Response(JSON.stringify(err?.message || err?.name || 'Unknown error'), {
       status: 500,
+      headers,
     })
   }
 }
