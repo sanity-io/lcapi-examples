@@ -4,11 +4,9 @@
 
 import {lchToHex} from 'lch-color-utils'
 
-import {createClient, unstable__adapter, unstable__environment} from '@sanity/client'
+import {createClient} from '@sanity/client'
 
-export const config = {
-  runtime: 'edge',
-}
+export const config = {runtime: 'edge'}
 
 function getRandomHue() {
   // Get a cryptographically strong random number between 0-360
