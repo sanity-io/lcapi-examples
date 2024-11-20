@@ -6,7 +6,6 @@
     "lint": "pnpm -r lint",
     "type-check": "pnpm -r type-check"
   },
-  "prettier": "@sanity/prettier-config",
   "dependencies": {
     "@ianvs/prettier-plugin-sort-imports": "^4.4.0",
     "@sanity/prettier-config": "^1.0.3",
