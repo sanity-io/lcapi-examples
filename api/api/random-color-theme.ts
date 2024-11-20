@@ -36,7 +36,7 @@ function generateThemeColors() {
       Math.floor((crypto.getRandomValues(new Uint8Array(1))[0] / 256) * harmonicHues.length)
     ]
 
-  return {backgroundColor: `lch(5% 25 ${bgHue})`, textColor: `lch(30% 50 ${textHue})`}
+  return {background: `lch(5% 25 ${bgHue})`, text: `lch(30% 50 ${textHue})`}
 }
 
 export default async function handler(req: Request) {
