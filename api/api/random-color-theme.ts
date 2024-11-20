@@ -43,7 +43,8 @@ export default async function handler(req: Request) {
   return new Response(JSON.stringify(generateThemeColors()), {
     status: 200,
     headers: {
-      'content-type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+      'Content-Type': 'application/json',
     },
   })
 }
