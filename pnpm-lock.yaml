@@ -24,6 +24,9 @@ importers:
       '@edge-runtime/types':
         specifier: ^3.0.3
         version: 3.0.3
+      '@types/culori':
+        specifier: ^2.1.1
+        version: 2.1.1
       typescript:
         specifier: 5.6.3
         version: 5.6.3
@@ -2944,6 +2947,9 @@ packages:
 
   '@types/cookie@0.6.0':
     resolution: {integrity: sha512-4Kh9a6B2bQciAhf7FSuMRRkUWecJgJu9nPnx3yzpsfXX/c50REIqpHY4C82bXP90qrLtXtkDxTZosYO3UpOwlA==}
+
+  '@types/culori@2.1.1':
+    resolution: {integrity: sha512-NzLYD0vNHLxTdPp8+RlvGbR2NfOZkwxcYGFwxNtm+WH2NuUNV8785zv1h0sulFQ5aFQ9n/jNDUuJeo3Bh7+oFA==}
 
   '@types/debug@4.1.12':
     resolution: {integrity: sha512-vIChWdVG3LG1SMxEvI/AK+FWJthlrqlTu7fbrlywTkkaONwk/UAGaULXRlf8vkzFBLVm0zkMdCquhL5aOjhXPQ==}
@@ -11997,6 +12003,8 @@ snapshots:
   '@types/braces@3.0.4': {}
 
   '@types/cookie@0.6.0': {}
+
+  '@types/culori@2.1.1': {}
 
   '@types/debug@4.1.12':
     dependencies:
