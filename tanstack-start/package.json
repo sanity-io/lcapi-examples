@@ -1,11 +1,11 @@
 {
   "name": "tanstack-start",
-  "private": true,
   "version": "1.0.0",
+  "private": true,
   "type": "module",
   "scripts": {
-    "dev": "vinxi dev",
     "build": "vinxi build",
+    "dev": "vinxi dev",
     "start": "vinxi start"
   },
   "dependencies": {
