@@ -1,6 +1,33 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
-    "local>sanity-io/renovate-config"
-  ]
+    "github>sanity-io/renovate-config"
+  ],
+  "packageRules": [
+    {
+      "matchFileNames": ["next-14/package.json"],
+      "matchPackageNames": ["next", "eslint-config-next"],
+      "allowedVersions": "<=14"
+    },
+    {
+      "matchFileNames": ["next-14/package.json"],
+      "matchPackageNames": ["react", "react-dom"],
+      "allowedVersions": "<=18"
+    },
+    {
+      "matchFileNames": ["next-14/package.json", "studio/package.json"],
+      "matchPackageNames": ["eslint"],
+      "allowedVersions": "<=8"
+    },
+    {
+      "matchFileNames": ["next-canary/package.json"],
+      "matchPackageNames": ["next", "eslint-config-next"],
+      "followTag": "canary"
+    },
+    {
+      "matchFileNames": ["next-15/package.json", "next-canary/package.json"],
+      "matchPackageNames": ["react", "react-dom"],
+      "followTag": "rc"
+    }
+    ]
 }
