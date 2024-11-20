@@ -41,10 +41,10 @@ function generateThemeColors() {
     ]
 
   return {
-    background2: lchToHex({l: 5, c: 25, h: bgHue, isPrecise: true, forceinGamut: true}).value,
-    background: `lch(5% 25 ${bgHue})`,
-    text2: lchToHex({l: 30, c: 50, h: textHue, isPrecise: true, forceinGamut: true}).value,
-    text: `lch(30% 50 ${textHue})`,
+    // background: `lch(5% 25 ${bgHue})`,
+    background: lchToHex({l: 5, c: 25, h: bgHue, isPrecise: true, forceinGamut: true}).value,
+    // text: `lch(30% 50 ${textHue})`,
+    text: lchToHex({l: 30, c: 50, h: textHue, isPrecise: true, forceinGamut: true}).value,
   }
 }
 
