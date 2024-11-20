@@ -44,6 +44,7 @@ export default async function handler(req: Request) {
     status: 200,
     headers: {
       'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'OPTIONS, PUT',
       'Content-Type': 'application/json',
     },
   })
