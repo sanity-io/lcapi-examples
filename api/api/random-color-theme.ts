@@ -70,11 +70,7 @@ export default async function handler(request: Request) {
     })
     const _id = 'theme'
     const patch = client.patch(_id).set(generateThemeColors())
-    await Promise.allSettled([
-      client.transaction().createIfNotExists({_id, _type: _id}).patch(patch).commit(),
-      // Wait 3 seconds to stagger requests a little bit
-      new Promise((resolve) => setTimeout(resolve, 3_000)),
-    ])
+    client.transaction().createIfNotExists({_id, _type: _id}).patch(patch).commit()
 
     return new Response(JSON.stringify({patch}), {status: 200, headers})
   } catch (err) {
