@@ -10,8 +10,8 @@
 
 // Import Routes
 
-import { Route as rootRoute } from './routes/__root'
-import { Route as IndexImport } from './routes/index'
+import {Route as rootRoute} from './routes/__root'
+import {Route as IndexImport} from './routes/index'
 
 // Create/Update Routes
 
@@ -46,7 +46,7 @@ export interface FileRoutesByTo {
 }
 
 export interface FileRoutesById {
-  __root__: typeof rootRoute
+  '__root__': typeof rootRoute
   '/': typeof IndexRoute
 }
 
