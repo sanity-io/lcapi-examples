@@ -7,7 +7,7 @@ const randomColorTheme = createServerFn().handler(async () => {
   })
 
   // Wait 5 seconds to stagger requests a little bit
-  await new Promise((resolve) => setTimeout(resolve, 5_000))
+  await new Promise((resolve) => setTimeout(resolve, 2_000))
 
   return res.json()
 })
