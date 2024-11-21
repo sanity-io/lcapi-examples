@@ -15,9 +15,11 @@ export function SanityLive() {
       if (event.type === 'welcome') {
         console.info('Sanity is live with automatic refresh of published content')
       } else if (event.type === 'message') {
+        console.log('<SanityLive> schedule refresh')
         setTimeout(() => {
           if (signal.aborted) return
           router.refresh()
+          console.log('<SanityLive> refreshing')
         }, 1_000)
       } else if (event.type === 'restart') {
         router.refresh()
