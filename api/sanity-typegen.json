@@ -1,3 +1,4 @@
 {
-  "schema": "../studio/schema.json"
+  "schema": "../studio/schema.json",
+  "path": "./api/**/*.{ts,tsx,js,jsx}"
 }
