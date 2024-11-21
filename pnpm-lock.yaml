@@ -26,10 +26,10 @@ importers:
         version: 0.14.1
       prettier-plugin-svelte:
         specifier: ^3.2.8
-        version: 3.2.8(prettier@3.3.3)(svelte@5.2.7)
+        version: 3.3.0(prettier@3.3.3)(svelte@5.2.7)
       prettier-plugin-tailwindcss:
         specifier: ^0.6.9
-        version: 0.6.9(@ianvs/prettier-plugin-sort-imports@4.4.0(@vue/compiler-sfc@3.5.13)(prettier@3.3.3))(prettier-plugin-astro@0.14.1)(prettier-plugin-svelte@3.2.8(prettier@3.3.3)(svelte@5.2.7))(prettier@3.3.3)
+        version: 0.6.9(@ianvs/prettier-plugin-sort-imports@4.4.0(@vue/compiler-sfc@3.5.13)(prettier@3.3.3))(prettier-plugin-astro@0.14.1)(prettier-plugin-svelte@3.3.0(prettier@3.3.3)(svelte@5.2.7))(prettier@3.3.3)
       sanity:
         specifier: ^3.64.2
         version: 3.64.2(@types/node@20.17.6)(react-dom@19.0.0-rc.1(react@19.0.0-rc.1))(react@19.0.0-rc.1)(styled-components@6.1.13(react-dom@19.0.0-rc.1(react@19.0.0-rc.1))(react@19.0.0-rc.1))(terser@5.36.0)
@@ -66,7 +66,7 @@ importers:
         version: 6.22.5(debug@4.3.7)
       astro:
         specifier: ^5.0.0-beta.8
-        version: 5.0.0-beta.8(@types/node@20.17.6)(jiti@2.4.0)(rollup@4.27.3)(terser@5.36.0)(tsx@4.19.2)(typescript@5.6.3)(yaml@2.6.1)
+        version: 5.0.0-beta.9(@types/node@20.17.6)(jiti@2.4.0)(rollup@4.27.3)(terser@5.36.0)(tsx@4.19.2)(typescript@5.6.3)(yaml@2.6.1)
       groq:
         specifier: ^3.64.2
         version: 3.64.2
@@ -84,7 +84,7 @@ importers:
         version: 3.64.2
       next:
         specifier: 13.5.7
-        version: 13.5.7(@babel/core@7.26.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        version: 13.5.7(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react:
         specifier: ^18
         version: 18.3.1
@@ -130,7 +130,7 @@ importers:
         version: 3.64.2
       next:
         specifier: 14.2.18
-        version: 14.2.18(@babel/core@7.26.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        version: 14.2.18(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react:
         specifier: ^18
         version: 18.3.1
@@ -173,7 +173,7 @@ importers:
         version: 3.64.2
       next:
         specifier: 15.0.3
-        version: 15.0.3(@babel/core@7.26.0)(react-dom@19.0.0-rc.1(react@19.0.0-rc.1))(react@19.0.0-rc.1)
+        version: 15.0.3(react-dom@19.0.0-rc.1(react@19.0.0-rc.1))(react@19.0.0-rc.1)
       react:
         specifier: rc
         version: 19.0.0-rc.1
@@ -216,7 +216,7 @@ importers:
         version: 3.64.2
       next:
         specifier: canary
-        version: 15.0.4-canary.21(@babel/core@7.26.0)(react-dom@19.0.0-rc.1(react@19.0.0-rc.1))(react@19.0.0-rc.1)
+        version: 15.0.4-canary.22(react-dom@19.0.0-rc.1(react@19.0.0-rc.1))(react@19.0.0-rc.1)
       react:
         specifier: rc
         version: 19.0.0-rc.1
@@ -241,7 +241,7 @@ importers:
         version: 9.15.0(jiti@2.4.0)
       eslint-config-next:
         specifier: canary
-        version: 15.0.4-canary.21(eslint@9.15.0(jiti@2.4.0))(typescript@5.6.3)
+        version: 15.0.4-canary.22(eslint@9.15.0(jiti@2.4.0))(typescript@5.6.3)
       postcss:
         specifier: ^8.4.49
         version: 8.4.49
@@ -262,7 +262,7 @@ importers:
         version: 3.64.2
       next:
         specifier: 15.0.3
-        version: 15.0.3(@babel/core@7.26.0)(react-dom@19.0.0-rc.1(react@19.0.0-rc.1))(react@19.0.0-rc.1)
+        version: 15.0.3(react-dom@19.0.0-rc.1(react@19.0.0-rc.1))(react@19.0.0-rc.1)
       react:
         specifier: rc
         version: 19.0.0-rc.1
@@ -396,11 +396,11 @@ importers:
         specifier: ^3.3.3
         version: 3.3.3
       prettier-plugin-svelte:
-        specifier: ^3.2.8
-        version: 3.2.8(prettier@3.3.3)(svelte@5.2.7)
+        specifier: ^3.3.0
+        version: 3.3.0(prettier@3.3.3)(svelte@5.2.7)
       prettier-plugin-tailwindcss:
         specifier: ^0.6.9
-        version: 0.6.9(@ianvs/prettier-plugin-sort-imports@4.4.0(@vue/compiler-sfc@3.5.13)(prettier@3.3.3))(prettier-plugin-astro@0.14.1)(prettier-plugin-svelte@3.2.8(prettier@3.3.3)(svelte@5.2.7))(prettier@3.3.3)
+        version: 0.6.9(@ianvs/prettier-plugin-sort-imports@4.4.0(@vue/compiler-sfc@3.5.13)(prettier@3.3.3))(prettier-plugin-astro@0.14.1)(prettier-plugin-svelte@3.3.0(prettier@3.3.3)(svelte@5.2.7))(prettier@3.3.3)
       svelte:
         specifier: ^5.2.7
         version: 5.2.7
@@ -2224,8 +2224,8 @@ packages:
   '@next/env@15.0.3':
     resolution: {integrity: sha512-t9Xy32pjNOvVn2AS+Utt6VmyrshbpfUMhIjFO60gI58deSo/KgLOp31XZ4O+kY/Is8WAGYwA5gR7kOb1eORDBA==}
 
-  '@next/env@15.0.4-canary.21':
-    resolution: {integrity: sha512-xKz75Fc/A1VXlW3veA4oaWpoYrv9Cbpr4fVwU5DMDJEABuWKh0UWUR9fKzSrd3ZPwyLx31MipVdHEeeaPBSZEw==}
+  '@next/env@15.0.4-canary.22':
+    resolution: {integrity: sha512-/icns+QjaHm97xrV6DdfLXjUmCixem59OSAvSALKzSRqA6m/Q288c6dUrtGic/o6Dhas0WuXrwk2FDPa59Cx/Q==}
 
   '@next/eslint-plugin-next@13.5.7':
     resolution: {integrity: sha512-c4vuEOOXeib4js5gDq+zFqAAdRGXX6T0d+zFETiQkRwy7vyj5lBov1dW0Z09nDst2lvxo7VEcKrQMUBH5Vgx7Q==}
@@ -2236,8 +2236,8 @@ packages:
   '@next/eslint-plugin-next@15.0.3':
     resolution: {integrity: sha512-3Ln/nHq2V+v8uIaxCR6YfYo7ceRgZNXfTd3yW1ukTaFbO+/I8jNakrjYWODvG9BuR2v5kgVtH/C8r0i11quOgw==}
 
-  '@next/eslint-plugin-next@15.0.4-canary.21':
-    resolution: {integrity: sha512-eZxh4Vd5pVqIFiVBWWjwZJT0XfTSI0gguz486cK/ro2FtONiVpPeMivPKotFG95sEyyeSHK7LyJM6qEUhTkr9g==}
+  '@next/eslint-plugin-next@15.0.4-canary.22':
+    resolution: {integrity: sha512-nWHud61Nr0u9CgHinvDbAbuj1gH4usXlmAK2NU5NyYAv8FE2oiJsLSyaADPpGxibahAK72G+fI7fnoG64vpT6g==}
 
   '@next/swc-darwin-arm64@13.5.7':
     resolution: {integrity: sha512-7SxmxMex45FvKtRoP18eftrDCMyL6WQVYJSEE/s7A1AW/fCkznxjEShKet2iVVzf89gWp8HbXGaL4hCaseux6g==}
@@ -2257,8 +2257,8 @@ packages:
     cpu: [arm64]
     os: [darwin]
 
-  '@next/swc-darwin-arm64@15.0.4-canary.21':
-    resolution: {integrity: sha512-+7aEpsrgI/2hkRdRKt7AFAwsy1cPEhDbiEbT0PvfYQKl/+aWHQG4mOZ8Rfn5r8ToQ+x2FZ16bdYe2mBBsjRFQQ==}
+  '@next/swc-darwin-arm64@15.0.4-canary.22':
+    resolution: {integrity: sha512-3rDc9HgWCdyexR9gRACJlNaWG681Yy1pV4KOkkUQ6+SldeugRFo7RIQcWENeOFJad+zQj+IX9wDTjmQ6fJS8uA==}
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [darwin]
@@ -2281,8 +2281,8 @@ packages:
     cpu: [x64]
     os: [darwin]
 
-  '@next/swc-darwin-x64@15.0.4-canary.21':
-    resolution: {integrity: sha512-PtZmQxnrIay5sdG0HAw9MjoQJyoYPgbHcgKotqQnJexpTZIlJxX/gq/HsntRphi8jReYGKMg3BiKQ9CnF/vdfw==}
+  '@next/swc-darwin-x64@15.0.4-canary.22':
+    resolution: {integrity: sha512-fxrfCvPrJZYhfeytbOFvUWhjFLa4hIQS56aM8wIenunYR9vtVMXCO/2E8ZkGhXIDvdyBfCA7E90hmJF+O0Hjew==}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [darwin]
@@ -2305,8 +2305,8 @@ packages:
     cpu: [arm64]
     os: [linux]
 
-  '@next/swc-linux-arm64-gnu@15.0.4-canary.21':
-    resolution: {integrity: sha512-BAR1v+Kn/8MRG3RZDAqUJAJhRLpwAW6paZBCfsW/RpFRHOpE3WB8NpsRN3YeYjnVDFC4BE8n0wxsofN8Bk2QsA==}
+  '@next/swc-linux-arm64-gnu@15.0.4-canary.22':
+    resolution: {integrity: sha512-1pyTjPdj2HVTNoz3sNDi9rwBSK8B7hBEyA8f72AcPYwEuIZ2cdM45EmEw/3lNaQzUNZCCWd2+lupKi2bjIIYaw==}
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [linux]
@@ -2329,8 +2329,8 @@ packages:
     cpu: [arm64]
     os: [linux]
 
-  '@next/swc-linux-arm64-musl@15.0.4-canary.21':
-    resolution: {integrity: sha512-MNqTNEMSKCgPxPtNU6GfR4CRlYloTjrquzkuUPtg2xCA+G0Fd8dpK2yNdQTayTr60KV8rTE0v8NBzXNLWBjXbg==}
+  '@next/swc-linux-arm64-musl@15.0.4-canary.22':
+    resolution: {integrity: sha512-l02105JDbwjFf2v/qeRC4s8e7qPUsll/iKU4cyaYhfSFtV27NaPDeF88wIrxUs/47+po9NljqFEvzUETSW1RKA==}
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [linux]
@@ -2353,8 +2353,8 @@ packages:
     cpu: [x64]
     os: [linux]
 
-  '@next/swc-linux-x64-gnu@15.0.4-canary.21':
-    resolution: {integrity: sha512-lDjKq/SjUGBgRu3kCbI775VXr8u7SGgVqgx8Z0pGX2QdSS1inj74cC9pYLeyih8z9BX11V9+mV4dX86/t7RZsg==}
+  '@next/swc-linux-x64-gnu@15.0.4-canary.22':
+    resolution: {integrity: sha512-IZ1ikID5/VHGbTbUG409pLDT9oLJxJ4Li86niqRmVDFqUfYDZ/ajUpCI91DflNfwyqpU3Hr3Ct8O19G7735wPg==}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [linux]
@@ -2377,8 +2377,8 @@ packages:
     cpu: [x64]
     os: [linux]
 
-  '@next/swc-linux-x64-musl@15.0.4-canary.21':
-    resolution: {integrity: sha512-6stvVNyEmgsK4tqNrULHTEgreVTi6ooiTzOTMio6I9v+UrQVuf2m0hgT7iFcs6bwHety/GZbgILL4igeONuJMw==}
+  '@next/swc-linux-x64-musl@15.0.4-canary.22':
+    resolution: {integrity: sha512-PkpfmIRmXufxVjIN1x3zFBbkDPqwSMODB3ZdYeTJlnDrf0FkN4oj+6N4t3Q5zxRcXGfhZBlo0eK5e/ekMVpifA==}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [linux]
@@ -2401,8 +2401,8 @@ packages:
     cpu: [arm64]
     os: [win32]
 
-  '@next/swc-win32-arm64-msvc@15.0.4-canary.21':
-    resolution: {integrity: sha512-VkKFukhDRyNSSSQuW4GRBzeaoo2SVsMV/u7ulvGSdL07+T7zHxnCe1yyIE7ugP0aClIfCXSkxPdG5SkZppKxuA==}
+  '@next/swc-win32-arm64-msvc@15.0.4-canary.22':
+    resolution: {integrity: sha512-8LWvFEJ2GSlsVzZ9mcHL74n9He1J4pQLoXaLDL9aOj/5mNpdX6A+zG13xpHMsaBwkZ8xP3yjeTGr1S50J+JuAg==}
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [win32]
@@ -2437,8 +2437,8 @@ packages:
     cpu: [x64]
     os: [win32]
 
-  '@next/swc-win32-x64-msvc@15.0.4-canary.21':
-    resolution: {integrity: sha512-ir5/qHJCTNhDQNur3RN8U2hI1eKhrAiYiOjUiuWe4BiBkMgvZe3p0sjzxxy4QRYmBCtqCnUhHmaMoNcp1rB3PQ==}
+  '@next/swc-win32-x64-msvc@15.0.4-canary.22':
+    resolution: {integrity: sha512-UnIvsYmABKkoEHbmsk9FfoFJq7CMZeKeG4H9tKLVco8suHeudfEIWe7P3BxbiWviOEO79Ed/3LE0Osg1agWQgg==}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [win32]
@@ -3834,8 +3834,8 @@ packages:
     resolution: {integrity: sha512-LElXdjswlqjWrPpJFg1Fx4wpkOCxj1TDHlSV4PlaRxHGWko024xICaa97ZkMfs6DRKlCguiAI+rbXv5GWwXIkg==}
     hasBin: true
 
-  astro@5.0.0-beta.8:
-    resolution: {integrity: sha512-AXMNek/+7ndByFILgiRgfT3gxWcSKpzB2T8p4IPKlEWgLNMKaL8t8NaPUhUvQlpOPj+SL5n0ZoaMme6aHQIBaw==}
+  astro@5.0.0-beta.9:
+    resolution: {integrity: sha512-9i7q5qLVLkFmwMYNBGsN8xdSfWAMXz+i3f+uYwRpl8/x/lifHKSsObXP7u52qzLU/JGB/3Z8Oc4yDSbqIMlS1w==}
     engines: {node: ^18.17.1 || ^20.3.0 || >=21.0.0, npm: '>=9.6.5', pnpm: '>=7.1.0'}
     hasBin: true
 
@@ -4856,8 +4856,8 @@ packages:
       typescript:
         optional: true
 
-  eslint-config-next@15.0.4-canary.21:
-    resolution: {integrity: sha512-1ApsIGNHChhGjX9DSSwvmvPa4bRCghqYE8Pxj3TxKduyini3eAN5yxjdkiZkQo5xT1ulzE+5zmgti/TEuTE86Q==}
+  eslint-config-next@15.0.4-canary.22:
+    resolution: {integrity: sha512-rKWlspHlq7Zzn/9tzKnAgM7iutBwGWgAO9FX5VUCAnYeJrIukMg+FG2BbsNjXGWosho3isH6wIUXJAXpmws8mg==}
     peerDependencies:
       eslint: ^7.23.0 || ^8.0.0 || ^9.0.0
       typescript: '>=3.3.1'
@@ -6623,8 +6623,8 @@ packages:
       sass:
         optional: true
 
-  next@15.0.4-canary.21:
-    resolution: {integrity: sha512-z8SQxKGonrQ/FdtGzTIvmwHHjSm824FabdlJrP8h9ZvkrjlpNi2ABSikOZXeEG4VAgT9qqQg0zPykBRdrstU9g==}
+  next@15.0.4-canary.22:
+    resolution: {integrity: sha512-hvLzT4pLD1hx8yzKTEl9Nu5DlEMe1t8i6qmMs48yI5gM8KhG2VFmTW2TxLUvkFIXSxBdX2dFzOGnAIQdRkcNlQ==}
     engines: {node: ^18.18.0 || ^19.8.0 || >= 20.0.0}
     hasBin: true
     peerDependencies:
@@ -7323,8 +7323,8 @@ packages:
       prettier:
         optional: true
 
-  prettier-plugin-svelte@3.2.8:
-    resolution: {integrity: sha512-PAHmmU5cGZdnhW4mWhmvxuG2PVbbHIxUuPOdUKvfE+d4Qt2d29iU5VWrPdsaW5YqVEE0nqhlvN4eoKmVMpIF3Q==}
+  prettier-plugin-svelte@3.3.0:
+    resolution: {integrity: sha512-iNoYiQUx4zwqbQDW/bk0WR75w+QiY4fHJQpGQ5v8Yr7X5m7YoSvs2buUnhoYFXNAL32ULVmrjPSc0vVOHJsO0Q==}
     peerDependencies:
       prettier: ^3.0.0
       svelte: ^3.2.0 || ^4.0.0-next.0 || ^5.0.0-next.0
@@ -10319,9 +10319,9 @@ snapshots:
       react-dom: 19.0.0-rc.1(react@19.0.0-rc.1)
       tslib: 2.8.1
 
-  '@dnd-kit/modifiers@6.0.1(@dnd-kit/core@6.1.0(react-dom@19.0.0-rc.1(react@19.0.0-rc.1))(react@19.0.0-rc.1))(react@18.3.1)':
+  '@dnd-kit/modifiers@6.0.1(@dnd-kit/core@6.1.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)':
     dependencies:
-      '@dnd-kit/core': 6.1.0(react-dom@19.0.0-rc.1(react@19.0.0-rc.1))(react@19.0.0-rc.1)
+      '@dnd-kit/core': 6.1.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@dnd-kit/utilities': 3.2.2(react@18.3.1)
       react: 18.3.1
       tslib: 2.8.1
@@ -10333,9 +10333,9 @@ snapshots:
       react: 19.0.0-rc.1
       tslib: 2.8.1
 
-  '@dnd-kit/sortable@7.0.2(@dnd-kit/core@6.1.0(react-dom@19.0.0-rc.1(react@19.0.0-rc.1))(react@19.0.0-rc.1))(react@18.3.1)':
+  '@dnd-kit/sortable@7.0.2(@dnd-kit/core@6.1.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)':
     dependencies:
-      '@dnd-kit/core': 6.1.0(react-dom@19.0.0-rc.1(react@19.0.0-rc.1))(react@19.0.0-rc.1)
+      '@dnd-kit/core': 6.1.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@dnd-kit/utilities': 3.2.2(react@18.3.1)
       react: 18.3.1
       tslib: 2.8.1
@@ -11044,7 +11044,7 @@ snapshots:
 
   '@next/env@15.0.3': {}
 
-  '@next/env@15.0.4-canary.21': {}
+  '@next/env@15.0.4-canary.22': {}
 
   '@next/eslint-plugin-next@13.5.7':
     dependencies:
@@ -11058,7 +11058,7 @@ snapshots:
     dependencies:
       fast-glob: 3.3.1
 
-  '@next/eslint-plugin-next@15.0.4-canary.21':
+  '@next/eslint-plugin-next@15.0.4-canary.22':
     dependencies:
       fast-glob: 3.3.1
 
@@ -11071,7 +11071,7 @@ snapshots:
   '@next/swc-darwin-arm64@15.0.3':
     optional: true
 
-  '@next/swc-darwin-arm64@15.0.4-canary.21':
+  '@next/swc-darwin-arm64@15.0.4-canary.22':
     optional: true
 
   '@next/swc-darwin-x64@13.5.7':
@@ -11083,7 +11083,7 @@ snapshots:
   '@next/swc-darwin-x64@15.0.3':
     optional: true
 
-  '@next/swc-darwin-x64@15.0.4-canary.21':
+  '@next/swc-darwin-x64@15.0.4-canary.22':
     optional: true
 
   '@next/swc-linux-arm64-gnu@13.5.7':
@@ -11095,7 +11095,7 @@ snapshots:
   '@next/swc-linux-arm64-gnu@15.0.3':
     optional: true
 
-  '@next/swc-linux-arm64-gnu@15.0.4-canary.21':
+  '@next/swc-linux-arm64-gnu@15.0.4-canary.22':
     optional: true
 
   '@next/swc-linux-arm64-musl@13.5.7':
@@ -11107,7 +11107,7 @@ snapshots:
   '@next/swc-linux-arm64-musl@15.0.3':
     optional: true
 
-  '@next/swc-linux-arm64-musl@15.0.4-canary.21':
+  '@next/swc-linux-arm64-musl@15.0.4-canary.22':
     optional: true
 
   '@next/swc-linux-x64-gnu@13.5.7':
@@ -11119,7 +11119,7 @@ snapshots:
   '@next/swc-linux-x64-gnu@15.0.3':
     optional: true
 
-  '@next/swc-linux-x64-gnu@15.0.4-canary.21':
+  '@next/swc-linux-x64-gnu@15.0.4-canary.22':
     optional: true
 
   '@next/swc-linux-x64-musl@13.5.7':
@@ -11131,7 +11131,7 @@ snapshots:
   '@next/swc-linux-x64-musl@15.0.3':
     optional: true
 
-  '@next/swc-linux-x64-musl@15.0.4-canary.21':
+  '@next/swc-linux-x64-musl@15.0.4-canary.22':
     optional: true
 
   '@next/swc-win32-arm64-msvc@13.5.7':
@@ -11143,7 +11143,7 @@ snapshots:
   '@next/swc-win32-arm64-msvc@15.0.3':
     optional: true
 
-  '@next/swc-win32-arm64-msvc@15.0.4-canary.21':
+  '@next/swc-win32-arm64-msvc@15.0.4-canary.22':
     optional: true
 
   '@next/swc-win32-ia32-msvc@13.5.7':
@@ -11161,7 +11161,7 @@ snapshots:
   '@next/swc-win32-x64-msvc@15.0.3':
     optional: true
 
-  '@next/swc-win32-x64-msvc@15.0.4-canary.21':
+  '@next/swc-win32-x64-msvc@15.0.4-canary.22':
     optional: true
 
   '@nicolo-ribaudo/eslint-scope-5-internals@5.1.1-v1':
@@ -11491,7 +11491,7 @@ snapshots:
       - react-dom
       - supports-color
 
-  '@portabletext/editor@1.10.2(@sanity/block-tools@3.64.2)(@sanity/schema@3.64.2)(@sanity/types@3.64.2(debug@4.3.7))(react-dom@19.0.0-rc.1(react@19.0.0-rc.1))(react@19.0.0-rc.1)(rxjs@7.8.1)(styled-components@6.1.13(react-dom@19.0.0-rc.1(react@19.0.0-rc.1))(react@19.0.0-rc.1))':
+  '@portabletext/editor@1.10.2(@sanity/block-tools@3.64.2(debug@4.3.7))(@sanity/schema@3.64.2(debug@4.3.7))(@sanity/types@3.64.2(debug@4.3.7))(react-dom@19.0.0-rc.1(react@19.0.0-rc.1))(react@19.0.0-rc.1)(rxjs@7.8.1)(styled-components@6.1.13(react-dom@19.0.0-rc.1(react@19.0.0-rc.1))(react@19.0.0-rc.1))':
     dependencies:
       '@portabletext/patches': 1.1.0
       '@sanity/block-tools': 3.64.2(debug@4.3.7)
@@ -11974,7 +11974,7 @@ snapshots:
       '@sanity/comlink': 1.1.3
       '@sanity/icons': 3.4.0(react@18.3.1)
       '@sanity/logos': 2.1.13(@sanity/color@3.0.6)(react@18.3.1)
-      '@sanity/preview-url-secret': 2.0.4(@sanity/client@6.22.5)
+      '@sanity/preview-url-secret': 2.0.4(@sanity/client@6.22.5(debug@4.3.7))
       '@sanity/ui': 2.8.24(react-dom@18.3.1(react@18.3.1))(react-is@18.3.1)(react@18.3.1)(styled-components@6.1.13(react-dom@18.3.1(react@18.3.1))(react@18.3.1))
       '@sanity/uuid': 3.0.2
       '@types/lodash.isequal': 4.5.8
@@ -11995,13 +11995,13 @@ snapshots:
       - react-is
       - styled-components
 
-  '@sanity/presentation@1.18.4(@sanity/client@6.22.5)(@sanity/color@3.0.6)(react-dom@19.0.0-rc.1(react@19.0.0-rc.1))(react-is@18.3.1)(react@19.0.0-rc.1)(styled-components@6.1.13(react-dom@19.0.0-rc.1(react@19.0.0-rc.1))(react@19.0.0-rc.1))':
+  '@sanity/presentation@1.18.4(@sanity/client@6.22.5(debug@4.3.7))(@sanity/color@3.0.6)(react-dom@19.0.0-rc.1(react@19.0.0-rc.1))(react-is@18.3.1)(react@19.0.0-rc.1)(styled-components@6.1.13(react-dom@19.0.0-rc.1(react@19.0.0-rc.1))(react@19.0.0-rc.1))':
     dependencies:
       '@sanity/client': 6.22.5(debug@4.3.7)
       '@sanity/comlink': 1.1.3
       '@sanity/icons': 3.4.0(react@19.0.0-rc.1)
       '@sanity/logos': 2.1.13(@sanity/color@3.0.6)(react@19.0.0-rc.1)
-      '@sanity/preview-url-secret': 2.0.4(@sanity/client@6.22.5)
+      '@sanity/preview-url-secret': 2.0.4(@sanity/client@6.22.5(debug@4.3.7))
       '@sanity/ui': 2.8.24(react-dom@19.0.0-rc.1(react@19.0.0-rc.1))(react-is@18.3.1)(react@19.0.0-rc.1)(styled-components@6.1.13(react-dom@19.0.0-rc.1(react@19.0.0-rc.1))(react@19.0.0-rc.1))
       '@sanity/uuid': 3.0.2
       '@types/lodash.isequal': 4.5.8
@@ -12027,7 +12027,7 @@ snapshots:
       prettier: 3.3.3
       prettier-plugin-packagejson: 2.5.5(prettier@3.3.3)
 
-  '@sanity/preview-url-secret@2.0.4(@sanity/client@6.22.5)':
+  '@sanity/preview-url-secret@2.0.4(@sanity/client@6.22.5(debug@4.3.7))':
     dependencies:
       '@sanity/client': 6.22.5(debug@4.3.7)
       '@sanity/uuid': 3.0.2
@@ -13468,7 +13468,7 @@ snapshots:
 
   astring@1.9.0: {}
 
-  astro@5.0.0-beta.8(@types/node@20.17.6)(jiti@2.4.0)(rollup@4.27.3)(terser@5.36.0)(tsx@4.19.2)(typescript@5.6.3)(yaml@2.6.1):
+  astro@5.0.0-beta.9(@types/node@20.17.6)(jiti@2.4.0)(rollup@4.27.3)(terser@5.36.0)(tsx@4.19.2)(typescript@5.6.3)(yaml@2.6.1):
     dependencies:
       '@astrojs/compiler': 2.10.3
       '@astrojs/internal-helpers': 0.4.1
@@ -13516,6 +13516,7 @@ snapshots:
       shiki: 1.23.1
       tinyexec: 0.3.1
       tsconfck: 3.1.4(typescript@5.6.3)
+      ultrahtml: 1.5.3
       unist-util-visit: 5.0.0
       vfile: 6.0.3
       vite: 6.0.0-beta.6(@types/node@20.17.6)(jiti@2.4.0)(terser@5.36.0)(tsx@4.19.2)(yaml@2.6.1)
@@ -14684,7 +14685,7 @@ snapshots:
       eslint: 8.57.1
       eslint-import-resolver-node: 0.3.9
       eslint-import-resolver-typescript: 3.6.3(@typescript-eslint/parser@6.21.0(eslint@8.57.1)(typescript@5.6.3))(eslint-import-resolver-node@0.3.9)(eslint-plugin-import@2.31.0(eslint@8.57.1))(eslint@8.57.1)
-      eslint-plugin-import: 2.31.0(@typescript-eslint/parser@6.21.0(eslint@8.57.1)(typescript@5.6.3))(eslint-import-resolver-typescript@3.6.3(@typescript-eslint/parser@6.21.0(eslint@8.57.1)(typescript@5.6.3))(eslint-import-resolver-node@0.3.9)(eslint-plugin-import@2.31.0(eslint@8.57.1))(eslint@8.57.1))(eslint@8.57.1)
+      eslint-plugin-import: 2.31.0(@typescript-eslint/parser@6.21.0(eslint@8.57.1)(typescript@5.6.3))(eslint-import-resolver-typescript@3.6.3)(eslint@8.57.1)
       eslint-plugin-jsx-a11y: 6.10.2(eslint@8.57.1)
       eslint-plugin-react: 7.37.2(eslint@8.57.1)
       eslint-plugin-react-hooks: 5.0.0-canary-7118f5dd7-20230705(eslint@8.57.1)
@@ -14735,9 +14736,9 @@ snapshots:
       - eslint-plugin-import-x
       - supports-color
 
-  eslint-config-next@15.0.4-canary.21(eslint@9.15.0(jiti@2.4.0))(typescript@5.6.3):
+  eslint-config-next@15.0.4-canary.22(eslint@9.15.0(jiti@2.4.0))(typescript@5.6.3):
     dependencies:
-      '@next/eslint-plugin-next': 15.0.4-canary.21
+      '@next/eslint-plugin-next': 15.0.4-canary.22
       '@rushstack/eslint-patch': 1.10.4
       '@typescript-eslint/eslint-plugin': 8.15.0(@typescript-eslint/parser@8.15.0(eslint@9.15.0(jiti@2.4.0))(typescript@5.6.3))(eslint@9.15.0(jiti@2.4.0))(typescript@5.6.3)
       '@typescript-eslint/parser': 8.15.0(eslint@9.15.0(jiti@2.4.0))(typescript@5.6.3)
@@ -14773,13 +14774,13 @@ snapshots:
       debug: 4.3.7(supports-color@9.4.0)
       enhanced-resolve: 5.17.1
       eslint: 8.57.1
-      eslint-module-utils: 2.12.0(@typescript-eslint/parser@6.21.0(eslint@8.57.1)(typescript@5.6.3))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.6.3(@typescript-eslint/parser@6.21.0(eslint@8.57.1)(typescript@5.6.3))(eslint-import-resolver-node@0.3.9)(eslint-plugin-import@2.31.0(eslint@8.57.1))(eslint@8.57.1))(eslint@8.57.1)
+      eslint-module-utils: 2.12.0(@typescript-eslint/parser@6.21.0(eslint@8.57.1)(typescript@5.6.3))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.6.3)(eslint@8.57.1)
       fast-glob: 3.3.2
       get-tsconfig: 4.8.1
       is-bun-module: 1.2.1
       is-glob: 4.0.3
     optionalDependencies:
-      eslint-plugin-import: 2.31.0(@typescript-eslint/parser@6.21.0(eslint@8.57.1)(typescript@5.6.3))(eslint-import-resolver-typescript@3.6.3(@typescript-eslint/parser@6.21.0(eslint@8.57.1)(typescript@5.6.3))(eslint-import-resolver-node@0.3.9)(eslint-plugin-import@2.31.0(eslint@8.57.1))(eslint@8.57.1))(eslint@8.57.1)
+      eslint-plugin-import: 2.31.0(@typescript-eslint/parser@6.21.0(eslint@8.57.1)(typescript@5.6.3))(eslint-import-resolver-typescript@3.6.3)(eslint@8.57.1)
     transitivePeerDependencies:
       - '@typescript-eslint/parser'
       - eslint-import-resolver-node
@@ -14824,7 +14825,7 @@ snapshots:
       - eslint-import-resolver-webpack
       - supports-color
 
-  eslint-module-utils@2.12.0(@typescript-eslint/parser@6.21.0(eslint@8.57.1)(typescript@5.6.3))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.6.3(@typescript-eslint/parser@6.21.0(eslint@8.57.1)(typescript@5.6.3))(eslint-import-resolver-node@0.3.9)(eslint-plugin-import@2.31.0(eslint@8.57.1))(eslint@8.57.1))(eslint@8.57.1):
+  eslint-module-utils@2.12.0(@typescript-eslint/parser@6.21.0(eslint@8.57.1)(typescript@5.6.3))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.6.3)(eslint@8.57.1):
     dependencies:
       debug: 3.2.7
     optionalDependencies:
@@ -14857,7 +14858,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  eslint-plugin-import@2.31.0(@typescript-eslint/parser@6.21.0(eslint@8.57.1)(typescript@5.6.3))(eslint-import-resolver-typescript@3.6.3(@typescript-eslint/parser@6.21.0(eslint@8.57.1)(typescript@5.6.3))(eslint-import-resolver-node@0.3.9)(eslint-plugin-import@2.31.0(eslint@8.57.1))(eslint@8.57.1))(eslint@8.57.1):
+  eslint-plugin-import@2.31.0(@typescript-eslint/parser@6.21.0(eslint@8.57.1)(typescript@5.6.3))(eslint-import-resolver-typescript@3.6.3)(eslint@8.57.1):
     dependencies:
       '@rtsao/scc': 1.1.0
       array-includes: 3.1.8
@@ -14868,7 +14869,7 @@ snapshots:
       doctrine: 2.1.0
       eslint: 8.57.1
       eslint-import-resolver-node: 0.3.9
-      eslint-module-utils: 2.12.0(@typescript-eslint/parser@6.21.0(eslint@8.57.1)(typescript@5.6.3))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.6.3(@typescript-eslint/parser@6.21.0(eslint@8.57.1)(typescript@5.6.3))(eslint-import-resolver-node@0.3.9)(eslint-plugin-import@2.31.0(eslint@8.57.1))(eslint@8.57.1))(eslint@8.57.1)
+      eslint-module-utils: 2.12.0(@typescript-eslint/parser@6.21.0(eslint@8.57.1)(typescript@5.6.3))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.6.3)(eslint@8.57.1)
       hasown: 2.0.2
       is-core-module: 2.15.1
       is-glob: 4.0.3
@@ -16990,7 +16991,7 @@ snapshots:
 
   neotraverse@0.6.18: {}
 
-  next@13.5.7(@babel/core@7.26.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
+  next@13.5.7(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
     dependencies:
       '@next/env': 13.5.7
       '@swc/helpers': 0.5.2
@@ -16999,7 +17000,7 @@ snapshots:
       postcss: 8.4.31
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
-      styled-jsx: 5.1.1(@babel/core@7.26.0)(react@18.3.1)
+      styled-jsx: 5.1.1(react@18.3.1)
       watchpack: 2.4.0
     optionalDependencies:
       '@next/swc-darwin-arm64': 13.5.7
@@ -17015,7 +17016,7 @@ snapshots:
       - '@babel/core'
       - babel-plugin-macros
 
-  next@14.2.18(@babel/core@7.26.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
+  next@14.2.18(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
     dependencies:
       '@next/env': 14.2.18
       '@swc/helpers': 0.5.5
@@ -17025,7 +17026,7 @@ snapshots:
       postcss: 8.4.31
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
-      styled-jsx: 5.1.1(@babel/core@7.26.0)(react@18.3.1)
+      styled-jsx: 5.1.1(react@18.3.1)
     optionalDependencies:
       '@next/swc-darwin-arm64': 14.2.18
       '@next/swc-darwin-x64': 14.2.18
@@ -17040,7 +17041,7 @@ snapshots:
       - '@babel/core'
       - babel-plugin-macros
 
-  next@15.0.3(@babel/core@7.26.0)(react-dom@19.0.0-rc.1(react@19.0.0-rc.1))(react@19.0.0-rc.1):
+  next@15.0.3(react-dom@19.0.0-rc.1(react@19.0.0-rc.1))(react@19.0.0-rc.1):
     dependencies:
       '@next/env': 15.0.3
       '@swc/counter': 0.1.3
@@ -17050,7 +17051,7 @@ snapshots:
       postcss: 8.4.31
       react: 19.0.0-rc.1
       react-dom: 19.0.0-rc.1(react@19.0.0-rc.1)
-      styled-jsx: 5.1.6(@babel/core@7.26.0)(react@19.0.0-rc.1)
+      styled-jsx: 5.1.6(react@19.0.0-rc.1)
     optionalDependencies:
       '@next/swc-darwin-arm64': 15.0.3
       '@next/swc-darwin-x64': 15.0.3
@@ -17065,9 +17066,9 @@ snapshots:
       - '@babel/core'
       - babel-plugin-macros
 
-  next@15.0.4-canary.21(@babel/core@7.26.0)(react-dom@19.0.0-rc.1(react@19.0.0-rc.1))(react@19.0.0-rc.1):
+  next@15.0.4-canary.22(react-dom@19.0.0-rc.1(react@19.0.0-rc.1))(react@19.0.0-rc.1):
     dependencies:
-      '@next/env': 15.0.4-canary.21
+      '@next/env': 15.0.4-canary.22
       '@swc/counter': 0.1.3
       '@swc/helpers': 0.5.13
       busboy: 1.6.0
@@ -17075,16 +17076,16 @@ snapshots:
       postcss: 8.4.31
       react: 19.0.0-rc.1
       react-dom: 19.0.0-rc.1(react@19.0.0-rc.1)
-      styled-jsx: 5.1.6(@babel/core@7.26.0)(react@19.0.0-rc.1)
+      styled-jsx: 5.1.6(react@19.0.0-rc.1)
     optionalDependencies:
-      '@next/swc-darwin-arm64': 15.0.4-canary.21
-      '@next/swc-darwin-x64': 15.0.4-canary.21
-      '@next/swc-linux-arm64-gnu': 15.0.4-canary.21
-      '@next/swc-linux-arm64-musl': 15.0.4-canary.21
-      '@next/swc-linux-x64-gnu': 15.0.4-canary.21
-      '@next/swc-linux-x64-musl': 15.0.4-canary.21
-      '@next/swc-win32-arm64-msvc': 15.0.4-canary.21
-      '@next/swc-win32-x64-msvc': 15.0.4-canary.21
+      '@next/swc-darwin-arm64': 15.0.4-canary.22
+      '@next/swc-darwin-x64': 15.0.4-canary.22
+      '@next/swc-linux-arm64-gnu': 15.0.4-canary.22
+      '@next/swc-linux-arm64-musl': 15.0.4-canary.22
+      '@next/swc-linux-x64-gnu': 15.0.4-canary.22
+      '@next/swc-linux-x64-musl': 15.0.4-canary.22
+      '@next/swc-win32-arm64-msvc': 15.0.4-canary.22
+      '@next/swc-win32-x64-msvc': 15.0.4-canary.22
       sharp: 0.33.5
     transitivePeerDependencies:
       - '@babel/core'
@@ -17928,18 +17929,18 @@ snapshots:
     optionalDependencies:
       prettier: 3.3.3
 
-  prettier-plugin-svelte@3.2.8(prettier@3.3.3)(svelte@5.2.7):
+  prettier-plugin-svelte@3.3.0(prettier@3.3.3)(svelte@5.2.7):
     dependencies:
       prettier: 3.3.3
       svelte: 5.2.7
 
-  prettier-plugin-tailwindcss@0.6.9(@ianvs/prettier-plugin-sort-imports@4.4.0(@vue/compiler-sfc@3.5.13)(prettier@3.3.3))(prettier-plugin-astro@0.14.1)(prettier-plugin-svelte@3.2.8(prettier@3.3.3)(svelte@5.2.7))(prettier@3.3.3):
+  prettier-plugin-tailwindcss@0.6.9(@ianvs/prettier-plugin-sort-imports@4.4.0(@vue/compiler-sfc@3.5.13)(prettier@3.3.3))(prettier-plugin-astro@0.14.1)(prettier-plugin-svelte@3.3.0(prettier@3.3.3)(svelte@5.2.7))(prettier@3.3.3):
     dependencies:
       prettier: 3.3.3
     optionalDependencies:
       '@ianvs/prettier-plugin-sort-imports': 4.4.0(@vue/compiler-sfc@3.5.13)(prettier@3.3.3)
       prettier-plugin-astro: 0.14.1
-      prettier-plugin-svelte: 3.2.8(prettier@3.3.3)(svelte@5.2.7)
+      prettier-plugin-svelte: 3.3.0(prettier@3.3.3)(svelte@5.2.7)
 
   prettier@2.8.7:
     optional: true
@@ -18526,8 +18527,8 @@ snapshots:
   sanity@3.64.2(@types/node@20.17.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(styled-components@6.1.13(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(terser@5.36.0)(types-react@19.0.0-rc.1):
     dependencies:
       '@dnd-kit/core': 6.1.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@dnd-kit/modifiers': 6.0.1(@dnd-kit/core@6.1.0(react-dom@19.0.0-rc.1(react@19.0.0-rc.1))(react@19.0.0-rc.1))(react@18.3.1)
-      '@dnd-kit/sortable': 7.0.2(@dnd-kit/core@6.1.0(react-dom@19.0.0-rc.1(react@19.0.0-rc.1))(react@19.0.0-rc.1))(react@18.3.1)
+      '@dnd-kit/modifiers': 6.0.1(@dnd-kit/core@6.1.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)
+      '@dnd-kit/sortable': 7.0.2(@dnd-kit/core@6.1.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)
       '@dnd-kit/utilities': 3.2.2(react@18.3.1)
       '@juggle/resize-observer': 3.4.0
       '@portabletext/editor': 1.10.2(@sanity/block-tools@3.64.2(debug@4.3.7))(@sanity/schema@3.64.2(debug@4.3.7))(@sanity/types@3.64.2(debug@4.3.7))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(rxjs@7.8.1)(styled-components@6.1.13(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(types-react@19.0.0-rc.1)
@@ -18666,7 +18667,7 @@ snapshots:
       '@dnd-kit/sortable': 7.0.2(@dnd-kit/core@6.1.0(react-dom@19.0.0-rc.1(react@19.0.0-rc.1))(react@19.0.0-rc.1))(react@19.0.0-rc.1)
       '@dnd-kit/utilities': 3.2.2(react@19.0.0-rc.1)
       '@juggle/resize-observer': 3.4.0
-      '@portabletext/editor': 1.10.2(@sanity/block-tools@3.64.2)(@sanity/schema@3.64.2)(@sanity/types@3.64.2(debug@4.3.7))(react-dom@19.0.0-rc.1(react@19.0.0-rc.1))(react@19.0.0-rc.1)(rxjs@7.8.1)(styled-components@6.1.13(react-dom@19.0.0-rc.1(react@19.0.0-rc.1))(react@19.0.0-rc.1))
+      '@portabletext/editor': 1.10.2(@sanity/block-tools@3.64.2(debug@4.3.7))(@sanity/schema@3.64.2(debug@4.3.7))(@sanity/types@3.64.2(debug@4.3.7))(react-dom@19.0.0-rc.1(react@19.0.0-rc.1))(react@19.0.0-rc.1)(rxjs@7.8.1)(styled-components@6.1.13(react-dom@19.0.0-rc.1(react@19.0.0-rc.1))(react@19.0.0-rc.1))
       '@portabletext/react': 3.1.0(react@19.0.0-rc.1)
       '@rexxars/react-json-inspector': 8.0.1(react@19.0.0-rc.1)
       '@sanity/asset-utils': 2.2.0
@@ -18686,7 +18687,7 @@ snapshots:
       '@sanity/logos': 2.1.13(@sanity/color@3.0.6)(react@19.0.0-rc.1)
       '@sanity/migrate': 3.64.2
       '@sanity/mutator': 3.64.2
-      '@sanity/presentation': 1.18.4(@sanity/client@6.22.5)(@sanity/color@3.0.6)(react-dom@19.0.0-rc.1(react@19.0.0-rc.1))(react-is@18.3.1)(react@19.0.0-rc.1)(styled-components@6.1.13(react-dom@19.0.0-rc.1(react@19.0.0-rc.1))(react@19.0.0-rc.1))
+      '@sanity/presentation': 1.18.4(@sanity/client@6.22.5(debug@4.3.7))(@sanity/color@3.0.6)(react-dom@19.0.0-rc.1(react@19.0.0-rc.1))(react-is@18.3.1)(react@19.0.0-rc.1)(styled-components@6.1.13(react-dom@19.0.0-rc.1(react@19.0.0-rc.1))(react@19.0.0-rc.1))
       '@sanity/schema': 3.64.2(debug@4.3.7)
       '@sanity/telemetry': 0.7.9(react@19.0.0-rc.1)
       '@sanity/types': 3.64.2(debug@4.3.7)
@@ -19236,19 +19237,15 @@ snapshots:
       stylis: 4.3.2
       tslib: 2.6.2
 
-  styled-jsx@5.1.1(@babel/core@7.26.0)(react@18.3.1):
+  styled-jsx@5.1.1(react@18.3.1):
     dependencies:
       client-only: 0.0.1
       react: 18.3.1
-    optionalDependencies:
-      '@babel/core': 7.26.0
 
-  styled-jsx@5.1.6(@babel/core@7.26.0)(react@19.0.0-rc.1):
+  styled-jsx@5.1.6(react@19.0.0-rc.1):
     dependencies:
       client-only: 0.0.1
       react: 19.0.0-rc.1
-    optionalDependencies:
-      '@babel/core': 7.26.0
 
   stylehacks@7.0.4(postcss@8.4.49):
     dependencies:
