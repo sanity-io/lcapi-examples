@@ -2,8 +2,10 @@ import type {Viewport} from 'next'
 import './globals.css'
 import {sanityFetch} from '@/sanity/fetch'
 import {defineQuery} from 'groq'
+import {Suspense} from 'react'
 import {SanityLive} from './SanityLive'
 import {ThemeButton} from './ThemeButton'
+import {TimeSince} from './TimeSince'
 
 const THEME_QUERY = defineQuery(`*[_id == "theme"][0]{background,text}`)
 
@@ -19,7 +21,7 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
-  const {data, tags} = await sanityFetch({query: THEME_QUERY})
+  const {data, tags, fetchedAt} = await sanityFetch({query: THEME_QUERY})
 
   return (
     <html
@@ -31,11 +33,18 @@ export default async function RootLayout({
       }}
     >
       <body>
-        <div className="flex min-h-screen flex-col items-center justify-evenly overflow-auto">
+        <div className="relative flex min-h-screen flex-col items-center justify-evenly overflow-auto">
+          <Suspense>
+            <TimeSince label="layout.tsx" since={fetchedAt} />
+          </Suspense>
           {children}
-          <ThemeButton tags={tags!} />
+          <Suspense>
+            <ThemeButton tags={tags!} />
+          </Suspense>
         </div>
-        <SanityLive />
+        <Suspense>
+          <SanityLive />
+        </Suspense>
       </body>
     </html>
   )

@@ -15,5 +15,5 @@ export async function sanityFetch<const QueryString extends string>({
   })
   cacheTag(...(syncTags as string[]))
 
-  return {data: result, tags: syncTags}
+  return {data: result, tags: syncTags, fetchedAt: new Date().toJSON()}
 }
