@@ -1,4 +1,3 @@
-import type {Viewport} from 'next'
 import './globals.css'
 import {sanityFetch} from '@/sanity/fetch'
 import {defineQuery} from 'groq'
@@ -8,13 +7,6 @@ import {ThemeButton} from './ThemeButton'
 import {TimeSince} from './TimeSince'
 
 const THEME_QUERY = defineQuery(`*[_id == "theme"][0]{background,text}`)
-
-export async function generateViewport(): Promise<Viewport> {
-  const {data} = await sanityFetch({query: THEME_QUERY})
-  return {
-    // themeColor: data?.background,
-  }
-}
 
 export default async function RootLayout({
   children,

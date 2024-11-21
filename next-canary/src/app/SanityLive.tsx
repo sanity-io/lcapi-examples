@@ -42,7 +42,7 @@ export function SanityLive() {
       },
     })
     return () => subscription.unsubscribe()
-  }, [])
+  }, [handleLiveEvent])
 
   return null
 }
