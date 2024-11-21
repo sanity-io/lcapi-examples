@@ -6,18 +6,16 @@ import {SanityLive} from './SanityLive'
 import {ThemeButton} from './ThemeButton'
 import {TimeSince} from './TimeSince'
 
-const THEME_QUERY = defineQuery(`*[_id == "theme"][0]{background,text,"fetchedAt": now()}`)
+const THEME_QUERY = defineQuery(
+  `*[_id == "theme"][0]{background,text,"fetchedAt": dateTime(now())}`,
+)
 
 export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode
 }>) {
-  const {
-    data,
-    // This timestamp is inaccurate without 'use cache'
-    // fetchedAt,
-  } = await sanityFetch({query: THEME_QUERY})
+  const {data} = await sanityFetch({query: THEME_QUERY})
 
   return (
     <html

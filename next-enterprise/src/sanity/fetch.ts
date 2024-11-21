@@ -13,6 +13,6 @@ export async function sanityFetch<const QueryString extends string>({
     filterResponse: false,
     tag: 'fetch-sync-tags', // The request tag makes the fetch unique, avoids deduping with the cached query that has tags
   })
-  const data = await client.fetch(query, params, {next: {tags}})
-  return {data, tags, fetchedAt: new Date().toJSON()}
+  const data = await client.fetch(query, params, {next: {revalidate: false, tags}})
+  return {data, tags}
 }
