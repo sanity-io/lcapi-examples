@@ -1,4 +1,4 @@
-import {expireTag} from 'next/cache'
+import {revalidateTag} from 'next/cache'
 
 export async function GET(request: Request) {
   const url = new URL(request.url)
@@ -9,6 +9,8 @@ export async function GET(request: Request) {
 
   const tags = url.searchParams.getAll('tag')
   console.log('Expiring tags from expirator service', tags)
-  expireTag(...tags)
+  for (const tag of tags) {
+    revalidateTag(tag)
+  }
   return Response.json({tags})
 }
