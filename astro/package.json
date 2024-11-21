@@ -12,6 +12,7 @@
     "@astrojs/check": "^0.9.4",
     "@sanity/client": "^6.22.5",
     "astro": "^5.0.0-beta.8",
+    "groq": "^3.64.2",
     "typescript": "^5.6.3"
   }
 }

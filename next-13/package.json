@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@sanity/client": "^6.22.5",
+    "groq": "^3.64.2",
     "next": "13.5.7",
     "react": "^18",
     "react-dom": "^18"

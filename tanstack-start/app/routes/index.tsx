@@ -1,45 +1,40 @@
-import * as fs from 'node:fs'
-import {createFileRoute, useRouter} from '@tanstack/react-router'
+import {createFileRoute} from '@tanstack/react-router'
 import {createServerFn} from '@tanstack/start'
+import {defineQuery} from 'groq'
+import {z} from 'zod'
+import {sanityFetch} from '../utils/sanity'
 
-const filePath = 'count.txt'
+const DEMO_QUERY = defineQuery(`*[_type == "demo" && slug.current == $slug][0].title`)
 
-async function readCount() {
-  return parseInt(await fs.promises.readFile(filePath, 'utf-8').catch(() => '0'))
-}
-
-const getCount = createServerFn({
+const getDemo = createServerFn({
   method: 'GET',
-}).handler(() => {
-  return readCount()
 })
-
-const updateCount = createServerFn()
-  .validator((d: number) => d)
-  .handler(async ({data}) => {
-    const count = await readCount()
-    await fs.promises.writeFile(filePath, `${count + data}`)
+  .validator(
+    z.object({
+      lastLiveEventId: z.string().optional(),
+      slug: z.string(),
+    }),
+  )
+  .handler(({data: {slug, lastLiveEventId}}) => {
+    return sanityFetch({query: DEMO_QUERY, params: {slug}, lastLiveEventId})
   })
 
 export const Route = createFileRoute('/')({
   component: Home,
-  loader: async () => await getCount(),
+  loaderDeps: ({search: {lastLiveEventId}}) => ({lastLiveEventId}),
+  loader: async ({deps: {lastLiveEventId}}) =>
+    await getDemo({data: {slug: 'tanstack-start', lastLiveEventId}}),
+  head: (ctx) => ({
+    meta: [{title: ctx.loaderData?.data || 'TanStack Start Starter'}],
+  }),
 })
 
 function Home() {
-  const router = useRouter()
   const state = Route.useLoaderData()
 
   return (
-    <button
-      type="button"
-      onClick={() => {
-        updateCount({data: 1}).then(() => {
-          router.invalidate()
-        })
-      }}
-    >
-      Add 1 to {state}?
-    </button>
+    <h1 className="text-balance text-6xl font-bold leading-tight tracking-tighter lg:pr-8 lg:text-8xl">
+      {state.data || 'TanStack Start Starter'}
+    </h1>
   )
 }

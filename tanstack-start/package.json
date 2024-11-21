@@ -4,6 +4,7 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
+    "typegen:generate": "sanity typegen generate",
     "dev": "vinxi dev",
     "build": "vinxi build",
     "start": "vinxi start"
@@ -13,13 +14,17 @@
     "@tanstack/react-router": "^1.82.1",
     "@tanstack/router-devtools": "^1.82.1",
     "@tanstack/start": "^1.82.1",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "vinxi": "^0.4.3"
+    "@tanstack/zod-adapter": "^1.82.1",
+    "groq": "^3.64.2",
+    "react": "19.0.0-rc.1",
+    "react-dom": "19.0.0-rc.1",
+    "use-effect-event": "^1.0.2",
+    "vinxi": "^0.4.3",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
-    "@types/react": "^18.3.12",
-    "@types/react-dom": "^18.3.1",
+    "@types/react": "npm:types-react@rc",
+    "@types/react-dom": "npm:types-react-dom@rc",
     "@vitejs/plugin-react": "^4.3.3",
     "autoprefixer": "^10.4.20",
     "postcss": "^8.4.49",

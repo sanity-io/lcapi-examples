@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@sanity/client": "^6.22.5",
+    "groq": "^3.64.2",
     "nuxt": "^3.14.159",
     "vue": "latest",
     "vue-router": "latest"
