@@ -4,6 +4,7 @@
 
 import {createClient} from '@sanity/client'
 import {lch} from 'd3-color'
+import {defineQuery} from 'groq'
 
 export const config = {runtime: 'edge'}
 
@@ -68,8 +69,16 @@ export default async function handler(request: Request) {
       useCdn: false,
       token: process.env.SANITY_API_WRITE_TOKEN,
     })
+    const THEME_QUERY = defineQuery(`*[_id == "theme"][0]{background,text}`)
+    const prevTheme = await client.fetch(THEME_QUERY, {}, {perspective: 'published'})
     const _id = 'theme'
-    const patch = client.patch(_id).set(generateThemeColors())
+    const nextTheme = generateThemeColors()
+    const patch = client.patch(_id).set(
+      // If the new theme is the same as the previous theme, swap the background and text colors
+      prevTheme?.background === nextTheme.background && prevTheme?.text === nextTheme.text
+        ? {background: nextTheme.text, text: nextTheme.background}
+        : nextTheme,
+    )
     client.transaction().createIfNotExists({_id, _type: _id}).patch(patch).commit()
 
     return new Response(JSON.stringify({patch}), {status: 200, headers})

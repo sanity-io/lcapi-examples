@@ -2,9 +2,13 @@
   "name": "api",
   "version": "0.0.0",
   "private": true,
+  "scripts": {
+    "typegen:generate": "sanity typegen generate"
+  },
   "dependencies": {
     "@sanity/client": "^6.22.5",
-    "d3-color": "^3.1.0"
+    "d3-color": "^3.1.0",
+    "groq": "^3.64.2"
   },
   "devDependencies": {
     "@edge-runtime/types": "^3.0.3",
