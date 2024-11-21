@@ -69,19 +69,22 @@ export default async function handler(request: Request) {
       useCdn: false,
       token: process.env.SANITY_API_WRITE_TOKEN,
     })
-    const THEME_QUERY = defineQuery(`*[_id == "theme"][0]{background,text}`)
+    const THEME_QUERY = defineQuery(`*[_id == "theme"][0]{_rev,background,text}`)
     const prevTheme = await client.fetch(THEME_QUERY, {}, {perspective: 'published'})
     const _id = 'theme'
     const nextTheme = generateThemeColors()
-    const patch = client.patch(_id).set(
-      // If the new theme is the same as the previous theme, swap the background and text colors
-      prevTheme?.background === nextTheme.background && prevTheme?.text === nextTheme.text
-        ? {background: nextTheme.text, text: nextTheme.background}
-        : nextTheme,
-    )
-    client.transaction().createIfNotExists({_id, _type: _id}).patch(patch).commit()
+    client
+      .patch(_id)
+      .ifRevisionId(prevTheme._rev)
+      .set(
+        // If the new theme is the same as the previous theme, swap the background and text colors
+        prevTheme?.background === nextTheme.background && prevTheme?.text === nextTheme.text
+          ? {background: nextTheme.text, text: nextTheme.background}
+          : nextTheme,
+      )
+      .commit()
 
-    return new Response(JSON.stringify({patch}), {status: 200, headers})
+    return new Response(JSON.stringify(nextTheme), {status: 200, headers})
   } catch (err) {
     return new Response(JSON.stringify(err?.message || err?.name || 'Unknown error'), {
       status: 500,
