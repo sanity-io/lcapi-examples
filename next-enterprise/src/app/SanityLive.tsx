@@ -20,7 +20,7 @@ export function SanityLive() {
           if (signal.aborted) return
           router.refresh()
           console.log('<SanityLive> refreshing')
-        }, 1_000)
+        }, 3_000)
       } else if (event.type === 'restart') {
         router.refresh()
       }
