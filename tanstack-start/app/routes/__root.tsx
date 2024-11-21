@@ -50,7 +50,7 @@ export const Route = createRootRoute({
 function RootComponent() {
   return (
     <RootDocument>
-      <div className="flex min-h-screen flex-col items-center justify-evenly overflow-auto">
+      <div className="flex min-h-dvh flex-col items-center justify-evenly overflow-auto">
         <Outlet />
         <ThemeButton />
       </div>
