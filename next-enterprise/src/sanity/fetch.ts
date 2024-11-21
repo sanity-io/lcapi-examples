@@ -8,11 +8,11 @@ export async function sanityFetch<const QueryString extends string>({
   query: QueryString
   params?: QueryParams
 }) {
+  // Uncached query that fetches cache tags (on Next 15 uncached doesn't mean on every browser request, but on every ISR build)
   const {syncTags: tags} = await client.fetch(query, params, {
     filterResponse: false,
-    returnQuery: false,
+    tag: 'fetch-sync-tags', // The request tag makes the fetch unique, avoids deduping with the cached query that has tags
   })
-  const {result, syncTags} = await client.fetch(query, params, {next: {tags}})
-
-  return {data: result, tags: syncTags, fetchedAt: new Date().toJSON()}
+  const data = await client.fetch(query, params, {next: {tags}})
+  return {data, tags, fetchedAt: new Date().toJSON()}
 }
