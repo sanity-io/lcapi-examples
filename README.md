@@ -31,4 +31,4 @@ instead of defining your own `sanityFetch` function and `SanityLive` component.
 - [Remix](./remix/)
 - [Nuxt](./nuxt/)
 - [SvelteKit](./sveltekit/)
-- [Next.js with Enterprise grade revalidation efficiency](./next-enterprise/) - [https://lcapi-examples-next-enterprise.sanity.dev/] – uses Next.js 15's `use cache` directive, but doesn't require it, and the technique could be used in any framework that supports on-demand revalidation similar to ISR in Next.js on Vercel.
+- [Next.js with Enterprise grade revalidation efficiency](./next-enterprise/) - [https://lcapi-examples-next-enterprise.sanity.dev/] – uses Next.js 15, but doesn't require it, and the technique could be used in any framework that supports on-demand revalidation similar to ISR in Next.js on Vercel.
