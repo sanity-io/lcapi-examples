@@ -32,12 +32,11 @@ export const Route = createRootRoute({
   ),
   loaderDeps: ({search: {lastLiveEventId}}) => ({lastLiveEventId}),
   loader: ({deps}) => getTheme({data: deps}),
-  head: ({loaderData}) => ({
+  head: () => ({
     meta: [
       {charSet: 'utf-8'},
       {name: 'viewport', content: 'width=device-width, initial-scale=1'},
       {title: 'TanStack Start Starter'},
-      {name: 'theme-color', content: loaderData?.data?.background || '#000'},
     ],
     links: [
       {rel: 'stylesheet', href: appCss},
@@ -70,6 +69,8 @@ function RootDocument({children}: Readonly<{children: ReactNode}>) {
     >
       <head>
         <Meta />
+        {/* iOS Safari struggles with picking up on changes to this tag */}
+        <meta key={data?.background} name="theme-color" content={data?.background || '#000'} />
       </head>
       <body>
         {children}
