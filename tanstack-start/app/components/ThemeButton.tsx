@@ -6,6 +6,9 @@ const randomColorTheme = createServerFn().handler(async () => {
     method: 'PUT',
   })
 
+  // Wait 1 second to stagger requests a little bit
+  await new Promise((resolve) => setTimeout(resolve, 1_000))
+
   return res.json()
 })
 
