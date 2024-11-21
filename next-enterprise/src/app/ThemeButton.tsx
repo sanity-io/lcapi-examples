@@ -1,6 +1,5 @@
 'use client'
 
-import type {SyncTag} from '@sanity/client'
 import {useTransition} from 'react'
 import {randomColorTheme} from './actions'
 
