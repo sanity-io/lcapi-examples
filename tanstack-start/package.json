@@ -1,13 +1,13 @@
 {
   "name": "tanstack-start",
-  "private": true,
   "version": "1.0.0",
+  "private": true,
   "type": "module",
   "scripts": {
-    "typegen:generate": "sanity typegen generate",
-    "dev": "vinxi dev",
     "build": "vinxi build",
-    "start": "vinxi start"
+    "dev": "vinxi dev",
+    "start": "vinxi start",
+    "typegen:generate": "sanity typegen generate"
   },
   "dependencies": {
     "@sanity/client": "^6.22.5",

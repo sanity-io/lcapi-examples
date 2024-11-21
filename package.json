@@ -2,10 +2,10 @@
   "name": "lcapi-examples",
   "private": true,
   "scripts": {
-    "typegen": "pnpm -r run schema:extract && pnpm -r run typegen:generate",
     "format": "prettier --cache --write .",
     "lint": "pnpm -r lint",
-    "type-check": "pnpm -r type-check"
+    "type-check": "pnpm -r type-check",
+    "typegen": "pnpm -r run schema:extract && pnpm -r run typegen:generate"
   },
   "dependencies": {
     "@ianvs/prettier-plugin-sort-imports": "^4.4.0",

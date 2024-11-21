@@ -1,14 +1,10 @@
-import {defineConfig} from 'sanity'
-import {structureTool} from 'sanity/structure'
 import {visionTool} from '@sanity/vision'
-import {themeType, demoType} from './schemaTypes'
-
 /**
  * This plugin contains all the logic for setting up the singletons
  */
-
-import {type DocumentDefinition} from 'sanity'
-import {type StructureResolver} from 'sanity/structure'
+import {defineConfig, type DocumentDefinition} from 'sanity'
+import {structureTool, type StructureResolver} from 'sanity/structure'
+import {demoType, themeType} from './schemaTypes'
 
 // The StructureResolver is how we're changing the DeskTool structure to linking to document (named Singleton)
 // like how "Home" is handled.

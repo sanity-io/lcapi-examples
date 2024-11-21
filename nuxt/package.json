@@ -6,8 +6,8 @@
     "build": "nuxt build --preset=vercel_edge",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
-    "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "preview": "nuxt preview"
   },
   "dependencies": {
     "@sanity/client": "^6.22.5",

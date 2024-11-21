@@ -1,8 +1,6 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": [
-    "github>sanity-io/renovate-config"
-  ],
+  "extends": ["github>sanity-io/renovate-config"],
   "packageRules": [
     {
       "matchFileNames": ["next-13/package.json"],
@@ -34,5 +32,5 @@
       "matchPackageNames": ["react", "react-dom"],
       "followTag": "rc"
     }
-    ]
+  ]
 }
