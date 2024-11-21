@@ -60,7 +60,6 @@ function RootComponent() {
 
 function RootDocument({children}: Readonly<{children: ReactNode}>) {
   const {data} = Route.useLoaderData()
-  const {lastLiveEventId} = Route.useSearch()
   return (
     <html
       className="bg-theme text-theme transition-colors duration-1000 ease-in-out"
