@@ -16,8 +16,8 @@
     "@tanstack/start": "^1.82.1",
     "@tanstack/zod-adapter": "^1.82.1",
     "groq": "^3.64.2",
-    "react": "19.0.0-rc.1",
-    "react-dom": "19.0.0-rc.1",
+    "react": "rc",
+    "react-dom": "rc",
     "use-effect-event": "^1.0.2",
     "vinxi": "^0.4.3",
     "zod": "^3.23.8"
