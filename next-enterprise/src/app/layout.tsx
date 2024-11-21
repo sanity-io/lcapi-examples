@@ -13,7 +13,7 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
-  const {data, tags, fetchedAt} = await sanityFetch({query: THEME_QUERY})
+  const {data, fetchedAt} = await sanityFetch({query: THEME_QUERY})
 
   return (
     <html
@@ -31,7 +31,7 @@ export default async function RootLayout({
           </Suspense>
           {children}
           <Suspense>
-            <ThemeButton tags={tags!} />
+            <ThemeButton />
           </Suspense>
         </div>
         <Suspense>
