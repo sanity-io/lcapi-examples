@@ -16,5 +16,13 @@
     "prettier-plugin-tailwindcss": "^0.6.9",
     "sanity": "^3.64.2"
   },
-  "packageManager": "pnpm@9.14.2"
+  "packageManager": "pnpm@9.14.2",
+  "pnpm": {
+    "peerDependencyRules": {
+      "allowAny": [
+        "react",
+        "react-dom"
+      ]
+    }
+  }
 }
