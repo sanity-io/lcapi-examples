@@ -33,7 +33,7 @@ function Home() {
   const state = Route.useLoaderData()
 
   return (
-    <h1 className="text-balance text-6xl font-bold leading-tight tracking-tighter lg:pr-8 lg:text-8xl">
+    <h1 className="text-balance text-4xl font-bold leading-tight tracking-tighter md:text-6xl lg:pr-8 lg:text-8xl">
       {state.data || 'TanStack Start Starter'}
     </h1>
   )

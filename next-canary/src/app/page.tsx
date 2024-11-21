@@ -17,7 +17,7 @@ export default async function Home() {
   const {data} = await sanityFetch({query: DEMO_QUERY, params: {slug}})
 
   return (
-    <h1 className="text-balance text-6xl font-bold leading-tight tracking-tighter lg:pr-8 lg:text-8xl">
+    <h1 className="text-balance text-4xl font-bold leading-tight tracking-tighter md:text-6xl lg:pr-8 lg:text-8xl">
       {data || 'Next Canary'}
     </h1>
   )
