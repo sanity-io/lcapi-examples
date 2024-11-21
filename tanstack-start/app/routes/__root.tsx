@@ -1,4 +1,4 @@
-import {createRootRoute, Outlet, ScrollRestoration, useRouterState} from '@tanstack/react-router'
+import {createRootRoute, Outlet, ScrollRestoration} from '@tanstack/react-router'
 import {TanStackRouterDevtools} from '@tanstack/router-devtools'
 import {createServerFn, Meta, Scripts} from '@tanstack/start'
 import {zodValidator} from '@tanstack/zod-adapter'
