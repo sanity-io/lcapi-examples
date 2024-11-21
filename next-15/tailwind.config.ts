@@ -8,9 +8,19 @@ export default {
   ],
   theme: {
     extend: {
-      colors: {
-        background: 'var(--background)',
-        foreground: 'var(--foreground)',
+      backgroundColor: {
+        'theme': 'var(--theme-background,#fff)',
+        'theme-button': 'var(--theme-text,#fff)',
+      },
+      textColor: {
+        'theme': 'var(--theme-text,#000)',
+        'theme-button': 'var(--theme-background,#fff)',
+      },
+      ringColor: {
+        theme: 'var(--theme-text,#000)',
+      },
+      ringOffsetColor: {
+        theme: 'var(--theme-background,#fff)',
       },
     },
   },
