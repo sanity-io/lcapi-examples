@@ -23,7 +23,7 @@ await new Promise((resolve, reject) => {
         for (const tag of event.tags) {
           url.searchParams.append('tag', tag)
         }
-        fetch(url, {method: 'POST'})
+        fetch(url)
           .then((res) => {
             if (!res.ok) {
               throw new TypeError('Failed', {cause: res.statusText})
