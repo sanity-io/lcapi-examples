@@ -171,28 +171,31 @@ export type AllSanitySchemaTypes =
 export declare const internalGroqTypeReferenceTo: unique symbol
 // Source: ./src/app/layout.tsx
 // Variable: THEME_QUERY
-// Query: *[_id == "theme"][0]{background,text,"fetchedAt": now()}
+// Query: *[_id == "theme"][0]{background,text,"fetchedAt": dateTime(now())}
 export type THEME_QUERYResult =
   | {
       background: null
       text: null
-      fetchedAt: string
+      fetchedAt: string | null
     }
   | {
       background: string | null
       text: string | null
-      fetchedAt: string
+      fetchedAt: string | null
     }
   | null
 
 // Source: ./src/app/page.tsx
 // Variable: DEMO_QUERY
-// Query: *[_type == "demo" && slug.current == $slug][0].title
-export type DEMO_QUERYResult = string | null
+// Query: *[_type == "demo" && slug.current == $slug][0]{title,"fetchedAt": dateTime(now())}
+export type DEMO_QUERYResult = {
+  title: string | null
+  fetchedAt: string | null
+} | null
 
 declare module '@sanity/client' {
   interface SanityQueries {
-    '*[_id == "theme"][0]{background,text,"fetchedAt": now()}': THEME_QUERYResult
-    '*[_type == "demo" && slug.current == $slug][0].title': DEMO_QUERYResult
+    '*[_id == "theme"][0]{background,text,"fetchedAt": dateTime(now())}': THEME_QUERYResult
+    '*[_type == "demo" && slug.current == $slug][0]{title,"fetchedAt": dateTime(now())}': DEMO_QUERYResult
   }
 }
