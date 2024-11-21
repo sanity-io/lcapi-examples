@@ -6,7 +6,6 @@ import {CorsOriginError} from '@sanity/client'
 import {useRouter} from 'next/navigation'
 import {useEffect} from 'react'
 import {useEffectEvent} from 'use-effect-event'
-import {expireTags} from './actions'
 
 export function SanityLive() {
   const router = useRouter()
@@ -16,19 +15,23 @@ export function SanityLive() {
       if (event.type === 'welcome') {
         console.info('Sanity is live with automatic refresh of published content')
       } else if (event.type === 'message') {
-        expireTags(event.tags)
+        setTimeout(() => {
+          if (signal.aborted) return
+          router.refresh()
+        }, 1_000)
       } else if (event.type === 'restart') {
         router.refresh()
       }
     },
   )
   useEffect(() => {
-    const controller = new AbortController()
-    const {signal} = controller
+    let controller = new AbortController()
     const subscription = client.live.events().subscribe({
       next: (event) => {
         if (event.type === 'message' || event.type === 'restart' || event.type === 'welcome') {
-          handleLiveEvent(event, signal)
+          controller.abort()
+          controller = new AbortController()
+          handleLiveEvent(event, controller.signal)
         }
       },
       error: (error: unknown) => {
@@ -44,6 +47,7 @@ export function SanityLive() {
       },
     })
     return () => {
+      controller.abort()
       subscription.unsubscribe()
     }
   }, [handleLiveEvent])
