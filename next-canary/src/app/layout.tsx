@@ -12,7 +12,7 @@ const THEME_QUERY = defineQuery(`*[_id == "theme"][0]{background,text}`)
 export async function generateViewport(): Promise<Viewport> {
   const {data} = await sanityFetch({query: THEME_QUERY})
   return {
-    themeColor: data?.background,
+    // themeColor: data?.background,
   }
 }
 
