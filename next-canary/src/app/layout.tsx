@@ -33,7 +33,7 @@ export default async function RootLayout({
       }}
     >
       <body>
-        <div className="relative flex min-h-screen flex-col items-center justify-evenly overflow-auto">
+        <div className="relative flex min-h-dvh flex-col items-center justify-evenly overflow-auto">
           <Suspense>
             <TimeSince label="layout.tsx" since={fetchedAt} />
           </Suspense>
