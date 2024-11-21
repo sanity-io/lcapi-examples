@@ -47,8 +47,8 @@ function generateThemeColors() {
   return {
     // background: `lch(5% 25 ${bgHue})`,
     background: lch(5, 25, bgHue).formatHex(),
-    // text: `lch(30% 50 ${textHue})`,
-    text: lch(30, 50, textHue).formatHex(),
+    // text: `lch(50% 50 ${textHue})`,
+    text: lch(50, 50, textHue).formatHex(),
   }
 }
 
