@@ -69,8 +69,6 @@ function RootDocument({children}: Readonly<{children: ReactNode}>) {
     >
       <head>
         <Meta />
-        {/* iOS Safari struggles with picking up on changes to this tag */}
-        <meta key={data?.background} name="theme-color" content={data?.background || '#000'} />
       </head>
       <body>
         {children}
