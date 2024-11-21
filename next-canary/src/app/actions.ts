@@ -12,8 +12,6 @@ export async function randomColorTheme(tags: SyncTag[]) {
   const res = await fetch('https://lcapi-examples-api.sanity.dev/api/random-color-theme', {
     method: 'PUT',
   })
-  // Wait 5 seconds to stagger requests a little bit
-  await new Promise((resolve) => setTimeout(resolve, 5_000))
   expireTag(...tags)
   return res.json()
 }
