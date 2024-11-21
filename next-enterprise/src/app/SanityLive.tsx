@@ -12,9 +12,9 @@ export function SanityLive() {
   const router = useRouter()
 
   const handleLiveEvent = useEffectEvent(
-    (event: LiveEventMessage | LiveEventRestart | LiveEventWelcome) => {
+    (event: LiveEventMessage | LiveEventRestart | LiveEventWelcome, signal: AbortSignal) => {
       if (event.type === 'welcome') {
-        console.info('Sanity is live with automatic revalidation of published content')
+        console.info('Sanity is live with automatic refresh of published content')
       } else if (event.type === 'message') {
         expireTags(event.tags)
       } else if (event.type === 'restart') {
@@ -23,10 +23,12 @@ export function SanityLive() {
     },
   )
   useEffect(() => {
+    const controller = new AbortController()
+    const {signal} = controller
     const subscription = client.live.events().subscribe({
       next: (event) => {
         if (event.type === 'message' || event.type === 'restart' || event.type === 'welcome') {
-          handleLiveEvent(event)
+          handleLiveEvent(event, signal)
         }
       },
       error: (error: unknown) => {
@@ -41,7 +43,9 @@ export function SanityLive() {
         }
       },
     })
-    return () => subscription.unsubscribe()
+    return () => {
+      subscription.unsubscribe()
+    }
   }, [handleLiveEvent])
 
   return null
