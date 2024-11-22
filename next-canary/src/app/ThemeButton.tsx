@@ -1,17 +1,17 @@
 'use client'
 
-import type {SyncTag} from '@sanity/client'
 import {useTransition} from 'react'
-import {randomColorTheme} from './actions'
 
-export function ThemeButton({tags}: {tags: SyncTag[]}) {
+export function ThemeButton() {
   const [pending, startTransition] = useTransition()
   return (
     <button
       disabled={pending}
       onClick={() =>
         startTransition(async () => {
-          await randomColorTheme(tags)
+          await fetch('https://lcapi-examples-api.sanity.dev/api/random-color-theme', {
+            method: 'PUT',
+          })
           // Wait 2 seconds to stagger requests a little bit
           await new Promise((resolve) => setTimeout(resolve, 2_000))
         })
