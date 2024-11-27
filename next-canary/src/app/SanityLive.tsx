@@ -16,7 +16,7 @@ export function SanityLive() {
       if (event.type === 'welcome') {
         console.info('Sanity is live with automatic revalidation of published content')
       } else if (event.type === 'message') {
-        expireTags(event.tags)
+        expireTags(event.id, event.tags)
       } else if (event.type === 'restart') {
         router.refresh()
       }

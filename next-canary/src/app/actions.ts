@@ -3,7 +3,7 @@
 import type {SyncTag} from '@sanity/client'
 import {expireTag} from 'next/cache'
 
-export async function expireTags(tags: SyncTag[]) {
+export async function expireTags(id: string, tags: SyncTag[]) {
   expireTag(...tags)
-  console.log(`<SanityLive /> expired tags: ${tags.join(', ')}`)
+  console.log(`<SanityLive /> expired tags: ${tags.join(', ')}, id: ${id}`)
 }

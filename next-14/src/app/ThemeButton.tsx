@@ -9,7 +9,7 @@ export function ThemeButton() {
       disabled={pending}
       onClick={() =>
         startTransition(async () => {
-          await fetch('https://lcapi-examples-api.sanity.dev/api/random-color-theme', {
+          await fetch('https://lcapi-api.vercel.app/api/random-color-theme', {
             method: 'PUT',
           })
           // Wait 2 seconds to stagger requests a little bit

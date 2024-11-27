@@ -1,6 +1,6 @@
 import {type QueryParams} from '@sanity/client'
 import {unstable_cacheTag as cacheTag} from 'next/cache'
-import {client} from './client'
+import {cdnClient} from './client'
 
 export async function sanityFetch<const QueryString extends string>({
   query,
@@ -10,8 +10,10 @@ export async function sanityFetch<const QueryString extends string>({
   params?: QueryParams
 }) {
   'use cache'
-  const {result, syncTags} = await client.fetch(query, params, {
+  const {result, syncTags} = await cdnClient.fetch(query, params, {
     filterResponse: false,
+    cacheMode: 'noStale',
+    useCdn: true,
   })
   cacheTag(...(syncTags as string[]))
 

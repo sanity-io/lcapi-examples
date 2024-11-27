@@ -2,7 +2,7 @@ import {createServerFn} from '@tanstack/start'
 import {useTransition} from 'react'
 
 const randomColorTheme = createServerFn().handler(async () => {
-  const res = await fetch('https://lcapi-examples-api.sanity.dev/api/random-color-theme', {
+  const res = await fetch('https://lcapi-api.vercel.app/api/random-color-theme', {
     method: 'PUT',
   })
 

@@ -4,10 +4,9 @@ import {defineQuery} from 'groq'
 import {Suspense} from 'react'
 import {SanityLive} from './SanityLive'
 import {ThemeButton} from './ThemeButton'
-import {TimeSince} from './TimeSince'
 
 const THEME_QUERY = defineQuery(
-  `*[_id == "theme"][0]{background,text,"fetchedAt": dateTime(now())}`,
+  `*[_id == "theme"][0]{background,text}`,
 )
 
 export default async function RootLayout({
@@ -28,11 +27,11 @@ export default async function RootLayout({
     >
       <body>
         <div className="relative flex min-h-dvh flex-col items-center justify-evenly overflow-auto">
-          {data?.fetchedAt && (
+          {/* {data?.fetchedAt && (
             <Suspense>
               <TimeSince label="layout.tsx" since={data.fetchedAt} />
             </Suspense>
-          )}
+          )} */}
           {children}
           <Suspense>
             <ThemeButton />

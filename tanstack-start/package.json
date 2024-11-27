@@ -10,7 +10,7 @@
     "typegen:generate": "sanity typegen generate"
   },
   "dependencies": {
-    "@sanity/client": "^6.22.5",
+    "@sanity/client": "^6.22.6-canary.0",
     "@tanstack/react-router": "^1.82.1",
     "@tanstack/router-devtools": "^1.82.1",
     "@tanstack/start": "^1.82.1",

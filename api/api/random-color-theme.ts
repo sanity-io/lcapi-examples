@@ -63,17 +63,18 @@ export default async function handler(request: Request) {
 
   try {
     const client = createClient({
-      projectId: 'hiomol4a',
+      projectId: 'sx081nge',
       dataset: 'lcapi',
       apiVersion: '2024-09-18',
       useCdn: false,
       token: process.env.SANITY_API_WRITE_TOKEN,
+      apiHost: 'https://api.sanity.work',
     })
     const THEME_QUERY = defineQuery(`*[_id == "theme"][0]{background,text}`)
     const prevTheme = await client.fetch(THEME_QUERY, {}, {perspective: 'published'})
     const _id = 'theme'
     const nextTheme = generateThemeColors()
-    client
+    const resp = await client
       .patch(_id)
       .set(
         // If the new theme is the same as the previous theme, swap the background and text colors
@@ -82,9 +83,10 @@ export default async function handler(request: Request) {
           : nextTheme,
       )
       .commit()
-
+    console.log('New theme:', nextTheme)
     return new Response(JSON.stringify(nextTheme), {status: 200, headers})
   } catch (err) {
+    console.error(err)
     return new Response(JSON.stringify(err?.message || err?.name || 'Unknown error'), {
       status: 500,
       headers,

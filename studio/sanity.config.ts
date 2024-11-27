@@ -33,7 +33,7 @@ export const pageStructure = (typeDefArray: DocumentDefinition[]): StructureReso
 export default defineConfig({
   title: 'Live Content API',
 
-  projectId: 'hiomol4a',
+  projectId: 'sx081nge',
   dataset: 'lcapi',
 
   plugins: [
