@@ -10,7 +10,7 @@
     "preview": "nuxt preview"
   },
   "dependencies": {
-    "@sanity/client": "^6.22.5",
+    "@sanity/client": "^6.23.0",
     "groq": "^3.64.2",
     "nuxt": "^3.14.159",
     "vue": "latest",

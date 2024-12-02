@@ -32,7 +32,7 @@
 		"vite": "^5.4.11"
 	},
 	"dependencies": {
-		"@sanity/client": "^6.22.5",
+		"@sanity/client": "^6.23.0",
 		"groq": "^3.64.2"
 	}
 }
