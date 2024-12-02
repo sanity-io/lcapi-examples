@@ -27,13 +27,21 @@ export function SanityLive() {
         console.info('Sanity is live with automatic invalidation of published content')
       } else if (event.type === 'message') {
         if (event.tags.some((tag) => allTags.includes(tag))) {
-          navigate({search: (prev) => ({...prev, lastLiveEventId: event.id}), replace: true})
+          navigate({
+            search: (prev) => ({...prev, lastLiveEventId: event.id}),
+            replace: true,
+            resetScroll: false,
+          })
         } else {
           console.log('no match', event.tags, {allTags})
         }
       } else if (event.type === 'restart') {
         if (lastLiveEventId) {
-          navigate({search: (prev) => ({...prev, lastLiveEventId: undefined}), replace: true})
+          navigate({
+            search: (prev) => ({...prev, lastLiveEventId: undefined}),
+            replace: true,
+            resetScroll: false,
+          })
         } else {
           router.invalidate()
         }
