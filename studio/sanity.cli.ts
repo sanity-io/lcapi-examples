@@ -5,5 +5,5 @@ export default defineCliConfig({
     projectId: 'hiomol4a',
     dataset: 'lcapi',
   },
-  autoUpdates: true,
+  // autoUpdates: true,
 })
