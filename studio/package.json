@@ -11,13 +11,13 @@
     "start": "sanity start"
   },
   "dependencies": {
-    "@sanity/icons": "^3.4.0",
-    "@sanity/ui": "^2.8.24",
-    "@sanity/vision": "^3.64.2",
+    "@sanity/icons": "^3.5.0",
+    "@sanity/ui": "^2.9.1",
+    "@sanity/vision": "3.65.2-corel.472",
     "polished": "^4.3.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "sanity": "^3.64.2",
+    "sanity": "3.65.2-corel.472",
     "styled-components": "^6.1.13"
   },
   "devDependencies": {

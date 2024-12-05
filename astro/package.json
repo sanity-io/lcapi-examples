@@ -1,18 +1,14 @@
 {
   "name": "astro",
-  "version": "0.0.1",
   "type": "module",
+  "version": "0.0.1",
   "scripts": {
-    "astro": "astro",
-    "build": "astro check && astro build",
     "dev": "astro dev",
-    "preview": "astro preview"
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/check": "^0.9.4",
-    "@sanity/client": "^6.23.0",
-    "astro": "^5.0.0-beta.8",
-    "groq": "^3.64.2",
-    "typescript": "^5.6.3"
+    "astro": "^5.0.2"
   }
 }
