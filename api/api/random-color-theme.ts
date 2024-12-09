@@ -63,12 +63,11 @@ export default async function handler(request: Request) {
 
   try {
     const client = createClient({
-      projectId: 'sx081nge',
+      projectId: '2oougytf',
       dataset: 'lcapi',
       apiVersion: '2024-09-18',
       useCdn: false,
       token: process.env.SANITY_API_WRITE_TOKEN,
-      apiHost: 'https://api.sanity.work',
     })
     const THEME_QUERY = defineQuery(`*[_id == "theme"][0]{background,text}`)
     const prevTheme = await client.fetch(THEME_QUERY, {}, {perspective: 'published'})

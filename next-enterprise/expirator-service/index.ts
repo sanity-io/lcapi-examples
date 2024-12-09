@@ -1,11 +1,10 @@
 import {createClient} from '@sanity/client'
 
 const client = createClient({
-  projectId: 'sx081nge',
+  projectId: '2oougytf',
   dataset: 'lcapi',
   apiVersion: '2024-11-21',
   useCdn: false,
-  apiHost: 'https://api.sanity.work',
 })
 
 const appOrigin = 'https://lcapi-examples-next-enterprise.sanity.dev'
