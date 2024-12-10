@@ -1,4 +1,4 @@
-import {createFileRoute} from '@tanstack/react-router'
+import {createFileRoute, Link} from '@tanstack/react-router'
 import {createServerFn} from '@tanstack/start'
 import {defineQuery} from 'groq'
 import {z} from 'zod'
@@ -33,8 +33,16 @@ function Home() {
   const state = Route.useLoaderData()
 
   return (
-    <h1 className="text-balance text-4xl font-bold leading-tight tracking-tighter md:text-6xl lg:pr-8 lg:text-8xl">
-      {state.data || 'TanStack Start Starter'}
-    </h1>
+    <>
+      <h1 className="text-balance text-4xl font-bold leading-tight tracking-tighter [view-transition-name:title] md:text-6xl lg:pr-8 lg:text-8xl">
+        {state.data || 'TanStack Start Starter'}
+      </h1>
+      <Link
+        className="bg-theme text-theme ring-theme focus:bg-theme-button hover:bg-theme-button hover:text-theme-button focus:text-theme-button w-56 rounded-md px-4 py-2 text-sm font-semibold ring-2 ring-opacity-75 [view-transition-name:search] focus:outline-none"
+        to="/goto"
+      >
+        Go to...
+      </Link>
+    </>
   )
 }

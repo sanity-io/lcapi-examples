@@ -10,10 +10,17 @@
 
 // Import Routes
 
-import {Route as rootRoute} from './routes/__root'
-import {Route as IndexImport} from './routes/index'
+import { Route as rootRoute } from './routes/__root'
+import { Route as GotoImport } from './routes/goto'
+import { Route as IndexImport } from './routes/index'
 
 // Create/Update Routes
+
+const GotoRoute = GotoImport.update({
+  id: '/goto',
+  path: '/goto',
+  getParentRoute: () => rootRoute,
+} as any)
 
 const IndexRoute = IndexImport.update({
   id: '/',
@@ -32,6 +39,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexImport
       parentRoute: typeof rootRoute
     }
+    '/goto': {
+      id: '/goto'
+      path: '/goto'
+      fullPath: '/goto'
+      preLoaderRoute: typeof GotoImport
+      parentRoute: typeof rootRoute
+    }
   }
 }
 
@@ -39,32 +53,37 @@ declare module '@tanstack/react-router' {
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/goto': typeof GotoRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/goto': typeof GotoRoute
 }
 
 export interface FileRoutesById {
-  '__root__': typeof rootRoute
+  __root__: typeof rootRoute
   '/': typeof IndexRoute
+  '/goto': typeof GotoRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/goto'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/goto'
+  id: '__root__' | '/' | '/goto'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  GotoRoute: typeof GotoRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  GotoRoute: GotoRoute,
 }
 
 export const routeTree = rootRoute
@@ -77,11 +96,15 @@ export const routeTree = rootRoute
     "__root__": {
       "filePath": "__root.tsx",
       "children": [
-        "/"
+        "/",
+        "/goto"
       ]
     },
     "/": {
       "filePath": "index.tsx"
+    },
+    "/goto": {
+      "filePath": "goto.tsx"
     }
   }
 }
