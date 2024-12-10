@@ -10,6 +10,8 @@
   "dependencies": {
     "@ianvs/prettier-plugin-sort-imports": "^4.4.0",
     "@sanity/prettier-config": "^1.0.3",
+    "@types/react": "^19.0.1",
+    "@types/react-dom": "^19.0.2",
     "prettier": "^3.3.3",
     "prettier-plugin-astro": "^0.14.1",
     "prettier-plugin-svelte": "^3.2.8",
@@ -21,12 +23,13 @@
     "peerDependencyRules": {
       "allowAny": [
         "react",
-        "react-dom"
+        "react-dom",
+        "react-is"
       ]
     },
     "overrides": {
-      "@types/react": "npm:types-react@rc",
-      "@types/react-dom": "npm:types-react-dom@rc"
+      "@types/react": "$@types/react",
+      "@types/react-dom": "$@types/react-dom"
     }
   }
 }
