@@ -13,16 +13,16 @@
   "dependencies": {
     "@sanity/icons": "^3.5.0",
     "@sanity/ui": "^2.9.1",
-    "@sanity/vision": "3.65.2-corel.472",
+    "@sanity/vision": "3.67.0",
     "polished": "^4.3.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "sanity": "3.65.2-corel.472",
+    "sanity": "3.67.0",
     "styled-components": "^6.1.13"
   },
   "devDependencies": {
     "@sanity/eslint-config-studio": "^4.0.0",
-    "@types/react": "^18.3.13",
+    "@types/react": "^18.3.14",
     "eslint": "^8.57.1",
     "typescript": "5.7.2"
   }
