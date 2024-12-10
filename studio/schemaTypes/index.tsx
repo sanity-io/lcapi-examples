@@ -1,7 +1,7 @@
 import {ColorWheelIcon, MasterDetailIcon} from '@sanity/icons'
 import {Inline, Text} from '@sanity/ui'
 import {transparentize} from 'polished'
-import {useDeferredValue} from 'react'
+import {useDeferredValue, useRef} from 'react'
 import {defineField, defineType, type StringInputProps} from 'sanity'
 import {styled} from 'styled-components'
 
@@ -107,6 +107,12 @@ export const demoType = defineType({
         maxLength: 96,
         isUnique: (value, context) => context.defaultIsUnique(value, context),
       },
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
+      name: 'url',
+      title: 'URL',
+      type: 'url',
       validation: (rule) => rule.required(),
     }),
   ],
