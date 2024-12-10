@@ -136,6 +136,7 @@ export type Demo = {
   _rev: string
   title?: string
   slug?: Slug
+  url?: string
 }
 
 export type Slug = {
