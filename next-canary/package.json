@@ -13,14 +13,14 @@
     "@sanity/client": "^6.23.0",
     "groq": "^3.64.2",
     "next": "canary",
-    "react": "rc",
-    "react-dom": "rc",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
     "use-effect-event": "^1.0.2"
   },
   "devDependencies": {
     "@types/node": "^20",
-    "@types/react": "npm:types-react@rc",
-    "@types/react-dom": "npm:types-react-dom@rc",
+    "@types/react": "^19.0.1",
+    "@types/react-dom": "^19.0.2",
     "eslint": "^9.16.0",
     "eslint-config-next": "canary",
     "postcss": "^8.4.49",
