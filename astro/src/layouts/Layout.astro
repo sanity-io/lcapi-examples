@@ -4,7 +4,7 @@ import SanityLive from '../components/SanityLive.astro'
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" class="bg-theme text-theme transition-colors duration-1000 ease-in-out">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
@@ -14,7 +14,9 @@ import SanityLive from '../components/SanityLive.astro'
     <ClientRouter />
   </head>
   <body>
-    <slot />
+    <div class="flex min-h-dvh flex-col items-center justify-evenly overflow-auto">
+      <slot />
+    </div>
     <SanityLive server:defer />
   </body>
 </html>
