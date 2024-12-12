@@ -67,9 +67,15 @@ importers:
       '@astrojs/vercel':
         specifier: ^8.0.0
         version: 8.0.0(@sveltejs/kit@2.10.1(@sveltejs/vite-plugin-svelte@4.0.2(svelte@5.11.2)(vite@6.0.3(@types/node@22.10.2)(jiti@2.4.0)(terser@5.36.0)(tsx@4.19.2)(yaml@2.6.1)))(svelte@5.11.2)(vite@6.0.3(@types/node@22.10.2)(jiti@2.4.0)(terser@5.36.0)(tsx@4.19.2)(yaml@2.6.1)))(astro@5.0.5(@types/node@22.10.2)(jiti@2.4.0)(rollup@4.28.1)(terser@5.36.0)(tsx@4.19.2)(typescript@5.7.2)(yaml@2.6.1))(next@15.1.0(@babel/core@7.26.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react@19.0.0)(svelte@5.11.2)(vue-router@4.5.0(vue@3.5.13(typescript@5.7.2)))(vue@3.5.13(typescript@5.7.2))
+      '@sanity/client':
+        specifier: ^6.23.0
+        version: 6.24.1(debug@4.4.0)
       astro:
         specifier: ^5.0.2
         version: 5.0.5(@types/node@22.10.2)(jiti@2.4.0)(rollup@4.28.1)(terser@5.36.0)(tsx@4.19.2)(typescript@5.7.2)(yaml@2.6.1)
+      groq:
+        specifier: ^3.64.2
+        version: 3.67.1
 
   next-13:
     dependencies:

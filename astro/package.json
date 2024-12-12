@@ -10,6 +10,8 @@
   },
   "dependencies": {
     "@astrojs/vercel": "^8.0.0",
-    "astro": "^5.0.2"
+    "@sanity/client": "^6.23.0",
+    "astro": "^5.0.2",
+    "groq": "^3.64.2"
   }
 }

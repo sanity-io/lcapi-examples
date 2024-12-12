@@ -1,3 +1,8 @@
+---
+import { ClientRouter } from 'astro:transitions';
+import SanityLive from '../components/SanityLive.astro';
+---
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -6,9 +11,11 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <title>Astro Basics.</title>
+    <ClientRouter />
   </head>
   <body>
     <slot />
+    <SanityLive server:defer />
   </body>
 </html>
 
