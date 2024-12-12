@@ -15,6 +15,7 @@ const nextConfig: NextConfig = {
         expire: 0xfffffffe,
       },
     },
+    ppr: 'incremental',
   },
 }
 
