@@ -12,6 +12,7 @@ export async function sanityFetch<const QueryString extends string>({
 }) {
   const {result, syncTags} = await client.fetch(query, params, {
     lastLiveEventId,
+    cacheMode: 'noStale',
     filterResponse: false,
   })
 
