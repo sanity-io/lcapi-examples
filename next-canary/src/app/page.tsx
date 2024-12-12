@@ -1,5 +1,4 @@
 import {sanityFetch} from '@/sanity/fetch'
-import './globals.css'
 import {defineQuery} from 'groq'
 import type {Metadata} from 'next'
 import {Suspense} from 'react'
