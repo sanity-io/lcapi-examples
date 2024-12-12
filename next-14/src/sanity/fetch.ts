@@ -13,7 +13,7 @@ export async function sanityFetch<const QueryString extends string>({
     filterResponse: false,
     cacheMode: 'noStale',
     tag: 'fetch-sync-tags', // The request tag makes the fetch unique, avoids deduping with the cached query that has tags
-    next: {revalidate: 1}, // Ensure we don't opt out of ISR caching
+    next: {revalidate: false, tags: ['sanity:tags']}, // Ensure we don't opt out of ISR caching
   })
   const data = await client.fetch(query, params, {
     cacheMode: 'noStale',
