@@ -12,7 +12,7 @@
   "dependencies": {
     "@sanity/client": "^6.23.0",
     "groq": "^3.64.2",
-    "next": "15.1.1",
+    "next": "15.1.2",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "use-effect-event": "^1.0.2"
