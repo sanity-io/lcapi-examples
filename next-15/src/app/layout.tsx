@@ -7,7 +7,7 @@ import {ThemeButton} from './ThemeButton'
 import {TimeSince} from './TimeSince'
 
 const THEME_QUERY = defineQuery(
-  `*[_id == "theme"][0]{background,text,"fetchedAt": dateTime(now())}`,
+  `*[_id == "theme"][0]{background,text,"fetchedAt":now()}`,
 )
 
 export default async function RootLayout({

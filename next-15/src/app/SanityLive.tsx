@@ -1,7 +1,7 @@
 'use client'
 
 import {client} from '@/sanity/client'
-import type {LiveEventMessage, LiveEventRestart, LiveEventWelcome} from '@sanity/client'
+import type {LiveEvent, LiveEventMessage, LiveEventRestart, LiveEventWelcome} from '@sanity/client'
 import {CorsOriginError} from '@sanity/client'
 import {useRouter} from 'next/navigation'
 import {useEffect} from 'react'
@@ -12,23 +12,24 @@ export function SanityLive() {
   const router = useRouter()
 
   const handleLiveEvent = useEffectEvent(
-    (event: LiveEventMessage | LiveEventRestart | LiveEventWelcome) => {
-      if (event.type === 'welcome') {
-        console.info('Sanity is live with automatic revalidation of published content')
-      } else if (event.type === 'message') {
-        expireTags(event.tags)
-      } else if (event.type === 'restart') {
-        router.refresh()
+    (event: LiveEvent) => {
+      switch (event.type) {
+        case 'welcome':
+          console.info('Sanity is live with automatic revalidation of published content')
+          break
+        case 'message':
+          expireTags((event as LiveEventMessage).tags)
+          break
+        case 'reconnect':
+        case 'restart':
+          router.refresh()
+          break
       }
     },
   )
   useEffect(() => {
     const subscription = client.live.events().subscribe({
-      next: (event) => {
-        if (event.type === 'message' || event.type === 'restart' || event.type === 'welcome') {
-          handleLiveEvent(event)
-        }
-      },
+      next: handleLiveEvent,
       error: (error: unknown) => {
         if (error instanceof CorsOriginError) {
           console.warn(
