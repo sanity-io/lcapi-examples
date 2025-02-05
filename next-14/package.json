@@ -12,18 +12,18 @@
   "dependencies": {
     "@sanity/client": "^6.23.0",
     "groq": "^3.64.2",
-    "next": "14.2.21",
+    "next": "14.2.23",
     "react": "^18",
     "react-dom": "^18",
     "use-effect-event": "^1.0.2"
   },
   "devDependencies": {
     "@types/node": "^20",
-    "@types/react": "^18.3.18",
-    "@types/react-dom": "^19.0.2",
+    "@types/react": "^19.0.8",
+    "@types/react-dom": "^19.0.3",
     "eslint": "^8.57.1",
     "eslint-config-next": "14.2.23",
-    "postcss": "^8.4.49",
+    "postcss": "^8.5.1",
     "tailwindcss": "^3.4.17",
     "typescript": "^5.7.3"
   }
