@@ -73,7 +73,7 @@ export default async function handler(request: Request) {
     const prevTheme = await client.fetch(THEME_QUERY, {}, {perspective: 'published'})
     const _id = 'theme'
     const nextTheme = generateThemeColors()
-    client
+    await client
       .patch(_id)
       .set(
         // If the new theme is the same as the previous theme, swap the background and text colors
