@@ -172,26 +172,41 @@ export type AllSanitySchemaTypes =
 export declare const internalGroqTypeReferenceTo: unique symbol
 // Source: ./src/app/layout.tsx
 // Variable: THEME_QUERY
-// Query: *[_id == "theme"][0]{background,text}
+// Query: *[_id == "theme"][0]{background,text,"fetchedAt":now()}
 export type THEME_QUERYResult =
   | {
       background: null
       text: null
+      fetchedAt: string
     }
   | {
       background: string | null
       text: string | null
+      fetchedAt: string
     }
   | null
 
 // Source: ./src/app/page.tsx
 // Variable: DEMO_QUERY
-// Query: *[_type == "demo" && slug.current == $slug][0].title
-export type DEMO_QUERYResult = string | null
+// Query: *[_type == "demo" && slug.current == $slug][0]{title,"fetchedAt":now()}
+export type DEMO_QUERYResult = {
+  title: string | null
+  fetchedAt: string
+} | null
+
+// Source: ./src/app/dynamic/page.tsx
+// Variable: DYNAMIC_DEMO_QUERY
+// Query: *[_type == "demo" && slug.current == $slug][0]{title,"fetchedAt":now()}
+export type DYNAMIC_DEMO_QUERYResult = {
+  title: string | null
+  fetchedAt: string
+} | null
 
 declare module '@sanity/client' {
   interface SanityQueries {
-    '*[_id == "theme"][0]{background,text}': THEME_QUERYResult
-    '*[_type == "demo" && slug.current == $slug][0].title': DEMO_QUERYResult
+    '*[_id == "theme"][0]{background,text,"fetchedAt":now()}': THEME_QUERYResult
+    '*[_type == "demo" && slug.current == $slug][0]{title,"fetchedAt":now()}':
+      | DEMO_QUERYResult
+      | DYNAMIC_DEMO_QUERYResult
   }
 }

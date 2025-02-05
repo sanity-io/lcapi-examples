@@ -11726,7 +11726,7 @@ snapshots:
       get-random-values-esm: 1.0.2
       lodash: 4.17.21
 
-  '@portabletext/editor@1.30.4(@sanity/schema@3.74.0(@types/react@19.0.8)(debug@4.4.0))(@sanity/types@3.74.0(@types/react@19.0.8)(debug@4.4.0))(@types/react@19.0.8)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(rxjs@7.8.1)':
+  '@portabletext/editor@1.30.4(@sanity/schema@3.74.0(@types/react@19.0.8))(@sanity/types@3.74.0(@types/react@19.0.8)(debug@4.4.0))(@types/react@19.0.8)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(rxjs@7.8.1)':
     dependencies:
       '@portabletext/block-tools': 1.1.5(@sanity/types@3.74.0(@types/react@19.0.8)(debug@4.4.0))(@types/react@19.0.8)
       '@portabletext/patches': 1.1.2
@@ -12253,11 +12253,11 @@ snapshots:
       - debug
       - supports-color
 
-  '@sanity/presentation-comlink@1.0.4(@sanity/client@6.27.2(debug@4.4.0))(@sanity/types@3.74.0(@types/react@19.0.8)(debug@4.4.0))':
+  '@sanity/presentation-comlink@1.0.4(@sanity/client@6.27.2)(@sanity/types@3.74.0(@types/react@19.0.8)(debug@4.4.0))':
     dependencies:
       '@sanity/client': 6.27.2(debug@4.4.0)
       '@sanity/comlink': 3.0.1
-      '@sanity/visual-editing-types': 1.0.4(@sanity/client@6.27.2(debug@4.4.0))(@sanity/types@3.74.0(@types/react@19.0.8)(debug@4.4.0))
+      '@sanity/visual-editing-types': 1.0.4(@sanity/client@6.27.2)(@sanity/types@3.74.0(@types/react@19.0.8)(debug@4.4.0))
     transitivePeerDependencies:
       - '@sanity/types'
 
@@ -12266,7 +12266,7 @@ snapshots:
       prettier: 3.4.2
       prettier-plugin-packagejson: 2.5.6(prettier@3.4.2)
 
-  '@sanity/preview-url-secret@2.1.4(@sanity/client@6.27.2(debug@4.4.0))':
+  '@sanity/preview-url-secret@2.1.4(@sanity/client@6.27.2)':
     dependencies:
       '@sanity/client': 6.27.2(debug@4.4.0)
       '@sanity/uuid': 3.0.2
@@ -12400,7 +12400,7 @@ snapshots:
       - react-dom
       - react-is
 
-  '@sanity/visual-editing-types@1.0.4(@sanity/client@6.27.2(debug@4.4.0))(@sanity/types@3.74.0(@types/react@19.0.8)(debug@4.4.0))':
+  '@sanity/visual-editing-types@1.0.4(@sanity/client@6.27.2)(@sanity/types@3.74.0(@types/react@19.0.8)(debug@4.4.0))':
     dependencies:
       '@sanity/client': 6.27.2(debug@4.4.0)
     optionalDependencies:
@@ -19372,7 +19372,7 @@ snapshots:
       '@dnd-kit/utilities': 3.2.2(react@19.0.0)
       '@juggle/resize-observer': 3.4.0
       '@portabletext/block-tools': 1.1.5(@sanity/types@3.74.0(@types/react@19.0.8)(debug@4.4.0))(@types/react@19.0.8)
-      '@portabletext/editor': 1.30.4(@sanity/schema@3.74.0(@types/react@19.0.8)(debug@4.4.0))(@sanity/types@3.74.0(@types/react@19.0.8)(debug@4.4.0))(@types/react@19.0.8)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(rxjs@7.8.1)
+      '@portabletext/editor': 1.30.4(@sanity/schema@3.74.0(@types/react@19.0.8))(@sanity/types@3.74.0(@types/react@19.0.8)(debug@4.4.0))(@types/react@19.0.8)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(rxjs@7.8.1)
       '@portabletext/react': 3.2.0(react@19.0.0)
       '@portabletext/toolkit': 2.0.16
       '@rexxars/react-json-inspector': 9.0.1(react@19.0.0)
@@ -19393,8 +19393,8 @@ snapshots:
       '@sanity/logos': 2.1.13(@sanity/color@3.0.6)(react@19.0.0)
       '@sanity/migrate': 3.74.0(@types/react@19.0.8)
       '@sanity/mutator': 3.74.0(@types/react@19.0.8)
-      '@sanity/presentation-comlink': 1.0.4(@sanity/client@6.27.2(debug@4.4.0))(@sanity/types@3.74.0(@types/react@19.0.8)(debug@4.4.0))
-      '@sanity/preview-url-secret': 2.1.4(@sanity/client@6.27.2(debug@4.4.0))
+      '@sanity/presentation-comlink': 1.0.4(@sanity/client@6.27.2)(@sanity/types@3.74.0(@types/react@19.0.8)(debug@4.4.0))
+      '@sanity/preview-url-secret': 2.1.4(@sanity/client@6.27.2)
       '@sanity/schema': 3.74.0(@types/react@19.0.8)(debug@4.4.0)
       '@sanity/telemetry': 0.7.9(react@19.0.0)
       '@sanity/types': 3.74.0(@types/react@19.0.8)(debug@4.4.0)

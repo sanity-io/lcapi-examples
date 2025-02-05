@@ -6,14 +6,14 @@ import {SanityLive} from './SanityLive'
 import {ThemeButton} from './ThemeButton'
 import {TimeSince} from './TimeSince'
 
-const THEME_QUERY = defineQuery(`*[_id == "theme"][0]{background,text}`)
+const THEME_QUERY = defineQuery(`*[_id == "theme"][0]{background,text,"fetchedAt":now()}`)
 
 export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode
 }>) {
-  const {data, fetchedAt} = await sanityFetch({query: THEME_QUERY})
+  const {data, tags} = await sanityFetch({query: THEME_QUERY})
 
   return (
     <html
@@ -26,13 +26,13 @@ export default async function RootLayout({
     >
       <body>
         <div className="relative flex min-h-dvh flex-col items-center justify-evenly overflow-auto">
-          <Suspense>
-            <TimeSince label="layout.tsx" since={fetchedAt} />
-          </Suspense>
+          {data?.fetchedAt && <Suspense>
+            <TimeSince label="layout.tsx" since={data.fetchedAt} />
+          </Suspense>}
           {children}
-          <Suspense>
-            <ThemeButton />
-          </Suspense>
+          {tags && <Suspense>
+            <ThemeButton tags={tags} />
+          </Suspense>}
         </div>
         <Suspense>
           <SanityLive />
