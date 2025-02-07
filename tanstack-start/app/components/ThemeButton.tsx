@@ -6,7 +6,6 @@ const randomColorTheme = createServerFn().handler(async () => {
     method: 'PUT',
   })
 
-
   return res.json()
 })
 

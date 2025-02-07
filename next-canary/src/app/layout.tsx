@@ -26,13 +26,17 @@ export default async function RootLayout({
     >
       <body>
         <div className="relative flex min-h-dvh flex-col items-center justify-evenly overflow-auto">
-          {data?.fetchedAt && <Suspense>
-            <TimeSince label="layout.tsx" since={data.fetchedAt} />
-          </Suspense>}
+          {data?.fetchedAt && (
+            <Suspense>
+              <TimeSince label="layout.tsx" since={data.fetchedAt} />
+            </Suspense>
+          )}
           {children}
-          {tags && <Suspense>
-            <ThemeButton tags={tags} />
-          </Suspense>}
+          {tags && (
+            <Suspense>
+              <ThemeButton tags={tags} />
+            </Suspense>
+          )}
         </div>
         <Suspense>
           <SanityLive />

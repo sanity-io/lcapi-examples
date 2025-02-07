@@ -11,22 +11,20 @@ import {expireTags} from './actions'
 export function SanityLive() {
   const router = useRouter()
 
-  const handleLiveEvent = useEffectEvent(
-    (event: LiveEvent) => {
-      switch(event.type) {
-        case 'welcome':
-          console.info('Sanity is live with automatic revalidation of published content')
-          break
-        case 'message':
-          expireTags(event.tags)
-          break
-        case 'reconnect':
-        case 'restart':
-          router.refresh()
-          break
-      }
-    },
-  )
+  const handleLiveEvent = useEffectEvent((event: LiveEvent) => {
+    switch (event.type) {
+      case 'welcome':
+        console.info('Sanity is live with automatic revalidation of published content')
+        break
+      case 'message':
+        expireTags(event.tags)
+        break
+      case 'reconnect':
+      case 'restart':
+        router.refresh()
+        break
+    }
+  })
   useEffect(() => {
     const subscription = client.live.events().subscribe({
       next: handleLiveEvent,
