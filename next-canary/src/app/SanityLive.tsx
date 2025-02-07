@@ -1,7 +1,7 @@
 'use client'
 
 import {client} from '@/sanity/client'
-import type {LiveEvent, LiveEventMessage, LiveEventRestart, LiveEventWelcome} from '@sanity/client'
+import type {LiveEvent} from '@sanity/client'
 import {CorsOriginError} from '@sanity/client'
 import {useRouter} from 'next/navigation'
 import {useEffect} from 'react'
@@ -18,7 +18,7 @@ export function SanityLive() {
           console.info('Sanity is live with automatic revalidation of published content')
           break
         case 'message':
-          expireTags((event as LiveEventMessage).tags)
+          expireTags(event.tags)
           break
         case 'reconnect':
         case 'restart':
