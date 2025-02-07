@@ -8,7 +8,7 @@ export async function sanityFetch<const QueryString extends string>({
   query: QueryString
   params?: QueryParams
 }) {
-  // Uncached query that fetches cache tags (on Next 15 uncached doesn't mean on every browser request, but on every ISR build)
+  // We have to fetch the sync tags first (this double-fetching is required until the new `cacheTag` API, related to 'use cache', is available in a stable next.js release)
   const {syncTags: tags} = await client.fetch(query, params, {
     filterResponse: false,
     cacheMode: 'noStale',
