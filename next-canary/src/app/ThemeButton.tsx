@@ -1,8 +1,8 @@
 'use client'
 
-import type { SyncTag } from '@sanity/client'
+import type {SyncTag} from '@sanity/client'
 import {useTransition} from 'react'
-import { randomColorTheme } from './actions'
+import {randomColorTheme} from './actions'
 
 export function ThemeButton(props: {tags: SyncTag[]}) {
   const [pending, startTransition] = useTransition()

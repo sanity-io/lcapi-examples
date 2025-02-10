@@ -8,7 +8,7 @@ const nextConfig: NextConfig = {
   },
   experimental: {
     useCache: true,
-    ppr: 'incremental'
+    ppr: 'incremental',
   },
 }
 

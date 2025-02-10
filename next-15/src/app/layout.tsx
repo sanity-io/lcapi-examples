@@ -6,9 +6,7 @@ import {SanityLive} from './SanityLive'
 import {ThemeButton} from './ThemeButton'
 import {TimeSince} from './TimeSince'
 
-const THEME_QUERY = defineQuery(
-  `*[_id == "theme"][0]{background,text,"fetchedAt":now()}`,
-)
+const THEME_QUERY = defineQuery(`*[_id == "theme"][0]{background,text,"fetchedAt":now()}`)
 
 export default async function RootLayout({
   children,
