@@ -18,7 +18,7 @@
     "prettier-plugin-tailwindcss": "^0.6.9",
     "sanity": "^3.64.2"
   },
-  "packageManager": "pnpm@9.15.5",
+  "packageManager": "pnpm@10.2.1",
   "pnpm": {
     "peerDependencyRules": {
       "allowAny": [
