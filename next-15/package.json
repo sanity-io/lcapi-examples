@@ -12,7 +12,7 @@
   "dependencies": {
     "@sanity/client": "^6.23.0",
     "groq": "^3.64.2",
-    "next": "15.1.6",
+    "next": "15.1.7",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "use-effect-event": "^1.0.2"
@@ -21,9 +21,9 @@
     "@types/node": "^20",
     "@types/react": "^19.0.8",
     "@types/react-dom": "^19.0.3",
-    "eslint": "^9.19.0",
-    "eslint-config-next": "15.1.6",
-    "postcss": "^8.5.1",
+    "eslint": "^9.20.1",
+    "eslint-config-next": "15.1.7",
+    "postcss": "^8.5.2",
     "tailwindcss": "^3.4.17",
     "typescript": "^5.7.3"
   }
