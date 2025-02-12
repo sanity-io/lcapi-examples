@@ -258,9 +258,6 @@ importers:
         specifier: experimental
         version: 0.0.0-experimental-f83903bf-20250212(react@0.0.0-experimental-f83903bf-20250212)
     devDependencies:
-      '@eslint/eslintrc':
-        specifier: ^3.2.0
-        version: 3.2.0
       '@types/node':
         specifier: ^20
         version: 20.17.12
