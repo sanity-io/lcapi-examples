@@ -8,6 +8,14 @@ import {useEffectEvent} from 'use-effect-event'
 import {client} from '../sanity/client'
 import {expireTags} from './actions'
 
+/**
+ * Next v15 has a first class API in `next-sanity` that should be used instead of this function.
+ * It's here to show what the fetch function would look like if you were to implement it yourself, solving for production data.
+ * The `defineLive` utility in `next-sanity` handles more advanced use cases, such as live preview, integrating with `sanity/presentation`, and more.
+ * @example
+ * import {createClient, defineLive} from 'next-sanity'
+ * export const {sanityFetch, SanityLive} = defineLive({client: createClient({projectId, dataset, ...})})
+ */
 export function SanityLive() {
   const router = useRouter()
 
