@@ -8,12 +8,21 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      backgroundImage: {
-        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+      backgroundColor: {
+        'theme': 'var(--theme-background,#fff)',
+        'theme-button': 'var(--theme-text,#fff)',
+      },
+      textColor: {
+        'theme': 'var(--theme-text,#000)',
+        'theme-button': 'var(--theme-background,#fff)',
+      },
+      ringColor: {
+        theme: 'var(--theme-text,#000)',
+      },
+      ringOffsetColor: {
+        theme: 'var(--theme-background,#fff)',
       },
     },
   },
-  plugins: [],
 }
 export default config

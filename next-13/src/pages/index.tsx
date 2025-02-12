@@ -1,118 +1,72 @@
-import {Inter} from 'next/font/google'
+
+import { SanityLive } from '@/sanity/live'
 import Image from 'next/image'
+import type { InferGetServerSidePropsType, GetServerSideProps } from 'next'
+import { client } from '@/sanity/client'
+import type {ClientReturn, SyncTag} from '@sanity/client'
+import Head from 'next/head'
+import {defineQuery} from 'groq'
+import { lazy, Suspense } from 'react'
 
-const inter = Inter({subsets: ['latin']})
+const ThemeButton = lazy(() => import('@/components/ThemeButton'))
+const TimeSince = lazy(() => import('@/components/TimeSince'))
 
-export default function Home() {
+const INDEX_QUERY = defineQuery(`{
+  "theme": *[_id == "theme"][0]{background,text},
+  "title": *[_type == "demo" && slug.current == $slug][0].title,
+  "fetchedAt":now()
+}`)
+const slug = 'next-13'
+
+export const getServerSideProps = (async ({res, query}) => {
+  const {lastLiveEventId} = query
+  res.setHeader(
+    'Cache-Control',
+    // Sets the same cache header as the Sanity API CDN, with a short lifetime if there is no lastLiveEventId param, and a much longer one if there is
+    lastLiveEventId ? 'public, max-age=60, s-maxage=3600, stale-while-revalidate=60, stale-if-error=3600' : 'public, max-age=60, s-maxage=60, stale-while-revalidate=15, stale-if-error=3600'
+  )
+  const {result: data, syncTags: tags} = await client.fetch(INDEX_QUERY, {slug}, {
+    // Needed to access syncTags
+    filterResponse: false,
+    // Used for cache busting on changes
+    lastLiveEventId,
+  })
+
+  return { props: { data, tags } }
+}) satisfies GetServerSideProps<{ data: ClientReturn<typeof INDEX_QUERY>; tags?: SyncTag[]}>
+
+
+export default function Home(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
+  const {data, tags} = props
+  const title = data.title || 'Next 13'
+  
   return (
+    <>
+<Head><title>{title}</title></Head>
     <main
-      className={`flex min-h-screen flex-col items-center justify-between p-24 ${inter.className}`}
+      className="bg-theme text-theme transition-colors duration-1000 ease-in-out"
+      style={{
+        ['--theme-background' as string]: data.theme?.background,
+        ['--theme-text' as string]: data.theme?.text,
+      }}
     >
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl lg:static lg:w-auto lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">src/pages/index.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white lg:static lg:h-auto lg:w-auto lg:bg-none dark:from-black dark:via-black">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
-
-      <div className="before:bg-gradient-radial after:bg-gradient-conic relative flex place-items-center before:absolute before:h-[300px] before:w-[480px] before:-translate-x-1/2 before:rounded-full before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[240px] after:translate-x-1/3 after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:lg:h-[360px] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700/10 after:dark:from-sky-900 after:dark:via-[#0141ff]/40">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className="mb-32 grid text-center lg:mb-0 lg:w-full lg:max-w-5xl lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Docs{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Learn{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Templates{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Discover and deploy boilerplate example Next.js&nbsp;projects.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Deploy{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
+      <div className="relative flex min-h-dvh flex-col items-center justify-evenly overflow-auto">
+      {data?.fetchedAt && (
+            <Suspense>
+              <TimeSince label="index.tsx" since={data.fetchedAt} />
+            </Suspense>
+          )}
+<div className="ring-theme relative mx-2 rounded-lg px-2 py-1 ring-1">
+      <h1 className="min-w-64 text-balance text-4xl font-bold leading-tight tracking-tighter md:text-6xl lg:text-8xl">
+        {title}
+      </h1>
+    </div>
+      <Suspense>
+            <ThemeButton />
+          </Suspense>
+          </div>
     </main>
+    <SanityLive tags={tags} />
+    </>
   )
 }

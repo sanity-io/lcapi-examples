@@ -6,22 +6,25 @@
     "build": "next build",
     "dev": "next dev",
     "lint": "next lint",
-    "start": "next start"
+    "start": "next start",
+    "typegen:generate": "sanity typegen generate"
   },
   "dependencies": {
     "@sanity/client": "^6.23.0",
-    "groq": "^3.64.2",
+    "groq": "^3.75.0",
     "next": "13.5.7",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "use-effect-event": "^1.0.2"
   },
   "devDependencies": {
     "@types/node": "^20",
-    "@types/react": "^19.0.8",
-    "@types/react-dom": "^19.0.3",
+    "@types/react": "^18.3.18",
+    "@types/react-dom": "^18.3.5",
     "autoprefixer": "^10.4.20",
     "eslint": "^8.57.1",
     "eslint-config-next": "13.5.8",
+    "eslint-plugin-react-hooks": "experimental",
     "postcss": "^8.5.2",
     "tailwindcss": "^3.4.17",
     "typescript": "5.7.3"

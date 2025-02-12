@@ -1,35 +1,39 @@
-'use client'
-
 import {client} from '@/sanity/client'
 import type {LiveEvent} from '@sanity/client'
 import {CorsOriginError} from '@sanity/client'
-import {useRouter} from 'next/navigation'
+import { useRouter } from 'next/router'
 import {useEffect} from 'react'
 import {useEffectEvent} from 'use-effect-event'
-import {expireTags} from './actions'
+
 
 /**
- * Next v15 has a first class API in `next-sanity` that should be used instead of this function.
- * It's here to show what the fetch function would look like if you were to implement it yourself, solving for production data.
- * The `defineLive` utility in `next-sanity` handles more advanced use cases, such as live preview, integrating with `sanity/presentation`, and more.
- * @example
- * import {createClient, defineLive} from 'next-sanity'
- * export const {sanityFetch, SanityLive} = defineLive({client: createClient({projectId, dataset, ...})})
+ * Next v14 and later, on App Router, has a first class API in `next-sanity`, `defineLive`, that should be used instead of this function.
  */
-export function SanityLive() {
+export function SanityLive(props: {tags?: string[]}) {
   const router = useRouter()
+  const {tags = []} = props
+  
+
 
   const handleLiveEvent = useEffectEvent((event: LiveEvent) => {
+    const {lastLiveEventId, ...queryWithoutLastLiveEventId} = router.query
+
     switch (event.type) {
       case 'welcome':
         console.info('Sanity is live with automatic revalidation of published content')
         break
       case 'message':
-        expireTags(event.tags)
+        event.tags.some(tag => tags.includes(tag)) && router.replace({
+          pathname: router.pathname,
+          query: {...router.query, lastLiveEventId: event.id},
+        }, undefined, {scroll: false})
         break
       case 'reconnect':
       case 'restart':
-        router.refresh()
+        router.replace({
+          pathname: router.pathname,
+          query: queryWithoutLastLiveEventId,
+        }, undefined, {scroll: false})
         break
     }
   })
@@ -53,4 +57,3 @@ export function SanityLive() {
 
   return null
 }
-SanityLive.displayName = 'SanityLive'

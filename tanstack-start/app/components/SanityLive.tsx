@@ -72,3 +72,4 @@ export function SanityLive() {
 
   return null
 }
+SanityLive.displayName = 'SanityLive'

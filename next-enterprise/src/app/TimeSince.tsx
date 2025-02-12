@@ -1,11 +1,11 @@
 'use client'
 
-import {useLayoutEffect, useState} from 'react'
+import {useEffect, useState} from 'react'
 
 export function TimeSince({label, since}: {label: string; since: string}) {
   const [from, setFrom] = useState<null | Date>(null)
   const [now, setNow] = useState<null | Date>(null)
-  useLayoutEffect(() => {
+  useEffect(() => {
     setFrom(new Date(since))
     const interval = setInterval(() => setNow(new Date()), 1000)
     return () => clearInterval(interval)
