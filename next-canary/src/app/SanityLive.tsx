@@ -4,8 +4,7 @@ import {client} from '@/sanity/client'
 import type {LiveEvent} from '@sanity/client'
 import {CorsOriginError} from '@sanity/client'
 import {useRouter} from 'next/navigation'
-import {useEffect} from 'react'
-import {useEffectEvent} from 'use-effect-event'
+import {useEffect, experimental_useEffectEvent as useEffectEvent} from 'react'
 import {expireTags} from './actions'
 
 export function SanityLive() {
@@ -41,7 +40,7 @@ export function SanityLive() {
       },
     })
     return () => subscription.unsubscribe()
-  }, [handleLiveEvent])
+  }, [])
 
   return null
 }
