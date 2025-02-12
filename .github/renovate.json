@@ -14,7 +14,7 @@
     },
     {
       "matchFileNames": ["next-13/package.json", "next-14/package.json"],
-      "matchPackageNames": ["react", "react-dom"],
+      "matchPackageNames": ["@types/react", "@types/react-dom", "react", "react-dom"],
       "allowedVersions": "<=18"
     },
     {
