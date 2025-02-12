@@ -8,9 +8,9 @@ export async function expireTags(tags: SyncTag[]) {
   console.log(`<SanityLive /> expired tags: ${tags.join(', ')}`)
 }
 
-export async function randomColorTheme(tags: string[]) {
+export async function randomColorTheme() {
   await fetch('https://lcapi-examples-api.sanity.dev/api/random-color-theme', {
     method: 'PUT',
   })
-  expireTag(...tags)
+  expireTag('theme')
 }

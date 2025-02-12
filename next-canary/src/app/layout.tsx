@@ -7,17 +7,13 @@ import {ThemeButton} from './ThemeButton'
 import {TimeSince} from './TimeSince'
 
 const THEME_QUERY = defineQuery(`*[_id == "theme"][0]{background,text,"fetchedAt":now()}`)
-/**
- * Used in a Server Action to mutate the theme, this tag sets the tag in the query, and provides a stable handle to call in the custom action
- */
-const themeTag = 'theme'
 
 export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode
 }>) {
-  const {data} = await sanityFetch({query: THEME_QUERY, tags: [themeTag]})
+  const {data} = await sanityFetch({query: THEME_QUERY, tags: ['theme']})
 
   return (
     <html
@@ -37,7 +33,7 @@ export default async function RootLayout({
           )}
           {children}
           <Suspense>
-            <ThemeButton tags={[themeTag]} />
+            <ThemeButton />
           </Suspense>
         </div>
         <Suspense>
