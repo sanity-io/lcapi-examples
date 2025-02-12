@@ -37,8 +37,8 @@ export default async function RootLayout({
           )}
           {children}
           <Suspense>
-              <ThemeButton tags={[themeTag]} />
-            </Suspense>
+            <ThemeButton tags={[themeTag]} />
+          </Suspense>
         </div>
         <Suspense>
           <SanityLive />
