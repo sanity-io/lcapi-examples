@@ -166,6 +166,9 @@ importers:
       eslint-config-next:
         specifier: 14.2.24
         version: 14.2.24(eslint@8.57.1)(typescript@5.7.3)
+      eslint-plugin-react-hooks:
+        specifier: experimental
+        version: 0.0.0-experimental-f83903bf-20250212(eslint@8.57.1)
       postcss:
         specifier: ^8.5.2
         version: 8.5.2
@@ -181,12 +184,6 @@ importers:
       '@sanity/client':
         specifier: ^6.23.0
         version: 6.28.0(debug@4.4.0)
-      babel-plugin-react-compiler:
-        specifier: beta
-        version: 19.0.0-beta-30d8a17-20250209
-      eslint-plugin-react-compiler:
-        specifier: beta
-        version: 19.0.0-beta-30d8a17-20250209(eslint@9.20.1(jiti@2.4.2))
       groq:
         specifier: ^3.64.2
         version: 3.75.0
@@ -212,12 +209,21 @@ importers:
       '@types/react-dom':
         specifier: ^19.0.2
         version: 19.0.3(@types/react@19.0.8)
+      babel-plugin-react-compiler:
+        specifier: beta
+        version: 19.0.0-beta-30d8a17-20250209
       eslint:
         specifier: ^9.20.1
         version: 9.20.1(jiti@2.4.2)
       eslint-config-next:
         specifier: 15.1.7
         version: 15.1.7(eslint@9.20.1(jiti@2.4.2))(typescript@5.7.3)
+      eslint-plugin-react-compiler:
+        specifier: beta
+        version: 19.0.0-beta-30d8a17-20250209(eslint@9.20.1(jiti@2.4.2))
+      eslint-plugin-react-hooks:
+        specifier: experimental
+        version: 0.0.0-experimental-f83903bf-20250212(eslint@9.20.1(jiti@2.4.2))
       postcss:
         specifier: ^8.5.2
         version: 8.5.2

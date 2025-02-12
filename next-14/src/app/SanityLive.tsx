@@ -9,7 +9,7 @@ import {client} from '../sanity/client'
 import {expireTags} from './actions'
 
 /**
- * Next v15 has a first class API in `next-sanity` that should be used instead of this function.
+ * Next v14 has a first class API in `next-sanity` that should be used instead of this function.
  * It's here to show what the fetch function would look like if you were to implement it yourself, solving for production data.
  * The `defineLive` utility in `next-sanity` handles more advanced use cases, such as live preview, integrating with `sanity/presentation`, and more.
  * @example
@@ -50,7 +50,7 @@ export function SanityLive() {
       },
     })
     return () => subscription.unsubscribe()
-  }, [handleLiveEvent])
+  }, [])
 
   return null
 }

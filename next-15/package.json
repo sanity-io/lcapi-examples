@@ -11,8 +11,6 @@
   },
   "dependencies": {
     "@sanity/client": "^6.23.0",
-    "babel-plugin-react-compiler": "beta",
-    "eslint-plugin-react-compiler": "beta",
     "groq": "^3.64.2",
     "next": "15.1.7",
     "react": "^19.0.0",
@@ -23,6 +21,9 @@
     "@types/node": "^20",
     "@types/react": "^19.0.8",
     "@types/react-dom": "^19.0.3",
+    "babel-plugin-react-compiler": "beta",
+    "eslint-plugin-react-compiler": "beta",
+    "eslint-plugin-react-hooks": "experimental",
     "eslint": "^9.20.1",
     "eslint-config-next": "15.1.7",
     "postcss": "^8.5.2",
