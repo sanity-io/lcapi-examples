@@ -1,6 +1,6 @@
-import { FlatCompat } from '@eslint/eslintrc'
-import hooksPlugin from "eslint-plugin-react-hooks";
+import {FlatCompat} from '@eslint/eslintrc'
 import reactCompiler from 'eslint-plugin-react-compiler'
+import hooksPlugin from 'eslint-plugin-react-hooks'
 
 const compat = new FlatCompat({
   // import.meta.dirname is available after Node.js v20.11.0
@@ -12,12 +12,12 @@ const eslintConfig = [
   }),
   {
     plugins: {
-      "react-compiler": reactCompiler,
-      "react-hooks": hooksPlugin,
+      'react-compiler': reactCompiler,
+      'react-hooks': hooksPlugin,
     },
     rules: {
-      "react-compiler/react-compiler": "error",
-      "react-hooks/exhaustive-deps": "error",
+      'react-compiler/react-compiler': 'error',
+      'react-hooks/exhaustive-deps': 'error',
     },
   },
 ]
