@@ -1,3 +1,0 @@
-use experimental_useEffectEvent
-and ViewTransition
-use cacheLife options
