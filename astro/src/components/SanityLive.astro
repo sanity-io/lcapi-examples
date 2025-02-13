@@ -1,11 +1,12 @@
 ---
 interface Props {
-  tags: string[];
+  tags: string[]
 }
 
-const { tags } = Astro.props;
+const {tags} = Astro.props
 ---
-<sanity-live data-tags={tags} />
+
+<sanity-live data-tags={tags}></sanity-live>
 
 <script>
   import {CorsOriginError} from '@sanity/client'
@@ -13,7 +14,7 @@ const { tags } = Astro.props;
   import {client} from '../sanity/client'
 
   class SanityLive extends HTMLElement {
-    subscription: ReturnType<ReturnType<typeof client.live.events>['subscribe']> | null = null;
+    subscription: ReturnType<ReturnType<typeof client.live.events>['subscribe']> | null = null
 
     connectedCallback() {
       this.subscription = client.live.events().subscribe({
@@ -22,22 +23,22 @@ const { tags } = Astro.props;
           if (event.type === 'welcome') {
             console.info('Sanity is live with automatic revalidation of published content')
             // If we don't have a lastLiveEventId, set it to the id of the welcome event
-            if(!url.searchParams.has('lastLiveEventId')) {
-              url.searchParams.set('lastLiveEventId', 
-            // @ts-expect-error - @TODO upgrade `@sanity/client` with the id of welcome events
-            event.id)
+            if (!url.searchParams.has('lastLiveEventId')) {
+              url.searchParams.set(
+                'lastLiveEventId',
+                // @ts-expect-error - @TODO upgrade `@sanity/client` with the id of welcome events
+                event.id,
+              )
               navigate(url.toString(), {history: 'replace'})
             }
-           
           } else if (event.type === 'message') {
             const tags = this.dataset.tags?.split(',') || []
             // Check if the event tags intersect with our component tags
-            if (event.tags?.some(tag => tags.includes(tag))) {
+            if (event.tags?.some((tag) => tags.includes(tag))) {
               url.searchParams.set('lastLiveEventId', event.id)
               navigate(url.toString(), {history: 'replace'})
             }
           } else if (event.type === 'restart' || event.type === 'reconnect') {
-            
             url.searchParams.delete('lastLiveEventId')
             navigate(url.toString(), {history: 'replace'})
           }
@@ -63,5 +64,5 @@ const { tags } = Astro.props;
     }
   }
 
-  customElements.define('sanity-live', SanityLive);
+  customElements.define('sanity-live', SanityLive)
 </script>
