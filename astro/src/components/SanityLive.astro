@@ -1,11 +1,26 @@
+---
+interface Props {
+  tags: string[];
+}
+
+const { tags } = Astro.props;
+
+console.log('SanityLive', {tags})
+---
+<sanity-live tags={tags} />
+
 <script>
   import {CorsOriginError} from '@sanity/client'
   import {navigate} from 'astro:transitions/client'
   import {client} from '../sanity/client'
+
   
+
+  // console.log('SanityLive initial', {tags})
 
   const subscription = client.live.events().subscribe({
     next: (event) => {
+      // console.log('SanityLive event', {tags, event})
       if (event.type === 'welcome') {
         console.info('Sanity is live with automatic revalidation of published content')
       } else if (event.type === 'message') {
@@ -31,4 +46,17 @@
     },
   })
   window.addEventListener('beforeunload', () => subscription.unsubscribe())
+
+  class SanityLive extends HTMLElement {
+    connectedCallback() {
+      // Read the message from the data attribute.
+      const message = this.dataset.message;
+      const button = this.querySelector('button');
+      button.addEventListener('click', () => {
+        alert(message);
+      });
+    }
+  }
+
+  customElements.define('sanity-live', SanityLive);
 </script>
