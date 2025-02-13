@@ -1,34 +1,67 @@
+---
+interface Props {
+  tags: string[];
+}
+
+const { tags } = Astro.props;
+---
+<sanity-live data-tags={tags} />
+
 <script>
   import {CorsOriginError} from '@sanity/client'
   import {navigate} from 'astro:transitions/client'
   import {client} from '../sanity/client'
-  
 
-  const subscription = client.live.events().subscribe({
-    next: (event) => {
-      if (event.type === 'welcome') {
-        console.info('Sanity is live with automatic revalidation of published content')
-      } else if (event.type === 'message') {
-        const url = new URL(window.location.href)
-        url.searchParams.set('lastLiveEventId', event.id)
-        navigate(url.toString(), {history: 'replace'})
-      } else if (event.type === 'restart' || event.type === 'reconnect') {
-        const url = new URL(window.location.href)
-        url.searchParams.delete('lastLiveEventId')
-        navigate(url.toString(), {history: 'replace'})
+  class SanityLive extends HTMLElement {
+    subscription: ReturnType<ReturnType<typeof client.live.events>['subscribe']> | null = null;
+
+    connectedCallback() {
+      this.subscription = client.live.events().subscribe({
+        next: (event) => {
+          const url = new URL(window.location.href)
+          if (event.type === 'welcome') {
+            console.info('Sanity is live with automatic revalidation of published content')
+            // If we don't have a lastLiveEventId, set it to the id of the welcome event
+            if(!url.searchParams.has('lastLiveEventId')) {
+              url.searchParams.set('lastLiveEventId', 
+            // @ts-expect-error - @TODO upgrade `@sanity/client` with the id of welcome events
+            event.id)
+              navigate(url.toString(), {history: 'replace'})
+            }
+           
+          } else if (event.type === 'message') {
+            const tags = this.dataset.tags?.split(',') || []
+            // Check if the event tags intersect with our component tags
+            if (event.tags?.some(tag => tags.includes(tag))) {
+              url.searchParams.set('lastLiveEventId', event.id)
+              navigate(url.toString(), {history: 'replace'})
+            }
+          } else if (event.type === 'restart' || event.type === 'reconnect') {
+            
+            url.searchParams.delete('lastLiveEventId')
+            navigate(url.toString(), {history: 'replace'})
+          }
+        },
+        error: (error) => {
+          if (error instanceof CorsOriginError) {
+            console.warn(
+              `Sanity Live is unable to connect to the Sanity API as the current origin - ${window.origin} - is not in the list of allowed CORS origins for this Sanity Project.`,
+              error.addOriginUrl && `Add it here:`,
+              error.addOriginUrl?.toString(),
+            )
+          } else {
+            console.error(error)
+          }
+        },
+      })
+    }
+
+    disconnectedCallback() {
+      if (this.subscription) {
+        this.subscription.unsubscribe()
       }
-    },
-    error: (error: unknown) => {
-      if (error instanceof CorsOriginError) {
-        console.warn(
-          `Sanity Live is unable to connect to the Sanity API as the current origin - ${window.origin} - is not in the list of allowed CORS origins for this Sanity Project.`,
-          error.addOriginUrl && `Add it here:`,
-          error.addOriginUrl?.toString(),
-        )
-      } else {
-        console.error(error)
-      }
-    },
-  })
-  window.addEventListener('beforeunload', () => subscription.unsubscribe())
+    }
+  }
+
+  customElements.define('sanity-live', SanityLive);
 </script>

@@ -1,31 +1,41 @@
 ---
+interface Props {
+  lastLiveEventId: string | null
+  title: string
+}
+
+import "../styles/global.css";
+import {defineQuery} from 'groq'
 import {ClientRouter} from 'astro:transitions'
 import SanityLive from '../components/SanityLive.astro'
+import {sanityFetch} from '../sanity/fetch'
+import ThemeButton from "../components/ThemeButton";
+
+const {lastLiveEventId, title} = Astro.props
+const LAYOUT_QUERY = defineQuery(`*[_id == "theme"][0]{background,text,"fetchedAt":now()}`)
+const {data, tags} = await sanityFetch({query: LAYOUT_QUERY, lastLiveEventId})
+
 ---
 
 <!doctype html>
-<html lang="en" class="bg-theme text-theme transition-colors duration-1000 ease-in-out">
+<html lang="en" class="bg-theme text-theme transition-colors duration-1000 ease-in-out"
+style={{
+  ['--theme-background' as string]: data?.background,
+  ['--theme-text' as string]: data?.text,
+}}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
-    <title>Astro Basics.</title>
+    <title>{title}</title>
     <ClientRouter />
   </head>
   <body>
-    <div class="flex min-h-dvh flex-col items-center justify-evenly overflow-auto">
+    <div class="relative flex min-h-dvh flex-col items-center justify-evenly overflow-auto">
       <slot />
+      <ThemeButton client:load />
     </div>
-    <SanityLive server:defer />
+    {Array.isArray(tags) && tags.length > 0 && <SanityLive tags={tags} />}
   </body>
 </html>
-
-<style>
-  html,
-  body {
-    margin: 0;
-    width: 100%;
-    height: 100%;
-  }
-</style>

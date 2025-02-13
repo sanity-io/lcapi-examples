@@ -2,21 +2,24 @@
 import {defineQuery} from 'groq'
 import Layout from '../layouts/Layout.astro'
 import {sanityFetch} from '../sanity/fetch'
+import SanityLive from '../components/SanityLive.astro'
 
 export const prerender = false
 
 const url = new URL(Astro.request.url)
 
-const DEMO_QUERY = defineQuery(`*[_type == "demo" && slug.current == $slug][0].title`)
+const INDEX_QUERY = defineQuery(`*[_type == "demo" && slug.current == $slug][0].title`)
 const slug = 'astro'
 const lastLiveEventId = url.searchParams.get('lastLiveEventId')
-const {data} = await sanityFetch({query: DEMO_QUERY, params: {slug}, lastLiveEventId})
+const {data, tags} = await sanityFetch({query: INDEX_QUERY, params: {slug}, lastLiveEventId})
+const title = data || 'Astro'
 ---
 
-<Layout>
+<Layout lastLiveEventId={lastLiveEventId} title={title}>
   <h1
     class="text-balance text-4xl font-bold leading-tight tracking-tighter md:text-6xl lg:pr-8 lg:text-8xl"
   >
-    {data || 'Astro'}
+    {title}
   </h1>
 </Layout>
+{Array.isArray(tags) && tags.length > 0 && <SanityLive tags={tags} />}
