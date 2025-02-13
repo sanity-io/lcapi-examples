@@ -9,4 +9,10 @@ module.exports = {
     'prettier-plugin-svelte',
     'prettier-plugin-tailwindcss',
   ],
+  overrides: [...preset.overrides, {
+    "files": "*.svelte",
+    "options": {
+      "parser": "svelte"
+    }
+  }]
 }
