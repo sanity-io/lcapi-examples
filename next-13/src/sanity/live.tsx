@@ -21,9 +21,12 @@ export function SanityLive(props: {tags?: string[]}) {
         router.replace(
           {
             pathname: router.pathname,
-            query: {...router.query, lastLiveEventId: 
-              // @ts-expect-error - @TODO upgrade `@sanity/client` with the id of welcome events
-              event.id},
+            query: {
+              ...router.query,
+              lastLiveEventId:
+                // @ts-expect-error - @TODO upgrade `@sanity/client` with the id of welcome events
+                event.id,
+            },
           },
           undefined,
           {scroll: false},
