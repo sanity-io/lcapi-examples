@@ -202,8 +202,14 @@ export type THEME_QUERYResult =
     }
   | null
 
+// Source: ./api/react.ts
+// Variable: REACTION_QUERY
+// Query: *[_type == "reaction" && _id == $id][0]._id
+export type REACTION_QUERYResult = string | null
+
 declare module '@sanity/client' {
   interface SanityQueries {
     '*[_id == "theme"][0]{background,text}': THEME_QUERYResult
+    '*[_type == "reaction" && _id == $id][0]._id': REACTION_QUERYResult
   }
 }
