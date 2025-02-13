@@ -17,27 +17,25 @@ export const reactionType = defineType({
       name: 'emoji',
       title: 'Emoji',
       type: 'string',
-      validation: (rule) => rule.required().custom((value) => {
-        if (!value) return true // Let required() handle empty values
-        
-        const segmenter = new Intl.Segmenter('en', { granularity: 'grapheme' })
-        const segments = Array.from(segmenter.segment(value.trim()))
-        
-        if (segments.length !== 1) {
-          return 'Must contain exactly one emoji character'
-        }
-        
-        return true
-      }),
+      validation: (rule) =>
+        rule.required().custom((value) => {
+          if (!value) return true // Let required() handle empty values
+
+          const segmenter = new Intl.Segmenter('en', {granularity: 'grapheme'})
+          const segments = Array.from(segmenter.segment(value.trim()))
+
+          if (segments.length !== 1) {
+            return 'Must contain exactly one emoji character'
+          }
+
+          return true
+        }),
     }),
     defineField({
       name: 'reactions',
       title: 'Reactions',
       type: 'number',
-      validation: (rule) => rule
-      .required()
-      .integer()
-      .positive(),
+      validation: (rule) => rule.required().integer().positive(),
       initialValue: 0,
     }),
   ],
@@ -47,15 +45,13 @@ export const reactionType = defineType({
       emoji: 'emoji',
       reactions: 'reactions',
     },
-    prepare({ emoji, reactions }) {
-      const numberFormat = new Intl.NumberFormat('en', { notation: 'compact' })
+    prepare({emoji, reactions}) {
+      const numberFormat = new Intl.NumberFormat('en', {notation: 'compact'})
       const formatted = numberFormat.format(reactions)
-      
+
       return {
         title: `${formatted} ${reactions === 1 ? 'reaction' : 'reactions'}`,
-        media: () => (
-          <span style={{ fontSize: '1.5em' }}>{emoji}</span>
-        ),
+        media: () => <span style={{fontSize: '1.5em'}}>{emoji}</span>,
       }
     },
   },
@@ -157,15 +153,17 @@ export const demoType = defineType({
       name: 'reactions',
       title: 'Reactions',
       type: 'array',
-      of: [{
-        type: 'reference',
-        to: [{type: 'reaction'}]
-      }],
-      validation: rule => rule.required().min(3).max(5),
+      of: [
+        {
+          type: 'reference',
+          to: [{type: 'reaction'}],
+        },
+      ],
+      validation: (rule) => rule.required().min(3).max(5),
       options: {
         layout: 'grid',
-        sortable: true
-      }
+        sortable: true,
+      },
     }),
     defineField({
       name: 'slug',
