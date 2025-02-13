@@ -1,0 +1,4 @@
+{
+  "path": "./src/**/*.{ts,tsx,js,jsx,mjs,cjs,astro}",
+  "schema": "../studio/schema.json"
+}

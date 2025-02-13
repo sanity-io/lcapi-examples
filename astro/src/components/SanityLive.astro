@@ -2,8 +2,7 @@
   import {CorsOriginError} from '@sanity/client'
   import {navigate} from 'astro:transitions/client'
   import {client} from '../sanity/client'
-
-  const url = new URL(window.location.href)
+  
 
   const subscription = client.live.events().subscribe({
     next: (event) => {
@@ -13,7 +12,7 @@
         const url = new URL(window.location.href)
         url.searchParams.set('lastLiveEventId', event.id)
         navigate(url.toString(), {history: 'replace'})
-      } else if (event.type === 'restart') {
+      } else if (event.type === 'restart' || event.type === 'reconnect') {
         const url = new URL(window.location.href)
         url.searchParams.delete('lastLiveEventId')
         navigate(url.toString(), {history: 'replace'})

@@ -6,7 +6,8 @@
     "astro": "astro",
     "build": "astro build",
     "dev": "astro dev",
-    "preview": "astro preview"
+    "preview": "astro preview",
+    "typegen:generate": "sanity typegen generate"
   },
   "dependencies": {
     "@astrojs/tailwind": "^6.0.0",
