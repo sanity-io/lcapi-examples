@@ -1,0 +1,9 @@
+{
+  "include": ["api/**/*.ts", "sanity.types.ts"],
+  "compilerOptions": {
+    "module": "Preserve",
+    "target": "ES2022",
+    "skipLibCheck": true,
+    "strictNullChecks": true
+  }
+}

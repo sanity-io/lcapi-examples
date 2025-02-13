@@ -61,7 +61,7 @@ export default function Home(props: InferGetServerSidePropsType<typeof getServer
               <TimeSince label="index.tsx" since={data.fetchedAt} />
             </Suspense>
           )}
-          <div className="ring-theme relative mx-2 rounded-lg px-2 py-1 ring-1">
+          <div className="ring-current relative mx-2 rounded-lg px-2 py-1 ring-1">
             <h1 className="min-w-64 text-balance text-4xl font-bold leading-tight tracking-tighter md:text-6xl lg:text-8xl">
               {title}
             </h1>

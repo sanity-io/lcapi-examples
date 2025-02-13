@@ -9,8 +9,16 @@ export async function expireTags(tags: SyncTag[]) {
 }
 
 export async function randomColorTheme() {
-  await fetch('https://lcapi-examples-api.sanity.dev/api/random-color-theme', {
+  const response = await fetch('https://lcapi-examples-api.sanity.dev/api/random-color-theme', {
     method: 'PUT',
   })
   expireTag('theme')
+  if(!response.ok) {
+    return null
+  }
+  const data = await response.json()
+  if(typeof data === 'object' && 'background' in data && 'text' in data) {
+    return data as {background: string; text: string}
+  }
+  return null
 }
