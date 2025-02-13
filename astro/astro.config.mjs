@@ -9,7 +9,7 @@ import react from '@astrojs/react';
 
 // https://astro.build/config
 export default defineConfig({
-  adapter: vercel({isr: true, skewProtection: true}),
+  adapter: vercel(),
 
   vite: {
     plugins: [tailwindcss()],
