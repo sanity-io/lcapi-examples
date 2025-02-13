@@ -173,8 +173,8 @@ importers:
         version: 1.0.2(react@18.3.1)
     devDependencies:
       '@tailwindcss/postcss':
-        specifier: ^4.0.0
-        version: 4.0.0
+        specifier: ^4.0.6
+        version: 4.0.6
       '@types/node':
         specifier: ^20
         version: 20.17.17
@@ -197,7 +197,7 @@ importers:
         specifier: ^8.5.2
         version: 8.5.2
       tailwindcss:
-        specifier: ^4.0.0
+        specifier: ^4.0.6
         version: 4.0.6
       typescript:
         specifier: 5.7.3
@@ -225,8 +225,8 @@ importers:
         version: 1.0.2(react@19.0.0)
     devDependencies:
       '@tailwindcss/postcss':
-        specifier: ^4.0.0
-        version: 4.0.0
+        specifier: ^4.0.6
+        version: 4.0.6
       '@types/node':
         specifier: ^20
         version: 20.17.17
@@ -255,7 +255,7 @@ importers:
         specifier: ^8.5.2
         version: 8.5.2
       tailwindcss:
-        specifier: ^4.0.0
+        specifier: ^4.0.6
         version: 4.0.6
       typescript:
         specifier: 5.7.3
@@ -280,8 +280,8 @@ importers:
         version: 0.0.0-experimental-f83903bf-20250212(react@0.0.0-experimental-f83903bf-20250212)
     devDependencies:
       '@tailwindcss/postcss':
-        specifier: ^4.0.0
-        version: 4.0.0
+        specifier: ^4.0.6
+        version: 4.0.6
       '@types/node':
         specifier: ^20
         version: 20.17.17
@@ -310,7 +310,7 @@ importers:
         specifier: ^8.5.2
         version: 8.5.2
       tailwindcss:
-        specifier: ^4.0.0
+        specifier: ^4.0.6
         version: 4.0.6
       typescript:
         specifier: 5.7.3
@@ -338,8 +338,8 @@ importers:
         version: 1.0.2(react@19.0.0)
     devDependencies:
       '@tailwindcss/postcss':
-        specifier: ^4.0.0
-        version: 4.0.0
+        specifier: ^4.0.6
+        version: 4.0.6
       '@types/node':
         specifier: ^20
         version: 20.17.17
@@ -359,7 +359,7 @@ importers:
         specifier: ^8.5.2
         version: 8.5.2
       tailwindcss:
-        specifier: ^4.0.0
+        specifier: ^4.0.6
         version: 4.0.6
       typescript:
         specifier: 5.7.3
@@ -414,7 +414,7 @@ importers:
         version: 6.1.15(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
     devDependencies:
       '@sanity/eslint-config-studio':
-        specifier: ^5.0.0
+        specifier: ^5.0.1
         version: 5.0.1(eslint@9.20.1(jiti@2.4.2))(typescript@5.7.3)
       '@types/react':
         specifier: ^19.0.1
@@ -423,7 +423,7 @@ importers:
         specifier: beta
         version: 19.0.0-beta-30d8a17-20250209
       eslint:
-        specifier: ^9.0.0
+        specifier: ^9.20.1
         version: 9.20.1(jiti@2.4.2)
       eslint-plugin-react-compiler:
         specifier: beta
@@ -454,8 +454,8 @@ importers:
         specifier: ^4.0.4
         version: 4.0.4(svelte@5.20.0)(vite@5.4.14(@types/node@20.17.17)(lightningcss@1.29.1)(terser@5.38.2))
       '@tailwindcss/postcss':
-        specifier: ^4.0.0
-        version: 4.0.0
+        specifier: ^4.0.6
+        version: 4.0.6
       '@types/eslint':
         specifier: ^9.6.1
         version: 9.6.1
@@ -487,7 +487,7 @@ importers:
         specifier: ^4.1.4
         version: 4.1.4(picomatch@4.0.2)(svelte@5.20.0)(typescript@5.7.3)
       tailwindcss:
-        specifier: ^4.0.0
+        specifier: ^4.0.6
         version: 4.0.6
       typescript:
         specifier: 5.7.3
@@ -536,8 +536,8 @@ importers:
         version: 3.24.2
     devDependencies:
       '@tailwindcss/postcss':
-        specifier: ^4.0.0
-        version: 4.0.0
+        specifier: ^4.0.6
+        version: 4.0.6
       '@types/react':
         specifier: ^19.0.1
         version: 19.0.8
@@ -3290,8 +3290,8 @@ packages:
     resolution: {integrity: sha512-lVyKV2y58UE9CeKVcYykULe9QaE1dtKdxDEdrTPIdbzRgBk6bdxHNAoDqvcqXbIGXubn3VOl1O/CFF77v/EqSA==}
     engines: {node: '>= 10'}
 
-  '@tailwindcss/postcss@4.0.0':
-    resolution: {integrity: sha512-lI2bPk4TvwavHdehjr5WiC6HnZ59hacM6ySEo4RM/H7tsjWd8JpqiNW9ThH7rO/yKtrn4mGBoXshpvn8clXjPg==}
+  '@tailwindcss/postcss@4.0.6':
+    resolution: {integrity: sha512-noTaGPHjGCXTCc487TWnfAEN0VMjqDAecssWDOsfxV2hFrcZR0AHthX7IdY/0xHTg/EtpmIPdssddlZ5/B7JnQ==}
 
   '@tailwindcss/vite@4.0.6':
     resolution: {integrity: sha512-O25vZ/URWbZ2JHdk2o8wH7jOKqEGCsYmX3GwGmYS5DjE4X3mpf93a72Rn7VRnefldNauBzr5z2hfZptmBNtTUQ==}
@@ -8740,9 +8740,6 @@ packages:
     engines: {node: '>=14.0.0'}
     hasBin: true
 
-  tailwindcss@4.0.0:
-    resolution: {integrity: sha512-ULRPI3A+e39T7pSaf1xoi58AqqJxVCLg8F/uM5A3FadUbnyDTgltVnXJvdkTjwCOGA6NazqHVcwPJC5h2vRYVQ==}
-
   tailwindcss@4.0.6:
     resolution: {integrity: sha512-mysewHYJKaXgNOW6pp5xon/emCsfAMnO8WMaGKZZ35fomnR/T5gYnRg2/yRTTrtXiEl1tiVkeRt0eMO6HxEZqw==}
 
@@ -12846,14 +12843,14 @@ snapshots:
       '@tailwindcss/oxide-win32-arm64-msvc': 4.0.6
       '@tailwindcss/oxide-win32-x64-msvc': 4.0.6
 
-  '@tailwindcss/postcss@4.0.0':
+  '@tailwindcss/postcss@4.0.6':
     dependencies:
       '@alloc/quick-lru': 5.2.0
       '@tailwindcss/node': 4.0.6
       '@tailwindcss/oxide': 4.0.6
       lightningcss: 1.29.1
       postcss: 8.5.2
-      tailwindcss: 4.0.0
+      tailwindcss: 4.0.6
 
   '@tailwindcss/vite@4.0.6(vite@6.1.0(@types/node@20.17.17)(jiti@2.4.2)(lightningcss@1.29.1)(terser@5.38.2)(tsx@4.19.2)(yaml@2.7.0))':
     dependencies:
@@ -20375,8 +20372,6 @@ snapshots:
       sucrase: 3.35.0
     transitivePeerDependencies:
       - ts-node
-
-  tailwindcss@4.0.0: {}
 
   tailwindcss@4.0.6: {}
 
