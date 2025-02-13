@@ -10,11 +10,16 @@
     "typegen:generate": "sanity typegen generate"
   },
   "dependencies": {
+    "@astrojs/react": "^4.2.0",
     "@astrojs/vercel": "^8.0.0",
     "@sanity/client": "^6.23.0",
     "@tailwindcss/vite": "^4.0.6",
+    "@types/react": "^19.0.8",
+    "@types/react-dom": "^19.0.3",
     "astro": "^5.0.2",
     "groq": "^3.64.2",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
     "tailwindcss": "^4.0.0"
   }
 }

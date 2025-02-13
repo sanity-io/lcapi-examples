@@ -16,9 +16,6 @@ const { tags } = Astro.props;
     subscription: ReturnType<ReturnType<typeof client.live.events>['subscribe']> | null = null;
 
     connectedCallback() {
-      const tags = this.dataset.tags?.split(',') || []
-      console.log('Sanity Live tags:', tags)
-      
       this.subscription = client.live.events().subscribe({
         next: (event) => {
           const url = new URL(window.location.href)
@@ -34,7 +31,6 @@ const { tags } = Astro.props;
            
           } else if (event.type === 'message') {
             const tags = this.dataset.tags?.split(',') || []
-      console.log('Sanity Live tags:', tags)
             // Check if the event tags intersect with our component tags
             if (event.tags?.some(tag => tags.includes(tag))) {
               url.searchParams.set('lastLiveEventId', event.id)
