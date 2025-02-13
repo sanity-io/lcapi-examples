@@ -1,7 +1,0 @@
-{
-  "extends": "@sanity/eslint-config-studio",
-  "plugins": ["react-compiler"],
-  "rules": {
-    "react-compiler/react-compiler": "error"
-  }
-}

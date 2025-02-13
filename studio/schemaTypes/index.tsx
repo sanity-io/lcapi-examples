@@ -1,7 +1,7 @@
 import {ColorWheelIcon, MasterDetailIcon} from '@sanity/icons'
 import {Inline, Text} from '@sanity/ui'
 import {transparentize} from 'polished'
-import {useDeferredValue, useRef} from 'react'
+import {useDeferredValue} from 'react'
 import {defineField, defineType, type StringInputProps} from 'sanity'
 import {styled} from 'styled-components'
 

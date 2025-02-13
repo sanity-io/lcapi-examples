@@ -18,7 +18,7 @@
       "allowedVersions": "<=18"
     },
     {
-      "matchFileNames": ["next-13/package.json", "next-14/package.json", "studio/package.json"],
+      "matchFileNames": ["next-13/package.json", "next-14/package.json"],
       "matchPackageNames": ["eslint"],
       "allowedVersions": "<=8"
     },
