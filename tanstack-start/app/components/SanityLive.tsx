@@ -26,9 +26,12 @@ export function SanityLive() {
       if (event.type === 'welcome') {
         console.info('Sanity is live with automatic invalidation of published content')
         navigate({
-          search: (prev) => ({...prev, lastLiveEventId: 
-            // @ts-expect-error - @TODO upgrade `@sanity/client` with the id of welcome events
-            event.id}),
+          search: (prev) => ({
+            ...prev,
+            lastLiveEventId:
+              // @ts-expect-error - @TODO upgrade `@sanity/client` with the id of welcome events
+              event.id,
+          }),
           replace: true,
           resetScroll: false,
         })

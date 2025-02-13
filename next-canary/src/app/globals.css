@@ -12,8 +12,6 @@
   --ring-offset-color-theme: var(--theme-background, #fff);
 }
 
-
-
 @property --theme-text {
   syntax: '<color>';
   inherits: true;
