@@ -38,7 +38,7 @@ function Home() {
         {state.data || 'TanStack Start Starter'}
       </h1>
       <Link
-        className="bg-theme text-theme ring-theme focus:bg-theme-button hover:bg-theme-button hover:text-theme-button focus:text-theme-button w-56 rounded-md px-4 py-2 text-sm font-semibold ring-2 ring-opacity-75 [view-transition-name:search] focus:outline-none"
+        className="bg-theme text-theme ring-theme focus:bg-theme-button hover:bg-theme-button hover:text-theme-button focus:text-theme-button w-56 rounded-md px-4 py-2 text-sm font-semibold ring-2 ring-opacity-75 [view-transition-name:search] focus:outline-hidden"
         to="/goto"
         search={(prev) => ({...prev})}
       >

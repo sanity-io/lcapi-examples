@@ -1,6 +1,16 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+
+@theme {
+  --background-color-theme: var(--theme-background, #fff);
+  --background-color-theme-button: var(--theme-text, #fff);
+
+  --text-color-theme: var(--theme-text, #000);
+  --text-color-theme-button: var(--theme-background, #fff);
+
+  --ring-color-theme: var(--theme-text, #000);
+
+  --ring-offset-color-theme: var(--theme-background, #fff);
+}
 
 @property --theme-text {
   syntax: '<color>';
