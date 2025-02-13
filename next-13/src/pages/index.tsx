@@ -4,7 +4,6 @@ import type {ClientReturn, SyncTag} from '@sanity/client'
 import {defineQuery} from 'groq'
 import type {GetServerSideProps, InferGetServerSidePropsType} from 'next'
 import Head from 'next/head'
-import Image from 'next/image'
 import {lazy, Suspense} from 'react'
 
 const ThemeButton = lazy(() => import('@/components/ThemeButton'))
