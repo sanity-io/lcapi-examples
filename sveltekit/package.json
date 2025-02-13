@@ -8,7 +8,8 @@
 		"preview": "vite preview",
 		"lint": "eslint --cache .",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
-		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"
+		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
+		"typegen:generate": "sanity typegen generate"
 	},
 	"devDependencies": {
 		"@eslint/js": "^9.20.0",
@@ -28,7 +29,7 @@
 		"vite": "^6.1.0"
 	},
 	"dependencies": {
-		"@sanity/client": "^6.23.0",
-		"groq": "^3.64.2"
+		"@sanity/client": "^6.28.0",
+		"groq": "^3.75.0"
 	}
 }
