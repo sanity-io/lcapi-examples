@@ -272,6 +272,9 @@ importers:
       '@sanity/client':
         specifier: ^6.23.0
         version: 6.28.0(debug@4.4.0)
+      framer-motion:
+        specifier: ^12.4.2
+        version: 12.4.2(@emotion/is-prop-valid@1.2.2)(react-dom@0.0.0-experimental-cbbe8666-20250213(react@0.0.0-experimental-cbbe8666-20250213))(react@0.0.0-experimental-cbbe8666-20250213)
       groq:
         specifier: ^3.64.2
         version: 3.75.0
@@ -16241,6 +16244,16 @@ snapshots:
       mime-types: 2.1.35
 
   fraction.js@4.3.7: {}
+
+  framer-motion@12.4.2(@emotion/is-prop-valid@1.2.2)(react-dom@0.0.0-experimental-cbbe8666-20250213(react@0.0.0-experimental-cbbe8666-20250213))(react@0.0.0-experimental-cbbe8666-20250213):
+    dependencies:
+      motion-dom: 12.0.0
+      motion-utils: 12.0.0
+      tslib: 2.8.1
+    optionalDependencies:
+      '@emotion/is-prop-valid': 1.2.2
+      react: 0.0.0-experimental-cbbe8666-20250213
+      react-dom: 0.0.0-experimental-cbbe8666-20250213(react@0.0.0-experimental-cbbe8666-20250213)
 
   framer-motion@12.4.2(@emotion/is-prop-valid@1.2.2)(react-dom@19.0.0(react@19.0.0))(react@19.0.0):
     dependencies:

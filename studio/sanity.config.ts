@@ -4,7 +4,7 @@ import {visionTool} from '@sanity/vision'
  */
 import {defineConfig, type DocumentDefinition} from 'sanity'
 import {structureTool, type StructureResolver} from 'sanity/structure'
-import {demoType, themeType} from './schemaTypes'
+import {demoType, themeType, reactionType} from './schemaTypes'
 
 // The StructureResolver is how we're changing the DeskTool structure to linking to document (named Singleton)
 // like how "Home" is handled.
@@ -78,8 +78,9 @@ export default defineConfig({
     },
   },
 
-  schema: {types: [themeType, demoType]},
+  schema: {types: [themeType, demoType, reactionType]},
 
   scheduledPublishing: {enabled: false},
   tasks: {enabled: false},
 })
+

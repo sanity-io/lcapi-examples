@@ -1,9 +1,65 @@
-import {ColorWheelIcon, MasterDetailIcon} from '@sanity/icons'
+import {ColorWheelIcon, HeartIcon, MasterDetailIcon} from '@sanity/icons'
 import {Inline, Text} from '@sanity/ui'
 import {transparentize} from 'polished'
 import {useDeferredValue} from 'react'
 import {defineField, defineType, type StringInputProps} from 'sanity'
 import {styled} from 'styled-components'
+
+export const reactionType = defineType({
+  liveEdit: true,
+  name: 'reaction',
+  title: 'Reaction',
+  type: 'document',
+  icon: HeartIcon,
+
+  fields: [
+    defineField({
+      name: 'emoji',
+      title: 'Emoji',
+      type: 'string',
+      validation: (rule) => rule.required().custom((value) => {
+        if (!value) return true // Let required() handle empty values
+        
+        const segmenter = new Intl.Segmenter('en', { granularity: 'grapheme' })
+        const segments = Array.from(segmenter.segment(value.trim()))
+        
+        if (segments.length !== 1) {
+          return 'Must contain exactly one emoji character'
+        }
+        
+        return true
+      }),
+    }),
+    defineField({
+      name: 'reactions',
+      title: 'Reactions',
+      type: 'number',
+      validation: (rule) => rule
+      .required()
+      .integer()
+      .positive(),
+      initialValue: 0,
+    }),
+  ],
+
+  preview: {
+    select: {
+      emoji: 'emoji',
+      reactions: 'reactions',
+    },
+    prepare({ emoji, reactions }) {
+      const numberFormat = new Intl.NumberFormat('en', { notation: 'compact' })
+      const formatted = numberFormat.format(reactions)
+      
+      return {
+        title: `${formatted} ${reactions === 1 ? 'reaction' : 'reactions'}`,
+        media: () => (
+          <span style={{ fontSize: '1.5em' }}>{emoji}</span>
+        ),
+      }
+    },
+  },
+})
 
 export const themeType = defineType({
   liveEdit: true,
@@ -98,6 +154,20 @@ export const demoType = defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
+      name: 'reactions',
+      title: 'Reactions',
+      type: 'array',
+      of: [{
+        type: 'reference',
+        to: [{type: 'reaction'}]
+      }],
+      validation: rule => rule.required().min(3).max(5),
+      options: {
+        layout: 'grid',
+        sortable: true
+      }
+    }),
+    defineField({
       name: 'slug',
       title: 'Slug',
       type: 'slug',
@@ -109,6 +179,7 @@ export const demoType = defineType({
       },
       validation: (rule) => rule.required(),
     }),
+
     defineField({
       name: 'url',
       title: 'URL',
