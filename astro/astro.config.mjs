@@ -6,7 +6,7 @@ import tailwindcss from "@tailwindcss/vite";
 
 // https://astro.build/config
 export default defineConfig({
-  adapter: vercel(),
+  adapter: vercel({isr: true, skewProtection: true}),
   vite: {
     plugins: [tailwindcss()],
   },
