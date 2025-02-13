@@ -18,6 +18,16 @@ export function SanityLive(props: {tags?: string[]}) {
     switch (event.type) {
       case 'welcome':
         console.info('Sanity is live with automatic revalidation of published content')
+        router.replace(
+          {
+            pathname: router.pathname,
+            query: {...router.query, lastLiveEventId: 
+              // @ts-expect-error - @TODO upgrade `@sanity/client` with the id of welcome events
+              event.id},
+          },
+          undefined,
+          {scroll: false},
+        )
         break
       case 'message':
         event.tags.some((tag) => tags.includes(tag)) &&
