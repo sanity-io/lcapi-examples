@@ -14,7 +14,6 @@ interface Props {
 
 export async function Reactions(props: Props) {
   const {data} = props
-  console.log('Reactions', {props})
 
   return (
     <Wrapper>
