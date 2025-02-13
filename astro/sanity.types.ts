@@ -170,11 +170,6 @@ export type AllSanitySchemaTypes =
   | Slug
   | Theme
 export declare const internalGroqTypeReferenceTo: unique symbol
-// Source: ./src/pages/index.astro
-// Variable: INDEX_QUERY
-// Query: *[_type == "demo" && slug.current == $slug][0].title
-export type INDEX_QUERYResult = string | null
-
 // Source: ./src/layouts/Layout.astro
 // Variable: LAYOUT_QUERY
 // Query: *[_id == "theme"][0]{background,text,"fetchedAt":now()}
@@ -191,9 +186,14 @@ export type LAYOUT_QUERYResult =
     }
   | null
 
+// Source: ./src/pages/index.astro
+// Variable: INDEX_QUERY
+// Query: *[_type == "demo" && slug.current == $slug][0].title
+export type INDEX_QUERYResult = string | null
+
 declare module '@sanity/client' {
   interface SanityQueries {
-    '*[_type == "demo" && slug.current == $slug][0].title': INDEX_QUERYResult
     '*[_id == "theme"][0]{background,text,"fetchedAt":now()}': LAYOUT_QUERYResult
+    '*[_type == "demo" && slug.current == $slug][0].title': INDEX_QUERYResult
   }
 }
