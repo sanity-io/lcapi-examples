@@ -3,7 +3,6 @@ import {defineQuery} from 'groq'
 import type {Metadata} from 'next'
 import {Suspense} from 'react'
 import {Reactions, ReactionsFallback} from './Reactions'
-import {ThemeButton} from './ThemeButton'
 import {TimeSince} from './TimeSince'
 
 const DEMO_QUERY = defineQuery(
