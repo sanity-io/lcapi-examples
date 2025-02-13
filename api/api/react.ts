@@ -45,7 +45,7 @@ export default async function handler(request: Request) {
       return new Response(JSON.stringify('Reaction not found'), {status: 404, headers})
     }
 
-    await client.patch(id).inc({reactions: 1}).commit()
+    await client.patch(id).inc({reactions: 1}).commit({visibility: 'sync'})
 
     return new Response(JSON.stringify('Success'), {status: 200, headers})
   } catch (err) {

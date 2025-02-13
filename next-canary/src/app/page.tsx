@@ -2,6 +2,8 @@ import {sanityFetch} from '@/sanity/fetch'
 import {defineQuery} from 'groq'
 import type {Metadata} from 'next'
 import {Suspense} from 'react'
+import {Reactions, ReactionsFallback} from './Reactions'
+import {ThemeButton} from './ThemeButton'
 import {TimeSince} from './TimeSince'
 
 const DEMO_QUERY = defineQuery(
@@ -31,6 +33,11 @@ export default async function Home() {
           </Suspense>
         )}
       </div>
+      {Array.isArray(data?.reactions) && (
+        <Suspense fallback={<ReactionsFallback data={data.reactions} />}>
+          <Reactions data={data.reactions} />
+        </Suspense>
+      )}
     </>
   )
 }
