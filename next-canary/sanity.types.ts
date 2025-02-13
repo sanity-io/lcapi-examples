@@ -128,6 +128,16 @@ export type SanityAssetSourceData = {
   url?: string
 }
 
+export type Reaction = {
+  _id: string
+  _type: 'reaction'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  emoji?: string
+  reactions?: number
+}
+
 export type Demo = {
   _id: string
   _type: 'demo'
@@ -135,6 +145,13 @@ export type Demo = {
   _updatedAt: string
   _rev: string
   title?: string
+  reactions?: Array<{
+    _ref: string
+    _type: 'reference'
+    _weak?: boolean
+    _key: string
+    [internalGroqTypeReferenceTo]?: 'reaction'
+  }>
   slug?: Slug
   url?: string
 }
@@ -166,6 +183,7 @@ export type AllSanitySchemaTypes =
   | SanityImageMetadata
   | Geopoint
   | SanityAssetSourceData
+  | Reaction
   | Demo
   | Slug
   | Theme
@@ -188,9 +206,13 @@ export type THEME_QUERYResult =
 
 // Source: ./src/app/page.tsx
 // Variable: DEMO_QUERY
-// Query: *[_type == "demo" && slug.current == $slug][0]{title,"fetchedAt":now()}
+// Query: *[_type == "demo" && slug.current == $slug][0]{title,reactions[0..4]{_key,_ref},"fetchedAt":now()}
 export type DEMO_QUERYResult = {
   title: string | null
+  reactions: Array<{
+    _key: string
+    _ref: string
+  }> | null
   fetchedAt: string
 } | null
 
@@ -205,8 +227,7 @@ export type DYNAMIC_DEMO_QUERYResult = {
 declare module '@sanity/client' {
   interface SanityQueries {
     '*[_id == "theme"][0]{background,text,"fetchedAt":now()}': THEME_QUERYResult
-    '*[_type == "demo" && slug.current == $slug][0]{title,"fetchedAt":now()}':
-      | DEMO_QUERYResult
-      | DYNAMIC_DEMO_QUERYResult
+    '*[_type == "demo" && slug.current == $slug][0]{title,reactions[0..4]{_key,_ref},"fetchedAt":now()}': DEMO_QUERYResult
+    '*[_type == "demo" && slug.current == $slug][0]{title,"fetchedAt":now()}': DYNAMIC_DEMO_QUERYResult
   }
 }
