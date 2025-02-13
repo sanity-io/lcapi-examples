@@ -128,6 +128,16 @@ export type SanityAssetSourceData = {
   url?: string
 }
 
+export type Reaction = {
+  _id: string
+  _type: 'reaction'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  emoji?: string
+  reactions?: number
+}
+
 export type Demo = {
   _id: string
   _type: 'demo'
@@ -135,6 +145,13 @@ export type Demo = {
   _updatedAt: string
   _rev: string
   title?: string
+  reactions?: Array<{
+    _ref: string
+    _type: 'reference'
+    _weak?: boolean
+    _key: string
+    [internalGroqTypeReferenceTo]?: 'reaction'
+  }>
   slug?: Slug
   url?: string
 }
@@ -166,6 +183,7 @@ export type AllSanitySchemaTypes =
   | SanityImageMetadata
   | Geopoint
   | SanityAssetSourceData
+  | Reaction
   | Demo
   | Slug
   | Theme
