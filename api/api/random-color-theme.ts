@@ -3,10 +3,9 @@
  */
 
 import {createClient} from '@sanity/client'
+import {waitUntil} from '@vercel/functions'
 import {lch} from 'd3-color'
 import {defineQuery} from 'groq'
-import { waitUntil } from '@vercel/functions';
-
 
 export const config = {runtime: 'edge'}
 
@@ -75,16 +74,18 @@ export default async function handler(request: Request) {
     const prevTheme = await client.fetch(THEME_QUERY, {}, {perspective: 'published'})
     const _id = 'theme'
     const nextTheme = generateThemeColors()
-    
-waitUntil(client
-  .patch(_id)
-  .set(
-    // If the new theme is the same as the previous theme, swap the background and text colors
-    prevTheme?.background === nextTheme.background && prevTheme?.text === nextTheme.text
-      ? {background: nextTheme.text, text: nextTheme.background}
-      : nextTheme,
-  )
-  .commit())
+
+    waitUntil(
+      client
+        .patch(_id)
+        .set(
+          // If the new theme is the same as the previous theme, swap the background and text colors
+          prevTheme?.background === nextTheme.background && prevTheme?.text === nextTheme.text
+            ? {background: nextTheme.text, text: nextTheme.background}
+            : nextTheme,
+        )
+        .commit(),
+    )
 
     return new Response(JSON.stringify(nextTheme), {status: 200, headers})
   } catch (err) {
