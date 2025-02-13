@@ -28,7 +28,7 @@
 		"tailwindcss": "^4.0.0",
 		"typescript": "5.7.3",
 		"typescript-eslint": "^8.24.0",
-		"vite": "^5.4.14"
+		"vite": "^6.1.0"
 	},
 	"dependencies": {
 		"@sanity/client": "^6.23.0",
