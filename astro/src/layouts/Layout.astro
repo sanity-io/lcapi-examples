@@ -12,7 +12,7 @@ interface Props {
 }
 
 const {lastLiveEventId, title} = Astro.props
-const LAYOUT_QUERY = defineQuery(`*[_id == "theme"][0]{background,text,"fetchedAt":now()}`)
+const LAYOUT_QUERY = defineQuery(`*[_id == "theme"][0]{background,text}`)
 const {data, tags} = await sanityFetch({query: LAYOUT_QUERY, lastLiveEventId})
 ---
 
