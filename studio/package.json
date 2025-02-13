@@ -23,10 +23,10 @@
     "styled-components": "^6.1.13"
   },
   "devDependencies": {
-    "@sanity/eslint-config-studio": "^5.0.1",
+    "@sanity/eslint-config-studio": "^5.0.0",
     "@types/react": "^19.0.8",
     "babel-plugin-react-compiler": "beta",
-    "eslint": "^9.20.1",
+    "eslint": "^9.0.0",
     "eslint-plugin-react-compiler": "beta",
     "typescript": "5.7.3"
   }
