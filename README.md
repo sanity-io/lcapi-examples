@@ -22,6 +22,7 @@ instead of defining your own `sanityFetch` function and `SanityLive` component.
 
 - [Astro](./astro/) – [https://lcapi-examples-astro.sanity.dev]
 - [TanStack Start](./tanstack-start/) – [https://lcapi-examples-tanstack-start.sanity.dev]
+- [SvelteKit](./sveltekit/) – [https://lcapi-examples-sveltekit.sanity.dev]
 - [Next.js 13 Pages Router](./next-13/) – [https://lcapi-examples-next-13.sanity.dev]
 - [Next.js 14 App Router](./next-14/) – [https://lcapi-examples-next-14.sanity.dev]
 - [Next.js 15 canary with the 'use cache' directive](./next-canary) - [https://lcapi-examples-next-canary.sanity.dev/]
@@ -31,4 +32,3 @@ instead of defining your own `sanityFetch` function and `SanityLive` component.
 
 - [Remix](./remix/)
 - [Nuxt](./nuxt/)
-- [SvelteKit](./sveltekit/)

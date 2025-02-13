@@ -16,7 +16,8 @@
     "prettier-plugin-astro": "^0.14.1",
     "prettier-plugin-svelte": "^3.2.8",
     "prettier-plugin-tailwindcss": "^0.6.9",
-    "sanity": "^3.75.0"
+    "sanity": "^3.75.0",
+    "typescript": "5.7.3"
   },
   "packageManager": "pnpm@10.3.0",
   "pnpm": {
