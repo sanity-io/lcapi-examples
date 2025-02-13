@@ -49,6 +49,9 @@ importers:
       '@sanity/client':
         specifier: ^6.23.0
         version: 6.28.0(debug@4.4.0)
+      '@vercel/functions':
+        specifier: ^2.0.0
+        version: 2.0.0
       d3-color:
         specifier: ^3.1.0
         version: 3.1.0
@@ -143,7 +146,7 @@ importers:
         version: 13.5.8(eslint@8.57.1)(typescript@5.7.3)
       eslint-plugin-react-hooks:
         specifier: experimental
-        version: 0.0.0-experimental-f83903bf-20250212(eslint@8.57.1)
+        version: 0.0.0-experimental-cbbe8666-20250213(eslint@8.57.1)
       postcss:
         specifier: ^8.5.2
         version: 8.5.2
@@ -195,7 +198,7 @@ importers:
         version: 14.2.24(eslint@8.57.1)(typescript@5.7.3)
       eslint-plugin-react-hooks:
         specifier: experimental
-        version: 0.0.0-experimental-f83903bf-20250212(eslint@8.57.1)
+        version: 0.0.0-experimental-cbbe8666-20250213(eslint@8.57.1)
       postcss:
         specifier: ^8.5.2
         version: 8.5.2
@@ -253,7 +256,7 @@ importers:
         version: 19.0.0-beta-30d8a17-20250209(eslint@9.20.1(jiti@2.4.2))
       eslint-plugin-react-hooks:
         specifier: experimental
-        version: 0.0.0-experimental-f83903bf-20250212(eslint@9.20.1(jiti@2.4.2))
+        version: 0.0.0-experimental-cbbe8666-20250213(eslint@9.20.1(jiti@2.4.2))
       postcss:
         specifier: ^8.5.2
         version: 8.5.2
@@ -274,13 +277,13 @@ importers:
         version: 3.75.0
       next:
         specifier: canary
-        version: 15.2.0-canary.56(@babel/core@7.26.8)(babel-plugin-react-compiler@19.0.0-beta-30d8a17-20250209)(react-dom@0.0.0-experimental-f83903bf-20250212(react@0.0.0-experimental-f83903bf-20250212))(react@0.0.0-experimental-f83903bf-20250212)
+        version: 15.2.0-canary.56(@babel/core@7.26.8)(babel-plugin-react-compiler@19.0.0-beta-30d8a17-20250209)(react-dom@0.0.0-experimental-cbbe8666-20250213(react@0.0.0-experimental-cbbe8666-20250213))(react@0.0.0-experimental-cbbe8666-20250213)
       react:
         specifier: experimental
-        version: 0.0.0-experimental-f83903bf-20250212
+        version: 0.0.0-experimental-cbbe8666-20250213
       react-dom:
         specifier: experimental
-        version: 0.0.0-experimental-f83903bf-20250212(react@0.0.0-experimental-f83903bf-20250212)
+        version: 0.0.0-experimental-cbbe8666-20250213(react@0.0.0-experimental-cbbe8666-20250213)
     devDependencies:
       '@tailwindcss/postcss':
         specifier: ^4.0.6
@@ -308,7 +311,7 @@ importers:
         version: 19.0.0-beta-30d8a17-20250209(eslint@9.20.1(jiti@2.4.2))
       eslint-plugin-react-hooks:
         specifier: experimental
-        version: 0.0.0-experimental-f83903bf-20250212(eslint@9.20.1(jiti@2.4.2))
+        version: 0.0.0-experimental-cbbe8666-20250213(eslint@9.20.1(jiti@2.4.2))
       postcss:
         specifier: ^8.5.2
         version: 8.5.2
@@ -3764,6 +3767,15 @@ packages:
   '@vercel/edge@1.2.1':
     resolution: {integrity: sha512-1++yncEyIAi68D3UEOlytYb1IUcIulMWdoSzX2h9LuSeeyR7JtaIgR8DcTQ6+DmYOQn+5MCh6LY+UmK6QBByNA==}
 
+  '@vercel/functions@2.0.0':
+    resolution: {integrity: sha512-BSwIihLHoV18gerKZJyGuqd3rtaYM6rJvET1kOwKktshucyaHXTJel7Cxegs+sdX0NZqsX4LO2MFnMU2jG01Cw==}
+    engines: {node: '>= 18'}
+    peerDependencies:
+      '@aws-sdk/credential-provider-web-identity': '*'
+    peerDependenciesMeta:
+      '@aws-sdk/credential-provider-web-identity':
+        optional: true
+
   '@vercel/nft@0.27.10':
     resolution: {integrity: sha512-zbaF9Wp/NsZtKLE4uVmL3FyfFwlpDyuymQM1kPbeT0mVOHKDQQNjnnfslB3REg3oZprmNFJuh3pkHBk2qAaizg==}
     engines: {node: '>=16'}
@@ -5157,8 +5169,8 @@ packages:
     peerDependencies:
       eslint: '>=7'
 
-  eslint-plugin-react-hooks@0.0.0-experimental-f83903bf-20250212:
-    resolution: {integrity: sha512-Gocp51zTs74zTaeqrqD+DZkM88+JoQNoMZ4+Q/vfnTH9vpuaTpU7gn4lwcIoden5Kw28khGiNRgGptRD7uIeMg==}
+  eslint-plugin-react-hooks@0.0.0-experimental-cbbe8666-20250213:
+    resolution: {integrity: sha512-B5MIbjKWHnVK5eQ667SuA/q0stBhK0NkWrM90ESh9qTlYOfVf8gREh1gPPRUIA6weIbQ798Njg4K7uzdA9bC9g==}
     engines: {node: '>=10'}
     peerDependencies:
       eslint: ^3.0.0 || ^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0-0 || ^9.0.0
@@ -7877,10 +7889,10 @@ packages:
     peerDependencies:
       react: ^17.0.0 || ^18.0.0 || ^19.0.0 || ^0.0.0-experimental
 
-  react-dom@0.0.0-experimental-f83903bf-20250212:
-    resolution: {integrity: sha512-0R96PnFYJ9y1qRJSx511fJxQUL3Wl/KOdZyWp0ydnmrDxemwUEte/Pb/tjBF1SEBT1pP114u15V/h9IHc9Rr9A==}
+  react-dom@0.0.0-experimental-cbbe8666-20250213:
+    resolution: {integrity: sha512-Fmbfa98NDXJXef5un3AxtotHBxCbvNLyUmUOdRZdPfuroJQDLkgTTRGqiH7fFo8HOUZHEk9t7swFGfFPPVDz1Q==}
     peerDependencies:
-      react: 0.0.0-experimental-f83903bf-20250212
+      react: 0.0.0-experimental-cbbe8666-20250213
 
   react-dom@18.3.1:
     resolution: {integrity: sha512-5m4nQKp+rZRb09LNH59GM4BxTh9251/ylbKIbpe7TpGxfJ+9kv6BLkLBXIjjspbgbnIBNqlI23tRnTWT0snUIw==}
@@ -7941,8 +7953,8 @@ packages:
       react: ^18.3 || >=19.0.0-0
       rxjs: ^7
 
-  react@0.0.0-experimental-f83903bf-20250212:
-    resolution: {integrity: sha512-Ey7aqc5dAy2ytuRTcYGFCxPHx2PiPE2k0S27Zin5bCVsGK4iJ0W8nzKE6stvRBOnSFq5/m47IbJePp2oCf2e/w==}
+  react@0.0.0-experimental-cbbe8666-20250213:
+    resolution: {integrity: sha512-ODlwQg48Z/JS9AUli5BtiGeA0QjWL7zNXrODXNa6L0BBwG9+3sgr0mpVNbxgRHOorQLYQ6O00JfBbxxecBLIZg==}
     engines: {node: '>=0.10.0'}
 
   react@18.3.1:
@@ -8258,8 +8270,8 @@ packages:
     resolution: {integrity: sha512-xAg7SOnEhrm5zI3puOOKyy1OMcMlIJZYNJY7xLBwSze0UjhPLnWfj2GF2EpT0jmzaJKIWKHLsaSSajf35bcYnA==}
     engines: {node: '>=v12.22.7'}
 
-  scheduler@0.0.0-experimental-f83903bf-20250212:
-    resolution: {integrity: sha512-IWnzVb7NdyBrJdGhRN7MHKf9rPWZAwq+FUC4v5dhuANWBK93AQCpxC0sDIQTVhONXHsHuadlCsCu/Tc9PujdiA==}
+  scheduler@0.0.0-experimental-cbbe8666-20250213:
+    resolution: {integrity: sha512-UALLbqHCpVB2X87c5SFZxRUklAwVuX/dNmNYDvSCepg0qE197cBR6bQlCSklhkhOfTCFQjKFzIVzO+kBYmGIbg==}
 
   scheduler@0.23.2:
     resolution: {integrity: sha512-UOShsPwz7NrMUqhR6t0hWjFduvOzbtv7toDH1/hIrfRNIDBnnBWd0CwJTGvTpngVlmwGCdP9/Zl/tVrDqcuYzQ==}
@@ -12222,7 +12234,7 @@ snapshots:
       eslint: 9.20.1(jiti@2.4.2)
       eslint-plugin-jsx-a11y: 6.10.2(eslint@9.20.1(jiti@2.4.2))
       eslint-plugin-react: 7.37.4(eslint@9.20.1(jiti@2.4.2))
-      eslint-plugin-react-hooks: 0.0.0-experimental-f83903bf-20250212(eslint@9.20.1(jiti@2.4.2))
+      eslint-plugin-react-hooks: 0.0.0-experimental-cbbe8666-20250213(eslint@9.20.1(jiti@2.4.2))
       typescript-eslint: 8.24.0(eslint@9.20.1(jiti@2.4.2))(typescript@5.7.3)
     transitivePeerDependencies:
       - supports-color
@@ -13847,6 +13859,8 @@ snapshots:
       vue-router: 4.5.0(vue@3.5.13(typescript@5.7.3))
 
   '@vercel/edge@1.2.1': {}
+
+  '@vercel/functions@2.0.0': {}
 
   '@vercel/nft@0.27.10(rollup@4.34.6)':
     dependencies:
@@ -15518,10 +15532,10 @@ snapshots:
       eslint: 8.57.1
       eslint-import-resolver-node: 0.3.9
       eslint-import-resolver-typescript: 3.7.0(eslint-plugin-import@2.31.0(eslint@8.57.1))(eslint@8.57.1)
-      eslint-plugin-import: 2.31.0(@typescript-eslint/parser@6.21.0(eslint@8.57.1)(typescript@5.7.3))(eslint-import-resolver-typescript@3.7.0(eslint-plugin-import@2.31.0(eslint@8.57.1))(eslint@8.57.1))(eslint@8.57.1)
+      eslint-plugin-import: 2.31.0(@typescript-eslint/parser@6.21.0(eslint@8.57.1)(typescript@5.7.3))(eslint-import-resolver-typescript@3.7.0)(eslint@8.57.1)
       eslint-plugin-jsx-a11y: 6.10.2(eslint@8.57.1)
       eslint-plugin-react: 7.37.4(eslint@8.57.1)
-      eslint-plugin-react-hooks: 0.0.0-experimental-f83903bf-20250212(eslint@8.57.1)
+      eslint-plugin-react-hooks: 0.0.0-experimental-cbbe8666-20250213(eslint@8.57.1)
     optionalDependencies:
       typescript: 5.7.3
     transitivePeerDependencies:
@@ -15541,7 +15555,7 @@ snapshots:
       eslint-plugin-import: 2.31.0(@typescript-eslint/parser@8.24.0(eslint@8.57.1)(typescript@5.7.3))(eslint-import-resolver-typescript@3.7.0)(eslint@8.57.1)
       eslint-plugin-jsx-a11y: 6.10.2(eslint@8.57.1)
       eslint-plugin-react: 7.37.4(eslint@8.57.1)
-      eslint-plugin-react-hooks: 0.0.0-experimental-f83903bf-20250212(eslint@8.57.1)
+      eslint-plugin-react-hooks: 0.0.0-experimental-cbbe8666-20250213(eslint@8.57.1)
     optionalDependencies:
       typescript: 5.7.3
     transitivePeerDependencies:
@@ -15561,7 +15575,7 @@ snapshots:
       eslint-plugin-import: 2.31.0(@typescript-eslint/parser@8.24.0(eslint@9.20.1(jiti@2.4.2))(typescript@5.7.3))(eslint-import-resolver-typescript@3.7.0)(eslint@9.20.1(jiti@2.4.2))
       eslint-plugin-jsx-a11y: 6.10.2(eslint@9.20.1(jiti@2.4.2))
       eslint-plugin-react: 7.37.4(eslint@9.20.1(jiti@2.4.2))
-      eslint-plugin-react-hooks: 0.0.0-experimental-f83903bf-20250212(eslint@9.20.1(jiti@2.4.2))
+      eslint-plugin-react-hooks: 0.0.0-experimental-cbbe8666-20250213(eslint@9.20.1(jiti@2.4.2))
     optionalDependencies:
       typescript: 5.7.3
     transitivePeerDependencies:
@@ -15581,7 +15595,7 @@ snapshots:
       eslint-plugin-import: 2.31.0(@typescript-eslint/parser@8.24.0(eslint@9.20.1(jiti@2.4.2))(typescript@5.7.3))(eslint-import-resolver-typescript@3.7.0)(eslint@9.20.1(jiti@2.4.2))
       eslint-plugin-jsx-a11y: 6.10.2(eslint@9.20.1(jiti@2.4.2))
       eslint-plugin-react: 7.37.4(eslint@9.20.1(jiti@2.4.2))
-      eslint-plugin-react-hooks: 0.0.0-experimental-f83903bf-20250212(eslint@9.20.1(jiti@2.4.2))
+      eslint-plugin-react-hooks: 0.0.0-experimental-cbbe8666-20250213(eslint@9.20.1(jiti@2.4.2))
     optionalDependencies:
       typescript: 5.7.3
     transitivePeerDependencies:
@@ -15609,7 +15623,7 @@ snapshots:
       is-glob: 4.0.3
       stable-hash: 0.0.4
     optionalDependencies:
-      eslint-plugin-import: 2.31.0(@typescript-eslint/parser@6.21.0(eslint@8.57.1)(typescript@5.7.3))(eslint-import-resolver-typescript@3.7.0(eslint-plugin-import@2.31.0(eslint@8.57.1))(eslint@8.57.1))(eslint@8.57.1)
+      eslint-plugin-import: 2.31.0(@typescript-eslint/parser@6.21.0(eslint@8.57.1)(typescript@5.7.3))(eslint-import-resolver-typescript@3.7.0)(eslint@8.57.1)
     transitivePeerDependencies:
       - supports-color
 
@@ -15678,7 +15692,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  eslint-plugin-import@2.31.0(@typescript-eslint/parser@6.21.0(eslint@8.57.1)(typescript@5.7.3))(eslint-import-resolver-typescript@3.7.0(eslint-plugin-import@2.31.0(eslint@8.57.1))(eslint@8.57.1))(eslint@8.57.1):
+  eslint-plugin-import@2.31.0(@typescript-eslint/parser@6.21.0(eslint@8.57.1)(typescript@5.7.3))(eslint-import-resolver-typescript@3.7.0)(eslint@8.57.1):
     dependencies:
       '@rtsao/scc': 1.1.0
       array-includes: 3.1.8
@@ -15815,11 +15829,11 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  eslint-plugin-react-hooks@0.0.0-experimental-f83903bf-20250212(eslint@8.57.1):
+  eslint-plugin-react-hooks@0.0.0-experimental-cbbe8666-20250213(eslint@8.57.1):
     dependencies:
       eslint: 8.57.1
 
-  eslint-plugin-react-hooks@0.0.0-experimental-f83903bf-20250212(eslint@9.20.1(jiti@2.4.2)):
+  eslint-plugin-react-hooks@0.0.0-experimental-cbbe8666-20250213(eslint@9.20.1(jiti@2.4.2)):
     dependencies:
       eslint: 9.20.1(jiti@2.4.2)
 
@@ -18029,7 +18043,7 @@ snapshots:
       - '@babel/core'
       - babel-plugin-macros
 
-  next@15.2.0-canary.56(@babel/core@7.26.8)(babel-plugin-react-compiler@19.0.0-beta-30d8a17-20250209)(react-dom@0.0.0-experimental-f83903bf-20250212(react@0.0.0-experimental-f83903bf-20250212))(react@0.0.0-experimental-f83903bf-20250212):
+  next@15.2.0-canary.56(@babel/core@7.26.8)(babel-plugin-react-compiler@19.0.0-beta-30d8a17-20250209)(react-dom@0.0.0-experimental-cbbe8666-20250213(react@0.0.0-experimental-cbbe8666-20250213))(react@0.0.0-experimental-cbbe8666-20250213):
     dependencies:
       '@next/env': 15.2.0-canary.56
       '@swc/counter': 0.1.3
@@ -18037,9 +18051,9 @@ snapshots:
       busboy: 1.6.0
       caniuse-lite: 1.0.30001699
       postcss: 8.4.31
-      react: 0.0.0-experimental-f83903bf-20250212
-      react-dom: 0.0.0-experimental-f83903bf-20250212(react@0.0.0-experimental-f83903bf-20250212)
-      styled-jsx: 5.1.6(@babel/core@7.26.8)(react@0.0.0-experimental-f83903bf-20250212)
+      react: 0.0.0-experimental-cbbe8666-20250213
+      react-dom: 0.0.0-experimental-cbbe8666-20250213(react@0.0.0-experimental-cbbe8666-20250213)
+      styled-jsx: 5.1.6(@babel/core@7.26.8)(react@0.0.0-experimental-cbbe8666-20250213)
     optionalDependencies:
       '@next/swc-darwin-arm64': 15.2.0-canary.56
       '@next/swc-darwin-x64': 15.2.0-canary.56
@@ -19060,10 +19074,10 @@ snapshots:
     dependencies:
       react: 19.0.0
 
-  react-dom@0.0.0-experimental-f83903bf-20250212(react@0.0.0-experimental-f83903bf-20250212):
+  react-dom@0.0.0-experimental-cbbe8666-20250213(react@0.0.0-experimental-cbbe8666-20250213):
     dependencies:
-      react: 0.0.0-experimental-f83903bf-20250212
-      scheduler: 0.0.0-experimental-f83903bf-20250212
+      react: 0.0.0-experimental-cbbe8666-20250213
+      scheduler: 0.0.0-experimental-cbbe8666-20250213
 
   react-dom@18.3.1(react@18.3.1):
     dependencies:
@@ -19122,7 +19136,7 @@ snapshots:
       rxjs: 7.8.1
       use-effect-event: 1.0.2(react@19.0.0)
 
-  react@0.0.0-experimental-f83903bf-20250212: {}
+  react@0.0.0-experimental-cbbe8666-20250213: {}
 
   react@18.3.1:
     dependencies:
@@ -19681,7 +19695,7 @@ snapshots:
     dependencies:
       xmlchars: 2.2.0
 
-  scheduler@0.0.0-experimental-f83903bf-20250212: {}
+  scheduler@0.0.0-experimental-cbbe8666-20250213: {}
 
   scheduler@0.23.2:
     dependencies:
@@ -20134,10 +20148,10 @@ snapshots:
     optionalDependencies:
       '@babel/core': 7.26.8
 
-  styled-jsx@5.1.6(@babel/core@7.26.8)(react@0.0.0-experimental-f83903bf-20250212):
+  styled-jsx@5.1.6(@babel/core@7.26.8)(react@0.0.0-experimental-cbbe8666-20250213):
     dependencies:
       client-only: 0.0.1
-      react: 0.0.0-experimental-f83903bf-20250212
+      react: 0.0.0-experimental-cbbe8666-20250213
     optionalDependencies:
       '@babel/core': 7.26.8
 

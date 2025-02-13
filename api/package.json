@@ -7,6 +7,7 @@
   },
   "dependencies": {
     "@sanity/client": "^6.23.0",
+    "@vercel/functions": "^2.0.0",
     "d3-color": "^3.1.0",
     "groq": "^3.64.2"
   },
