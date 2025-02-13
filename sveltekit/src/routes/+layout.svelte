@@ -1,5 +1,6 @@
 <script lang="ts">
 	import SanityLive from '$lib/sanity/SanityLive.svelte'
+  import ThemeButton from '$lib/sanity/ThemeButton.svelte'
 import '../app.css';
 
 		import type { LayoutProps } from './$types';
@@ -13,6 +14,7 @@ style:--theme-text={data.theme?.text}
 >
 <div class="relative flex min-h-dvh flex-col items-center justify-evenly overflow-auto">
 {@render children()}
+<ThemeButton />
 </div>
 </main>
 <SanityLive />
