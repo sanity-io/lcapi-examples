@@ -1,8 +1,26 @@
 'use client'
 
 import {AnimatePresence, motion} from 'framer-motion'
-import {startTransition, useEffect, useOptimistic, useState, useTransition} from 'react'
+import {startTransition, useEffect, useOptimistic, useState} from 'react'
 import {Square} from './Square'
+
+interface Emoji {
+  key: string
+  delay: number
+  done: boolean
+}
+
+function createEmoji(delay: number) {
+  return {
+    key: crypto.randomUUID(),
+    delay,
+    done: false,
+  }
+}
+
+function insert(emojis: Emoji[], delay: number) {
+  return [...emojis, createEmoji(delay)]
+}
 
 export function ReactionButton(props: {
   onClick: () => void
@@ -11,12 +29,31 @@ export function ReactionButton(props: {
   fetchedAt: string
 }) {
   const {onClick, fetchedAt, emoji, reactions} = props
+  const [initialReactions] = useState(reactions)
 
+  const [emojis, setEmojis] = useState<Emoji[]>([])
   const [optimisticReactions, optimisticallyInc] = useOptimistic<number, number>(
     reactions,
     (currentState, optimisticInc) => currentState + optimisticInc,
   )
-  const [pending, startTransition] = useTransition()
+  const nextReactions = Math.max(0, optimisticReactions - initialReactions)
+
+  useEffect(() => {
+    if (nextReactions > emojis.length) {
+      const needed = nextReactions - emojis.length
+      startTransition(() =>
+        setEmojis((emojis) => {
+          const nextEmojis = [...emojis]
+          for (let i = 0; i < needed; i++) {
+            nextEmojis.push(createEmoji(i * 60))
+          }
+          return nextEmojis
+        }),
+      )
+    }
+  }, [nextReactions, emojis.length])
+
+  const pendingEmojis = emojis.filter(({done}) => !done)
 
   return (
     <div className="relative aspect-square">
@@ -24,6 +61,7 @@ export function ReactionButton(props: {
         className="bg-(--theme-text)/40 flex items-center justify-center rounded-lg text-2xl transition duration-1000 ease-in-out hover:duration-300 focus:duration-300"
         title={`Fetched at ${fetchedAt}`}
         onClick={() => {
+          setEmojis((emojis) => insert(emojis, 0))
           startTransition(async () => {
             optimisticallyInc(1)
             await onClick()
@@ -32,82 +70,36 @@ export function ReactionButton(props: {
       >
         <Square>{emoji}</Square>
       </button>
-      <FloatingReactions pending={pending} reactions={optimisticReactions} emoji={emoji} />
+      <AnimatePresence>
+        {pendingEmojis.map(({key, delay}) => (
+          <FloatingEmoji
+            key={key}
+            _key={key}
+            emoji={props.emoji}
+            delay={delay}
+            setEmojis={setEmojis}
+          />
+        ))}
+      </AnimatePresence>
     </div>
   )
 }
 
-function FloatingReactions(props: {pending: boolean; reactions: number; emoji: string}) {
-  const [initialReactions] = useState(props.reactions)
-  const reactions = Math.max(0, props.reactions - initialReactions)
-  const [emojis, setEmojis] = useState<{createdAt: number; key: string; done: boolean}[]>([])
-  const {pending} = props
-
-  /**
-   * Add new emojis, one by one, to stagger them, until they match the length of the current reactions
-   */
-  useEffect(() => {
-    if (reactions > emojis.length) {
-      console.log({pending})
-      const insert = () =>
-        setEmojis((emojis) => [
-          ...emojis,
-          {
-            createdAt: Math.max(
-              Date.now(),
-              emojis.at(-1)?.createdAt ? emojis.at(-1)!.createdAt + 60 : 0,
-            ),
-            key: crypto.randomUUID(),
-            done: false,
-          },
-        ])
-      if (pending) {
-        insert()
-        return
-      }
-      const timeout = setTimeout(() => insert(), 60)
-      return () => clearTimeout(timeout)
-    }
-  }, [emojis.length, reactions, pending])
-
-  /**
-   * Garbage collect emojis that are done animating
-   */
-  useEffect(() => {
-    const expired = (now: number, createdAt: number) => now - createdAt > 9_000
-    const interval = setInterval(() => {
-      startTransition(() =>
-        setEmojis((emojis) => {
-          const now = Date.now()
-          if (emojis.some(({createdAt}) => expired(now, createdAt))) {
-            return emojis.map((emoji) => ({
-              ...emoji,
-              done: expired(now, emoji.createdAt),
-            }))
-          }
-          return emojis
-        }),
-      )
-    }, 9_000)
-    return () => clearInterval(interval)
-  }, [])
-
-  const pendingEmojis = emojis.filter(({done}) => !done)
-
-  return (
-    <AnimatePresence>
-      {pendingEmojis.map(({key}) => (
-        <FloatingEmoji key={key} emoji={props.emoji} />
-      ))}
-    </AnimatePresence>
-  )
-}
-
 type FloatingEmojiProps = {
+  _key: string
   emoji: string
+  delay: number
+  setEmojis: React.Dispatch<React.SetStateAction<Emoji[]>>
 }
-function FloatingEmoji({emoji}: FloatingEmojiProps) {
+function FloatingEmoji({emoji, delay, _key, setEmojis}: FloatingEmojiProps) {
   const randomOffset = (Math.random() - 0.5) * 200 // Increased range for more spread
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setEmojis((emojis) => emojis.map((e) => (e.key === _key ? {...e, done: true} : e)))
+    }, delay + 4_000) // Increased delay
+    return () => clearTimeout(timeout)
+  }, [_key, delay, setEmojis])
 
   return (
     <motion.div
@@ -119,13 +111,14 @@ function FloatingEmoji({emoji}: FloatingEmojiProps) {
         y: 0,
       }}
       animate={{
-        y: '-90dvh',
+        y: '-94dvh',
         x: [0, randomOffset * 0.3, randomOffset],
         opacity: [0, 1, 1, 0.8, 0],
         scale: [0.5, 1.2, 1, 1, 0.8],
       }}
       transition={{
         duration: 4, // Increased duration
+        delay: delay / 1000,
         ease: 'easeOut',
       }}
     >
