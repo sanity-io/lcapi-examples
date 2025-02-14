@@ -3,7 +3,6 @@
  */
 
 import {createClient} from '@sanity/client'
-import {waitUntil} from '@vercel/functions'
 import {defineQuery} from 'groq'
 
 export const config = {runtime: 'edge'}
@@ -46,7 +45,7 @@ export default async function handler(request: Request) {
       return new Response(JSON.stringify('Reaction not found'), {status: 404, headers})
     }
 
-    waitUntil(client.patch(id).inc({reactions: 1}).commit({visibility: 'deferred'}))
+    await client.patch(id).inc({reactions: 1}).commit()
 
     return new Response(JSON.stringify('Success'), {status: 200, headers})
   } catch (err) {
