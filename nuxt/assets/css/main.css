@@ -1,0 +1,13 @@
+@import 'tailwindcss';
+
+@property --theme-text {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #000;
+}
+
+@property --theme-background {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #fff;
+}
