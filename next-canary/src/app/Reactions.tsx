@@ -2,7 +2,7 @@ import {sanityFetch} from '@/sanity/fetch'
 import {defineQuery} from 'groq'
 import {Suspense} from 'react'
 import {ReactionButton} from './ReactionButton'
-import {ButtonContainer, Square} from './Square'
+import {ReactionFallback} from './ReactionPrimitives'
 
 interface Props {
   data: {
@@ -30,11 +30,7 @@ const REACTION_QUERY = defineQuery(`*[_type == "reaction" && _id == $id][0]{emoj
 export async function Reaction(props: {_ref: string}) {
   const {_ref} = props
 
-  const {data} = await sanityFetch({query: REACTION_QUERY, params: {id: _ref}})
-
-  if (!data?.emoji || typeof data.reactions !== 'number') {
-    return <ReactionFallback />
-  }
+  const data = sanityFetch({query: REACTION_QUERY, params: {id: _ref}}).then(({data}) => data)
 
   return (
     <ReactionButton
@@ -48,8 +44,7 @@ export async function Reaction(props: {_ref: string}) {
           body: formData,
         })
       }}
-      emoji={data.emoji}
-      reactions={data.reactions}
+      data={data}
     />
   )
 }
@@ -62,19 +57,6 @@ export function ReactionsFallback(props: Props) {
         <ReactionFallback key={_key} />
       ))}
     </Wrapper>
-  )
-}
-
-function ReactionFallback() {
-  return (
-    <ButtonContainer>
-      <button
-        disabled
-        className="bg-(--theme-text)/40 flex animate-pulse rounded-lg transition-colors duration-1000 ease-in-out"
-      >
-        <Square> </Square>
-      </button>
-    </ButtonContainer>
   )
 }
 

@@ -16,12 +16,10 @@ export function SanityLive() {
         console.info('Sanity is live with automatic revalidation of published content')
         break
       case 'message':
-        console.log('Sanity Live message:', event)
         expireTags(event.tags)
         break
       case 'reconnect':
       case 'restart':
-        console.info('Sanity Live connection was lost, reconnecting...', event)
         router.refresh()
         break
     }

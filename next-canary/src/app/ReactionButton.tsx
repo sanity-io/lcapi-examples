@@ -1,8 +1,8 @@
 'use client'
 
 import {AnimatePresence, motion} from 'framer-motion'
-import {startTransition, useEffect, useOptimistic, useState} from 'react'
-import {Square} from './Square'
+import {startTransition, use, useEffect, useOptimistic, useState} from 'react'
+import {ReactionFallback, Square} from './ReactionPrimitives'
 
 interface Emoji {
   key: string
@@ -22,7 +22,33 @@ function insert(emojis: Emoji[], delay: number) {
   return [...emojis, createEmoji(delay)]
 }
 
-export function ReactionButton(props: {onClick: () => void; emoji: string; reactions: number}) {
+function insertMany(emojis: Emoji[], needed: number) {
+  const stagger = 5_000 / needed
+  const nextEmojis = [...emojis]
+  for (let i = 0; i < needed; i++) {
+    nextEmojis.push(createEmoji(i * stagger))
+  }
+  return nextEmojis
+}
+
+export function ReactionButton(props: {
+  onClick: () => void
+  data: Promise<{
+    emoji: string | null
+    reactions: number | null
+  } | null>
+}) {
+  const {onClick} = props
+  const data = use(props.data)
+
+  if (!data?.emoji || typeof data.reactions !== 'number') {
+    return <ReactionFallback />
+  }
+
+  return <EmojiReactionButton onClick={onClick} emoji={data.emoji} reactions={data.reactions} />
+}
+
+function EmojiReactionButton(props: {onClick: () => void; emoji: string; reactions: number}) {
   const {onClick, emoji, reactions} = props
   const [initialReactions] = useState(reactions)
 
@@ -36,21 +62,11 @@ export function ReactionButton(props: {onClick: () => void; emoji: string; react
   useEffect(() => {
     if (nextReactions > emojis.length) {
       const needed = nextReactions - emojis.length
-      startTransition(() =>
-        setEmojis((emojis) => {
-          const nextEmojis = [...emojis]
-          for (let i = 0; i < needed; i++) {
-            nextEmojis.push(createEmoji(i * 60))
-          }
-          return nextEmojis
-        }),
-      )
+      startTransition(() => setEmojis((emojis) => insertMany(emojis, needed)))
     }
   }, [nextReactions, emojis.length])
 
   const pendingEmojis = emojis.filter(({done}) => !done)
-
-  // focus-within:ring-(--theme-text) focus-within:ring-offset-(--theme-background) focus-within:ring-2 focus-within:ring-offset-2 focus-within:duration-0
 
   return (
     <div className="bg-(--theme-text)/40 focus-within:ring-(--theme-text) focus-within:ring-offset-(--theme-background) relative aspect-square rounded-lg transition duration-1000 ease-in-out focus-within:ring-2 focus-within:ring-offset-2 focus-within:duration-0">
@@ -69,13 +85,7 @@ export function ReactionButton(props: {onClick: () => void; emoji: string; react
       </motion.button>
       <AnimatePresence>
         {pendingEmojis.map(({key, delay}) => (
-          <FloatingEmoji
-            key={key}
-            _key={key}
-            emoji={props.emoji}
-            delay={delay}
-            setEmojis={setEmojis}
-          />
+          <FloatingEmoji key={key} _key={key} emoji={emoji} delay={delay} setEmojis={setEmojis} />
         ))}
       </AnimatePresence>
     </div>
