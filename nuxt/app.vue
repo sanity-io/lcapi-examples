@@ -3,12 +3,10 @@ import {client} from '@/utils/sanity/client'
 import {INDEX_QUERY} from '@/utils/sanity/queries'
 
 const route = useRoute()
-const slug = 'nuxt'
-const lastLiveEventId = route.query.lastLiveEventId as string
 
 const {data: sanityData} = await useAsyncData('index',  () => client.fetch(
     INDEX_QUERY,
-    {slug},
+    {slug: 'nuxt'},
     {
       filterResponse: false,
       lastLiveEventId: route.query.lastLiveEventId as string,
