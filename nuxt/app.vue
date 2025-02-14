@@ -4,16 +4,21 @@ import {INDEX_QUERY} from '@/utils/sanity/queries'
 
 const route = useRoute()
 
-const {data: sanityData} = await useAsyncData('index',  () => client.fetch(
-    INDEX_QUERY,
-    {slug: 'nuxt'},
-    {
-      filterResponse: false,
-      lastLiveEventId: route.query.lastLiveEventId as string,
-    },
-  ),{
-    watch: [() => route.query.lastLiveEventId]
-  })
+const {data: sanityData} = await useAsyncData(
+  'index',
+  () =>
+    client.fetch(
+      INDEX_QUERY,
+      {slug: 'nuxt'},
+      {
+        filterResponse: false,
+        lastLiveEventId: route.query.lastLiveEventId as string,
+      },
+    ),
+  {
+    watch: [() => route.query.lastLiveEventId],
+  },
+)
 
 useHead({
   title: sanityData.value?.result.title || 'Nuxt',
@@ -35,7 +40,7 @@ useHead({
       >
         {{ sanityData?.result.title || 'Nuxt' }}
       </h1>
-        <ThemeButton />
+      <ThemeButton />
     </div>
     <ClientOnly>
       <SanityLive :tags="sanityData?.syncTags" />
