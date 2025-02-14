@@ -3,7 +3,7 @@ import {defineQuery} from 'groq'
 import {unstable_expireTag as expireTag} from 'next/cache'
 import {Suspense} from 'react'
 import {ReactionButton} from './ReactionButton'
-import {Square} from './Square'
+import {ButtonContainer, Square} from './Square'
 
 interface Props {
   data: {
@@ -50,6 +50,7 @@ export async function Reaction(props: {_ref: string}) {
           method: 'POST',
           body: formData,
         })
+        console.log({tags})
         if (Array.isArray(tags)) expireTag(...tags)
       }}
       emoji={data.emoji}
@@ -72,12 +73,14 @@ export function ReactionsFallback(props: Props) {
 
 function ReactionFallback() {
   return (
-    <button
-      disabled
-      className="bg-(--theme-background) animate-pulse rounded-lg transition-colors duration-1000 ease-in-out"
-    >
-      <Square> </Square>
-    </button>
+    <ButtonContainer>
+      <button
+        disabled
+        className="bg-(--theme-text)/40 flex animate-pulse rounded-lg transition-colors duration-1000 ease-in-out"
+      >
+        <Square> </Square>
+      </button>
+    </ButtonContainer>
   )
 }
 
