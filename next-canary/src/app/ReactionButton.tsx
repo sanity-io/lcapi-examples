@@ -58,7 +58,7 @@ export function ReactionButton(props: {
   return (
     <div className="bg-(--theme-text)/40 relative aspect-square rounded-lg transition duration-1000 ease-in-out">
       <motion.button
-        className="flex transform-gpu items-center justify-center text-2xl"
+        className="flex transform-gpu items-center justify-center text-2xl subpixel-antialiased will-change-transform"
         title={`Fetched at ${fetchedAt}`}
         onClick={() => {
           setEmojis((emojis) => insert(emojis, 0))
