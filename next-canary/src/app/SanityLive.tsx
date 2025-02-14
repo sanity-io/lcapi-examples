@@ -46,7 +46,7 @@ export function SanityLive({browserToken}: {browserToken: string | undefined}) {
         },
       })
     return () => subscription.unsubscribe()
-  }, [])
+  }, [browserToken])
 
   return null
 }
