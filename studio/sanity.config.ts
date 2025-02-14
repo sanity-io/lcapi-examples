@@ -82,4 +82,6 @@ export default defineConfig({
 
   scheduledPublishing: {enabled: false},
   tasks: {enabled: false},
+  comments: {enabled: false},
+  releases: {enabled: true},
 })
