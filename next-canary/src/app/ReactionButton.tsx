@@ -56,9 +56,9 @@ export function ReactionButton(props: {
   const pendingEmojis = emojis.filter(({done}) => !done)
 
   return (
-    <div className="relative aspect-square">
-      <button
-        className="bg-(--theme-text)/40 flex items-center justify-center rounded-lg text-2xl transition duration-1000 ease-in-out hover:duration-300 focus:duration-300"
+    <div className="bg-(--theme-text)/40 relative aspect-square rounded-lg transition duration-1000 ease-in-out">
+      <motion.button
+        className="flex transform-gpu items-center justify-center text-2xl"
         title={`Fetched at ${fetchedAt}`}
         onClick={() => {
           setEmojis((emojis) => insert(emojis, 0))
@@ -67,9 +67,11 @@ export function ReactionButton(props: {
             await onClick()
           })
         }}
+        whileHover={{scale: 1.2}}
+        whileTap={{scale: 0.95}}
       >
         <Square>{emoji}</Square>
-      </button>
+      </motion.button>
       <AnimatePresence>
         {pendingEmojis.map(({key, delay}) => (
           <FloatingEmoji
