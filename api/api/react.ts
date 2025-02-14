@@ -3,8 +3,8 @@
  */
 
 import {createClient} from '@sanity/client'
-import {defineQuery} from 'groq'
 import {waitUntil} from '@vercel/functions'
+import {defineQuery} from 'groq'
 
 export const config = {runtime: 'edge'}
 
