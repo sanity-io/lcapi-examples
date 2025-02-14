@@ -38,7 +38,7 @@ useHead({
         <ThemeButton />
     </div>
     <ClientOnly>
-      <SanityLive :tags="sanityData?.syncTags"" />
+      <SanityLive :tags="sanityData?.syncTags" />
     </ClientOnly>
   </main>
 </template>
