@@ -37,7 +37,7 @@ export default async function RootLayout({
           </Suspense>
         </div>
         <Suspense>
-          <SanityLive browserToken={process.env.SANITY_API_BROWSER_TOKEN} />
+          <SanityLive />
         </Suspense>
       </body>
     </html>

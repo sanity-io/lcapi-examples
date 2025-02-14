@@ -7,7 +7,7 @@ import {useRouter} from 'next/navigation'
 import {useEffect, experimental_useEffectEvent as useEffectEvent} from 'react'
 import {expireTags} from './actions'
 
-export function SanityLive({browserToken}: {browserToken: string | undefined}) {
+export function SanityLive() {
   const router = useRouter()
 
   const handleLiveEvent = useEffectEvent((event: LiveEvent) => {
@@ -30,25 +30,22 @@ export function SanityLive({browserToken}: {browserToken: string | undefined}) {
     /**
      * If a browser token is available it'll unlock a faster and more efficient live connection
      */
-    const subscription = client
-      .withConfig({token: browserToken})
-      .live.events({includeDrafts: !!browserToken})
-      .subscribe({
-        next: handleLiveEvent,
-        error: (error: unknown) => {
-          if (error instanceof CorsOriginError) {
-            console.warn(
-              `Sanity Live is unable to connect to the Sanity API as the current origin - ${window.origin} - is not in the list of allowed CORS origins for this Sanity Project.`,
-              error.addOriginUrl && `Add it here:`,
-              error.addOriginUrl?.toString(),
-            )
-          } else {
-            console.error(error)
-          }
-        },
-      })
+    const subscription = client.live.events().subscribe({
+      next: handleLiveEvent,
+      error: (error: unknown) => {
+        if (error instanceof CorsOriginError) {
+          console.warn(
+            `Sanity Live is unable to connect to the Sanity API as the current origin - ${window.origin} - is not in the list of allowed CORS origins for this Sanity Project.`,
+            error.addOriginUrl && `Add it here:`,
+            error.addOriginUrl?.toString(),
+          )
+        } else {
+          console.error(error)
+        }
+      },
+    })
     return () => subscription.unsubscribe()
-  }, [browserToken])
+  }, [])
 
   return null
 }
