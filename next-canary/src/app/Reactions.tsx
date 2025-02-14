@@ -26,9 +26,7 @@ export async function Reactions(props: Props) {
   )
 }
 
-const REACTION_QUERY = defineQuery(
-  `*[_type == "reaction" && _id == $id][0]{emoji,reactions,"fetchedAt":now()}`,
-)
+const REACTION_QUERY = defineQuery(`*[_type == "reaction" && _id == $id][0]{emoji,reactions}`)
 
 export async function Reaction(props: {_ref: string}) {
   const {_ref} = props
