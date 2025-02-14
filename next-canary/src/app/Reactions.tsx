@@ -1,6 +1,5 @@
 import {sanityFetch} from '@/sanity/fetch'
 import {defineQuery} from 'groq'
-import {unstable_expireTag as expireTag} from 'next/cache'
 import {Suspense} from 'react'
 import {ReactionButton} from './ReactionButton'
 import {ButtonContainer, Square} from './Square'
@@ -31,7 +30,7 @@ const REACTION_QUERY = defineQuery(`*[_type == "reaction" && _id == $id][0]{emoj
 export async function Reaction(props: {_ref: string}) {
   const {_ref} = props
 
-  const {data, tags} = await sanityFetch({query: REACTION_QUERY, params: {id: _ref}})
+  const {data} = await sanityFetch({query: REACTION_QUERY, params: {id: _ref}})
 
   if (!data?.emoji || typeof data.reactions !== 'number') {
     return <ReactionFallback />
@@ -48,11 +47,8 @@ export async function Reaction(props: {_ref: string}) {
           method: 'POST',
           body: formData,
         })
-        console.log({tags})
-        if (Array.isArray(tags)) expireTag(...tags)
       }}
       emoji={data.emoji}
-      fetchedAt={data.fetchedAt}
       reactions={data.reactions}
     />
   )
@@ -84,7 +80,7 @@ function ReactionFallback() {
 
 function Wrapper({children}: {children: React.ReactNode}) {
   return (
-    <aside className="bg-(--theme-text)/30 fixed bottom-2 left-[50%] grid -translate-x-[50%] grid-flow-col grid-rows-1 gap-2 rounded-xl p-2 transition-colors duration-1000 ease-in-out">
+    <aside className="bg-(--theme-text)/30 fixed bottom-2 left-[50%] grid -translate-x-[50%] grid-flow-col grid-rows-1 gap-2 rounded-2xl p-2 transition-colors duration-1000 ease-in-out">
       {children}
     </aside>
   )

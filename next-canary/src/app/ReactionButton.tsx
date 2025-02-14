@@ -22,13 +22,8 @@ function insert(emojis: Emoji[], delay: number) {
   return [...emojis, createEmoji(delay)]
 }
 
-export function ReactionButton(props: {
-  onClick: () => void
-  emoji: string
-  reactions: number
-  fetchedAt: string
-}) {
-  const {onClick, fetchedAt, emoji, reactions} = props
+export function ReactionButton(props: {onClick: () => void; emoji: string; reactions: number}) {
+  const {onClick, emoji, reactions} = props
   const [initialReactions] = useState(reactions)
 
   const [emojis, setEmojis] = useState<Emoji[]>([])
@@ -55,11 +50,12 @@ export function ReactionButton(props: {
 
   const pendingEmojis = emojis.filter(({done}) => !done)
 
+  // focus-within:ring-(--theme-text) focus-within:ring-offset-(--theme-background) focus-within:ring-2 focus-within:ring-offset-2 focus-within:duration-0
+
   return (
-    <div className="bg-(--theme-text)/40 relative aspect-square rounded-lg transition duration-1000 ease-in-out">
+    <div className="bg-(--theme-text)/40 focus-within:ring-(--theme-text) focus-within:ring-offset-(--theme-background) relative aspect-square rounded-lg transition duration-1000 ease-in-out focus-within:ring-2 focus-within:ring-offset-2 focus-within:duration-0">
       <motion.button
-        className="flex transform-gpu items-center justify-center text-2xl subpixel-antialiased will-change-transform"
-        title={`Fetched at ${fetchedAt}`}
+        className="flex transform-gpu cursor-pointer items-center justify-center text-2xl subpixel-antialiased will-change-transform focus:outline-none"
         onClick={() => {
           setEmojis((emojis) => insert(emojis, 0))
           startTransition(async () => {
@@ -67,8 +63,7 @@ export function ReactionButton(props: {
             await onClick()
           })
         }}
-        whileHover={{scale: 1.2}}
-        whileTap={{scale: 0.95}}
+        whileTap={{scale: 0.8}}
       >
         <Square>{emoji}</Square>
       </motion.button>
