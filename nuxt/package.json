@@ -13,7 +13,7 @@
     "typegen:generate": "sanity typegen generate"
   },
   "dependencies": {
-    "@nuxt/eslint": "1.0.1",
+    "@nuxt/eslint": "1.1.0",
     "@sanity/client": "^6.28.0",
     "@tailwindcss/vite": "^4.0.6",
     "eslint": "^9.0.0",
