@@ -5,20 +5,20 @@ import {headers} from 'next/headers'
 import {Suspense} from 'react'
 import {TimeSince} from '../TimeSince'
 
-const DEMO_QUERY = defineQuery(
-  `*[_type == "demo" && slug.current == $slug][0]{title,"fetchedAt": dateTime(now())}`,
+const DYNAMIC_DEMO_QUERY = defineQuery(
+  `*[_type == "demo" && slug.current == $slug][0]{title,"fetchedAt": now()}`,
 )
 const slug = 'next-14'
 
 export async function generateMetadata(): Promise<Metadata> {
-  const {data} = await sanityFetch({query: DEMO_QUERY, params: {slug}})
+  const {data} = await sanityFetch({query: DYNAMIC_DEMO_QUERY, params: {slug}})
   return {
     title: data?.title || 'Next 14',
   }
 }
 
 export default async function Home() {
-  const {data} = await sanityFetch({query: DEMO_QUERY, params: {slug}})
+  const {data} = await sanityFetch({query: DYNAMIC_DEMO_QUERY, params: {slug}})
   const headersList = await headers()
   const userAgent = headersList.get('user-agent')
 

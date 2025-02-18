@@ -5,7 +5,7 @@ import {Suspense} from 'react'
 import {TimeSince} from './TimeSince'
 
 const DEMO_QUERY = defineQuery(
-  `*[_type == "demo" && slug.current == $slug][0]{title,"fetchedAt": dateTime(now())}`,
+  `*[_type == "demo" && slug.current == $slug][0]{title,"fetchedAt": now()}`,
 )
 const slug = 'next-14'
 
