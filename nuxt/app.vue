@@ -1,13 +1,17 @@
 <script setup lang="ts">
+import {sanityFetch} from '@/utils/sanity/fetch'
 import {INDEX_QUERY} from '@/utils/sanity/queries'
-import { sanityFetch } from '@/utils/sanity/fetch';
 
 const route = useRoute()
 
 const {data: demo} = await useAsyncData(
   'index',
   () =>
-    sanityFetch({query: INDEX_QUERY, params: {slug: 'nuxt'}, lastLiveEventId: route.query.lastLiveEventId as string}),
+    sanityFetch({
+      query: INDEX_QUERY,
+      params: {slug: 'nuxt'},
+      lastLiveEventId: route.query.lastLiveEventId as string,
+    }),
   {
     watch: [() => route.query.lastLiveEventId],
   },
