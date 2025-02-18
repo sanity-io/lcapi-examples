@@ -15,7 +15,7 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
-  const {data} = await sanityFetch({query: THEME_QUERY, tags: ['theme']})
+  const {data} = await sanityFetch({query: THEME_QUERY})
 
   return (
     <html
