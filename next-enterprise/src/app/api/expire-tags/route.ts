@@ -12,5 +12,7 @@ export async function POST(request: Request) {
   for (const tag of tags) {
     revalidateTag(tag)
   }
+  // Since we over-fetch, we also have to expire the syncTags fetch
+  revalidateTag('sanity:tags')
   return Response.json({tags})
 }

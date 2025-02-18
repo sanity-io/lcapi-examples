@@ -3,6 +3,8 @@ name: Fly Deploy Expirator Service
 on:
   push:
     branches: [main]
+    paths:
+      - 'next-enterprise/expirator-service/**'
 
 concurrency:
   group: ${{ github.workflow }}
