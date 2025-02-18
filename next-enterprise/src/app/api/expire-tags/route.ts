@@ -1,6 +1,6 @@
 import {revalidateTag} from 'next/cache'
 
-export async function GET(request: Request) {
+export async function POST(request: Request) {
   const url = new URL(request.url)
   const secret = url.searchParams.get('secret')
   if (secret !== process.env.SECRET) {

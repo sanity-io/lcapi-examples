@@ -1,7 +1,7 @@
 'use client'
 
 import {client} from '@/sanity/client'
-import type {LiveEventMessage, LiveEventRestart, LiveEventWelcome} from '@sanity/client'
+import type {LiveEvent} from '@sanity/client'
 import {CorsOriginError} from '@sanity/client'
 import {useRouter} from 'next/navigation'
 import {useEffect} from 'react'
@@ -10,22 +10,20 @@ import {useEffectEvent} from 'use-effect-event'
 export function SanityLive() {
   const router = useRouter()
 
-  const handleLiveEvent = useEffectEvent(
-    (event: LiveEventMessage | LiveEventRestart | LiveEventWelcome, signal: AbortSignal) => {
-      if (event.type === 'welcome') {
-        console.info('Sanity is live with automatic refresh of published content')
-      } else if (event.type === 'message') {
-        console.log('<SanityLive> schedule refresh')
-        setTimeout(() => {
-          if (signal.aborted) return
-          router.refresh()
-          console.log('<SanityLive> refreshing')
-        }, 2_000)
-      } else if (event.type === 'restart') {
+  const handleLiveEvent = useEffectEvent((event: LiveEvent, signal: AbortSignal) => {
+    if (event.type === 'welcome') {
+      console.info('Sanity is live with automatic refresh of published content')
+    } else if (event.type === 'message') {
+      console.log('<SanityLive> schedule refresh')
+      setTimeout(() => {
+        if (signal.aborted) return
         router.refresh()
-      }
-    },
-  )
+        console.log('<SanityLive> refreshing')
+      }, 2_000)
+    } else if (event.type === 'restart' || event.type === 'reconnect') {
+      router.refresh()
+    }
+  })
   useEffect(() => {
     let controller = new AbortController()
     const subscription = client.live.events().subscribe({
