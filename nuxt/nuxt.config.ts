@@ -9,4 +9,7 @@ export default defineNuxtConfig({
   vite: {
     plugins: [tailwindcss()],
   },
+  typescript: {
+    typeCheck: true,
+  },
 })

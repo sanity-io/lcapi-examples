@@ -1,4 +1,4 @@
-import {createClient, type QueryParams} from '@sanity/client'
+import {createClient, type ClientReturn, type QueryParams, type SyncTag} from '@sanity/client'
 
 export const client = createClient({
   projectId: 'hiomol4a',
@@ -15,7 +15,7 @@ export async function sanityFetch<const QueryString extends string>({
   query: QueryString
   params?: QueryParams
   lastLiveEventId: string | undefined
-}) {
+}): Promise<{data: ClientReturn<QueryString, unknown>; tags?: SyncTag[]}> {
   const {result, syncTags} = await client.fetch(query, params, {
     filterResponse: false,
     lastLiveEventId,

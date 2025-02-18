@@ -1,4 +1,4 @@
-import {type QueryParams} from '@sanity/client'
+import {type ClientReturn, type QueryParams, type SyncTag} from '@sanity/client'
 import {client} from './client'
 
 export async function sanityFetch<const QueryString extends string>({
@@ -7,7 +7,7 @@ export async function sanityFetch<const QueryString extends string>({
 }: {
   query: QueryString
   params?: QueryParams
-}) {
+}): Promise<{data: ClientReturn<QueryString, unknown>; tags?: SyncTag[]}> {
   // Uncached query that fetches cache tags (on Next 15 uncached doesn't mean on every browser request, but on every ISR build)
   const {syncTags: tags} = await client.fetch(query, params, {
     filterResponse: false,

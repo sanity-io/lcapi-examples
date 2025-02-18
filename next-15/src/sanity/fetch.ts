@@ -1,4 +1,4 @@
-import {type QueryParams} from '@sanity/client'
+import {type ClientReturn, type QueryParams, type SyncTag} from '@sanity/client'
 import {client} from './client'
 
 /**
@@ -17,7 +17,7 @@ export async function sanityFetch<const QueryString extends string>({
   query: QueryString
   params?: QueryParams
   tags?: string[]
-}) {
+}): Promise<{data: ClientReturn<QueryString, unknown>; tags?: string[]}> {
   // We have to fetch the sync tags first (this double-fetching is required until the new `cacheTag` API, related to 'use cache', is available in a stable next.js release)
   const {syncTags} = await client.fetch(query, params, {
     filterResponse: false,

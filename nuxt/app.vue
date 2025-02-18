@@ -1,27 +1,20 @@
 <script setup lang="ts">
-import {client} from '@/utils/sanity/client'
 import {INDEX_QUERY} from '@/utils/sanity/queries'
+import { sanityFetch } from '@/utils/sanity/fetch';
 
 const route = useRoute()
 
-const {data: sanityData} = await useAsyncData(
+const {data: demo} = await useAsyncData(
   'index',
   () =>
-    client.fetch(
-      INDEX_QUERY,
-      {slug: 'nuxt'},
-      {
-        filterResponse: false,
-        lastLiveEventId: route.query.lastLiveEventId as string,
-      },
-    ),
+    sanityFetch({query: INDEX_QUERY, params: {slug: 'nuxt'}, lastLiveEventId: route.query.lastLiveEventId as string}),
   {
     watch: [() => route.query.lastLiveEventId],
   },
 )
 
 useHead({
-  title: sanityData.value?.result.title || 'Nuxt',
+  title: demo.value?.data.title || 'Nuxt',
 })
 </script>
 
@@ -29,8 +22,8 @@ useHead({
   <main
     class="bg-(--theme-background) text-(--theme-text) transition-colors duration-1000 ease-in-out"
     :style="{
-      '--theme-background': sanityData?.result.theme?.background || undefined,
-      '--theme-text': sanityData?.result.theme?.text || undefined,
+      '--theme-background': demo?.data.theme?.background || undefined,
+      '--theme-text': demo?.data.theme?.text || undefined,
     }"
   >
     <NuxtRouteAnnouncer />
@@ -38,12 +31,12 @@ useHead({
       <h1
         class="text-balance text-4xl font-bold leading-tight tracking-tighter md:text-6xl lg:pr-8 lg:text-8xl"
       >
-        {{ sanityData?.result.title || 'Nuxt' }}
+        {{ demo?.data.title || 'Nuxt' }}
       </h1>
       <ThemeButton />
     </div>
     <ClientOnly>
-      <SanityLive :tags="sanityData?.syncTags" />
+      <SanityLive :tags="demo?.tags" />
     </ClientOnly>
   </main>
 </template>

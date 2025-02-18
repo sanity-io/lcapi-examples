@@ -1,4 +1,4 @@
-import {type QueryParams} from '@sanity/client'
+import {type ClientReturn, type QueryParams, type SyncTag} from '@sanity/client'
 import {unstable_cacheLife as cacheLife, unstable_cacheTag as cacheTag} from 'next/cache'
 import {client} from './client'
 
@@ -10,7 +10,7 @@ export async function sanityFetch<const QueryString extends string>({
   query: QueryString
   params?: QueryParams
   tags?: string[]
-}) {
+}): Promise<{data: ClientReturn<QueryString, unknown>; tags?: SyncTag[]}> {
   'use cache'
 
   /**

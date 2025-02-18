@@ -9,14 +9,15 @@ import {lazy, Suspense} from 'react'
 const ThemeButton = lazy(() => import('@/components/ThemeButton'))
 const TimeSince = lazy(() => import('@/components/TimeSince'))
 
-const INDEX_QUERY = defineQuery(`{
-  "theme": *[_id == "theme"][0]{background,text},
-  "title": *[_type == "demo" && slug.current == $slug][0].title,
-  "fetchedAt":now()
-}`)
+const INDEX_QUERY = defineQuery(
+  `{"theme": *[_id == "theme"][0]{background,text}, "title": *[_type == "demo" && slug.current == $slug][0].title, "fetchedAt":now()}`,
+)
 const slug = 'next-13'
 
-export const getServerSideProps = (async ({res, query}) => {
+export const getServerSideProps: GetServerSideProps<{
+  data: ClientReturn<typeof INDEX_QUERY, unknown>
+  tags?: SyncTag[]
+}> = async ({res, query}) => {
   const {lastLiveEventId} = query
   res.setHeader(
     'Cache-Control',
@@ -37,7 +38,7 @@ export const getServerSideProps = (async ({res, query}) => {
   )
 
   return {props: {data, tags}}
-}) satisfies GetServerSideProps<{data: ClientReturn<typeof INDEX_QUERY>; tags?: SyncTag[]}>
+}
 
 export default function Home(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const {data, tags} = props
