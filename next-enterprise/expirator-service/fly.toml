@@ -11,3 +11,8 @@ primary_region = 'arn'
 [[vm]]
   size = 'shared-cpu-1x'
   memory = '256mb'
+  count = 1
+
+[scale]
+  min_machines_count = 1
+  max_machines_count = 1
