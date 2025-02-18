@@ -9,9 +9,11 @@ import {lazy, Suspense} from 'react'
 const ThemeButton = lazy(() => import('@/components/ThemeButton'))
 const TimeSince = lazy(() => import('@/components/TimeSince'))
 
-const INDEX_QUERY = defineQuery(
-  `{"theme": *[_id == "theme"][0]{background,text}, "title": *[_type == "demo" && slug.current == $slug][0].title, "fetchedAt":now()}`,
-)
+const INDEX_QUERY = defineQuery(`{
+  "theme": *[_id == "theme"][0]{background,text},
+  "title": *[_type == "demo" && slug.current == $slug][0].title,
+  "fetchedAt":now()
+}`)
 const slug = 'next-13'
 
 export const getServerSideProps: GetServerSideProps<{
