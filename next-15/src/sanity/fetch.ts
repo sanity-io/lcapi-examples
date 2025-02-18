@@ -1,4 +1,4 @@
-import {type ClientReturn, type QueryParams, type SyncTag} from '@sanity/client'
+import {type ClientReturn, type QueryParams} from '@sanity/client'
 import {client} from './client'
 
 /**
