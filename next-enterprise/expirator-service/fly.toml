@@ -1,0 +1,12 @@
+# fly.toml app configuration file generated for expirator-service on 2025-02-18T23:02:00+01:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = 'expirator-service'
+primary_region = 'arn'
+
+[build]
+
+[[vm]]
+  size = 'shared-cpu-1x'

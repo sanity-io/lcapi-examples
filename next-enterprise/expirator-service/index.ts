@@ -23,7 +23,7 @@ await new Promise((resolve, reject) => {
         for (const tag of event.tags) {
           url.searchParams.append('tag', tag)
         }
-        fetch(url)
+        fetch(url, {method: 'POST'})
           .then((res) => {
             if (!res.ok) {
               throw new TypeError('Failed', {cause: res.statusText})
@@ -34,6 +34,9 @@ await new Promise((resolve, reject) => {
           .catch((reason) =>
             console.error('Failed to forward tags to api route', event, reason, url.toString()),
           )
+      } else if (event.type === 'reconnect' || event.type === 'restart') {
+        console.error('No longer connected to Sanity Live', event, 'shutting down...')
+        reject(new Error('No longer connected to Sanity Live', {cause: event}))
       }
     },
     error: (error: unknown) => {

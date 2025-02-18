@@ -1,0 +1,19 @@
+name: Fly Deploy Expirator Service
+
+on:
+  push:
+    branches: [main]
+
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: true
+
+jobs:
+  expirator-service:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: superfly/flyctl-actions/setup-flyctl@v1
+      - run: flyctl deploy --remote-only ./next-enterprise/expirator-service
+        env:
+          FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}

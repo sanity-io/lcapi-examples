@@ -6,9 +6,10 @@
     "start": "bun run index.ts"
   },
   "dependencies": {
-    "@sanity/client": "^6.22.5"
+    "@sanity/client": "6.28.0"
   },
   "devDependencies": {
+    "@flydotio/dockerfile": "^0.7.8",
     "@types/bun": "latest"
   },
   "peerDependencies": {
