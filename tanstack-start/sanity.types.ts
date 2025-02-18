@@ -204,7 +204,7 @@ export type THEME_QUERYResult =
 
 // Source: ./app/routes/goto.tsx
 // Variable: SEARCH_QUERY
-// Query: {  "title": *[_type == "demo" && slug.current == $slug][0].title,  "urls": *[_type == "demo" && slug.current != $slug && [title,slug.current,url] match "*"+$q+"*"]{title,url}}
+// Query: { "title": *[_type == "demo" && slug.current == $slug][0].title, "urls": *[_type == "demo" && slug.current != $slug && [title,slug.current,url] match "*"+$q+"*"]{title,url} }
 export type SEARCH_QUERYResult = {
   title: string | null
   urls: Array<{
@@ -221,7 +221,7 @@ export type DEMO_QUERYResult = string | null
 declare module '@sanity/client' {
   interface SanityQueries {
     '*[_id == "theme"][0]{background,text}': THEME_QUERYResult
-    '{\n  "title": *[_type == "demo" && slug.current == $slug][0].title,\n  "urls": *[_type == "demo" && slug.current != $slug && [title,slug.current,url] match "*"+$q+"*"]{title,url}\n}': SEARCH_QUERYResult
+    '{ "title": *[_type == "demo" && slug.current == $slug][0].title, "urls": *[_type == "demo" && slug.current != $slug && [title,slug.current,url] match "*"+$q+"*"]{title,url} }': SEARCH_QUERYResult
     '*[_type == "demo" && slug.current == $slug][0].title': DEMO_QUERYResult
   }
 }
