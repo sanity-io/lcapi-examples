@@ -10,3 +10,4 @@ primary_region = 'arn'
 
 [[vm]]
   size = 'shared-cpu-1x'
+  memory = '256mb'
