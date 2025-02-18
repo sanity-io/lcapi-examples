@@ -1,12 +1,12 @@
 'use server'
 
-import {revalidateTag} from 'next/cache'
+import {unstable_expireTag as expireTag} from 'next/cache'
 
 export async function randomColorTheme() {
   const response = await fetch('https://lcapi-examples-api.sanity.dev/api/random-color-theme', {
     method: 'PUT',
   })
-  revalidateTag('theme')
+  expireTag('theme')
   if (!response.ok) {
     return null
   }

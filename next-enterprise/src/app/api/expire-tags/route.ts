@@ -1,4 +1,4 @@
-import {revalidateTag} from 'next/cache'
+import {unstable_expireTag as expireTag} from 'next/cache'
 
 export async function POST(request: Request) {
   const url = new URL(request.url)
@@ -9,10 +9,6 @@ export async function POST(request: Request) {
 
   const tags = url.searchParams.getAll('tag')
   console.log('Expiring tags from expirator service', tags)
-  for (const tag of tags) {
-    revalidateTag(tag)
-  }
-  // Since we over-fetch, we also have to expire the syncTags fetch
-  revalidateTag('sanity:tags')
+  expireTag(...tags)
   return Response.json({tags})
 }
