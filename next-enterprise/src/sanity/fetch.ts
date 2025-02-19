@@ -16,6 +16,7 @@ export async function sanityFetch<const QueryString extends string>({
   query: QueryString
   params?: QueryParams
 }): Promise<{data: ClientReturn<QueryString, unknown>; tags?: string[]}> {
+  const revalidate = 15 * 60
   // We have to fetch the sync tags first (this double-fetching is required until the new `cacheTag` API, related to 'use cache', is available in a stable next.js release)
   const {syncTags} = await client.fetch(query, params, {
     filterResponse: false,
@@ -24,12 +25,13 @@ export async function sanityFetch<const QueryString extends string>({
     cache: 'force-cache',
     // Since we're double-fetching, and this request doesn't have a cache tags, we set a time based revalidation to ensure there's
     // an eventual consistency guarantee for certain edge cases that wouldn't be caught be the expirator service
-    next: {revalidate: 15 * 60, }
+    next: {revalidate}
   })
   const data = await client.fetch(query, params, {
     cacheMode: 'noStale',
     cache: 'force-cache',
-    next: {tags: syncTags},
+    // If we're not in production we can't expect the webhook to be able to expire tags, so we fallback to time based revalidation
+    next: {revalidate: process.env.VERCEL_ENV === 'preview' ? revalidate : undefined, tags: syncTags},
   })
   return {data, tags: syncTags}
 }
