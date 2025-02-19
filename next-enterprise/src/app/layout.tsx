@@ -10,6 +10,8 @@ const THEME_QUERY = defineQuery(
   `*[_id == "theme"][0]{background,text,"fetchedAt": dateTime(now())}`,
 )
 
+export const preferredRegion = 'cdg1' // Paris is closest to Sanity Content Lake in Belgium
+
 export default async function RootLayout({
   children,
 }: Readonly<{
