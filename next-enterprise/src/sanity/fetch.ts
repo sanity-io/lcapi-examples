@@ -7,7 +7,12 @@ import {client} from './client'
  * The `defineLive` utility in `next-sanity` handles more advanced use cases, such as live preview, integrating with `sanity/presentation`, and more.
  * @example
  * import {createClient, defineLive} from 'next-sanity'
- * export const {sanityFetch, SanityLive} = defineLive({client: createClient({projectId, dataset, ...})})
+ * export const {sanityFetch, SanityLive} = defineLive({
+ *   client: createClient({projectId, dataset, ...}),
+ *   fetchOptions: {
+ *     revalidate: process.env.VERCEL_ENV === 'preview' ? 15 * 60 : undefined
+ *   }
+ * })
  */
 export async function sanityFetch<const QueryString extends string>({
   query,
