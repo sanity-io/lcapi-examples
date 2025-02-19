@@ -1,7 +1,7 @@
 'use client'
 
 import {AnimatePresence, motion} from 'framer-motion'
-import {startTransition, use, useEffect, useOptimistic, useState} from 'react'
+import {memo, startTransition, use, useEffect, useOptimistic, useState} from 'react'
 import {ReactionFallback, Square} from './ReactionPrimitives'
 
 interface Emoji {
@@ -62,7 +62,7 @@ function EmojiReactionButton(props: {onClick: () => void; emoji: string; reactio
   useEffect(() => {
     if (nextReactions > emojis.length) {
       const needed = nextReactions - emojis.length
-      startTransition(() => setEmojis((emojis) => insertMany(emojis, needed)))
+      setEmojis((emojis) => insertMany(emojis, needed))
     }
   }, [nextReactions, emojis.length])
 
@@ -98,21 +98,18 @@ type FloatingEmojiProps = {
   delay: number
   setEmojis: React.Dispatch<React.SetStateAction<Emoji[]>>
 }
-function FloatingEmoji({emoji, delay, _key, setEmojis}: FloatingEmojiProps) {
-  const randomOffset = (Math.random() - 0.5) * 200 // Increased range for more spread
-
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      startTransition(() => {
-        setEmojis((emojis) => emojis.map((e) => (e.key === _key ? {...e, done: true} : e)))
-      })
-    }, delay + 4_000) // Increased delay
-    return () => clearTimeout(timeout)
-  }, [_key, delay, setEmojis])
+const FloatingEmoji = memo(function FloatingEmoji({
+  emoji,
+  delay,
+  _key,
+  setEmojis,
+}: FloatingEmojiProps) {
+  const [randomOffset] = useState((Math.random() - 0.5) * 200)
+  const [randomDelay] = useState(Math.random() * 0.15) // Add up to 150ms random delay
 
   return (
     <motion.div
-      className="pointer-events-none absolute inset-0 flex items-center justify-center text-2xl"
+      className="pointer-events-none absolute inset-0 flex items-center justify-center text-2xl will-change-transform"
       initial={{
         opacity: 0,
         scale: 0.5,
@@ -126,12 +123,15 @@ function FloatingEmoji({emoji, delay, _key, setEmojis}: FloatingEmojiProps) {
         scale: [0.5, 1.2, 1, 1, 0.8],
       }}
       transition={{
-        duration: 4, // Increased duration
-        delay: delay / 1000,
+        duration: 4 - randomDelay,
+        delay: delay / 1000 + randomDelay,
         ease: 'easeOut',
+      }}
+      onAnimationComplete={() => {
+        setEmojis((emojis) => emojis.map((e) => (e.key === _key ? {...e, done: true} : e)))
       }}
     >
       {emoji}
     </motion.div>
   )
-}
+})
