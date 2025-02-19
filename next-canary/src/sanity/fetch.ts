@@ -5,11 +5,9 @@ import {client} from './client'
 export async function sanityFetch<const QueryString extends string>({
   query,
   params = {},
-  tags = [],
 }: {
   query: QueryString
   params?: QueryParams
-  tags?: string[]
 }): Promise<{data: ClientReturn<QueryString, unknown>; tags?: string[]}> {
   'use cache'
 
@@ -27,11 +25,10 @@ export async function sanityFetch<const QueryString extends string>({
     filterResponse: false,
     cacheMode: 'noStale',
   })
-  const cacheTags = [...(syncTags || []), ...tags]
   /**
    * The tags used here, are expired later on in the `expireTags` Server Action with the `expireTag` function from `next/cache`
    */
-  cacheTag(...cacheTags)
+  cacheTag(...(syncTags || []))
 
-  return {data: result, tags: cacheTags}
+  return {data: result, tags: syncTags}
 }

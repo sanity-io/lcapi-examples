@@ -12,7 +12,6 @@ export async function randomColorTheme() {
   const response = await fetch('https://lcapi-examples-api.sanity.dev/api/random-color-theme', {
     method: 'PUT',
   })
-  expireTag('theme')
   if (!response.ok) {
     return null
   }
