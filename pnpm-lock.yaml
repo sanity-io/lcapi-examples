@@ -160,7 +160,7 @@ importers:
         specifier: experimental
         version: 0.0.0-experimental-8a7b487e-20250218(eslint@8.57.1)
       postcss:
-        specifier: ^8.5.2
+        specifier: ^8.5.3
         version: 8.5.3
       tailwindcss:
         specifier: ^3.4.17
@@ -215,7 +215,7 @@ importers:
         specifier: experimental
         version: 0.0.0-experimental-8a7b487e-20250218(eslint@8.57.1)
       postcss:
-        specifier: ^8.5.2
+        specifier: ^8.5.3
         version: 8.5.3
       tailwindcss:
         specifier: ^4.0.7
@@ -276,7 +276,7 @@ importers:
         specifier: experimental
         version: 0.0.0-experimental-8a7b487e-20250218(eslint@9.20.1(jiti@2.4.2))
       postcss:
-        specifier: ^8.5.2
+        specifier: ^8.5.3
         version: 8.5.3
       tailwindcss:
         specifier: ^4.0.7
@@ -337,7 +337,7 @@ importers:
         specifier: experimental
         version: 0.0.0-experimental-8a7b487e-20250218(eslint@9.20.1(jiti@2.4.2))
       postcss:
-        specifier: ^8.5.2
+        specifier: ^8.5.3
         version: 8.5.3
       tailwindcss:
         specifier: ^4.0.7
@@ -401,7 +401,7 @@ importers:
         specifier: experimental
         version: 0.0.0-experimental-8a7b487e-20250218(eslint@9.20.1(jiti@2.4.2))
       postcss:
-        specifier: ^8.5.2
+        specifier: ^8.5.3
         version: 8.5.3
       tailwindcss:
         specifier: ^4.0.7
@@ -625,7 +625,7 @@ importers:
         specifier: ^4.3.4
         version: 4.3.4(vite@6.1.1(@types/node@20.17.19)(jiti@2.4.2)(lightningcss@1.29.1)(terser@5.39.0)(tsx@4.19.3)(yaml@2.7.0))
       postcss:
-        specifier: ^8.5.2
+        specifier: ^8.5.3
         version: 8.5.3
       tailwindcss:
         specifier: ^4.0.7
