@@ -1,10 +1,10 @@
 /// <reference types="vinxi/types/client" />
 import {StartClient} from '@tanstack/start'
+import {injectSpeedInsights} from '@vercel/speed-insights'
 import {hydrateRoot} from 'react-dom/client'
 import {createRouter} from './router'
-import { injectSpeedInsights } from '@vercel/speed-insights';
 
-injectSpeedInsights();
+injectSpeedInsights()
 
 const router = createRouter()
 
