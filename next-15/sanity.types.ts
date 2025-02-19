@@ -188,6 +188,15 @@ export type AllSanitySchemaTypes =
   | Slug
   | Theme
 export declare const internalGroqTypeReferenceTo: unique symbol
+// Source: ./src/app/Reactions.tsx
+// Variable: REACTIONS_QUERY
+// Query: *[_type == "reaction" && _id in $ids]{_id,emoji,reactions}
+export type REACTIONS_QUERYResult = Array<{
+  _id: string
+  emoji: string | null
+  reactions: number | null
+}>
+
 // Source: ./src/app/dynamic/page.tsx
 // Variable: DYNAMIC_DEMO_QUERY
 // Query: *[_type == "demo" && slug.current == $slug][0]{title,"fetchedAt": now()}
@@ -214,17 +223,21 @@ export type THEME_QUERYResult =
 
 // Source: ./src/app/page.tsx
 // Variable: DEMO_QUERY
-// Query: *[_type == "demo" && slug.current == $slug][0]{title,"fetchedAt": now()}
+// Query: *[_type == "demo" && slug.current == $slug][0]{title,reactions[0..4]{_key,_ref},"fetchedAt": now()}
 export type DEMO_QUERYResult = {
   title: string | null
+  reactions: Array<{
+    _key: string
+    _ref: string
+  }> | null
   fetchedAt: string
 } | null
 
 declare module '@sanity/client' {
   interface SanityQueries {
-    '*[_type == "demo" && slug.current == $slug][0]{title,"fetchedAt": now()}':
-      | DYNAMIC_DEMO_QUERYResult
-      | DEMO_QUERYResult
+    '*[_type == "reaction" && _id in $ids]{_id,emoji,reactions}': REACTIONS_QUERYResult
+    '*[_type == "demo" && slug.current == $slug][0]{title,"fetchedAt": now()}': DYNAMIC_DEMO_QUERYResult
     '*[_id == "theme"][0]{background,text,"fetchedAt":now()}': THEME_QUERYResult
+    '*[_type == "demo" && slug.current == $slug][0]{title,reactions[0..4]{_key,_ref},"fetchedAt": now()}': DEMO_QUERYResult
   }
 }

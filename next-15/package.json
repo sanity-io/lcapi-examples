@@ -12,6 +12,7 @@
   "dependencies": {
     "@sanity/client": "^6.23.0",
     "@vercel/speed-insights": "^1.2.0",
+    "framer-motion": "^12.4.2",
     "groq": "^3.64.2",
     "next": "15.1.7",
     "react": "^19.0.0",
