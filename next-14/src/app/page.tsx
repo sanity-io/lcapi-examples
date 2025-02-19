@@ -3,9 +3,10 @@ import {defineQuery} from 'groq'
 import type {Metadata} from 'next'
 import {Suspense} from 'react'
 import {TimeSince} from './TimeSince'
+import {Reactions, ReactionsFallback} from './Reactions'
 
 const DEMO_QUERY = defineQuery(
-  `*[_type == "demo" && slug.current == $slug][0]{title,"fetchedAt": now()}`,
+  `*[_type == "demo" && slug.current == $slug][0]{title,reactions[0..4]{_key,_ref},"fetchedAt": now()}`,
 )
 const slug = 'next-14'
 
@@ -27,6 +28,11 @@ export default async function Home() {
       {data?.fetchedAt && (
         <Suspense>
           <TimeSince label="page.tsx" since={data.fetchedAt} />
+        </Suspense>
+      )}
+      {Array.isArray(data?.reactions) && (
+        <Suspense fallback={<ReactionsFallback data={data.reactions} />}>
+          <Reactions data={data.reactions} />
         </Suspense>
       )}
     </div>
