@@ -103,7 +103,9 @@ function FloatingEmoji({emoji, delay, _key, setEmojis}: FloatingEmojiProps) {
 
   useEffect(() => {
     const timeout = setTimeout(() => {
-      setEmojis((emojis) => emojis.map((e) => (e.key === _key ? {...e, done: true} : e)))
+      startTransition(() => {
+        setEmojis((emojis) => emojis.map((e) => (e.key === _key ? {...e, done: true} : e)))
+      })
     }, delay + 4_000) // Increased delay
     return () => clearTimeout(timeout)
   }, [_key, delay, setEmojis])
