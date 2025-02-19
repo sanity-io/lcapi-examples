@@ -1,8 +1,8 @@
 import {sanityFetch} from '@/sanity/fetch'
 import {defineQuery} from 'groq'
 import {Suspense} from 'react'
-import {ReactionButton} from './ReactionButton.tsx'
-import {ReactionFallback} from './ReactionPrimitives.tsx'
+import {ReactionButton} from './ReactionButton'
+import {ReactionFallback} from './ReactionPrimitives'
 
 interface Props {
   data: {
