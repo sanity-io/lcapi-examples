@@ -71,7 +71,7 @@ function EmojiReactionButton(props: {onClick: () => void; emoji: string; reactio
   return (
     <div className="bg-(--theme-text)/40 focus-within:ring-(--theme-text) focus-within:ring-offset-(--theme-background) relative aspect-square rounded-lg transition duration-1000 ease-in-out focus-within:ring-2 focus-within:ring-offset-2 focus-within:duration-0">
       <motion.button
-        className="flex transform-gpu cursor-pointer items-center justify-center text-2xl subpixel-antialiased will-change-transform focus:outline-none"
+        className="flex transform-gpu cursor-pointer select-none items-center justify-center text-2xl subpixel-antialiased will-change-transform focus:outline-none"
         onClick={() => {
           setEmojis((emojis) => insert(emojis, 0))
           startTransition(async () => {
@@ -109,7 +109,7 @@ const FloatingEmoji = memo(function FloatingEmoji({
 
   return (
     <motion.div
-      className="pointer-events-none absolute inset-0 flex items-center justify-center text-2xl will-change-transform"
+      className="pointer-events-none absolute inset-0 flex select-none items-center justify-center text-2xl will-change-transform"
       initial={{
         opacity: 0,
         scale: 0.5,

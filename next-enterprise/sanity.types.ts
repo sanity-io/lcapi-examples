@@ -189,6 +189,13 @@ export type AllSanitySchemaTypes =
   | Theme
 export declare const internalGroqTypeReferenceTo: unique symbol
 // Source: ./src/app/Reactions.tsx
+// Variable: REACTIONS_QUERY
+// Query: *[_type == "reaction" && _id in $ids]{_id,emoji,reactions}
+export type REACTIONS_QUERYResult = Array<{
+  _id: string
+  emoji: string | null
+  reactions: number | null
+}>
 // Variable: REACTION_QUERY
 // Query: *[_type == "reaction" && _id == $id][0]{emoji,reactions}
 export type REACTION_QUERYResult = {
@@ -226,6 +233,7 @@ export type DEMO_QUERYResult = {
 
 declare module '@sanity/client' {
   interface SanityQueries {
+    '*[_type == "reaction" && _id in $ids]{_id,emoji,reactions}': REACTIONS_QUERYResult
     '*[_type == "reaction" && _id == $id][0]{emoji,reactions}': REACTION_QUERYResult
     '*[_id == "theme"][0]{background,text,"fetchedAt": dateTime(now())}': THEME_QUERYResult
     '*[_type == "demo" && slug.current == $slug][0]{title,reactions[0..4]{_key,_ref},"fetchedAt": dateTime(now())}': DEMO_QUERYResult

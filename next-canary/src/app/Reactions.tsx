@@ -25,9 +25,12 @@ export async function Reactions(props: Props) {
   )
 }
 
+/**
+ * With `'use cache'` we can cache each reaction button separately, so it's better to run them in parallel queries
+ */
 const REACTION_QUERY = defineQuery(`*[_type == "reaction" && _id == $id][0]{emoji,reactions}`)
 
-export async function Reaction(props: {_ref: string}) {
+async function Reaction(props: {_ref: string}) {
   const {_ref} = props
 
   const data = sanityFetch({query: REACTION_QUERY, params: {id: _ref}}).then(({data}) => data)

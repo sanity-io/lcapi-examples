@@ -1,8 +1,8 @@
 'use client'
 
 import {AnimatePresence, motion} from 'framer-motion'
-import {memo, startTransition, use, useEffect, useOptimistic, useState} from 'react'
-import {ReactionFallback, Square} from './ReactionPrimitives'
+import {memo, startTransition, useEffect, useOptimistic, useState} from 'react'
+import {Square} from './ReactionPrimitives'
 
 interface Emoji {
   key: string
@@ -33,17 +33,12 @@ function insertMany(emojis: Emoji[], needed: number) {
 
 export function ReactionButton(props: {
   onClick: () => void
-  data: Promise<{
-    emoji: string | null
-    reactions: number | null
-  } | null>
-}) {
-  const {onClick} = props
-  const data = use(props.data)
-
-  if (!data?.emoji || typeof data.reactions !== 'number') {
-    return <ReactionFallback />
+  data: {
+    emoji: string
+    reactions: number
   }
+}) {
+  const {data, onClick} = props
 
   return <EmojiReactionButton onClick={onClick} emoji={data.emoji} reactions={data.reactions} />
 }
@@ -71,7 +66,7 @@ function EmojiReactionButton(props: {onClick: () => void; emoji: string; reactio
   return (
     <div className="bg-(--theme-text)/40 focus-within:ring-(--theme-text) focus-within:ring-offset-(--theme-background) relative aspect-square rounded-lg transition duration-1000 ease-in-out focus-within:ring-2 focus-within:ring-offset-2 focus-within:duration-0">
       <motion.button
-        className="flex transform-gpu cursor-pointer items-center justify-center text-2xl subpixel-antialiased will-change-transform focus:outline-none"
+        className="flex transform-gpu cursor-pointer select-none items-center justify-center text-2xl subpixel-antialiased will-change-transform focus:outline-none"
         onClick={() => {
           setEmojis((emojis) => insert(emojis, 0))
           startTransition(async () => {
@@ -109,7 +104,7 @@ const FloatingEmoji = memo(function FloatingEmoji({
 
   return (
     <motion.div
-      className="pointer-events-none absolute inset-0 flex items-center justify-center text-2xl will-change-transform"
+      className="pointer-events-none absolute inset-0 flex select-none items-center justify-center text-2xl will-change-transform"
       initial={{
         opacity: 0,
         scale: 0.5,
