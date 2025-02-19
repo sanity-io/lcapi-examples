@@ -6,10 +6,6 @@ const nextConfig: NextConfig = {
       fullUrl: true,
     },
   },
-  experimental: {
-    ppr: 'incremental',
-    useCache: true,
-  },
 }
 
 export default nextConfig

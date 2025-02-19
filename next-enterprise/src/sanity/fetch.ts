@@ -1,7 +1,14 @@
 import {type ClientReturn, type QueryParams} from '@sanity/client'
-import {unstable_cacheLife as cacheLife, unstable_cacheTag as cacheTag} from 'next/cache'
 import {client} from './client'
 
+/**
+ * Next v15 has a first class API in `next-sanity` that should be used instead of this function.
+ * It's here to show what the fetch function would look like if you were to implement it yourself, solving for production data.
+ * The `defineLive` utility in `next-sanity` handles more advanced use cases, such as live preview, integrating with `sanity/presentation`, and more.
+ * @example
+ * import {createClient, defineLive} from 'next-sanity'
+ * export const {sanityFetch, SanityLive} = defineLive({client: createClient({projectId, dataset, ...})})
+ */
 export async function sanityFetch<const QueryString extends string>({
   query,
   params = {},
@@ -9,27 +16,16 @@ export async function sanityFetch<const QueryString extends string>({
   query: QueryString
   params?: QueryParams
 }): Promise<{data: ClientReturn<QueryString, unknown>; tags?: string[]}> {
-  'use cache'
-
-  /**
-   * The default cache profile isn't ideal for live content, as it has unnecessary time based background validation, as well as a too lazy client stale value
-   * https://github.com/vercel/next.js/blob/8dd358002baf4244c0b2e38b5bda496daf60dacb/packages/next/cache.d.ts#L14-L26
-   */
-  cacheLife({
-    stale: Infinity,
-    revalidate: Infinity,
-    expire: Infinity,
-  })
-
-  const {result, syncTags} = await client.fetch(query, params, {
+  // We have to fetch the sync tags first (this double-fetching is required until the new `cacheTag` API, related to 'use cache', is available in a stable next.js release)
+  const {syncTags} = await client.fetch(query, params, {
     filterResponse: false,
     cacheMode: 'noStale',
+    tag: 'fetch-sync-tags', // The request tag makes the fetch unique, avoids deduping with the cached query that has tags
+    next: {revalidate: false, tags: ['sanity:tags']},
   })
-  const cacheTags = [...(syncTags || [])]
-  /**
-   * The tags used here, are expired later on in the `expireTags` Server Action with the `expireTag` function from `next/cache`
-   */
-  cacheTag(...cacheTags)
-
-  return {data: result, tags: cacheTags}
+  const data = await client.fetch(query, params, {
+    cacheMode: 'noStale',
+    next: {revalidate: false, tags: syncTags},
+  })
+  return {data, tags: syncTags}
 }
