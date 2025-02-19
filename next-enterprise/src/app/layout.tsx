@@ -7,9 +7,7 @@ import {SanityLive} from './SanityLive'
 import {ThemeButton} from './ThemeButton'
 import {TimeSince} from './TimeSince'
 
-const THEME_QUERY = defineQuery(
-  `*[_id == "theme"][0]{background,text,"fetchedAt":now()}`,
-)
+const THEME_QUERY = defineQuery(`*[_id == "theme"][0]{background,text,"fetchedAt":now()}`)
 
 export const preferredRegion = 'cdg1' // Paris is closest to Sanity Content Lake in Belgium
 
