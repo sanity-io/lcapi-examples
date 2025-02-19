@@ -4,7 +4,7 @@ on:
   push:
     branches: [main]
     paths:
-      - 'next-enterprise/expirator-service/**'
+      - "next-enterprise/expirator-service/**"
 
 concurrency:
   group: ${{ github.workflow }}

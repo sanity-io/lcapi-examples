@@ -2,8 +2,8 @@ import {sanityFetch} from '@/sanity/fetch'
 import {defineQuery} from 'groq'
 import type {Metadata} from 'next'
 import {Suspense} from 'react'
-import {TimeSince} from './TimeSince'
 import {Reactions, ReactionsFallback} from './Reactions'
+import {TimeSince} from './TimeSince'
 
 const DEMO_QUERY = defineQuery(
   `*[_type == "demo" && slug.current == $slug][0]{title,reactions[0..4]{_key,_ref},"fetchedAt": now()}`,

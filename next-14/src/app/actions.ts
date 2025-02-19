@@ -4,7 +4,6 @@ import type {SyncTag} from '@sanity/client'
 import {revalidateTag} from 'next/cache'
 
 export async function expireTags(tags: SyncTag[]) {
-  revalidateTag('sanity:fetch-sync-tags')
   for (const tag of tags) {
     revalidateTag(tag)
   }
@@ -12,8 +11,15 @@ export async function expireTags(tags: SyncTag[]) {
 }
 
 export async function randomColorTheme() {
-  await fetch('https://lcapi-examples-api.sanity.dev/api/random-color-theme', {
+  const response = await fetch('https://lcapi-examples-api.sanity.dev/api/random-color-theme', {
     method: 'PUT',
   })
-  revalidateTag('theme')
+  if (!response.ok) {
+    return null
+  }
+  const data = await response.json()
+  if (typeof data === 'object' && 'background' in data && 'text' in data) {
+    return data as {background: string; text: string}
+  }
+  return null
 }
