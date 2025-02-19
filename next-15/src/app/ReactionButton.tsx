@@ -23,7 +23,7 @@ function insert(emojis: Emoji[], delay: number) {
 }
 
 function insertMany(emojis: Emoji[], needed: number) {
-  const stagger = 10_000 / needed
+  const stagger = 5_000 / needed
   const nextEmojis = [...emojis]
   for (let i = 0; i < needed; i++) {
     nextEmojis.push(createEmoji(i * stagger))
