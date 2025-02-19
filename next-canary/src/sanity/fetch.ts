@@ -1,5 +1,5 @@
 import {type ClientReturn, type QueryParams} from '@sanity/client'
-import {unstable_cacheLife as cacheLife, unstable_cacheTag as cacheTag} from 'next/cache'
+import {unstable_cacheTag as cacheTag} from 'next/cache'
 import {client} from './client'
 
 export async function sanityFetch<const QueryString extends string>({
