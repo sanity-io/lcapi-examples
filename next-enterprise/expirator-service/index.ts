@@ -34,7 +34,8 @@ await new Promise((resolve, reject) => {
           .then((json) => console.info('Forwarded', json))
           .catch((reason) =>
             console.error('Failed to forward tags to api route', event, reason, url.toString()),
-          ).finally(() => console.groupEnd())
+          )
+          .finally(() => console.groupEnd())
       } else if (event.type === 'reconnect' || event.type === 'restart') {
         console.error('No longer connected to Sanity Live', event, 'shutting down...')
         reject(new Error('No longer connected to Sanity Live', {cause: event}))
