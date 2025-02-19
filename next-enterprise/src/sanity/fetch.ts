@@ -30,13 +30,16 @@ export async function sanityFetch<const QueryString extends string>({
     cache: 'force-cache',
     // Since we're double-fetching, and this request doesn't have a cache tags, we set a time based revalidation to ensure there's
     // an eventual consistency guarantee for certain edge cases that wouldn't be caught be the expirator service
-    next: {revalidate}
+    next: {revalidate},
   })
   const data = await client.fetch(query, params, {
     cacheMode: 'noStale',
     cache: 'force-cache',
     // If we're not in production we can't expect the webhook to be able to expire tags, so we fallback to time based revalidation
-    next: {revalidate: process.env.VERCEL_ENV === 'preview' ? revalidate : undefined, tags: syncTags},
+    next: {
+      revalidate: process.env.VERCEL_ENV === 'preview' ? revalidate : undefined,
+      tags: syncTags,
+    },
   })
   return {data, tags: syncTags}
 }
