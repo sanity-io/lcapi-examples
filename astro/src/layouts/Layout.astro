@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css'
+import SpeedInsights from '@vercel/speed-insights/astro';
 import {ClientRouter} from 'astro:transitions'
 import {defineQuery} from 'groq'
 import SanityLive from '../components/SanityLive.astro'
@@ -39,5 +40,6 @@ const {data, tags} = await sanityFetch({query: LAYOUT_QUERY, lastLiveEventId})
       <ThemeButton client:load />
     </div>
     {Array.isArray(tags) && tags.length > 0 && <SanityLive tags={tags} />}
+    <SpeedInsights />
   </body>
 </html>

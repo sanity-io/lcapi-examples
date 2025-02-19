@@ -5,6 +5,7 @@ import {Suspense} from 'react'
 import {SanityLive} from './SanityLive'
 import {ThemeButton} from './ThemeButton'
 import {TimeSince} from './TimeSince'
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 const THEME_QUERY = defineQuery(`*[_id == "theme"][0]{background,text,"fetchedAt":now()}`)
 
@@ -41,6 +42,7 @@ export default async function RootLayout({
         <Suspense>
           <SanityLive />
         </Suspense>
+        <SpeedInsights />
       </body>
     </html>
   )

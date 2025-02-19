@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { SpeedInsights } from '@vercel/speed-insights/vue';
+
 import {sanityFetch} from '@/utils/sanity/fetch'
 import {INDEX_QUERY} from '@/utils/sanity/queries'
 
@@ -43,4 +45,5 @@ useHead({
       <SanityLive :tags="demo?.tags" />
     </ClientOnly>
   </main>
+  <SpeedInsights />
 </template>

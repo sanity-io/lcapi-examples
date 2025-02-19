@@ -1,10 +1,14 @@
 <script lang="ts">
+  import { injectSpeedInsights } from '@vercel/speed-insights/sveltekit';
+
   import SanityLive from '$lib/sanity/SanityLive.svelte'
   import ThemeButton from '$lib/sanity/ThemeButton.svelte'
   import '../app.css'
   import type {LayoutProps} from './$types'
 
   let {children, data}: LayoutProps = $props()
+
+  injectSpeedInsights()
 </script>
 
 <main
