@@ -206,15 +206,19 @@ export type THEME_QUERYResult =
 
 // Source: ./src/app/page.tsx
 // Variable: DEMO_QUERY
-// Query: *[_type == "demo" && slug.current == $slug][0]{title,"fetchedAt": dateTime(now())}
+// Query: *[_type == "demo" && slug.current == $slug][0]{title,reactions[0..4]{_key,_ref},"fetchedAt": dateTime(now())}
 export type DEMO_QUERYResult = {
   title: string | null
+  reactions: Array<{
+    _key: string
+    _ref: string
+  }> | null
   fetchedAt: string | null
 } | null
 
 declare module '@sanity/client' {
   interface SanityQueries {
     '*[_id == "theme"][0]{background,text,"fetchedAt": dateTime(now())}': THEME_QUERYResult
-    '*[_type == "demo" && slug.current == $slug][0]{title,"fetchedAt": dateTime(now())}': DEMO_QUERYResult
+    '*[_type == "demo" && slug.current == $slug][0]{title,reactions[0..4]{_key,_ref},"fetchedAt": dateTime(now())}': DEMO_QUERYResult
   }
 }
