@@ -2151,8 +2151,8 @@ packages:
     resolution: {integrity: sha512-JBxkERygn7Bv/GbN5Rv8Ul6LVknS+5Bp6RgDC/O8gEBU/yeH5Ui5C/OlWrTb6qct7LjjfT6Re2NxB0ln0yYybA==}
     engines: {node: '>=18.18'}
 
-  '@humanwhocodes/retry@0.4.1':
-    resolution: {integrity: sha512-c7hNEllBlenFTHBky65mhq8WD2kbN9Q6gk0bTk8lSBvc554jpXSkST1iePudpt7+A/AQvuHs9EMqjHDXMY1lrA==}
+  '@humanwhocodes/retry@0.4.2':
+    resolution: {integrity: sha512-xeO57FpIu4p1Ri3Jq/EXq4ClRm86dVF2z/+kvFnyqVYRavTZmaFaUBbWCOuuTh0o/g7DSsk6kc2vrS4Vl5oPOQ==}
     engines: {node: '>=18.18'}
 
   '@ianvs/prettier-plugin-sort-imports@4.4.1':
@@ -6312,8 +6312,8 @@ packages:
   hast-util-from-html@2.0.3:
     resolution: {integrity: sha512-CUSRHXyKjzHov8yKsQjGOElXy/3EKpyX56ELnkHH34vDVw1N1XSQ1ZcAvTyAPtGqLTuKP/uxM+aLkSPqF/EtMw==}
 
-  hast-util-from-parse5@8.0.2:
-    resolution: {integrity: sha512-SfMzfdAi/zAoZ1KkFEyyeXBn7u/ShQrfd675ZEE9M3qj+PMFX05xubzRyF76CCSJu8au9jgVxDV1+okFvgZU4A==}
+  hast-util-from-parse5@8.0.3:
+    resolution: {integrity: sha512-3kxEVkEKt0zvcZ3hCRYI8rqrgwtlIOFMWkbclACvjlDw8Li9S2hk/d51OI0nr/gIpdMHNepwgOKqZ/sy0Clpyg==}
 
   hast-util-is-element@3.0.0:
     resolution: {integrity: sha512-Val9mnv2IWpLbNPqc/pUem+a7Ipj2aHacCwgNfTiK0vJKl0LF+4Ba4+v1oPHFpf3bLYmreq0/l3Gud9S5OH42g==}
@@ -6814,8 +6814,8 @@ packages:
     resolution: {integrity: sha512-WhB9zCku7EGTj/HQQRz5aUQEUeoQZH2bWcltRErOpymJ4boYE6wL9Tbr23krRPSZ+C5zqNSrSw+Cc7sZZ4b7vg==}
     engines: {node: '>=0.10.0'}
 
-  isomorphic-dompurify@2.21.0:
-    resolution: {integrity: sha512-IjBG/D6ApEiO6ciXvrzPqbE4xOLbjRTshSWRSeeycQVhvsxf1O9PhA7LoqwMYS0/2PKLNFJRugwsNV5UihtLxQ==}
+  isomorphic-dompurify@2.22.0:
+    resolution: {integrity: sha512-A2xsDNST1yB94rErEnwqlzSvGllCJ4e8lDMe1OWBH2hvpfc/2qzgMEiDshTO1HwO+PIDTiYeOc7ZDB7Ds49BOg==}
     engines: {node: '>=18'}
 
   iterator.prototype@1.1.5:
@@ -10004,8 +10004,8 @@ packages:
   util-deprecate@1.0.2:
     resolution: {integrity: sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==}
 
-  uuid@11.0.5:
-    resolution: {integrity: sha512-508e6IcKLrhxKdBbcA2b4KQZlLVp2+J5UwQ6F7Drckkc5N9ZJwFa4TgWtsww9UG8fGHbm6gbV19TdM5pQ4GaIA==}
+  uuid@11.1.0:
+    resolution: {integrity: sha512-0/A9rDy9P7cJ+8w1c9WD9V//9Wj15Ce2MPz8Ri6032usz+NfePxx5AcN3bN+r6ZL6jEo066/yNYB3tn4pQEx+A==}
     hasBin: true
 
   uuid@8.3.2:
@@ -12121,7 +12121,7 @@ snapshots:
 
   '@humanwhocodes/retry@0.3.1': {}
 
-  '@humanwhocodes/retry@0.4.1': {}
+  '@humanwhocodes/retry@0.4.2': {}
 
   '@ianvs/prettier-plugin-sort-imports@4.4.1(@vue/compiler-sfc@3.5.13)(prettier@3.5.1)':
     dependencies:
@@ -13053,16 +13053,16 @@ snapshots:
 
   '@polka/url@1.0.0-next.28': {}
 
-  '@portabletext/block-tools@1.1.8(@sanity/types@3.76.1(@types/react@19.0.10))(@types/react@19.0.10)':
+  '@portabletext/block-tools@1.1.8(@sanity/types@3.76.1(@types/react@19.0.10)(debug@4.4.0))(@types/react@19.0.10)':
     dependencies:
       '@sanity/types': 3.76.1(@types/react@19.0.10)(debug@4.4.0)
       '@types/react': 19.0.10
       get-random-values-esm: 1.0.2
       lodash: 4.17.21
 
-  '@portabletext/editor@1.34.1(@sanity/schema@3.76.1(@types/react@19.0.10))(@sanity/types@3.76.1(@types/react@19.0.10))(@types/react@19.0.10)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(rxjs@7.8.1)':
+  '@portabletext/editor@1.34.1(@sanity/schema@3.76.1(@types/react@19.0.10)(debug@4.4.0))(@sanity/types@3.76.1(@types/react@19.0.10)(debug@4.4.0))(@types/react@19.0.10)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(rxjs@7.8.1)':
     dependencies:
-      '@portabletext/block-tools': 1.1.8(@sanity/types@3.76.1(@types/react@19.0.10))(@types/react@19.0.10)
+      '@portabletext/block-tools': 1.1.8(@sanity/types@3.76.1(@types/react@19.0.10)(debug@4.4.0))(@types/react@19.0.10)
       '@portabletext/patches': 1.1.3
       '@portabletext/to-html': 2.0.14
       '@sanity/schema': 3.76.1(@types/react@19.0.10)(debug@4.4.0)
@@ -13390,7 +13390,7 @@ snapshots:
   '@sanity/comlink@3.0.1':
     dependencies:
       rxjs: 7.8.1
-      uuid: 11.0.5
+      uuid: 11.1.0
       xstate: 5.19.2
 
   '@sanity/diff-match-patch@3.2.0': {}
@@ -13479,7 +13479,7 @@ snapshots:
       - '@types/react'
       - supports-color
 
-  '@sanity/insert-menu@1.1.2(@emotion/is-prop-valid@1.2.2)(@sanity/types@3.76.1(@types/react@19.0.10))(react-dom@19.0.0(react@19.0.0))(react-is@18.3.1)(react@19.0.0)(styled-components@6.1.15(react-dom@19.0.0(react@19.0.0))(react@19.0.0))':
+  '@sanity/insert-menu@1.1.2(@emotion/is-prop-valid@1.2.2)(@sanity/types@3.76.1(@types/react@19.0.10)(debug@4.4.0))(react-dom@19.0.0(react@19.0.0))(react-is@18.3.1)(react@19.0.0)(styled-components@6.1.15(react-dom@19.0.0(react@19.0.0))(react@19.0.0))':
     dependencies:
       '@sanity/icons': 3.6.0(react@19.0.0)
       '@sanity/types': 3.76.1(@types/react@19.0.10)(debug@4.4.0)
@@ -13578,7 +13578,7 @@ snapshots:
       rxjs: 7.8.1
       treeify: 1.1.0
       typescript: 5.7.3
-      uuid: 11.0.5
+      uuid: 11.1.0
       zod: 3.24.1
       zod-validation-error: 3.4.0(zod@3.24.1)
     optionalDependencies:
@@ -13589,11 +13589,11 @@ snapshots:
       - debug
       - supports-color
 
-  '@sanity/presentation-comlink@1.0.7(@sanity/client@6.28.0)(@sanity/types@3.76.1(@types/react@19.0.10))':
+  '@sanity/presentation-comlink@1.0.7(@sanity/client@6.28.0(debug@4.4.0))(@sanity/types@3.76.1(@types/react@19.0.10)(debug@4.4.0))':
     dependencies:
       '@sanity/client': 6.28.0(debug@4.4.0)
       '@sanity/comlink': 3.0.1
-      '@sanity/visual-editing-types': 1.0.7(@sanity/client@6.28.0)(@sanity/types@3.76.1(@types/react@19.0.10))
+      '@sanity/visual-editing-types': 1.0.7(@sanity/client@6.28.0(debug@4.4.0))(@sanity/types@3.76.1(@types/react@19.0.10)(debug@4.4.0))
     transitivePeerDependencies:
       - '@sanity/types'
 
@@ -13602,7 +13602,7 @@ snapshots:
       prettier: 3.5.1
       prettier-plugin-packagejson: 2.5.8(prettier@3.5.1)
 
-  '@sanity/preview-url-secret@2.1.4(@sanity/client@6.28.0)':
+  '@sanity/preview-url-secret@2.1.4(@sanity/client@6.28.0(debug@4.4.0))':
     dependencies:
       '@sanity/client': 6.28.0(debug@4.4.0)
       '@sanity/uuid': 3.0.2
@@ -13755,7 +13755,7 @@ snapshots:
       - react-dom
       - react-is
 
-  '@sanity/visual-editing-types@1.0.7(@sanity/client@6.28.0)(@sanity/types@3.76.1(@types/react@19.0.10))':
+  '@sanity/visual-editing-types@1.0.7(@sanity/client@6.28.0(debug@4.4.0))(@sanity/types@3.76.1(@types/react@19.0.10)(debug@4.4.0))':
     dependencies:
       '@sanity/client': 6.28.0(debug@4.4.0)
     optionalDependencies:
@@ -16928,7 +16928,7 @@ snapshots:
       '@typescript-eslint/parser': 8.24.1(eslint@9.20.1(jiti@2.4.2))(typescript@5.7.3)
       eslint: 9.20.1(jiti@2.4.2)
       eslint-import-resolver-node: 0.3.9
-      eslint-import-resolver-typescript: 3.8.2(eslint-plugin-import-x@4.6.1(eslint@9.20.1(jiti@2.4.2))(typescript@5.7.3))(eslint-plugin-import@2.31.0)(eslint@9.20.1(jiti@2.4.2))
+      eslint-import-resolver-typescript: 3.8.2(eslint-plugin-import-x@4.6.1(eslint@9.20.1(jiti@2.4.2))(typescript@5.7.3))(eslint-plugin-import@2.31.0(@typescript-eslint/parser@8.24.1(eslint@9.20.1(jiti@2.4.2))(typescript@5.7.3))(eslint@9.20.1(jiti@2.4.2)))(eslint@9.20.1(jiti@2.4.2))
       eslint-plugin-import: 2.31.0(@typescript-eslint/parser@8.24.1(eslint@9.20.1(jiti@2.4.2))(typescript@5.7.3))(eslint-import-resolver-typescript@3.8.2)(eslint@9.20.1(jiti@2.4.2))
       eslint-plugin-jsx-a11y: 6.10.2(eslint@9.20.1(jiti@2.4.2))
       eslint-plugin-react: 7.37.4(eslint@9.20.1(jiti@2.4.2))
@@ -16948,7 +16948,7 @@ snapshots:
       '@typescript-eslint/parser': 8.24.1(eslint@9.20.1(jiti@2.4.2))(typescript@5.7.3)
       eslint: 9.20.1(jiti@2.4.2)
       eslint-import-resolver-node: 0.3.9
-      eslint-import-resolver-typescript: 3.8.2(eslint-plugin-import-x@4.6.1(eslint@9.20.1(jiti@2.4.2))(typescript@5.7.3))(eslint-plugin-import@2.31.0)(eslint@9.20.1(jiti@2.4.2))
+      eslint-import-resolver-typescript: 3.8.2(eslint-plugin-import-x@4.6.1(eslint@9.20.1(jiti@2.4.2))(typescript@5.7.3))(eslint-plugin-import@2.31.0(@typescript-eslint/parser@8.24.1(eslint@9.20.1(jiti@2.4.2))(typescript@5.7.3))(eslint@9.20.1(jiti@2.4.2)))(eslint@9.20.1(jiti@2.4.2))
       eslint-plugin-import: 2.31.0(@typescript-eslint/parser@8.24.1(eslint@9.20.1(jiti@2.4.2))(typescript@5.7.3))(eslint-import-resolver-typescript@3.8.2)(eslint@9.20.1(jiti@2.4.2))
       eslint-plugin-jsx-a11y: 6.10.2(eslint@9.20.1(jiti@2.4.2))
       eslint-plugin-react: 7.37.4(eslint@9.20.1(jiti@2.4.2))
@@ -17004,7 +17004,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  eslint-import-resolver-typescript@3.8.2(eslint-plugin-import-x@4.6.1(eslint@9.20.1(jiti@2.4.2))(typescript@5.7.3))(eslint-plugin-import@2.31.0)(eslint@9.20.1(jiti@2.4.2)):
+  eslint-import-resolver-typescript@3.8.2(eslint-plugin-import-x@4.6.1(eslint@9.20.1(jiti@2.4.2))(typescript@5.7.3))(eslint-plugin-import@2.31.0(@typescript-eslint/parser@8.24.1(eslint@9.20.1(jiti@2.4.2))(typescript@5.7.3))(eslint@9.20.1(jiti@2.4.2)))(eslint@9.20.1(jiti@2.4.2)):
     dependencies:
       '@nolyfill/is-core-module': 1.0.39
       debug: 4.4.0(supports-color@9.4.0)
@@ -17046,14 +17046,14 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  eslint-module-utils@2.12.0(@typescript-eslint/parser@8.24.1(eslint@9.20.1(jiti@2.4.2))(typescript@5.7.3))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.8.2)(eslint@9.20.1(jiti@2.4.2)):
+  eslint-module-utils@2.12.0(@typescript-eslint/parser@8.24.1(eslint@9.20.1(jiti@2.4.2))(typescript@5.7.3))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.8.2(eslint-plugin-import-x@4.6.1(eslint@9.20.1(jiti@2.4.2))(typescript@5.7.3))(eslint-plugin-import@2.31.0(@typescript-eslint/parser@8.24.1(eslint@9.20.1(jiti@2.4.2))(typescript@5.7.3))(eslint@9.20.1(jiti@2.4.2)))(eslint@9.20.1(jiti@2.4.2)))(eslint@9.20.1(jiti@2.4.2)):
     dependencies:
       debug: 3.2.7
     optionalDependencies:
       '@typescript-eslint/parser': 8.24.1(eslint@9.20.1(jiti@2.4.2))(typescript@5.7.3)
       eslint: 9.20.1(jiti@2.4.2)
       eslint-import-resolver-node: 0.3.9
-      eslint-import-resolver-typescript: 3.8.2(eslint-plugin-import-x@4.6.1(eslint@9.20.1(jiti@2.4.2))(typescript@5.7.3))(eslint-plugin-import@2.31.0)(eslint@9.20.1(jiti@2.4.2))
+      eslint-import-resolver-typescript: 3.8.2(eslint-plugin-import-x@4.6.1(eslint@9.20.1(jiti@2.4.2))(typescript@5.7.3))(eslint-plugin-import@2.31.0(@typescript-eslint/parser@8.24.1(eslint@9.20.1(jiti@2.4.2))(typescript@5.7.3))(eslint@9.20.1(jiti@2.4.2)))(eslint@9.20.1(jiti@2.4.2))
     transitivePeerDependencies:
       - supports-color
 
@@ -17167,7 +17167,7 @@ snapshots:
       doctrine: 2.1.0
       eslint: 9.20.1(jiti@2.4.2)
       eslint-import-resolver-node: 0.3.9
-      eslint-module-utils: 2.12.0(@typescript-eslint/parser@8.24.1(eslint@9.20.1(jiti@2.4.2))(typescript@5.7.3))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.8.2)(eslint@9.20.1(jiti@2.4.2))
+      eslint-module-utils: 2.12.0(@typescript-eslint/parser@8.24.1(eslint@9.20.1(jiti@2.4.2))(typescript@5.7.3))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.8.2(eslint-plugin-import-x@4.6.1(eslint@9.20.1(jiti@2.4.2))(typescript@5.7.3))(eslint-plugin-import@2.31.0(@typescript-eslint/parser@8.24.1(eslint@9.20.1(jiti@2.4.2))(typescript@5.7.3))(eslint@9.20.1(jiti@2.4.2)))(eslint@9.20.1(jiti@2.4.2)))(eslint@9.20.1(jiti@2.4.2))
       hasown: 2.0.2
       is-core-module: 2.16.1
       is-glob: 4.0.3
@@ -17454,7 +17454,7 @@ snapshots:
       '@eslint/plugin-kit': 0.2.6
       '@humanfs/node': 0.16.6
       '@humanwhocodes/module-importer': 1.0.1
-      '@humanwhocodes/retry': 0.4.1
+      '@humanwhocodes/retry': 0.4.2
       '@types/estree': 1.0.6
       '@types/json-schema': 7.0.15
       ajv: 6.12.6
@@ -18153,18 +18153,18 @@ snapshots:
     dependencies:
       '@types/hast': 3.0.4
       devlop: 1.1.0
-      hast-util-from-parse5: 8.0.2
+      hast-util-from-parse5: 8.0.3
       parse5: 7.2.1
       vfile: 6.0.3
       vfile-message: 4.0.2
 
-  hast-util-from-parse5@8.0.2:
+  hast-util-from-parse5@8.0.3:
     dependencies:
       '@types/hast': 3.0.4
       '@types/unist': 3.0.3
       devlop: 1.1.0
       hastscript: 9.0.1
-      property-information: 6.5.0
+      property-information: 7.0.0
       vfile: 6.0.3
       vfile-location: 5.0.3
       web-namespaces: 2.0.1
@@ -18184,7 +18184,7 @@ snapshots:
       '@types/hast': 3.0.4
       '@types/unist': 3.0.3
       '@ungap/structured-clone': 1.3.0
-      hast-util-from-parse5: 8.0.2
+      hast-util-from-parse5: 8.0.3
       hast-util-to-parse5: 8.0.0
       html-void-elements: 3.0.0
       mdast-util-to-hast: 13.2.0
@@ -18666,7 +18666,7 @@ snapshots:
 
   isobject@3.0.1: {}
 
-  isomorphic-dompurify@2.21.0:
+  isomorphic-dompurify@2.22.0:
     dependencies:
       dompurify: 3.2.4
       jsdom: 26.0.0
@@ -21213,8 +21213,8 @@ snapshots:
       '@dnd-kit/sortable': 7.0.2(@dnd-kit/core@6.3.1(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react@19.0.0)
       '@dnd-kit/utilities': 3.2.2(react@19.0.0)
       '@juggle/resize-observer': 3.4.0
-      '@portabletext/block-tools': 1.1.8(@sanity/types@3.76.1(@types/react@19.0.10))(@types/react@19.0.10)
-      '@portabletext/editor': 1.34.1(@sanity/schema@3.76.1(@types/react@19.0.10))(@sanity/types@3.76.1(@types/react@19.0.10))(@types/react@19.0.10)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(rxjs@7.8.1)
+      '@portabletext/block-tools': 1.1.8(@sanity/types@3.76.1(@types/react@19.0.10)(debug@4.4.0))(@types/react@19.0.10)
+      '@portabletext/editor': 1.34.1(@sanity/schema@3.76.1(@types/react@19.0.10)(debug@4.4.0))(@sanity/types@3.76.1(@types/react@19.0.10)(debug@4.4.0))(@types/react@19.0.10)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(rxjs@7.8.1)
       '@portabletext/react': 3.2.1(react@19.0.0)
       '@portabletext/toolkit': 2.0.17
       '@rexxars/react-json-inspector': 9.0.1(react@19.0.0)
@@ -21232,12 +21232,12 @@ snapshots:
       '@sanity/icons': 3.6.0(react@19.0.0)
       '@sanity/image-url': 1.1.0
       '@sanity/import': 3.37.9(@types/react@19.0.10)
-      '@sanity/insert-menu': 1.1.2(@emotion/is-prop-valid@1.2.2)(@sanity/types@3.76.1(@types/react@19.0.10))(react-dom@19.0.0(react@19.0.0))(react-is@18.3.1)(react@19.0.0)(styled-components@6.1.15(react-dom@19.0.0(react@19.0.0))(react@19.0.0))
+      '@sanity/insert-menu': 1.1.2(@emotion/is-prop-valid@1.2.2)(@sanity/types@3.76.1(@types/react@19.0.10)(debug@4.4.0))(react-dom@19.0.0(react@19.0.0))(react-is@18.3.1)(react@19.0.0)(styled-components@6.1.15(react-dom@19.0.0(react@19.0.0))(react@19.0.0))
       '@sanity/logos': 2.1.13(@sanity/color@3.0.6)(react@19.0.0)
       '@sanity/migrate': 3.76.1(@types/react@19.0.10)
       '@sanity/mutator': 3.76.1(@types/react@19.0.10)
-      '@sanity/presentation-comlink': 1.0.7(@sanity/client@6.28.0)(@sanity/types@3.76.1(@types/react@19.0.10))
-      '@sanity/preview-url-secret': 2.1.4(@sanity/client@6.28.0)
+      '@sanity/presentation-comlink': 1.0.7(@sanity/client@6.28.0(debug@4.4.0))(@sanity/types@3.76.1(@types/react@19.0.10)(debug@4.4.0))
+      '@sanity/preview-url-secret': 2.1.4(@sanity/client@6.28.0(debug@4.4.0))
       '@sanity/schema': 3.76.1(@types/react@19.0.10)(debug@4.4.0)
       '@sanity/telemetry': 0.7.9(react@19.0.0)
       '@sanity/types': 3.76.1(@types/react@19.0.10)(debug@4.4.0)
@@ -21279,7 +21279,7 @@ snapshots:
       i18next: 23.16.8
       import-fresh: 3.3.1
       is-hotkey-esm: 1.0.0
-      isomorphic-dompurify: 2.21.0
+      isomorphic-dompurify: 2.22.0
       jsdom: 23.2.0
       jsdom-global: 3.0.2(jsdom@23.2.0)
       json-lexer: 1.2.0
@@ -21332,7 +21332,7 @@ snapshots:
       use-effect-event: 1.0.2(react@19.0.0)
       use-hot-module-reload: 2.0.0(react@19.0.0)
       use-sync-external-store: 1.4.0(react@19.0.0)
-      uuid: 11.0.5
+      uuid: 11.1.0
       valibot: 0.31.1
       vite: 6.1.1(@types/node@20.17.19)(jiti@2.4.2)(lightningcss@1.29.1)(terser@5.39.0)(tsx@4.19.3)(yaml@2.7.0)
       yargs: 17.7.2
@@ -22586,7 +22586,7 @@ snapshots:
 
   util-deprecate@1.0.2: {}
 
-  uuid@11.0.5: {}
+  uuid@11.1.0: {}
 
   uuid@8.3.2: {}
 
