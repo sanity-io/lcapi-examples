@@ -11,9 +11,10 @@ const DEMO_QUERY = defineQuery(
 const slug = 'next-enterprise'
 
 export async function generateMetadata(): Promise<Metadata> {
-  const {data} = await sanityFetch({query: DEMO_QUERY, params: {slug}})
+  const GENERATE_METADATA_DEMO_QUERY = defineQuery(`*[_type == "demo" && slug.current == $slug][0].title`)
+  const {data} = await sanityFetch({query: GENERATE_METADATA_DEMO_QUERY, params: {slug}})
   return {
-    title: data?.title || 'Next Enterprise',
+    title: data || 'Next Enterprise',
   }
 }
 
