@@ -1,8 +1,7 @@
 <script setup lang="ts">
-import { SpeedInsights } from '@vercel/speed-insights/vue';
-
 import {sanityFetch} from '@/utils/sanity/fetch'
 import {INDEX_QUERY} from '@/utils/sanity/queries'
+import {SpeedInsights} from '@vercel/speed-insights/vue'
 
 const route = useRoute()
 

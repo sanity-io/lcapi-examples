@@ -1,6 +1,5 @@
 <script lang="ts">
-  import { injectSpeedInsights } from '@vercel/speed-insights/sveltekit';
-
+  import {injectSpeedInsights} from '@vercel/speed-insights/sveltekit'
   import SanityLive from '$lib/sanity/SanityLive.svelte'
   import ThemeButton from '$lib/sanity/ThemeButton.svelte'
   import '../app.css'
