@@ -27,7 +27,7 @@ export async function sanityFetch<const QueryString extends string>({
   const data = await client.fetch(query, params, {
     cacheMode: 'noStale',
     cache: 'force-cache',
-    next: {tags: syncTags},
+    next: {revalidate: 15 * 60, tags: syncTags},
   })
   return {data, tags: syncTags}
 }
