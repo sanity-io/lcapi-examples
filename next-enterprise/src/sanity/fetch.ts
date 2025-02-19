@@ -22,6 +22,9 @@ export async function sanityFetch<const QueryString extends string>({
     cacheMode: 'noStale',
     tag: 'fetch-sync-tags', // The request tag makes the fetch unique, avoids deduping with the cached query that has tags
     cache: 'force-cache',
+    // Since we're double-fetching, and this request doesn't have a cache tags, we set a time based revalidation to ensure there's
+    // an eventual consistency guarantee for certain edge cases that wouldn't be caught be the expirator service
+    next: {revalidate: 15 * 60, }
   })
   const data = await client.fetch(query, params, {
     cacheMode: 'noStale',
