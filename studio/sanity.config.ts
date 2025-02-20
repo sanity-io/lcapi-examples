@@ -80,8 +80,5 @@ export default defineConfig({
 
   schema: {types: [themeType, demoType, reactionType]},
 
-  scheduledPublishing: {enabled: false},
-  tasks: {enabled: false},
-  comments: {enabled: false},
   releases: {enabled: true},
 })
