@@ -1,4 +1,5 @@
 <script setup lang="ts">
+/* eslint-disable vue/valid-template-root */
 import {CorsOriginError} from '@sanity/client'
 import {useRoute, useRouter} from '#app'
 import {onMounted, onUnmounted} from 'vue'
@@ -57,8 +58,10 @@ onMounted(() => {
 })
 
 onUnmounted(() => {
-  if (subscription) {
-    subscription.unsubscribe()
-  }
+  subscription?.unsubscribe()
 })
 </script>
+
+<template>
+  
+</template>

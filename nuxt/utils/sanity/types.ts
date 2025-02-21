@@ -190,7 +190,7 @@ export type AllSanitySchemaTypes =
 export declare const internalGroqTypeReferenceTo: unique symbol
 // Source: ./utils/sanity/queries.ts
 // Variable: INDEX_QUERY
-// Query: {  "theme": *[_id == "theme"][0]{background,text},  "title": *[_type == "demo" && slug.current == $slug][0].title}
+// Query: {  "theme": *[_id == "theme"][0]{background,text},  "demo": *[_type == "demo" && slug.current == $slug][0]{title,reactions[0..4]{_key,_ref}}}
 export type INDEX_QUERYResult = {
   theme:
     | {
@@ -202,11 +202,17 @@ export type INDEX_QUERYResult = {
         text: string | null
       }
     | null
-  title: string | null
+  demo: {
+    title: string | null
+    reactions: Array<{
+      _key: string
+      _ref: string
+    }> | null
+  } | null
 }
 
 declare module '@sanity/client' {
   interface SanityQueries {
-    '{\n  "theme": *[_id == "theme"][0]{background,text},\n  "title": *[_type == "demo" && slug.current == $slug][0].title\n}': INDEX_QUERYResult
+    '{\n  "theme": *[_id == "theme"][0]{background,text},\n  "demo": *[_type == "demo" && slug.current == $slug][0]{title,reactions[0..4]{_key,_ref}}\n}': INDEX_QUERYResult
   }
 }
