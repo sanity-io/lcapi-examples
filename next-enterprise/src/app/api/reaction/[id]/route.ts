@@ -4,21 +4,13 @@
  */
 
 import {client} from '@/sanity/client'
-import type {ClientReturn, SyncTag} from '@sanity/client'
 import {defineQuery} from 'groq'
 import {NextResponse} from 'next/server'
+import {API_REACTION_QUERY, RouteResponse} from './shared'
 
-export const API_REACTION_QUERY = defineQuery(
-  `*[_type == "reaction" && _id == $id][0]{emoji,reactions}`,
-)
 const REACTION_QUERY_STATIC_PARAMS = defineQuery(
   `*[_type == "demo" && slug.current == $slug][0].reactions[0..4]{"id": _ref}`,
 )
-
-export interface RouteResponse {
-  result: ClientReturn<typeof API_REACTION_QUERY, unknown>
-  syncTags: SyncTag[] | undefined
-}
 
 export const revalidate = 60
 

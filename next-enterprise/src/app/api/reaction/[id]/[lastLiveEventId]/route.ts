@@ -5,7 +5,7 @@
 
 import {client} from '@/sanity/client'
 import {NextResponse} from 'next/server'
-import {API_REACTION_QUERY, type RouteResponse} from '../route'
+import {API_REACTION_QUERY, type RouteResponse} from '../shared'
 
 export const dynamic = 'force-static'
 

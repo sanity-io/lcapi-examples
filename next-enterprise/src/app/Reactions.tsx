@@ -7,7 +7,7 @@
 import {client} from '@/sanity/client'
 import {AnimatePresence, motion} from 'framer-motion'
 import {startTransition, useEffect, useRef, useState} from 'react'
-import type {RouteResponse} from './api/reaction/[id]/route'
+import type {RouteResponse} from './api/reaction/[id]/shared'
 
 interface Props {
   data: {
