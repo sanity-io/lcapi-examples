@@ -7,12 +7,7 @@ import {client} from './client'
  * The `defineLive` utility in `next-sanity` handles more advanced use cases, such as live preview, integrating with `sanity/presentation`, and more.
  * @example
  * import {createClient, defineLive} from 'next-sanity'
- * export const {sanityFetch, SanityLive} = defineLive({
- *   client: createClient({projectId, dataset, ...}),
- *   fetchOptions: {
- *     revalidate: 15 * 60
- *   }
- * })
+ * export const {sanityFetch, SanityLive} = defineLive({client: createClient({projectId, dataset, ...})})
  */
 export async function sanityFetch<const QueryString extends string>({
   query,
@@ -26,11 +21,12 @@ export async function sanityFetch<const QueryString extends string>({
     filterResponse: false,
     cacheMode: 'noStale',
     tag: 'fetch-sync-tags', // The request tag makes the fetch unique, avoids deduping with the cached query that has tags
-    next: {revalidate: 15 * 60},
+    cache: 'force-cache',
   })
   const data = await client.fetch(query, params, {
     cacheMode: 'noStale',
-    next: {revalidate: 15 * 60, tags: syncTags},
+    cache: 'force-cache',
+    next: {tags: syncTags},
   })
   return {data, tags: syncTags}
 }
