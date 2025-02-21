@@ -2,7 +2,7 @@ import {sanityFetch} from '@/sanity/fetch'
 import {defineQuery} from 'groq'
 import type {Metadata} from 'next'
 import {Suspense} from 'react'
-import {Reactions, ReactionsFallback} from './Reactions'
+import {Reactions} from './Reactions'
 import {TimeSince} from './TimeSince'
 
 const DEMO_QUERY = defineQuery(
@@ -30,11 +30,7 @@ export default async function Home() {
           <TimeSince label="page.tsx" since={data.fetchedAt} />
         </Suspense>
       )}
-      {Array.isArray(data?.reactions) && (
-        <Suspense fallback={<ReactionsFallback data={data.reactions} />}>
-          <Reactions data={data.reactions} />
-        </Suspense>
-      )}
+      {Array.isArray(data?.reactions) && <Reactions data={data.reactions} />}
     </div>
   )
 }
