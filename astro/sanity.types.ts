@@ -188,6 +188,14 @@ export type AllSanitySchemaTypes =
   | Slug
   | Theme
 export declare const internalGroqTypeReferenceTo: unique symbol
+// Source: ./src/components/Reactions.tsx
+// Variable: REACTION_QUERY
+// Query: *[_type == "reaction" && _id == $id][0]{emoji,reactions}
+export type REACTION_QUERYResult = {
+  emoji: string | null
+  reactions: number | null
+} | null
+
 // Source: ./src/layouts/Layout.astro
 // Variable: LAYOUT_QUERY
 // Query: *[_id == "theme"][0]{background,text}
@@ -213,18 +221,10 @@ export type INDEX_QUERYResult = {
   }> | null
 } | null
 
-// Source: ./src/sanity/queries.ts
-// Variable: REACTION_QUERY
-// Query: *[_type == "reaction" && _id == $id][0]{emoji,reactions}
-export type REACTION_QUERYResult = {
-  emoji: string | null
-  reactions: number | null
-} | null
-
 declare module '@sanity/client' {
   interface SanityQueries {
+    '*[_type == "reaction" && _id == $id][0]{emoji,reactions}': REACTION_QUERYResult
     '*[_id == "theme"][0]{background,text}': LAYOUT_QUERYResult
     '*[_type == "demo" && slug.current == $slug][0]{title,reactions[0..4]{_key,_ref}}': INDEX_QUERYResult
-    '*[_type == "reaction" && _id == $id][0]{emoji,reactions}': REACTION_QUERYResult
   }
 }
