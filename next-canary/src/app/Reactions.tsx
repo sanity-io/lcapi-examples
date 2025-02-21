@@ -21,11 +21,11 @@ export function Reactions(props: Props) {
   const {data} = props
 
   return (
-    <Wrapper>
+    <aside className="bg-(--theme-text)/30 fixed bottom-2 left-[50%] grid -translate-x-[50%] grid-flow-col grid-rows-1 gap-2 rounded-2xl p-2 transition-colors duration-1000 ease-in-out">
       {data.map(({_key, _ref}) => (
         <Reaction key={_key} _ref={_ref} />
       ))}
-    </Wrapper>
+    </aside>
   )
 }
 Reactions.displayName = 'Reactions'
@@ -75,14 +75,6 @@ function Reaction(props: {_ref: string}) {
   }
 
   return <ReactionFallback />
-}
-
-function Wrapper({children}: {children: React.ReactNode}) {
-  return (
-    <aside className="bg-(--theme-text)/30 fixed bottom-2 left-[50%] grid -translate-x-[50%] grid-flow-col grid-rows-1 gap-2 rounded-2xl p-2 transition-colors duration-1000 ease-in-out">
-      {children}
-    </aside>
-  )
 }
 
 interface Emoji {
@@ -204,14 +196,14 @@ function FloatingEmoji({emoji, _key, setEmojis, ...props}: FloatingEmojiProps) {
 
 function ReactionFallback() {
   return (
-    <ButtonContainer>
+    <div className="relative aspect-square">
       <button
         disabled
         className="bg-(--theme-text)/40 flex animate-pulse rounded-lg transition-colors duration-1000 ease-in-out"
       >
         <Square> </Square>
       </button>
-    </ButtonContainer>
+    </div>
   )
 }
 
@@ -219,8 +211,4 @@ function Square({children}: {children: React.ReactNode}) {
   return (
     <div className="inline-flex aspect-square size-12 items-center justify-center">{children}</div>
   )
-}
-
-function ButtonContainer({children}: {children: React.ReactNode}) {
-  return <div className="relative aspect-square">{children}</div>
 }

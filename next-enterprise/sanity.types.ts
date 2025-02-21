@@ -197,6 +197,27 @@ export type REACTIONS_QUERYResult = Array<{
   reactions: number | null
 }>
 
+// Source: ./src/app/api/reaction/[...id]/route.ts
+// Variable: REACTION_QUERY
+// Query: *[_type == "reaction" && _id == $id][0]{emoji,reactions}
+export type REACTION_QUERYResult = {
+  emoji: string | null
+  reactions: number | null
+} | null
+
+// Source: ./src/app/api/reaction/[id]/route.ts
+// Variable: API_REACTION_QUERY
+// Query: *[_type == "reaction" && _id == $id][0]{emoji,reactions}
+export type API_REACTION_QUERYResult = {
+  emoji: string | null
+  reactions: number | null
+} | null
+// Variable: REACTION_QUERY_STATIC_PARAMS
+// Query: *[_type == "demo" && slug.current == $slug][0].reactions[0..4]{"id": _ref}
+export type REACTION_QUERY_STATIC_PARAMSResult = Array<{
+  id: string
+}> | null
+
 // Source: ./src/app/layout.tsx
 // Variable: THEME_QUERY
 // Query: *[_id == "theme"][0]{background,text,"fetchedAt":now()}
@@ -231,6 +252,10 @@ export type GENERATE_METADATA_DEMO_QUERYResult = string | null
 declare module '@sanity/client' {
   interface SanityQueries {
     '*[_type == "reaction" && _id in $ids]{_id,emoji,reactions}': REACTIONS_QUERYResult
+    '*[_type == "reaction" && _id == $id][0]{emoji,reactions}':
+      | REACTION_QUERYResult
+      | API_REACTION_QUERYResult
+    '*[_type == "demo" && slug.current == $slug][0].reactions[0..4]{"id": _ref}': REACTION_QUERY_STATIC_PARAMSResult
     '*[_id == "theme"][0]{background,text,"fetchedAt":now()}': THEME_QUERYResult
     '*[_type == "demo" && slug.current == $slug][0]{title,reactions[0..4]{_key,_ref},"fetchedAt":now()}': DEMO_QUERYResult
     '*[_type == "demo" && slug.current == $slug][0].title': GENERATE_METADATA_DEMO_QUERYResult
