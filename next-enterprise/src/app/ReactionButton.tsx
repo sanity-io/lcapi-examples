@@ -52,7 +52,7 @@ function EmojiReactionButton(props: {onClick: () => void; emoji: string; reactio
     reactions,
     (currentState, optimisticInc) => currentState + optimisticInc,
   )
-  const nextReactions = Math.max(0, optimisticReactions - initialReactions)
+  const nextReactions = Math.min(Math.max(0, optimisticReactions - initialReactions), 100)
 
   useEffect(() => {
     if (nextReactions > emojis.length) {
