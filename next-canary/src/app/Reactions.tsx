@@ -192,7 +192,7 @@ function FloatingEmoji({emoji, _key, setEmojis, ...props}: FloatingEmojiProps) {
         ease: 'easeOut',
       }}
       onAnimationComplete={() =>
-        requestIdleCallback(() =>
+        ('requestIdleCallback' in window ? requestIdleCallback : requestAnimationFrame)(() =>
           setEmojis((emojis) => emojis.map((e) => (e.key === _key ? {...e, done: true} : e))),
         )
       }
