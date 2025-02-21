@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/multi-word-component-names -->
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue'
 import { client } from '../utils/sanity/client'
@@ -12,6 +13,7 @@ const data = ref<ClientReturn<typeof REACTION_QUERY> | null>(null)
 const lastLiveEventId = ref<string | null>(null)
 const syncTags = ref<SyncTag[]>()
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 let subscription: any = null
 
 onMounted(() => {
