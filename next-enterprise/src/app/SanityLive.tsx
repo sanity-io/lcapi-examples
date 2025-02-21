@@ -19,7 +19,7 @@ export function SanityLive() {
         if (signal.aborted) return
         router.refresh()
         console.log('<SanityLive> refreshing')
-      }, 5_000)
+      }, 1_000)
     } else if (event.type === 'restart' || event.type === 'reconnect') {
       router.refresh()
     }
@@ -55,7 +55,6 @@ export function SanityLive() {
   return <RefreshOnFocus />
 }
 SanityLive.displayName = 'SanityLive'
-
 
 const focusThrottleInterval = 5_000
 function RefreshOnFocus() {
