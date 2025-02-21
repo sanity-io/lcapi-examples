@@ -57,7 +57,7 @@ function EmojiReactionButton(props: {onClick: () => void; emoji: string; reactio
     reactions,
     (currentState, optimisticInc) => currentState + optimisticInc,
   )
-  const nextReactions = Math.min(Math.max(0, optimisticReactions - initialReactions), 100)
+  const nextReactions = Math.max(0, optimisticReactions - initialReactions)
 
   useEffect(() => {
     if (nextReactions > emojis.length) {
@@ -66,7 +66,7 @@ function EmojiReactionButton(props: {onClick: () => void; emoji: string; reactio
     }
   }, [nextReactions, emojis.length])
 
-  const pendingEmojis = emojis.filter(({done}) => !done)
+  const pendingEmojis = emojis.filter(({done}) => !done).slice(0, 100)
 
   return (
     <div className="bg-(--theme-text)/40 focus-within:ring-(--theme-text) focus-within:ring-offset-(--theme-background) relative aspect-square rounded-lg transition duration-1000 ease-in-out focus-within:ring-2 focus-within:ring-offset-2 focus-within:duration-0">
