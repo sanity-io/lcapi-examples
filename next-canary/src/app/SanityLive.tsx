@@ -25,9 +25,6 @@ export function SanityLive() {
     }
   })
   useEffect(() => {
-    /**
-     * If a browser token is available it'll unlock a faster and more efficient live connection
-     */
     const subscription = client.live.events().subscribe({
       next: handleLiveEvent,
       error: (error: unknown) => {

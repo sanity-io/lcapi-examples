@@ -16,17 +16,11 @@ export function SanityLive() {
     } else if (event.type === 'message') {
       console.log('<SanityLive> refreshing')
       router.refresh()
-      console.log('<SanityLive> schedule refresh')
+      console.log('<SanityLive> schedule 2nd refresh')
       setTimeout(() => {
         if (signal.aborted) return
-        console.log('<SanityLive> refreshing')
+        console.log('<SanityLive> refreshing again')
         router.refresh()
-        console.log('<SanityLive> schedule 3rd refresh')
-        setTimeout(() => {
-          if (signal.aborted) return
-          router.refresh()
-          console.log('<SanityLive> refreshing')
-        }, 2_000)
       }, 1_000)
     } else if (event.type === 'restart' || event.type === 'reconnect') {
       router.refresh()
