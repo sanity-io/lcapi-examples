@@ -62,6 +62,4 @@ onUnmounted(() => {
 })
 </script>
 
-<template>
-  
-</template>
+<template></template>

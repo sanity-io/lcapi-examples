@@ -1,11 +1,11 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted } from 'vue'
-import { client } from '../utils/sanity/client'
-import { defineQuery } from 'groq'
-import type { ClientReturn, SyncTag } from '@sanity/client'
+import type {ClientReturn, SyncTag} from '@sanity/client'
+import {defineQuery} from 'groq'
+import {onMounted, onUnmounted, ref} from 'vue'
+import {client} from '../utils/sanity/client'
 
-const props = defineProps<{ _ref: string }>()
+const props = defineProps<{_ref: string}>()
 
 const REACTION_QUERY = defineQuery(`*[_type == "reaction" && _id == $id][0]{emoji,reactions}`)
 
@@ -36,10 +36,10 @@ onUnmounted(() => {
 
 async function fetchData() {
   try {
-    const { result, syncTags: tags } = await client.fetch(
+    const {result, syncTags: tags} = await client.fetch(
       REACTION_QUERY,
-      { id: props._ref },
-      { filterResponse: false, lastLiveEventId: lastLiveEventId.value }
+      {id: props._ref},
+      {filterResponse: false, lastLiveEventId: lastLiveEventId.value},
     )
     data.value = result
     syncTags.value = tags

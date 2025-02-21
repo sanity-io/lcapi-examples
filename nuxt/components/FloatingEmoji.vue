@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
-import type { Emoji } from './types'
+import {onMounted, ref} from 'vue'
+import type {Emoji} from './types'
 
 const props = defineProps<{
   _key: string
@@ -22,42 +22,42 @@ onMounted(() => {
 
   const animation = element.value.animate(
     [
-      { 
-        opacity: 0, 
-        transform: 'scale(0.5) translateY(0) translateX(0)' 
+      {
+        opacity: 0,
+        transform: 'scale(0.5) translateY(0) translateX(0)',
       },
-      { 
-        opacity: 1, 
+      {
+        opacity: 1,
         transform: `scale(1.2) translateY(-10dvh) translateX(${randomOffset * 0.3}px)`,
-        offset: 0.1 
+        offset: 0.1,
       },
-      { 
-        opacity: 1, 
+      {
+        opacity: 1,
         transform: `scale(1) translateY(-20dvh) translateX(${randomOffset * 0.5}px)`,
-        offset: 0.2 
+        offset: 0.2,
       },
-      { 
-        opacity: 1, 
+      {
+        opacity: 1,
         transform: `scale(1) translateY(-80dvh) translateX(${randomOffset * 0.8}px)`,
-        offset: 0.8 
+        offset: 0.8,
       },
-      { 
-        opacity: 0, 
-        transform: `scale(0.8) translateY(-116dvh) translateX(${randomOffset}px)` 
-      }
+      {
+        opacity: 0,
+        transform: `scale(0.8) translateY(-116dvh) translateX(${randomOffset}px)`,
+      },
     ],
     {
-      duration: 4000 - (randomDelay * 1000),
-      delay: props.delay + (randomDelay * 1000),
+      duration: 4000 - randomDelay * 1000,
+      delay: props.delay + randomDelay * 1000,
       easing: 'ease-out',
-      fill: 'forwards'
-    }
+      fill: 'forwards',
+    },
   )
 
   animation.onfinish = () => {
     emit(
       'update:emojis',
-      props.emojis.map((e) => (e.key === props._key ? { ...e, done: true } : e))
+      props.emojis.map((e) => (e.key === props._key ? {...e, done: true} : e)),
     )
   }
 })

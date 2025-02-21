@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, watchEffect } from 'vue'
+import {ref, watchEffect} from 'vue'
 
 const props = defineProps<{
   id: string
@@ -36,9 +36,7 @@ watchEffect(() => {
   }
 })
 
-const pendingEmojis = computed(() => 
-  emojis.value.filter(({ done }) => !done).slice(0, 100)
-)
+const pendingEmojis = computed(() => emojis.value.filter(({done}) => !done).slice(0, 100))
 const delay = computed(() => 8_000 / pendingEmojis.value.length)
 
 async function handleClick() {
@@ -64,13 +62,13 @@ async function handleClick() {
     </button>
     <TransitionGroup>
       <FloatingEmoji
-        v-for="({ key, stagger }, i) in pendingEmojis"
+        v-for="({key, stagger}, i) in pendingEmojis"
         :key="key"
         :_key="key"
         :emoji="emoji"
         :delay="stagger ? i * delay : 0"
         :emojis="emojis"
-        @update:emojis="newEmojis => emojis = newEmojis"
+        @update:emojis="(newEmojis) => (emojis = newEmojis)"
       />
     </TransitionGroup>
   </div>
