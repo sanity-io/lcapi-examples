@@ -1,7 +1,7 @@
 'use client'
 
 import {AnimatePresence, motion} from 'framer-motion'
-import {memo, startTransition, useEffect, useState} from 'react'
+import {memo, useEffect, useState} from 'react'
 import {Square} from './ReactionPrimitives'
 
 interface Emoji {
@@ -40,7 +40,7 @@ export function ReactionButton(props: {id: string; emoji: string; reactions: num
   useEffect(() => {
     if (nextReactions > emojis.length) {
       const needed = nextReactions - emojis.length
-      startTransition(() => setEmojis((emojis) => insertMany(emojis, needed)))
+      setEmojis((emojis) => insertMany(emojis, needed))
     }
   }, [nextReactions, emojis.length])
 
@@ -53,13 +53,11 @@ export function ReactionButton(props: {id: string; emoji: string; reactions: num
         className="flex transform-gpu cursor-pointer select-none items-center justify-center text-2xl subpixel-antialiased will-change-transform focus:outline-none"
         onClick={() => {
           setEmojis((emojis) => insert(emojis, false))
-          startTransition(async () => {
-            const formData = new FormData()
-            formData.append('id', id)
-            await fetch('https://lcapi-examples-api.sanity.dev/api/react', {
-              method: 'POST',
-              body: formData,
-            })
+          const formData = new FormData()
+          formData.append('id', id)
+          fetch('https://lcapi-examples-api.sanity.dev/api/react', {
+            method: 'POST',
+            body: formData,
           })
         }}
         whileTap={{scale: 0.8}}
