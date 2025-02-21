@@ -116,7 +116,9 @@ const FloatingEmoji = memo(function FloatingEmoji({
         ease: 'easeOut',
       }}
       onAnimationComplete={() =>
-        setEmojis((emojis) => emojis.map((e) => (e.key === _key ? {...e, done: true} : e)))
+        requestIdleCallback(() =>
+          setEmojis((emojis) => emojis.map((e) => (e.key === _key ? {...e, done: true} : e))),
+        )
       }
     >
       {emoji}

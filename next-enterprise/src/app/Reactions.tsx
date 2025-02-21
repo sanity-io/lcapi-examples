@@ -29,22 +29,7 @@ export async function Reactions(props: Props) {
         const item = reactions.find(({_id}) => _id === _ref)
         if (item?.emoji && typeof item.reactions === 'number') {
           const {emoji, reactions} = item
-          return (
-            <ReactionButton
-              key={_key}
-              onClick={async () => {
-                'use server'
-
-                const formData = new FormData()
-                formData.append('id', _ref)
-                await fetch('https://lcapi-examples-api.sanity.dev/api/react', {
-                  method: 'POST',
-                  body: formData,
-                })
-              }}
-              data={{emoji, reactions}}
-            />
-          )
+          return <ReactionButton key={_key} id={_ref} emoji={emoji} reactions={reactions} />
         }
 
         return <ReactionFallback key={_key} />
