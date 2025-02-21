@@ -1,3 +1,4 @@
+import {Reactions} from '@/components/Reactions'
 import {client} from '@/sanity/client'
 import {SanityLive} from '@/sanity/live'
 import type {ClientReturn, SyncTag} from '@sanity/client'
@@ -11,7 +12,7 @@ const TimeSince = lazy(() => import('@/components/TimeSince'))
 
 const INDEX_QUERY = defineQuery(`{
   "theme": *[_id == "theme"][0]{background,text},
-  "title": *[_type == "demo" && slug.current == $slug][0].title,
+  "demo": *[_type == "demo" && slug.current == $slug][0]{title,reactions[0..4]{_key,_ref}},
   "fetchedAt":now()
 }`)
 const slug = 'next-13'
@@ -44,7 +45,7 @@ export const getServerSideProps: GetServerSideProps<{
 
 export default function Home(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const {data, tags} = props
-  const title = data.title || 'Next 13'
+  const title = data.demo?.title || 'Next 13'
 
   return (
     <>
@@ -73,6 +74,7 @@ export default function Home(props: InferGetServerSidePropsType<typeof getServer
             <ThemeButton />
           </Suspense>
         </div>
+        {Array.isArray(data.demo?.reactions) && <Reactions data={data.demo.reactions} />}
       </main>
       <SanityLive tags={tags} />
     </>

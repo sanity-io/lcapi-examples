@@ -19,7 +19,10 @@ export function Reactions(props: Props) {
   const {data} = props
 
   return (
-    <aside className="bg-(--theme-text)/30 fixed bottom-2 left-[50%] grid -translate-x-[50%] grid-flow-col grid-rows-1 gap-2 rounded-2xl p-2 transition-colors duration-1000 ease-in-out">
+    <aside
+      className="bg-[--theme-text]/30 fixed bottom-2 left-[50%] grid -translate-x-[50%] grid-flow-col grid-rows-1 gap-2 rounded-2xl p-2 transition-colors duration-1000 ease-in-out"
+      style={{backgroundColor: 'color-mix(in oklab, var(--theme-text) 30%, transparent)'}}
+    >
       {data.map(({_key, _ref}) => (
         <Reaction key={_key} _ref={_ref} />
       ))}
@@ -119,7 +122,10 @@ function ReactionButton(props: {id: string; emoji: string; reactions: number}) {
   const delay = 8_000 / pendingEmojis.length
 
   return (
-    <div className="bg-(--theme-text)/40 focus-within:ring-(--theme-text) focus-within:ring-offset-(--theme-background) relative aspect-square rounded-lg transition duration-1000 ease-in-out focus-within:ring-2 focus-within:ring-offset-2 focus-within:duration-0">
+    <div
+      style={{backgroundColor: 'color-mix(in oklab, var(--theme-text) 40%, transparent)'}}
+      className="bg-[--theme-text]/40 relative aspect-square rounded-lg transition duration-1000 ease-in-out focus-within:ring-2 focus-within:ring-[--theme-text] focus-within:ring-offset-2 focus-within:ring-offset-[--theme-background] focus-within:duration-0"
+    >
       <motion.button
         className="flex transform-gpu cursor-pointer select-none items-center justify-center text-2xl subpixel-antialiased will-change-transform focus:outline-none"
         onClick={() => {
@@ -197,7 +203,8 @@ function ReactionFallback() {
     <div className="relative aspect-square">
       <button
         disabled
-        className="bg-(--theme-text)/40 flex animate-pulse rounded-lg transition-colors duration-1000 ease-in-out"
+        style={{backgroundColor: 'color-mix(in oklab, var(--theme-text) 40%, transparent)'}}
+        className="bg-[--theme-text]/40 flex animate-pulse rounded-lg transition-colors duration-1000 ease-in-out"
       >
         <Square> </Square>
       </button>

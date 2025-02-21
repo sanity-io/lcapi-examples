@@ -188,9 +188,17 @@ export type AllSanitySchemaTypes =
   | Slug
   | Theme
 export declare const internalGroqTypeReferenceTo: unique symbol
+// Source: ./src/components/Reactions.tsx
+// Variable: REACTION_QUERY
+// Query: *[_type == "reaction" && _id == $id][0]{emoji,reactions}
+export type REACTION_QUERYResult = {
+  emoji: string | null
+  reactions: number | null
+} | null
+
 // Source: ./src/pages/index.tsx
 // Variable: INDEX_QUERY
-// Query: {  "theme": *[_id == "theme"][0]{background,text},  "title": *[_type == "demo" && slug.current == $slug][0].title,  "fetchedAt":now()}
+// Query: {  "theme": *[_id == "theme"][0]{background,text},  "demo": *[_type == "demo" && slug.current == $slug][0]{title,reactions[0..4]{_key,_ref}},  "fetchedAt":now()}
 export type INDEX_QUERYResult = {
   theme:
     | {
@@ -202,12 +210,19 @@ export type INDEX_QUERYResult = {
         text: string | null
       }
     | null
-  title: string | null
+  demo: {
+    title: string | null
+    reactions: Array<{
+      _key: string
+      _ref: string
+    }> | null
+  } | null
   fetchedAt: string
 }
 
 declare module '@sanity/client' {
   interface SanityQueries {
-    '{\n  "theme": *[_id == "theme"][0]{background,text},\n  "title": *[_type == "demo" && slug.current == $slug][0].title,\n  "fetchedAt":now()\n}': INDEX_QUERYResult
+    '*[_type == "reaction" && _id == $id][0]{emoji,reactions}': REACTION_QUERYResult
+    '{\n  "theme": *[_id == "theme"][0]{background,text},\n  "demo": *[_type == "demo" && slug.current == $slug][0]{title,reactions[0..4]{_key,_ref}},\n  "fetchedAt":now()\n}': INDEX_QUERYResult
   }
 }
