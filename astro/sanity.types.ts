@@ -204,12 +204,27 @@ export type LAYOUT_QUERYResult =
 
 // Source: ./src/pages/index.astro
 // Variable: INDEX_QUERY
-// Query: *[_type == "demo" && slug.current == $slug][0].title
-export type INDEX_QUERYResult = string | null
+// Query: *[_type == "demo" && slug.current == $slug][0]{title,reactions[0..4]{_key,_ref}}
+export type INDEX_QUERYResult = {
+  title: string | null
+  reactions: Array<{
+    _key: string
+    _ref: string
+  }> | null
+} | null
+
+// Source: ./src/sanity/queries.ts
+// Variable: REACTION_QUERY
+// Query: *[_type == "reaction" && _id == $id][0]{emoji,reactions}
+export type REACTION_QUERYResult = {
+  emoji: string | null
+  reactions: number | null
+} | null
 
 declare module '@sanity/client' {
   interface SanityQueries {
     '*[_id == "theme"][0]{background,text}': LAYOUT_QUERYResult
-    '*[_type == "demo" && slug.current == $slug][0].title': INDEX_QUERYResult
+    '*[_type == "demo" && slug.current == $slug][0]{title,reactions[0..4]{_key,_ref}}': INDEX_QUERYResult
+    '*[_type == "reaction" && _id == $id][0]{emoji,reactions}': REACTION_QUERYResult
   }
 }

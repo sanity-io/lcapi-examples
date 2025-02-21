@@ -19,6 +19,7 @@
     "@types/react-dom": "^19.0.3",
     "@vercel/speed-insights": "^1.2.0",
     "astro": "^5.0.2",
+    "framer-motion": "^12.4.2",
     "groq": "^3.64.2",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
