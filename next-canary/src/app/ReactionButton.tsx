@@ -1,82 +1,65 @@
 'use client'
 
 import {AnimatePresence, motion} from 'framer-motion'
-import {memo, startTransition, use, useEffect, useOptimistic, useState} from 'react'
-import {ReactionFallback, Square} from './ReactionPrimitives'
+import {memo, startTransition, useEffect, useState} from 'react'
+import {Square} from './ReactionPrimitives'
 
 interface Emoji {
   key: string
-  delay: number
+  stagger: boolean
   done: boolean
 }
 
-function createEmoji(delay: number) {
+function createEmoji(stagger: boolean) {
   return {
     key: crypto.randomUUID(),
-    delay,
+    stagger,
     done: false,
   }
 }
 
-function insert(emojis: Emoji[], delay: number) {
-  return [...emojis, createEmoji(delay)]
+function insert(emojis: Emoji[], stagger: boolean) {
+  return [...emojis, createEmoji(stagger)]
 }
 
 function insertMany(emojis: Emoji[], needed: number) {
-  const stagger = 10_000 / needed
   const nextEmojis = [...emojis]
   for (let i = 0; i < needed; i++) {
-    nextEmojis.push(createEmoji(i * stagger))
+    nextEmojis.push(createEmoji(true))
   }
   return nextEmojis
 }
 
-export function ReactionButton(props: {
-  onClick: () => void
-  data: Promise<{
-    emoji: string | null
-    reactions: number | null
-  } | null>
-}) {
-  const {onClick} = props
-  const data = use(props.data)
-
-  if (!data?.emoji || typeof data.reactions !== 'number') {
-    return <ReactionFallback />
-  }
-
-  return <EmojiReactionButton onClick={onClick} emoji={data.emoji} reactions={data.reactions} />
-}
-
-function EmojiReactionButton(props: {onClick: () => void; emoji: string; reactions: number}) {
-  const {onClick, emoji, reactions} = props
+export function ReactionButton(props: {id: string; emoji: string; reactions: number}) {
+  const {id, emoji, reactions} = props
   const [initialReactions] = useState(reactions)
 
   const [emojis, setEmojis] = useState<Emoji[]>([])
-  const [optimisticReactions, optimisticallyInc] = useOptimistic<number, number>(
-    reactions,
-    (currentState, optimisticInc) => currentState + optimisticInc,
-  )
-  const nextReactions = Math.max(0, optimisticReactions - initialReactions)
+  const nextReactions = Math.max(0, reactions - initialReactions)
 
   useEffect(() => {
     if (nextReactions > emojis.length) {
       const needed = nextReactions - emojis.length
-      setEmojis((emojis) => insertMany(emojis, needed))
+      startTransition(() => setEmojis((emojis) => insertMany(emojis, needed)))
     }
   }, [nextReactions, emojis.length])
 
   const pendingEmojis = emojis.filter(({done}) => !done).slice(0, 100)
+  const delay = 8_000 / pendingEmojis.length
 
   return (
     <div className="bg-(--theme-text)/40 focus-within:ring-(--theme-text) focus-within:ring-offset-(--theme-background) relative aspect-square rounded-lg transition duration-1000 ease-in-out focus-within:ring-2 focus-within:ring-offset-2 focus-within:duration-0">
       <motion.button
         className="flex transform-gpu cursor-pointer select-none items-center justify-center text-2xl subpixel-antialiased will-change-transform focus:outline-none"
         onClick={() => {
-          setEmojis((emojis) => insert(emojis, 0))
+          setEmojis((emojis) => insert(emojis, false))
           startTransition(async () => {
-            optimisticallyInc(1)
-            await onClick()
+            const formData = new FormData()
+            formData.append('id', id)
+            await fetch('https://lcapi-examples-api.sanity.dev/api/react', {
+              method: 'POST',
+              body: formData,
+            })
           })
         }}
         whileTap={{scale: 0.8}}
@@ -84,8 +67,14 @@ function EmojiReactionButton(props: {onClick: () => void; emoji: string; reactio
         <Square>{emoji}</Square>
       </motion.button>
       <AnimatePresence>
-        {pendingEmojis.map(({key, delay}) => (
-          <FloatingEmoji key={key} _key={key} emoji={emoji} delay={delay} setEmojis={setEmojis} />
+        {pendingEmojis.map(({key, stagger}, i) => (
+          <FloatingEmoji
+            key={key}
+            _key={key}
+            emoji={emoji}
+            delay={stagger ? i * delay : 0}
+            setEmojis={setEmojis}
+          />
         ))}
       </AnimatePresence>
     </div>
@@ -100,12 +89,13 @@ type FloatingEmojiProps = {
 }
 const FloatingEmoji = memo(function FloatingEmoji({
   emoji,
-  delay,
   _key,
   setEmojis,
+  ...props
 }: FloatingEmojiProps) {
+  const [delay] = useState(props.delay)
   const [randomOffset] = useState((Math.random() - 0.5) * 200)
-  const [randomDelay] = useState(Math.random() * 0.15) // Add up to 150ms random delay
+  const [randomDelay] = useState(delay ? Math.random() * 0.15 : 0) // Add up to 150ms random delay
 
   return (
     <motion.div
@@ -128,7 +118,9 @@ const FloatingEmoji = memo(function FloatingEmoji({
         ease: 'easeOut',
       }}
       onAnimationComplete={() => {
-        setEmojis((emojis) => emojis.map((e) => (e.key === _key ? {...e, done: true} : e)))
+        startTransition(() =>
+          setEmojis((emojis) => emojis.map((e) => (e.key === _key ? {...e, done: true} : e))),
+        )
       }}
     >
       {emoji}

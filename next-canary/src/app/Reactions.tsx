@@ -33,23 +33,13 @@ const REACTION_QUERY = defineQuery(`*[_type == "reaction" && _id == $id][0]{emoj
 async function Reaction(props: {_ref: string}) {
   const {_ref} = props
 
-  const data = sanityFetch({query: REACTION_QUERY, params: {id: _ref}}).then(({data}) => data)
+  const {data} = await sanityFetch({query: REACTION_QUERY, params: {id: _ref}})
 
-  return (
-    <ReactionButton
-      onClick={async () => {
-        'use server'
+  if (data?.emoji && typeof data.reactions === 'number') {
+    return <ReactionButton id={_ref} emoji={data.emoji} reactions={data.reactions} />
+  }
 
-        const formData = new FormData()
-        formData.append('id', _ref)
-        await fetch('https://lcapi-examples-api.sanity.dev/api/react', {
-          method: 'POST',
-          body: formData,
-        })
-      }}
-      data={data}
-    />
-  )
+  return <ReactionFallback />
 }
 
 export function ReactionsFallback(props: Props) {
