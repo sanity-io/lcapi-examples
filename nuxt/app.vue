@@ -4,7 +4,6 @@ import {INDEX_QUERY} from '@/utils/sanity/queries'
 import {SpeedInsights} from '@vercel/speed-insights/vue'
 import Reactions from './components/Reactions.vue'
 
-
 const route = useRoute()
 
 const {data} = await useAsyncData(

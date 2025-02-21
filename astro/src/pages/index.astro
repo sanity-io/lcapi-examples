@@ -1,16 +1,17 @@
 ---
 import {defineQuery} from 'groq'
+import Reactions from '../components/Reactions'
 import SanityLive from '../components/SanityLive.astro'
 import Layout from '../layouts/Layout.astro'
 import {sanityFetch} from '../sanity/fetch'
-import Reactions from '../components/Reactions'
-
 
 export const prerender = false
 
 const url = new URL(Astro.request.url)
 
-const INDEX_QUERY = defineQuery(`*[_type == "demo" && slug.current == $slug][0]{title,reactions[0..4]{_key,_ref}}`)
+const INDEX_QUERY = defineQuery(
+  `*[_type == "demo" && slug.current == $slug][0]{title,reactions[0..4]{_key,_ref}}`,
+)
 const slug = 'astro'
 const lastLiveEventId = url.searchParams.get('lastLiveEventId')
 const {data, tags} = await sanityFetch({query: INDEX_QUERY, params: {slug}, lastLiveEventId})
