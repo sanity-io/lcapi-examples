@@ -26,7 +26,7 @@
     "@sanity/eslint-config-studio": "^5.0.1",
     "@types/react": "^19.0.10",
     "babel-plugin-react-compiler": "beta",
-    "eslint": "^9.20.1",
+    "eslint": "^9.21.0",
     "eslint-plugin-react-compiler": "beta",
     "typescript": "5.7.3"
   }
