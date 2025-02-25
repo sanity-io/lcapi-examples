@@ -14,7 +14,7 @@
   "dependencies": {
     "@sanity/icons": "^3.5.2",
     "@sanity/ui": "^2.10.8",
-    "@sanity/vision": "3.77.1",
+    "@sanity/vision": "3.77.2",
     "polished": "^4.3.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
