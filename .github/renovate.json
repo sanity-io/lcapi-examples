@@ -31,6 +31,10 @@
       "matchFileNames": ["next-canary/package.json"],
       "matchPackageNames": ["next", "eslint-config-next"],
       "followTag": "canary"
+    },
+     {
+      "matchPackageNames": ["eslint-plugin-react-hooks"],
+      "enabled": false
     }
   ]
 }
