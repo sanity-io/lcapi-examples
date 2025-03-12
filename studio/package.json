@@ -28,6 +28,6 @@
     "babel-plugin-react-compiler": "beta",
     "eslint": "^9.22.0",
     "eslint-plugin-react-compiler": "beta",
-    "typescript": "5.7.3"
+    "typescript": "5.8.2"
   }
 }
