@@ -10,7 +10,7 @@
     "@sanity/client": "6.28.3"
   },
   "devDependencies": {
-    "@flydotio/dockerfile": "^0.7.8",
+    "@flydotio/dockerfile": "^0.7.9",
     "@types/bun": "latest"
   },
   "peerDependencies": {
