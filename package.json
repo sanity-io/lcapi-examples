@@ -19,7 +19,7 @@
     "sanity": "3.81.0",
     "typescript": "5.8.2"
   },
-  "packageManager": "pnpm@10.7.0",
+  "packageManager": "pnpm@10.7.1",
   "pnpm": {
     "peerDependencyRules": {
       "allowAny": [
