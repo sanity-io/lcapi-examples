@@ -11,16 +11,16 @@
   },
   "dependencies": {
     "@sanity/client": "^6.23.0",
-    "@tanstack/react-router": "^1.82.1",
-    "@tanstack/router-devtools": "^1.82.1",
-    "@tanstack/start": "^1.82.1",
-    "@tanstack/zod-adapter": "^1.82.1",
+    "@tanstack/react-router": "^1.115.2",
+    "@tanstack/router-devtools": "^1.115.2",
+    "@tanstack/start": "^1.115.2",
+    "@tanstack/zod-adapter": "^1.115.2",
     "@vercel/speed-insights": "^1.2.0",
     "groq": "^3.64.2",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "use-effect-event": "^1.0.2",
-    "vinxi": "^0.5.0",
+    "vinxi": "^0.5.4",
     "zod": "^3.23.8"
   },
   "devDependencies": {
