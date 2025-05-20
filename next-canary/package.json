@@ -10,7 +10,7 @@
     "typegen:generate": "sanity typegen generate"
   },
   "dependencies": {
-    "@sanity/client": "^6.23.0",
+    "@sanity/client": "^7.3.0",
     "@vercel/speed-insights": "^1.2.0",
     "framer-motion": "^12.4.2",
     "groq": "^3.64.2",
