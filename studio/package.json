@@ -12,21 +12,21 @@
     "start": "sanity start"
   },
   "dependencies": {
-    "@sanity/icons": "^3.5.2",
-    "@sanity/ui": "^2.10.8",
-    "@sanity/vision": "3.83.0",
+    "@sanity/icons": "^3.7.0",
+    "@sanity/ui": "^2.15.18",
+    "@sanity/vision": "3.90.0",
     "polished": "^4.3.1",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "react-is": "^19.0.0",
-    "sanity": "3.83.0",
-    "styled-components": "^6.1.17"
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "react-is": "^19.1.0",
+    "sanity": "3.90.0",
+    "styled-components": "^6.1.18"
   },
   "devDependencies": {
     "@sanity/eslint-config-studio": "^5.0.2",
-    "@types/react": "^19.1.0",
+    "@types/react": "^19.1.6",
     "babel-plugin-react-compiler": "beta",
-    "eslint": "^9.24.0",
+    "eslint": "^9.27.0",
     "eslint-plugin-react-compiler": "beta",
     "typescript": "5.8.3"
   }
