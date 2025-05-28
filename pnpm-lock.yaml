@@ -141,8 +141,8 @@ importers:
         specifier: ^18.3.1
         version: 18.3.1(react@18.3.1)
       use-effect-event:
-        specifier: ^1.0.2
-        version: 1.0.2(react@18.3.1)
+        specifier: ^2.0.0
+        version: 2.0.0(react@18.3.1)
     devDependencies:
       '@types/node':
         specifier: ^20
@@ -199,8 +199,8 @@ importers:
         specifier: ^18.3.1
         version: 18.3.1(react@18.3.1)
       use-effect-event:
-        specifier: ^1.0.2
-        version: 1.0.2(react@18.3.1)
+        specifier: ^2.0.0
+        version: 2.0.0(react@18.3.1)
     devDependencies:
       '@tailwindcss/postcss':
         specifier: ^4.1.7
@@ -257,8 +257,8 @@ importers:
         specifier: ^19.1.0
         version: 19.1.0(react@19.1.0)
       use-effect-event:
-        specifier: ^1.0.2
-        version: 1.0.2(react@19.1.0)
+        specifier: ^2.0.0
+        version: 2.0.0(react@19.1.0)
     devDependencies:
       '@tailwindcss/postcss':
         specifier: ^4.1.7
@@ -382,8 +382,8 @@ importers:
         specifier: ^19.1.0
         version: 19.1.0(react@19.1.0)
       use-effect-event:
-        specifier: ^1.0.2
-        version: 1.0.2(react@19.1.0)
+        specifier: ^2.0.0
+        version: 2.0.0(react@19.1.0)
     devDependencies:
       '@tailwindcss/postcss':
         specifier: ^4.1.7
@@ -618,8 +618,8 @@ importers:
         specifier: ^19.1.0
         version: 19.1.0(react@19.1.0)
       use-effect-event:
-        specifier: ^1.0.2
-        version: 1.0.2(react@19.1.0)
+        specifier: ^2.0.0
+        version: 2.0.0(react@19.1.0)
       vinxi:
         specifier: ^0.5.6
         version: 0.5.6(@types/node@20.17.30)(db0@0.3.2)(ioredis@5.6.1)(jiti@2.4.2)(lightningcss@1.30.1)(terser@5.39.0)(tsx@4.19.3)(yaml@2.7.1)
@@ -10475,6 +10475,11 @@ packages:
 
   use-effect-event@1.0.2:
     resolution: {integrity: sha512-9c8AAmtQja4LwJXI0EQPhQCip6dmrcSe0FMcTUZBeGh/XTCOLgw3Qbt0JdUT8Rcrm/ZH+Web7MIcMdqgQKdXJg==}
+    peerDependencies:
+      react: ^18.3 || ^19.0.0-0
+
+  use-effect-event@2.0.0:
+    resolution: {integrity: sha512-CIRGe/RUfngbmivpY5F7rc0m7q0VYzqtQOcKJ19FPEeyf7tS44Zk+9tcDicP+z+d32+E2r+Zs7+20MHXa8JBUA==}
     peerDependencies:
       react: ^18.3 || ^19.0.0-0
 
@@ -23547,11 +23552,15 @@ snapshots:
     dependencies:
       react: 19.1.0
 
-  use-effect-event@1.0.2(react@18.3.1):
+  use-effect-event@1.0.2(react@19.1.0):
+    dependencies:
+      react: 19.1.0
+
+  use-effect-event@2.0.0(react@18.3.1):
     dependencies:
       react: 18.3.1
 
-  use-effect-event@1.0.2(react@19.1.0):
+  use-effect-event@2.0.0(react@19.1.0):
     dependencies:
       react: 19.1.0
 
