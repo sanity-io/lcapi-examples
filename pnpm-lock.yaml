@@ -47,8 +47,8 @@ importers:
   api:
     dependencies:
       '@sanity/client':
-        specifier: ^6.29.1
-        version: 6.29.1(debug@4.4.1)
+        specifier: ^7.3.0
+        version: 7.3.0(debug@4.4.1)
       '@vercel/functions':
         specifier: ^2.1.0
         version: 2.1.0
@@ -81,8 +81,8 @@ importers:
         specifier: ^8.1.4
         version: 8.1.4(@sveltejs/kit@2.20.5(@sveltejs/vite-plugin-svelte@5.0.3(svelte@5.33.4)(vite@6.3.5(@types/node@20.17.30)(jiti@2.4.2)(lightningcss@1.30.1)(terser@5.39.0)(tsx@4.19.3)(yaml@2.7.1)))(svelte@5.33.4)(vite@6.3.5(@types/node@20.17.30)(jiti@2.4.2)(lightningcss@1.30.1)(terser@5.39.0)(tsx@4.19.3)(yaml@2.7.1)))(astro@5.8.0(@types/node@20.17.30)(db0@0.3.2)(ioredis@5.6.1)(jiti@2.4.2)(lightningcss@1.30.1)(rollup@4.41.1)(terser@5.39.0)(tsx@4.19.3)(typescript@5.8.3)(yaml@2.7.1))(next@15.3.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react@19.1.0)(rollup@4.41.1)(svelte@5.33.4)(vue-router@4.5.1(vue@3.5.15(typescript@5.8.3)))(vue@3.5.15(typescript@5.8.3))
       '@sanity/client':
-        specifier: ^6.29.1
-        version: 6.29.1(debug@4.4.1)
+        specifier: ^7.3.0
+        version: 7.3.0(debug@4.4.1)
       '@tailwindcss/vite':
         specifier: ^4.1.7
         version: 4.1.7(vite@6.3.5(@types/node@20.17.30)(jiti@2.4.2)(lightningcss@1.30.1)(terser@5.39.0)(tsx@4.19.3)(yaml@2.7.1))
@@ -120,8 +120,8 @@ importers:
   next-13:
     dependencies:
       '@sanity/client':
-        specifier: ^6.29.1
-        version: 6.29.1(debug@4.4.1)
+        specifier: ^7.3.0
+        version: 7.3.0(debug@4.4.1)
       '@vercel/speed-insights':
         specifier: ^1.2.0
         version: 1.2.0(@sveltejs/kit@2.20.5(@sveltejs/vite-plugin-svelte@5.0.3(svelte@5.33.4)(vite@6.3.5(@types/node@20.17.30)(jiti@2.4.2)(lightningcss@1.30.1)(terser@5.39.0)(tsx@4.19.3)(yaml@2.7.1)))(svelte@5.33.4)(vite@6.3.5(@types/node@20.17.30)(jiti@2.4.2)(lightningcss@1.30.1)(terser@5.39.0)(tsx@4.19.3)(yaml@2.7.1)))(next@13.5.7(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)(svelte@5.33.4)(vue-router@4.5.1(vue@3.5.15(typescript@5.8.3)))(vue@3.5.15(typescript@5.8.3))
@@ -178,8 +178,8 @@ importers:
   next-14:
     dependencies:
       '@sanity/client':
-        specifier: ^6.29.1
-        version: 6.29.1(debug@4.4.1)
+        specifier: ^7.3.0
+        version: 7.3.0(debug@4.4.1)
       '@vercel/speed-insights':
         specifier: ^1.2.0
         version: 1.2.0(@sveltejs/kit@2.20.5(@sveltejs/vite-plugin-svelte@5.0.3(svelte@5.33.4)(vite@6.3.5(@types/node@20.17.30)(jiti@2.4.2)(lightningcss@1.30.1)(terser@5.39.0)(tsx@4.19.3)(yaml@2.7.1)))(svelte@5.33.4)(vite@6.3.5(@types/node@20.17.30)(jiti@2.4.2)(lightningcss@1.30.1)(terser@5.39.0)(tsx@4.19.3)(yaml@2.7.1)))(next@14.2.29(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)(svelte@5.33.4)(vue-router@4.5.1(vue@3.5.15(typescript@5.8.3)))(vue@3.5.15(typescript@5.8.3))
@@ -236,8 +236,8 @@ importers:
   next-15:
     dependencies:
       '@sanity/client':
-        specifier: ^6.29.1
-        version: 6.29.1(debug@4.4.1)
+        specifier: ^7.3.0
+        version: 7.3.0(debug@4.4.1)
       '@vercel/speed-insights':
         specifier: ^1.2.0
         version: 1.2.0(@sveltejs/kit@2.20.5(@sveltejs/vite-plugin-svelte@5.0.3(svelte@5.33.4)(vite@6.3.5(@types/node@20.17.30)(jiti@2.4.2)(lightningcss@1.30.1)(terser@5.39.0)(tsx@4.19.3)(yaml@2.7.1)))(svelte@5.33.4)(vite@6.3.5(@types/node@20.17.30)(jiti@2.4.2)(lightningcss@1.30.1)(terser@5.39.0)(tsx@4.19.3)(yaml@2.7.1)))(next@15.3.2(@babel/core@7.27.3)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react@19.1.0)(svelte@5.33.4)(vue-router@4.5.1(vue@3.5.15(typescript@5.8.3)))(vue@3.5.15(typescript@5.8.3))
@@ -300,8 +300,8 @@ importers:
   next-canary:
     dependencies:
       '@sanity/client':
-        specifier: ^6.29.1
-        version: 6.29.1(debug@4.4.1)
+        specifier: ^7.3.0
+        version: 7.3.0(debug@4.4.1)
       '@vercel/speed-insights':
         specifier: ^1.2.0
         version: 1.2.0(@sveltejs/kit@2.20.5(@sveltejs/vite-plugin-svelte@5.0.3(svelte@5.33.4)(vite@6.3.5(@types/node@20.17.30)(jiti@2.4.2)(lightningcss@1.30.1)(terser@5.39.0)(tsx@4.19.3)(yaml@2.7.1)))(svelte@5.33.4)(vite@6.3.5(@types/node@20.17.30)(jiti@2.4.2)(lightningcss@1.30.1)(terser@5.39.0)(tsx@4.19.3)(yaml@2.7.1)))(next@15.4.0-canary.55(babel-plugin-react-compiler@19.0.0-beta-af1b7da-20250417)(react-dom@0.0.0-experimental-f9ae0a4c-20250527(react@0.0.0-experimental-f9ae0a4c-20250527))(react@0.0.0-experimental-f9ae0a4c-20250527))(react@0.0.0-experimental-f9ae0a4c-20250527)(svelte@5.33.4)(vue-router@4.5.1(vue@3.5.15(typescript@5.8.3)))(vue@3.5.15(typescript@5.8.3))
@@ -361,8 +361,8 @@ importers:
   next-enterprise:
     dependencies:
       '@sanity/client':
-        specifier: ^6.29.1
-        version: 6.29.1(debug@4.4.1)
+        specifier: ^7.3.0
+        version: 7.3.0(debug@4.4.1)
       '@vercel/speed-insights':
         specifier: ^1.2.0
         version: 1.2.0(@sveltejs/kit@2.20.5(@sveltejs/vite-plugin-svelte@5.0.3(svelte@5.33.4)(vite@6.3.5(@types/node@20.17.30)(jiti@2.4.2)(lightningcss@1.30.1)(terser@5.39.0)(tsx@4.19.3)(yaml@2.7.1)))(svelte@5.33.4)(vite@6.3.5(@types/node@20.17.30)(jiti@2.4.2)(lightningcss@1.30.1)(terser@5.39.0)(tsx@4.19.3)(yaml@2.7.1)))(next@15.3.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react@19.1.0)(svelte@5.33.4)(vue-router@4.5.1(vue@3.5.15(typescript@5.8.3)))(vue@3.5.15(typescript@5.8.3))
@@ -425,8 +425,8 @@ importers:
   next-enterprise/expirator-service:
     dependencies:
       '@sanity/client':
-        specifier: 6.29.1
-        version: 6.29.1(debug@4.4.1)
+        specifier: 7.3.0
+        version: 7.3.0(debug@4.4.1)
       typescript:
         specifier: ^5.0.0
         version: 5.8.3
@@ -444,8 +444,8 @@ importers:
         specifier: 1.4.1
         version: 1.4.1(@vue/compiler-sfc@3.5.15)(eslint@9.27.0(jiti@2.4.2))(magicast@0.3.5)(typescript@5.8.3)(vite@6.3.5(@types/node@20.17.30)(jiti@2.4.2)(lightningcss@1.30.1)(terser@5.39.0)(tsx@4.19.3)(yaml@2.7.1))
       '@sanity/client':
-        specifier: ^6.29.1
-        version: 6.29.1(debug@4.4.1)
+        specifier: ^7.3.0
+        version: 7.3.0(debug@4.4.1)
       '@tailwindcss/vite':
         specifier: ^4.1.7
         version: 4.1.7(vite@6.3.5(@types/node@20.17.30)(jiti@2.4.2)(lightningcss@1.30.1)(terser@5.39.0)(tsx@4.19.3)(yaml@2.7.1))
@@ -533,8 +533,8 @@ importers:
   sveltekit:
     dependencies:
       '@sanity/client':
-        specifier: ^6.29.1
-        version: 6.29.1(debug@4.4.1)
+        specifier: ^7.3.0
+        version: 7.3.0(debug@4.4.1)
       '@vercel/speed-insights':
         specifier: ^1.2.0
         version: 1.2.0(@sveltejs/kit@2.20.5(@sveltejs/vite-plugin-svelte@5.0.3(svelte@5.33.4)(vite@6.3.5(@types/node@20.17.30)(jiti@2.4.2)(lightningcss@1.30.1)(terser@5.39.0)(tsx@4.19.3)(yaml@2.7.1)))(svelte@5.33.4)(vite@6.3.5(@types/node@20.17.30)(jiti@2.4.2)(lightningcss@1.30.1)(terser@5.39.0)(tsx@4.19.3)(yaml@2.7.1)))(next@15.3.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react@19.1.0)(svelte@5.33.4)(vue-router@4.5.1(vue@3.5.15(typescript@5.8.3)))(vue@3.5.15(typescript@5.8.3))
@@ -591,8 +591,8 @@ importers:
   tanstack-start:
     dependencies:
       '@sanity/client':
-        specifier: ^6.29.1
-        version: 6.29.1(debug@4.4.1)
+        specifier: ^7.3.0
+        version: 7.3.0(debug@4.4.1)
       '@tanstack/react-router':
         specifier: ^1.120.11
         version: 1.120.11(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
