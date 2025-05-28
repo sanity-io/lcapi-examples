@@ -16,6 +16,44 @@ import '@sanity/client'
  */
 
 // Source: schema.json
+export type Reaction = {
+  _id: string
+  _type: 'reaction'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  emoji?: string
+  reactions?: number
+}
+
+export type Demo = {
+  _id: string
+  _type: 'demo'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  title?: string
+  reactions?: Array<{
+    _ref: string
+    _type: 'reference'
+    _weak?: boolean
+    _key: string
+    [internalGroqTypeReferenceTo]?: 'reaction'
+  }>
+  slug?: Slug
+  url?: string
+}
+
+export type Theme = {
+  _id: string
+  _type: 'theme'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  background?: string
+  text?: string
+}
+
 export type SanityImagePaletteSwatch = {
   _type: 'sanity.imagePaletteSwatch'
   background?: string
@@ -121,6 +159,12 @@ export type Geopoint = {
   alt?: number
 }
 
+export type Slug = {
+  _type: 'slug'
+  current?: string
+  source?: string
+}
+
 export type SanityAssetSourceData = {
   _type: 'sanity.assetSourceData'
   name?: string
@@ -128,51 +172,10 @@ export type SanityAssetSourceData = {
   url?: string
 }
 
-export type Reaction = {
-  _id: string
-  _type: 'reaction'
-  _createdAt: string
-  _updatedAt: string
-  _rev: string
-  emoji?: string
-  reactions?: number
-}
-
-export type Demo = {
-  _id: string
-  _type: 'demo'
-  _createdAt: string
-  _updatedAt: string
-  _rev: string
-  title?: string
-  reactions?: Array<{
-    _ref: string
-    _type: 'reference'
-    _weak?: boolean
-    _key: string
-    [internalGroqTypeReferenceTo]?: 'reaction'
-  }>
-  slug?: Slug
-  url?: string
-}
-
-export type Slug = {
-  _type: 'slug'
-  current?: string
-  source?: string
-}
-
-export type Theme = {
-  _id: string
-  _type: 'theme'
-  _createdAt: string
-  _updatedAt: string
-  _rev: string
-  background?: string
-  text?: string
-}
-
 export type AllSanitySchemaTypes =
+  | Reaction
+  | Demo
+  | Theme
   | SanityImagePaletteSwatch
   | SanityImagePalette
   | SanityImageDimensions
@@ -182,11 +185,8 @@ export type AllSanitySchemaTypes =
   | SanityImageAsset
   | SanityImageMetadata
   | Geopoint
-  | SanityAssetSourceData
-  | Reaction
-  | Demo
   | Slug
-  | Theme
+  | SanityAssetSourceData
 export declare const internalGroqTypeReferenceTo: unique symbol
 // Source: ./src/app/api/reaction/[id]/route.ts
 // Variable: REACTION_QUERY_STATIC_PARAMS
