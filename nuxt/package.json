@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "@nuxt/eslint": "1.4.1",
-    "@sanity/client": "^6.29.1",
+    "@sanity/client": "^7.3.0",
     "@tailwindcss/vite": "^4.1.7",
     "@vercel/speed-insights": "^1.2.0",
     "@vueuse/motion": "^3.0.3",
