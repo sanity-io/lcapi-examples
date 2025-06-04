@@ -3,6 +3,7 @@ import {visionTool} from '@sanity/vision'
  * This plugin contains all the logic for setting up the singletons
  */
 import {defineConfig, type DocumentDefinition} from 'sanity'
+import {presentationTool} from 'sanity/presentation'
 import {structureTool, type StructureResolver} from 'sanity/structure'
 import {demoType, reactionType, themeType} from './schemaTypes'
 
@@ -37,6 +38,9 @@ export default defineConfig({
   dataset: 'lcapi',
 
   plugins: [
+    presentationTool({
+      previewUrl: 'https://example.com',
+    }),
     structureTool({
       structure: (S) => {
         // The default root list items (except custom ones)
