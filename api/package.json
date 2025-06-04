@@ -6,10 +6,10 @@
     "typegen:generate": "sanity typegen generate"
   },
   "dependencies": {
-    "@sanity/client": "^7.3.0",
+    "@sanity/client": "^7.4.1",
     "@vercel/functions": "^2.1.0",
     "d3-color": "^3.1.0",
-    "groq": "^3.90.0"
+    "groq": "^3.91.0"
   },
   "devDependencies": {
     "@edge-runtime/types": "^4.0.0",
