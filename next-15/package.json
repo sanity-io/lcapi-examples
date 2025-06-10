@@ -10,7 +10,7 @@
     "typegen:generate": "sanity typegen generate"
   },
   "dependencies": {
-    "@sanity/client": "^7.4.1",
+    "@sanity/client": "^7.5.0",
     "@vercel/speed-insights": "^1.2.0",
     "framer-motion": "^12.16.0",
     "groq": "^3.91.0",
@@ -22,8 +22,8 @@
   "devDependencies": {
     "@tailwindcss/postcss": "^4.1.8",
     "@types/node": "^20",
-    "@types/react": "^19.1.6",
-    "@types/react-dom": "^19.1.5",
+    "@types/react": "^19.1.7",
+    "@types/react-dom": "^19.1.6",
     "babel-plugin-react-compiler": "rc",
     "eslint": "^9.28.0",
     "eslint-config-next": "15.3.3",
