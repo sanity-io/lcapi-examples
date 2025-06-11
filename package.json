@@ -10,13 +10,13 @@
   "dependencies": {
     "@ianvs/prettier-plugin-sort-imports": "^4.4.2",
     "@sanity/prettier-config": "^1.0.3",
-    "@types/react": "^19.1.7",
+    "@types/react": "^19.1.8",
     "@types/react-dom": "^19.1.6",
     "prettier": "^3.5.3",
     "prettier-plugin-astro": "^0.14.1",
     "prettier-plugin-svelte": "^3.4.0",
     "prettier-plugin-tailwindcss": "^0.6.12",
-    "sanity": "3.91.0",
+    "sanity": "3.92.0",
     "typescript": "5.8.3"
   },
   "packageManager": "pnpm@10.12.1",

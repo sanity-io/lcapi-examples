@@ -11,25 +11,25 @@
   },
   "dependencies": {
     "@sanity/client": "^7.5.0",
-    "@tanstack/react-router": "^1.120.20",
-    "@tanstack/router-devtools": "^1.120.20",
+    "@tanstack/react-router": "^1.121.0",
+    "@tanstack/router-devtools": "^1.121.0",
     "@tanstack/start": "^1.120.20",
-    "@tanstack/zod-adapter": "^1.120.20",
+    "@tanstack/zod-adapter": "^1.121.0",
     "@vercel/speed-insights": "^1.2.0",
-    "groq": "^3.91.0",
+    "groq": "^3.92.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "use-effect-event": "^2.0.0",
     "vinxi": "^0.5.7",
-    "zod": "^3.25.57"
+    "zod": "^3.25.61"
   },
   "devDependencies": {
-    "@tailwindcss/postcss": "^4.1.8",
-    "@types/react": "^19.1.7",
+    "@tailwindcss/postcss": "^4.1.9",
+    "@types/react": "^19.1.8",
     "@types/react-dom": "^19.1.6",
     "@vitejs/plugin-react": "^4.5.2",
-    "postcss": "^8.5.4",
-    "tailwindcss": "^4.1.8",
+    "postcss": "^8.5.5",
+    "tailwindcss": "^4.1.9",
     "typescript": "5.8.3"
   }
 }
