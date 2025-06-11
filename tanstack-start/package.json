@@ -11,17 +11,17 @@
   },
   "dependencies": {
     "@sanity/client": "^7.5.0",
-    "@tanstack/react-router": "^1.121.0",
-    "@tanstack/router-devtools": "^1.121.0",
+    "@tanstack/react-router": "^1.121.2",
+    "@tanstack/router-devtools": "^1.121.2",
     "@tanstack/start": "^1.120.20",
-    "@tanstack/zod-adapter": "^1.121.0",
+    "@tanstack/zod-adapter": "^1.121.2",
     "@vercel/speed-insights": "^1.2.0",
     "groq": "^3.92.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "use-effect-event": "^2.0.0",
     "vinxi": "^0.5.7",
-    "zod": "^3.25.61"
+    "zod": "^3.25.62"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.1.9",
