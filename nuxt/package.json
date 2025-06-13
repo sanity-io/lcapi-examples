@@ -15,13 +15,13 @@
   "dependencies": {
     "@nuxt/eslint": "1.4.1",
     "@sanity/client": "^7.5.0",
-    "@tailwindcss/vite": "^4.1.9",
+    "@tailwindcss/vite": "^4.1.10",
     "@vercel/speed-insights": "^1.2.0",
     "@vueuse/motion": "^3.0.3",
     "eslint": "^9.28.0",
     "groq": "^3.92.0",
     "nuxt": "^3.17.5",
-    "tailwindcss": "^4.1.9",
+    "tailwindcss": "^4.1.10",
     "vue": "latest",
     "vue-router": "latest"
   },
