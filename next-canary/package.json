@@ -12,14 +12,14 @@
   "dependencies": {
     "@sanity/client": "^7.5.0",
     "@vercel/speed-insights": "^1.2.0",
-    "framer-motion": "^12.17.0",
+    "framer-motion": "^12.18.0",
     "groq": "^3.92.0",
     "next": "canary",
     "react": "experimental",
     "react-dom": "experimental"
   },
   "devDependencies": {
-    "@tailwindcss/postcss": "^4.1.9",
+    "@tailwindcss/postcss": "^4.1.10",
     "@types/node": "^20",
     "@types/react": "^19.1.8",
     "@types/react-dom": "^19.1.6",
@@ -29,7 +29,7 @@
     "eslint-plugin-react-compiler": "rc",
     "eslint-plugin-react-hooks": "experimental",
     "postcss": "^8.5.5",
-    "tailwindcss": "^4.1.9",
+    "tailwindcss": "^4.1.10",
     "typescript": "5.8.3"
   }
 }
