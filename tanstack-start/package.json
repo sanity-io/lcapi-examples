@@ -19,7 +19,7 @@
     "groq": "^3.92.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
-    "use-effect-event": "^2.0.1",
+    "use-effect-event": "^2.0.3",
     "vinxi": "^0.5.7",
     "zod": "^3.25.64"
   },
