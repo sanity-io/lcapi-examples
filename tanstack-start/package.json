@@ -16,7 +16,7 @@
     "@tanstack/start": "^1.120.20",
     "@tanstack/zod-adapter": "^1.121.2",
     "@vercel/speed-insights": "^1.2.0",
-    "groq": "^3.92.0",
+    "groq": "^4.6.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "use-effect-event": "^2.0.3",
