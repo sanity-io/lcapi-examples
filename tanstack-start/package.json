@@ -10,26 +10,26 @@
     "typegen:generate": "sanity typegen generate"
   },
   "dependencies": {
-    "@sanity/client": "^7.5.0",
-    "@tanstack/react-router": "^1.121.2",
-    "@tanstack/router-devtools": "^1.121.8",
+    "@sanity/client": "^7.10.0",
+    "@tanstack/react-router": "^1.131.28",
+    "@tanstack/router-devtools": "^1.131.28",
     "@tanstack/start": "^1.120.20",
-    "@tanstack/zod-adapter": "^1.121.2",
+    "@tanstack/zod-adapter": "^1.131.28",
     "@vercel/speed-insights": "^1.2.0",
     "groq": "^4.6.0",
-    "react": "^19.1.0",
-    "react-dom": "^19.1.0",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
     "use-effect-event": "^2.0.3",
-    "vinxi": "^0.5.7",
-    "zod": "^3.25.64"
+    "vinxi": "^0.5.8",
+    "zod": "^3.25.76"
   },
   "devDependencies": {
-    "@tailwindcss/postcss": "^4.1.10",
-    "@types/react": "^19.1.8",
-    "@types/react-dom": "^19.1.6",
-    "@vitejs/plugin-react": "^4.5.2",
-    "postcss": "^8.5.5",
-    "tailwindcss": "^4.1.10",
-    "typescript": "5.8.3"
+    "@tailwindcss/postcss": "^4.1.12",
+    "@types/react": "^19.1.12",
+    "@types/react-dom": "^19.1.8",
+    "@vitejs/plugin-react": "^4.7.0",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^4.1.12",
+    "typescript": "5.9.2"
   }
 }

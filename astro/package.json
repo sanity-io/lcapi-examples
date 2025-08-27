@@ -12,18 +12,18 @@
   "dependencies": {
     "@astrojs/check": "^0.9.4",
     "@astrojs/react": "^4.3.0",
-    "@astrojs/vercel": "^8.1.5",
-    "@sanity/client": "^7.5.0",
-    "@tailwindcss/vite": "^4.1.10",
-    "@types/react": "^19.1.8",
-    "@types/react-dom": "^19.1.6",
+    "@astrojs/vercel": "^8.2.6",
+    "@sanity/client": "^7.10.0",
+    "@tailwindcss/vite": "^4.1.12",
+    "@types/react": "^19.1.12",
+    "@types/react-dom": "^19.1.8",
     "@vercel/speed-insights": "^1.2.0",
     "astro": "^5.9.2",
-    "framer-motion": "^12.18.0",
+    "framer-motion": "^12.23.12",
     "groq": "^4.6.0",
-    "react": "^19.1.0",
-    "react-dom": "^19.1.0",
-    "tailwindcss": "^4.1.10",
-    "typescript": "^5.8.3"
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
+    "tailwindcss": "^4.1.12",
+    "typescript": "^5.9.2"
   }
 }

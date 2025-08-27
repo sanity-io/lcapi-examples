@@ -13,20 +13,20 @@
     "typegen:generate": "sanity typegen generate"
   },
   "dependencies": {
-    "@nuxt/eslint": "1.4.1",
-    "@sanity/client": "^7.5.0",
-    "@tailwindcss/vite": "^4.1.10",
+    "@nuxt/eslint": "1.9.0",
+    "@sanity/client": "^7.10.0",
+    "@tailwindcss/vite": "^4.1.12",
     "@vercel/speed-insights": "^1.2.0",
     "@vueuse/motion": "^3.0.3",
-    "eslint": "^9.28.0",
+    "eslint": "^9.34.0",
     "groq": "^4.6.0",
-    "nuxt": "^3.17.5",
-    "tailwindcss": "^4.1.10",
+    "nuxt": "^3.18.1",
+    "tailwindcss": "^4.1.12",
     "vue": "latest",
     "vue-router": "latest"
   },
   "devDependencies": {
-    "typescript": "5.8.3",
-    "vue-tsc": "^2.2.10"
+    "typescript": "5.9.2",
+    "vue-tsc": "^2.2.12"
   }
 }
