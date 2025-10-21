@@ -21,7 +21,7 @@
     "react-dom": "^19.1.0",
     "use-effect-event": "^2.0.3",
     "vinxi": "^0.5.7",
-    "zod": "^3.25.64"
+    "zod": "^4.1.12"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.1.10",
