@@ -22,8 +22,9 @@ export async function sanityFetch<const QueryString extends string>({
   'use cache: remote'
   const {result, syncTags} = await client.fetch(query, params, {
     filterResponse: false,
-    useCdn: false,
+    useCdn: true,
     perspective: 'published',
+    cacheMode: 'noStale',
   })
 
   const cacheTags = [...(syncTags || []), ...tags]

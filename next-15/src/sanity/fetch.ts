@@ -28,8 +28,9 @@ export async function sanityFetch<const QueryString extends string>({
   })
   const cacheTags = [...(syncTags || []), ...tags]
   const data = await client.fetch(query, params, {
-    useCdn: false,
+    useCdn: true,
     perspective: 'published',
+    cacheMode: 'noStale',
     cache: 'force-cache',
     next: {tags: cacheTags},
   })
