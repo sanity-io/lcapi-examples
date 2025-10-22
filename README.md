@@ -27,8 +27,9 @@ instead of defining your own `sanityFetch` function and `SanityLive` component.
 - [Next.js 13 Pages Router](./next-13/) – [https://lcapi-examples-next-13.sanity.dev]
 - [Next.js 14 App Router](./next-14/) – [https://lcapi-examples-next-14.sanity.dev]
 - [Next.js 15 App Router](./next-15/) – [https://lcapi-examples-next-15.sanity.dev]
-- [Next.js 15 canary with the 'use cache' directive](./next-canary) - [https://lcapi-examples-next-canary.sanity.dev/]
-- [Next.js with Enterprise grade revalidation efficiency](./next-enterprise/) - [https://lcapi-examples-next-enterprise.sanity.dev] – uses Next.js 15, but doesn't require it, and the technique could be used in any framework that supports on-demand revalidation similar to ISR in Next.js on Vercel.
+- [Next.js 16 with the 'use cache' directive](./next-16) - [https://lcapi-examples-next-16.sanity.dev/]
+- [Next.js 16 canary with the 'use cache: remote' directive](./next-canary) - [https://lcapi-examples-next-canary.sanity.dev/]
+- [Next.js with Enterprise grade revalidation efficiency](./next-enterprise/) - [https://lcapi-examples-next-enterprise.sanity.dev] – uses Next.js 16 and `'use cache'`, but doesn't require it, and the technique could be used in any framework that supports on-demand revalidation similar to ISR in Next.js on Vercel.
 
 # TODO
 
