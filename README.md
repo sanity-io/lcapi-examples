@@ -9,7 +9,7 @@ import {createClient, defineLive} from 'next-sanity/live'
 const client = createClient({
   projectId: 'your-project-id',
   dataset: 'your-dataset',
-  apiVersion: '2024-01-17',
+  apiVersion: '2025-10-21',
   useCdn: true,
 })
 

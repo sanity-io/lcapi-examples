@@ -5,7 +5,7 @@ import type {LiveEvent} from '@sanity/client'
 import {CorsOriginError} from '@sanity/client'
 import {useRouter} from 'next/navigation'
 import {useEffect, useEffectEvent} from 'react'
-import {expireTags} from './actions'
+import {updateTags} from './actions'
 
 /**
  * Next v16 has a first class API in `next-sanity` that should be used instead of this function.
@@ -24,11 +24,15 @@ export function SanityLive() {
         console.info('Sanity is live with automatic revalidation of published content')
         break
       case 'message':
-        expireTags(event.tags)
+        updateTags(event.tags)
         break
       case 'reconnect':
       case 'restart':
-        router.refresh()
+        console.log(
+          'SanityLive',
+          'reconnect and restart is skipped atm (router.refresh()) is not called',
+        )
+        // router.refresh()
         break
     }
   })

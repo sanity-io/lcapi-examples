@@ -3,7 +3,7 @@
 import type {SyncTag} from '@sanity/client'
 import {updateTag} from 'next/cache'
 
-export async function expireTags(tags: SyncTag[]) {
+export async function updateTags(tags: SyncTag[]) {
   for (const tag of tags) {
     updateTag(tag)
   }
@@ -11,9 +11,13 @@ export async function expireTags(tags: SyncTag[]) {
 }
 
 export async function randomColorTheme() {
-  const response = await fetch('https://lcapi-examples-api.sanity.dev/api/random-color-theme', {
-    method: 'PUT',
-  })
+  const formData = new FormData()
+  formData.append('background', '#000000')
+  formData.append('text', '#FFFFFF')
+  const response = await fetch(
+    'https://lcapi-examples-api-git-add-next-16.sanity.dev/api/random-color-theme',
+    {method: 'PUT', body: formData},
+  )
   if (!response.ok) {
     return null
   }

@@ -32,7 +32,7 @@ export default async function handler(request: Request) {
     const client = createClient({
       projectId: 'hiomol4a',
       dataset: 'lcapi',
-      apiVersion: '2024-09-18',
+      apiVersion: '2025-10-21',
       useCdn: false,
       token: process.env.SANITY_API_WRITE_TOKEN,
     })
@@ -40,7 +40,7 @@ export default async function handler(request: Request) {
     const id = await client.fetch(
       REACTION_QUERY,
       {id: formData.get('id')},
-      {perspective: 'published'},
+      {perspective: 'published', useCdn: true, cacheMode: 'noStale'},
     )
     if (!id) {
       return new Response(JSON.stringify('Reaction not found'), {status: 404, headers})

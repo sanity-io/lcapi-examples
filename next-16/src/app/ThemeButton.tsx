@@ -11,10 +11,10 @@ export function ThemeButton() {
       onClick={() =>
         startTransition(() =>
           randomColorTheme().then((data) => {
-            if (data?.background && data?.text) {
-              document.documentElement.style.setProperty('--theme-background', data.background)
-              document.documentElement.style.setProperty('--theme-text', data.text)
-            }
+            // if (data?.background && data?.text) {
+            //   document.documentElement.style.setProperty('--theme-background', data.background)
+            //   document.documentElement.style.setProperty('--theme-text', data.text)
+            // }
           }),
         )
       }
