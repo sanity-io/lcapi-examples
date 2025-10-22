@@ -4,6 +4,7 @@ import type {Metadata} from 'next'
 import {headers} from 'next/headers'
 import {Suspense} from 'react'
 import {TimeSince} from '../TimeSince'
+import {UserAgent} from './UserAgent'
 
 const DYNAMIC_DEMO_QUERY = defineQuery(
   `*[_type == "demo" && slug.current == $slug][0]{title,"fetchedAt": now()}`,
