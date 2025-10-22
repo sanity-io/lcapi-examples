@@ -16,6 +16,7 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
+  'use cache'
   const {data, tags} = await sanityFetch({query: THEME_QUERY, tags: ['theme']})
   console.log('RootLayout', data, tags)
 
