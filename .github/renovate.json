@@ -39,7 +39,7 @@
     },
     {
       "matchFileNames": ["next-canary/package.json"],
-      "matchPackageNames": ["next", "eslint-config-next"],
+      "matchPackageNames": ["next", "eslint-config-next", "react", "react-dom"],
       "followTag": "canary"
     }
   ]
