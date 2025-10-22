@@ -7,7 +7,10 @@ export default defineNuxtConfig({
   css: ['~/assets/css/main.css'],
   modules: ['@nuxt/eslint', '@vueuse/motion/nuxt'],
   vite: {
-    plugins: [tailwindcss()],
+    plugins: [
+      // @ts-expect-error - tailwindcss typings are wonky for some reason
+      tailwindcss(),
+    ],
   },
   typescript: {
     typeCheck: true,
