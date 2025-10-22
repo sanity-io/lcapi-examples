@@ -22,6 +22,7 @@ export async function sanityFetch<const QueryString extends string>({
     filterResponse: false,
     cacheMode: 'noStale',
   })
+  console.log('sanityFetch', {query, params, result, syncTags})
 
   /**
    * The tags used here, are expired later on in the `updateTags` Server Action with the `updateTag` function from `next/cache`
