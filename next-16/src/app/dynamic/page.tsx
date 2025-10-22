@@ -1,7 +1,6 @@
 import {sanityFetch} from '@/sanity/fetch'
 import {defineQuery} from 'groq'
 import type {Metadata} from 'next'
-import {headers} from 'next/headers'
 import {Suspense} from 'react'
 import {TimeSince} from '../TimeSince'
 import {UserAgent} from './UserAgent'
@@ -20,8 +19,6 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function Home() {
   const {data} = await sanityFetch({query: DYNAMIC_DEMO_QUERY, params: {slug}})
-  const headersList = await headers()
-  const userAgent = headersList.get('user-agent')
 
   return (
     <>
