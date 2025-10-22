@@ -1,13 +1,13 @@
 'use server'
 
 import type {SyncTag} from '@sanity/client'
-import {revalidateTag} from 'next/cache'
+import {updateTag} from 'next/cache'
 
 export async function expireTags(tags: SyncTag[]) {
   for (const tag of tags) {
-    revalidateTag(tag)
+    updateTag(tag)
   }
-  console.log(`<SanityLive /> expired tags: ${tags.join(', ')}`)
+  console.log(`<SanityLive /> updated tags: ${tags.join(', ')}`)
 }
 
 export async function randomColorTheme() {
