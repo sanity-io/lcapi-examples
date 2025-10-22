@@ -6,7 +6,7 @@ import {useEffect} from 'react'
 import {useEffectEvent} from 'use-effect-event'
 
 /**
- * Next v14 and later, on App Router, has a first class API in `next-sanity`, `defineLive`, that should be used instead of this function.
+ * Next v14 and later, on App Router, has a first class API in `next-sanity/live`, `defineLive`, that should be used instead of this function.
  */
 export function SanityLive(props: {tags?: string[]}) {
   const router = useRouter()

@@ -1,10 +1,10 @@
 # How to use the Sanity Live Content API in various frameworks
 
 These examples are intended to demonstrate how the Live Content API (LCAPI) works, and interacts with data loading and invalidation.
-They use `@sanity/client` alone. For some of these examples we deliver fully baked utils that you should use, for example Next.js 14 & 15 projects on App Router should use:
+They use `@sanity/client` alone. For some of these examples we deliver fully baked utils that you should use, for example Next.js 14, 15 & 16 projects on App Router should use:
 
 ```ts
-import {createClient, defineLive} from 'next-sanity'
+import {createClient, defineLive} from 'next-sanity/live'
 
 const client = createClient({
   projectId: 'your-project-id',
