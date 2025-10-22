@@ -2,7 +2,6 @@ import './globals.css'
 import {sanityFetch} from '@/sanity/fetch'
 import {SpeedInsights} from '@vercel/speed-insights/next'
 import {defineQuery} from 'groq'
-import {cacheTag} from 'next/cache'
 import {Suspense} from 'react'
 import {SanityLive} from './SanityLive'
 import {ThemeLayout} from './ThemeLayout'
@@ -17,11 +16,8 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
-  'use cache'
-
   const {data, tags} = await sanityFetch({query: THEME_QUERY, tags: ['theme']})
   console.log('RootLayout', data, tags)
-  cacheTag('theme')
 
   return (
     <ThemeLayout background={data?.background} text={data?.text}>

@@ -22,9 +22,9 @@ export async function sanityFetch<const QueryString extends string>({
   'use cache'
   const {result, syncTags} = await client.fetch(query, params, {
     filterResponse: false,
-    cacheMode: 'noStale',
+    useCdn: false,
+    perspective: 'published',
   })
-  console.log('sanityFetch', {query, params, result, syncTags, tags})
 
   const cacheTags = [...(syncTags || []), ...tags]
   /**

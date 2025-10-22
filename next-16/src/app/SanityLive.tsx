@@ -3,9 +3,8 @@
 import {client} from '@/sanity/client'
 import type {LiveEvent} from '@sanity/client'
 import {CorsOriginError} from '@sanity/client'
-import {useRouter} from 'next/navigation'
-import {useEffect, useEffectEvent} from 'react'
-import {updateTags} from './actions'
+import {startTransition, useEffect, useEffectEvent} from 'react'
+import {liveRefresh, updateTags} from './actions'
 
 /**
  * Next v16 has a first class API in `next-sanity` that should be used instead of this function.
@@ -16,23 +15,17 @@ import {updateTags} from './actions'
  * export const {sanityFetch, SanityLive} = defineLive({client: createClient({projectId, dataset, ...})})
  */
 export function SanityLive() {
-  const router = useRouter()
-
   const handleLiveEvent = useEffectEvent((event: LiveEvent) => {
     switch (event.type) {
       case 'welcome':
         console.info('Sanity is live with automatic revalidation of published content')
         break
       case 'message':
-        // updateTags(event.tags)
+        startTransition(() => updateTags(event.tags))
         break
       case 'reconnect':
       case 'restart':
-        console.log(
-          'SanityLive',
-          'reconnect and restart is skipped atm (router.refresh()) is not called',
-        )
-        // router.refresh()
+        startTransition(() => liveRefresh())
         break
     }
   })
@@ -60,15 +53,13 @@ SanityLive.displayName = 'SanityLive'
 
 const focusThrottleInterval = 5_000
 function RefreshOnFocus() {
-  const router = useRouter()
-
   useEffect(() => {
     const controller = new AbortController()
     let nextFocusRevalidatedAt = 0
     const callback = () => {
       const now = Date.now()
       if (now > nextFocusRevalidatedAt && document.visibilityState !== 'hidden') {
-        router.refresh()
+        startTransition(() => liveRefresh())
         nextFocusRevalidatedAt = now + focusThrottleInterval
       }
     }
@@ -76,7 +67,7 @@ function RefreshOnFocus() {
     document.addEventListener('visibilitychange', callback, {passive: true, signal})
     window.addEventListener('focus', callback, {passive: true, signal})
     return () => controller.abort()
-  }, [router])
+  }, [])
 
   return null
 }
