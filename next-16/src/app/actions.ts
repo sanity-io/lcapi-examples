@@ -19,6 +19,7 @@ export async function randomColorTheme(background: string, text: string) {
     method: 'PUT',
     body: formData,
   })
+  await new Promise((resolve) => setTimeout(resolve, 3_000))
   revalidateTag('theme', {expire: 0})
   refresh()
 }

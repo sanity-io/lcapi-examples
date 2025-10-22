@@ -40,7 +40,7 @@ export default async function handler(request: Request) {
         background: formData.get('background') as string,
         text: formData.get('text') as string,
       }
-      await client.patch('theme').set(nextTheme).commit()
+      await client.patch('theme').set(nextTheme).commit({visibility: 'sync'})
       return new Response(JSON.stringify(nextTheme), {status: 200, headers})
     } else {
       // Otherwise generate it, and return it immediately, using waitUntil to keep the serverless function alive until the commit is complete
