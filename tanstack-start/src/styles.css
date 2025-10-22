@@ -1,15 +1,25 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
-body {
-  @apply m-0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@theme {
+  --background-color-theme: var(--theme-background, #fff);
+  --background-color-theme-button: var(--theme-text, #fff);
+
+  --text-color-theme: var(--theme-text, #000);
+  --text-color-theme-button: var(--theme-background, #fff);
+
+  --ring-color-theme: var(--theme-text, #000);
+
+  --ring-offset-color-theme: var(--theme-background, #fff);
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+@property --theme-text {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #000;
+}
+
+@property --theme-background {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #fff;
 }

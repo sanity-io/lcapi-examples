@@ -1,4 +1,4 @@
-import {createServerFn} from '@tanstack/start'
+import {createServerFn} from '@tanstack/react-start'
 import {useTransition} from 'react'
 
 const randomColorTheme = createServerFn().handler(async () => {
@@ -16,7 +16,9 @@ export function ThemeButton() {
       disabled={pending}
       onClick={() =>
         startTransition(async () => {
-          await randomColorTheme()
+          const data = await randomColorTheme()
+          document.documentElement.style.setProperty('--theme-background', data.background)
+          document.documentElement.style.setProperty('--theme-text', data.text)
         })
       }
       className={`bg-theme-button text-theme-button focus:ring-theme focus:ring-offset-theme cursor-pointer select-none rounded-md px-4 py-2 text-sm font-semibold transition ease-in-out [view-transition-name:theme-button] focus:outline-none focus:ring-2 focus:ring-opacity-50 focus:ring-offset-2 focus:duration-0 disabled:cursor-not-allowed disabled:opacity-50 ${pending ? 'animate-pulse cursor-wait duration-150' : 'duration-1000'} `}
