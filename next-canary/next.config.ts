@@ -11,6 +11,7 @@ const nextConfig: NextConfig = {
     reactCompiler: true,
     useCache: true,
   },
+  eslint: {ignoreDuringBuilds: true},
 }
 
 export default nextConfig

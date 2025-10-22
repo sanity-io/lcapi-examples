@@ -10,10 +10,10 @@
     "typegen:generate": "sanity typegen generate"
   },
   "dependencies": {
-    "@sanity/client": "^7.5.0",
+    "@sanity/client": "^7.12.0",
     "@vercel/speed-insights": "^1.2.0",
-    "framer-motion": "^12.18.0",
-    "groq": "^4.6.0",
+    "motion": "^12.23.24",
+    "groq": "^4.11.0",
     "next": "15.5.1-canary.13",
     "react": "0.0.0-experimental-71b3a03c-20251021",
     "react-dom": "0.0.0-experimental-71b3a03c-20251021"
@@ -23,11 +23,10 @@
     "@types/node": "^20",
     "@types/react": "^19.1.8",
     "@types/react-dom": "^19.1.6",
-    "babel-plugin-react-compiler": "19.1.0-rc.2",
+    "babel-plugin-react-compiler": "1.0.0",
     "eslint": "^9.28.0",
     "eslint-config-next": "15.5.1-canary.13",
-    "eslint-plugin-react-compiler": "19.1.0-rc.2",
-    "eslint-plugin-react-hooks": "0.0.0-experimental-d55cc79b-20250228",
+    "eslint-plugin-react-hooks": "7.0.0",
     "postcss": "^8.5.5",
     "tailwindcss": "^4.1.10",
     "typescript": "5.9.3"

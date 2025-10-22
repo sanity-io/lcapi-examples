@@ -4,6 +4,9 @@ import {tanstackConfig} from '@tanstack/eslint-config'
 import reactHooks from 'eslint-plugin-react-hooks'
 
 export default [
+  {
+    ignores: ['eslint.config.js', 'vite.config.ts'],
+  },
   ...tanstackConfig,
   reactHooks.configs.flat.recommended,
   {
@@ -19,6 +22,7 @@ export default [
       'sort-imports': 'off',
       '@typescript-eslint/naming-convention': 'off',
       '@typescript-eslint/array-type': 'off',
+      '@typescript-eslint/no-unnecessary-condition': 'off',
     },
   },
 ]

@@ -31,15 +31,16 @@
     "zod": "^4.1.12"
   },
   "devDependencies": {
-    "@tanstack/eslint-config": "^0.3.0",
+    "@tanstack/eslint-config": "^0.3.2",
     "@types/node": "^22.10.2",
     "@types/react": "^19.2.0",
     "@types/react-dom": "^19.2.0",
     "@vitejs/plugin-react": "^5.0.4",
     "babel-plugin-react-compiler": "1.0.0",
-    "eslint": "^9.38.0",
+    "eslint": "^9.37.0",
     "eslint-plugin-react-hooks": "7.0.0",
     "typescript": "5.9.3",
+    "typescript-eslint": "8.46.2",
     "vite": "^7.1.7"
   }
 }
