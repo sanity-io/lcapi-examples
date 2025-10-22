@@ -15,8 +15,8 @@
     "motion": "^12.23.24",
     "groq": "^4.11.0",
     "next": "15.5.1-canary.13",
-    "react": "0.0.0-experimental-71b3a03c-20251021",
-    "react-dom": "0.0.0-experimental-71b3a03c-20251021"
+    "react": "0.0.0-experimental-33a1095d-20250827",
+    "react-dom": "0.0.0-experimental-33a1095d-20250827"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.1.10",
