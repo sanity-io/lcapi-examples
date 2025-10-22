@@ -13,15 +13,15 @@
     "typegen:generate": "sanity typegen generate"
   },
   "dependencies": {
-    "@nuxt/eslint": "1.4.1",
-    "@sanity/client": "^7.5.0",
-    "@tailwindcss/vite": "^4.1.10",
+    "@nuxt/eslint": "1.9.0",
+    "@sanity/client": "^7.12.0",
+    "@tailwindcss/vite": "^4.1.14",
     "@vercel/speed-insights": "^1.2.0",
     "@vueuse/motion": "^3.0.3",
-    "eslint": "^9.28.0",
-    "groq": "^4.6.0",
+    "eslint": "^9.38.0",
+    "groq": "^4.10.3",
     "nuxt": "^3.17.5",
-    "tailwindcss": "^4.1.10",
+    "tailwindcss": "^4.1.14",
     "vue": "latest",
     "vue-router": "latest"
   },
