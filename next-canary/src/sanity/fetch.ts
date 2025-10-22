@@ -15,6 +15,7 @@ export async function sanityFetch<const QueryString extends string>({
    * The default cache profile isn't ideal for live content, as it has unnecessary time based background validation, as well as a too lazy client stale value
    * https://github.com/vercel/next.js/blob/8dd358002baf4244c0b2e38b5bda496daf60dacb/packages/next/cache.d.ts#L14-L26
    */
+  // @TODO test with `max`
   cacheLife({
     stale: Infinity,
     revalidate: Infinity,
