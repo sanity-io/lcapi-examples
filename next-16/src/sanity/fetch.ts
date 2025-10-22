@@ -35,8 +35,6 @@ export async function sanityFetch<const QueryString extends string>({
    * We use on-demand revalidation, so the cache should live for as long as possible
    */
   cacheLife({
-    // The default 5 minutes are too long
-    // stale: 30,
     // The default 15 minutes are too short
     revalidate: 60 * 60 * 24 * 90,
   })

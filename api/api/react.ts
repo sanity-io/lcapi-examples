@@ -40,7 +40,7 @@ export default async function handler(request: Request) {
     const id = await client.fetch(
       REACTION_QUERY,
       {id: formData.get('id')},
-      {perspective: 'published', useCdn: true, cacheMode: 'noStale'},
+      {perspective: 'published', useCdn: true},
     )
     if (!id) {
       return new Response(JSON.stringify('Reaction not found'), {status: 404, headers})
