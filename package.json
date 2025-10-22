@@ -16,6 +16,7 @@
     "prettier-plugin-astro": "^0.14.1",
     "prettier-plugin-svelte": "^3.4.0",
     "prettier-plugin-tailwindcss": "^0.6.12",
+    "eslint-plugin-react-hooks": "^7.0.0",
     "sanity": "4.6.0",
     "typescript": "5.9.3"
   },
@@ -29,7 +30,8 @@
     },
     "overrides": {
       "@types/react": "$@types/react",
-      "@types/react-dom": "$@types/react-dom"
+      "@types/react-dom": "$@types/react-dom",
+      "eslint-plugin-react-hooks": "$eslint-plugin-react-hooks"
     }
   }
 }
