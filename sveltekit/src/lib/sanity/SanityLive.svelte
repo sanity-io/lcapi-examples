@@ -19,6 +19,7 @@
               // @ts-expect-error - @TODO upgrade `@sanity/client` with the id of welcome events
               event.id,
             )
+            // eslint-disable-next-line svelte/no-navigation-without-resolve
             goto(url.toString(), {replaceState: true})
           }
         } else if (event.type === 'message') {
@@ -26,10 +27,12 @@
           // Check if the event tags intersect with our component tags
           // if (event.tags?.some((tag) => tags.includes(tag))) {
           url.searchParams.set('lastLiveEventId', event.id)
+          // eslint-disable-next-line svelte/no-navigation-without-resolve
           goto(url.toString(), {replaceState: true})
           // }
         } else if (event.type === 'restart' || event.type === 'reconnect') {
           url.searchParams.delete('lastLiveEventId')
+          // eslint-disable-next-line svelte/no-navigation-without-resolve
           goto(url.toString(), {replaceState: true})
         }
       },
