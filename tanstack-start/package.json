@@ -22,6 +22,7 @@
     "@tanstack/router-plugin": "^1.132.0",
     "@vercel/speed-insights": "^1.2.0",
     "groq": "^4.6.0",
+    "nitro": "3.0.1-alpha.0",
     "lucide-react": "^0.546.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
