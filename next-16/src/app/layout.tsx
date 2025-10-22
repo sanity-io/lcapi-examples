@@ -17,6 +17,7 @@ export default async function RootLayout({
   children: React.ReactNode
 }>) {
   const {data} = await sanityFetch({query: THEME_QUERY})
+  console.log('RootLayout', data)
 
   return (
     <html
