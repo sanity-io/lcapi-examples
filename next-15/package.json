@@ -24,13 +24,13 @@
     "@types/node": "^20",
     "@types/react": "^19.1.8",
     "@types/react-dom": "^19.1.6",
-    "babel-plugin-react-compiler": "rc",
+    "babel-plugin-react-compiler": "19.1.0-rc.2",
     "eslint": "^9.28.0",
     "eslint-config-next": "15.3.3",
-    "eslint-plugin-react-compiler": "rc",
-    "eslint-plugin-react-hooks": "experimental",
+    "eslint-plugin-react-compiler": "19.1.0-rc.2",
+    "eslint-plugin-react-hooks": "0.0.0-experimental-d55cc79b-20250228",
     "postcss": "^8.5.5",
     "tailwindcss": "^4.1.10",
-    "typescript": "5.8.3"
+    "typescript": "5.9.3"
   }
 }

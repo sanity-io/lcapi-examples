@@ -17,7 +17,7 @@
     "prettier-plugin-svelte": "^3.4.0",
     "prettier-plugin-tailwindcss": "^0.6.12",
     "sanity": "4.6.0",
-    "typescript": "5.8.3"
+    "typescript": "5.9.3"
   },
   "packageManager": "pnpm@10.18.3",
   "pnpm": {
