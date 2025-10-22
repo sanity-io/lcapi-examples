@@ -18,6 +18,7 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function Home() {
+  'use cache'
   const {data} = await sanityFetch({query: DEMO_QUERY, params: {slug}})
 
   return (
