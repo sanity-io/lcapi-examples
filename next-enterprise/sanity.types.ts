@@ -227,9 +227,6 @@ export type DEMO_QUERYResult = {
   }> | null
   fetchedAt: string
 } | null
-// Variable: GENERATE_METADATA_DEMO_QUERY
-// Query: *[_type == "demo" && slug.current == $slug][0].title
-export type GENERATE_METADATA_DEMO_QUERYResult = string | null
 
 // Query TypeMap
 import '@sanity/client'
@@ -239,6 +236,5 @@ declare module '@sanity/client' {
     '*[_type == "reaction" && _id == $id][0]{emoji,reactions}': API_REACTION_QUERYResult
     '*[_id == "theme"][0]{background,text,"fetchedAt":now()}': THEME_QUERYResult
     '*[_type == "demo" && slug.current == $slug][0]{title,reactions[0..4]{_key,_ref},"fetchedAt":now()}': DEMO_QUERYResult
-    '*[_type == "demo" && slug.current == $slug][0].title': GENERATE_METADATA_DEMO_QUERYResult
   }
 }

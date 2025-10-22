@@ -185,20 +185,6 @@ export type AllSanitySchemaTypes =
   | Slug
   | SanityAssetSourceData
 export declare const internalGroqTypeReferenceTo: unique symbol
-// Source: ./api/random-color-theme.ts
-// Variable: THEME_QUERY
-// Query: *[_id == "theme"][0]{background,text}
-export type THEME_QUERYResult =
-  | {
-      background: null
-      text: null
-    }
-  | {
-      background: string | null
-      text: string | null
-    }
-  | null
-
 // Source: ./api/react.ts
 // Variable: REACTION_QUERY
 // Query: *[_type == "reaction" && _id == $id][0]._id
@@ -208,7 +194,6 @@ export type REACTION_QUERYResult = string | null
 import '@sanity/client'
 declare module '@sanity/client' {
   interface SanityQueries {
-    '*[_id == "theme"][0]{background,text}': THEME_QUERYResult
     '*[_type == "reaction" && _id == $id][0]._id': REACTION_QUERYResult
   }
 }
