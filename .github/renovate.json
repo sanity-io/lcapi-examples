@@ -13,6 +13,16 @@
       "allowedVersions": "<=14"
     },
     {
+      "matchFileNames": ["next-15/package.json"],
+      "matchPackageNames": ["next", "eslint-config-next"],
+      "allowedVersions": "<=15"
+    },
+    {
+      "matchFileNames": ["next-16/package.json"],
+      "matchPackageNames": ["next", "eslint-config-next"],
+      "allowedVersions": "<=16"
+    },
+    {
       "matchFileNames": ["next-13/package.json", "next-14/package.json"],
       "matchPackageNames": ["@types/react", "@types/react-dom", "react", "react-dom"],
       "allowedVersions": "<=18"
@@ -29,12 +39,8 @@
     },
     {
       "matchFileNames": ["next-canary/package.json"],
-      "matchPackageNames": ["next", "eslint-config-next"],
+      "matchPackageNames": ["next", "eslint-config-next", "react", "react-dom"],
       "followTag": "canary"
-    },
-    {
-      "matchPackageNames": ["eslint-plugin-react-hooks"],
-      "enabled": false
     }
   ]
 }

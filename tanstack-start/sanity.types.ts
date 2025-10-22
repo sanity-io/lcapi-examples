@@ -188,7 +188,7 @@ export type AllSanitySchemaTypes =
   | Slug
   | SanityAssetSourceData
 export declare const internalGroqTypeReferenceTo: unique symbol
-// Source: ./app/routes/__root.tsx
+// Source: ./src/routes/__root.tsx
 // Variable: THEME_QUERY
 // Query: *[_id == "theme"][0]{background,text}
 export type THEME_QUERYResult =
@@ -202,18 +202,7 @@ export type THEME_QUERYResult =
     }
   | null
 
-// Source: ./app/routes/goto.tsx
-// Variable: SEARCH_QUERY
-// Query: {  "title": *[_type == "demo" && slug.current == $slug][0].title,  "urls": *[_type == "demo" && slug.current != $slug && [title,slug.current,url] match "*"+$q+"*"]{title,url}}
-export type SEARCH_QUERYResult = {
-  title: string | null
-  urls: Array<{
-    title: string | null
-    url: string | null
-  }>
-}
-
-// Source: ./app/routes/index.tsx
+// Source: ./src/routes/index.tsx
 // Variable: DEMO_QUERY
 // Query: *[_type == "demo" && slug.current == $slug][0].title
 export type DEMO_QUERYResult = string | null
@@ -221,7 +210,6 @@ export type DEMO_QUERYResult = string | null
 declare module '@sanity/client' {
   interface SanityQueries {
     '*[_id == "theme"][0]{background,text}': THEME_QUERYResult
-    '{\n  "title": *[_type == "demo" && slug.current == $slug][0].title,\n  "urls": *[_type == "demo" && slug.current != $slug && [title,slug.current,url] match "*"+$q+"*"]{title,url}\n}': SEARCH_QUERYResult
     '*[_type == "demo" && slug.current == $slug][0].title': DEMO_QUERYResult
   }
 }

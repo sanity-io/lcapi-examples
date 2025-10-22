@@ -1,7 +1,7 @@
 'use client'
 
-import {AnimatePresence, motion} from 'framer-motion'
-import {memo, useEffect, useState} from 'react'
+import {AnimatePresence, motion} from 'motion/react'
+import {memo, useState} from 'react'
 import {Square} from './ReactionPrimitives'
 
 interface Emoji {
@@ -37,12 +37,10 @@ export function ReactionButton(props: {id: string; emoji: string; reactions: num
   const [emojis, setEmojis] = useState<Emoji[]>([])
   const nextReactions = Math.max(0, reactions - initialReactions)
 
-  useEffect(() => {
-    if (nextReactions > emojis.length) {
-      const needed = nextReactions - emojis.length
-      setEmojis((emojis) => insertMany(emojis, needed))
-    }
-  }, [nextReactions, emojis.length])
+  if (nextReactions > emojis.length) {
+    const needed = nextReactions - emojis.length
+    setEmojis((emojis) => insertMany(emojis, needed))
+  }
 
   const pendingEmojis = emojis.filter(({done}) => !done).slice(0, 100)
   const delay = 8_000 / pendingEmojis.length
@@ -92,8 +90,8 @@ const FloatingEmoji = memo(function FloatingEmoji({
   ...props
 }: FloatingEmojiProps) {
   const [delay] = useState(props.delay)
-  const [randomOffset] = useState((Math.random() - 0.5) * 200)
-  const [randomDelay] = useState(delay ? Math.random() * 0.15 : 0) // Add up to 150ms random delay
+  const [randomOffset] = useState(() => (Math.random() - 0.5) * 200)
+  const [randomDelay] = useState(() => (delay ? Math.random() * 0.15 : 0)) // Add up to 150ms random delay
 
   return (
     <motion.div

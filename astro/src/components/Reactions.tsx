@@ -3,8 +3,8 @@
  * efficient to fetch these counters client side than to have them pass through SSR.
  */
 import type {ClientReturn, SyncTag} from '@sanity/client'
-import {AnimatePresence, motion} from 'framer-motion'
 import {defineQuery} from 'groq'
+import {AnimatePresence, motion} from 'motion/react'
 import {startTransition, useEffect, useRef, useState} from 'react'
 import {client} from '../sanity/client'
 

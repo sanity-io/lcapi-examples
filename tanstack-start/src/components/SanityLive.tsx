@@ -1,9 +1,8 @@
-import type {LiveEventMessage, LiveEventRestart, LiveEventWelcome} from '@sanity/client'
 import {CorsOriginError} from '@sanity/client'
 import {useNavigate, useRouter, useRouterState, useSearch} from '@tanstack/react-router'
-import {useEffect} from 'react'
-import {useEffectEvent} from 'use-effect-event'
+import {useEffect, useEffectEvent} from 'react'
 import {client} from '../utils/sanity'
+import type {LiveEventMessage, LiveEventRestart, LiveEventWelcome} from '@sanity/client'
 
 export function SanityLive() {
   const selected = useRouterState({select: (state) => state.matches})

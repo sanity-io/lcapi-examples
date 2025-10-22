@@ -1,10 +1,10 @@
-import {useEffect, useState} from 'react'
+import {startTransition, useEffect, useState} from 'react'
 
 export default function TimeSince({label, since}: {label: string; since: string}) {
   const [from, setFrom] = useState<null | Date>(null)
   const [now, setNow] = useState<null | Date>(null)
   useEffect(() => {
-    setFrom(new Date(since))
+    startTransition(() => setFrom(new Date(since)))
     const interval = setInterval(() => setNow(new Date()), 1000)
     return () => clearInterval(interval)
   }, [since])

@@ -1,14 +1,4 @@
 import studio from '@sanity/eslint-config-studio'
-import reactCompiler from 'eslint-plugin-react-compiler'
+import reactHooks from 'eslint-plugin-react-hooks'
 
-export default [
-  ...studio,
-  {
-    plugins: {
-      'react-compiler': reactCompiler,
-    },
-    rules: {
-      'react-compiler/react-compiler': 'error',
-    },
-  },
-]
+export default [...studio, reactHooks.configs.flat.recommended]

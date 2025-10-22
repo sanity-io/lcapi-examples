@@ -1,21 +1,26 @@
-import {createRootRoute, Outlet, ScrollRestoration} from '@tanstack/react-router'
-import {TanStackRouterDevtools} from '@tanstack/router-devtools'
-import {createServerFn, Meta, Scripts} from '@tanstack/start'
+import {SanityLive} from '@/components/SanityLive'
+import {ThemeButton} from '@/components/ThemeButton'
+import {sanityFetch} from '@/utils/sanity'
+import {TanStackDevtools} from '@tanstack/react-devtools'
+import {createRootRoute, HeadContent, Scripts} from '@tanstack/react-router'
+import {TanStackRouterDevtoolsPanel} from '@tanstack/react-router-devtools'
+import {createServerFn} from '@tanstack/react-start'
 import {zodValidator} from '@tanstack/zod-adapter'
+import {injectSpeedInsights} from '@vercel/speed-insights'
 import {defineQuery} from 'groq'
-import {type ReactNode} from 'react'
 import {z} from 'zod'
-import {SanityLive} from '../components/SanityLive'
-import {ThemeButton} from '../components/ThemeButton'
-import appCss from '../styles/app.css?url'
-import {sanityFetch} from '../utils/sanity'
+import appCss from '../styles.css?url'
+
+if (typeof window !== 'undefined') {
+  injectSpeedInsights()
+}
 
 const THEME_QUERY = defineQuery(`*[_id == "theme"][0]{background,text}`)
 
 const getTheme = createServerFn({
   method: 'GET',
 })
-  .validator(
+  .inputValidator(
     z.object({
       lastLiveEventId: z.string().optional(),
     }),
@@ -32,6 +37,7 @@ export const Route = createRootRoute({
   ),
   loaderDeps: ({search: {lastLiveEventId}}) => ({lastLiveEventId}),
   loader: ({deps}) => getTheme({data: deps}),
+
   head: () => ({
     meta: [
       {charSet: 'utf-8'},
@@ -43,24 +49,16 @@ export const Route = createRootRoute({
       {rel: 'icon', type: 'image/png', href: '/favicon.png'},
     ],
   }),
-  component: RootComponent,
+
+  shellComponent: RootDocument,
 })
 
-function RootComponent() {
-  return (
-    <RootDocument>
-      <div className="flex min-h-dvh flex-col items-center justify-evenly overflow-auto">
-        <Outlet />
-        <ThemeButton />
-      </div>
-    </RootDocument>
-  )
-}
-
-function RootDocument({children}: Readonly<{children: ReactNode}>) {
+function RootDocument({children}: {children: React.ReactNode}) {
   const {data} = Route.useLoaderData()
+
   return (
     <html
+      lang="en"
       className="bg-theme text-theme transition-colors duration-1000 ease-in-out"
       style={{
         ['--theme-background' as string]: data?.background,
@@ -68,15 +66,33 @@ function RootDocument({children}: Readonly<{children: ReactNode}>) {
       }}
     >
       <head>
-        <Meta />
+        <HeadContent />
       </head>
       <body>
-        {children}
+        <RootLayout>{children}</RootLayout>
         <SanityLive />
-        <ScrollRestoration />
+        <TanStackDevtools
+          config={{
+            position: 'bottom-right',
+          }}
+          plugins={[
+            {
+              name: 'Tanstack Router',
+              render: <TanStackRouterDevtoolsPanel />,
+            },
+          ]}
+        />
         <Scripts />
-        <TanStackRouterDevtools />
       </body>
     </html>
+  )
+}
+
+function RootLayout({children}: {children: React.ReactNode}) {
+  return (
+    <div className="flex min-h-dvh flex-col items-center justify-evenly overflow-auto">
+      {children}
+      <ThemeButton />
+    </div>
   )
 }
