@@ -4,12 +4,12 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "vite dev --port 3000",
     "build": "vite build",
+    "dev": "vite dev --port 3000",
+    "lint": "eslint",
     "serve": "vite preview",
     "test": "vitest run",
-    "typegen:generate": "sanity typegen generate",
-    "lint": "eslint"
+    "typegen:generate": "sanity typegen generate"
   },
   "dependencies": {
     "@sanity/client": "^7.12.0",

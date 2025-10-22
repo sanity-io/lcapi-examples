@@ -12,11 +12,11 @@
     "@sanity/prettier-config": "^1.0.3",
     "@types/react": "^19.2.2",
     "@types/react-dom": "^19.2.2",
+    "eslint-plugin-react-hooks": "^7.0.0",
     "prettier": "^3.5.3",
     "prettier-plugin-astro": "^0.14.1",
     "prettier-plugin-svelte": "^3.4.0",
     "prettier-plugin-tailwindcss": "^0.6.12",
-    "eslint-plugin-react-hooks": "^7.0.0",
     "sanity": "4.6.0",
     "typescript": "5.9.3"
   },
