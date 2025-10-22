@@ -24,7 +24,7 @@ export function SanityLive() {
         console.info('Sanity is live with automatic revalidation of published content')
         break
       case 'message':
-        updateTags(event.tags)
+        // updateTags(event.tags)
         break
       case 'reconnect':
       case 'restart':

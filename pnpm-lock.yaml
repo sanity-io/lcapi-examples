@@ -299,6 +299,9 @@ importers:
 
   next-16:
     dependencies:
+      '@repo/generate-theme-colors':
+        specifier: workspace:*
+        version: link:../packages/generate-theme-colors
       '@sanity/client':
         specifier: ^7.12.0
         version: 7.12.0(debug@4.4.3)
