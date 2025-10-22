@@ -4,8 +4,7 @@ import {client} from '@/sanity/client'
 import type {LiveEvent} from '@sanity/client'
 import {CorsOriginError} from '@sanity/client'
 import {useRouter} from 'next/navigation'
-import {useEffect} from 'react'
-import {useEffectEvent} from 'use-effect-event'
+import {useEffect, useEffectEvent} from 'react'
 import {expireTags} from './actions'
 
 /**

@@ -4,8 +4,8 @@
  */
 import {client} from '@/sanity/client'
 import type {ClientReturn, SyncTag} from '@sanity/client'
-import {AnimatePresence, motion} from 'framer-motion'
 import {defineQuery} from 'groq'
+import {AnimatePresence, motion} from 'motion/react'
 import {startTransition, useEffect, useRef, useState} from 'react'
 
 interface Props {
