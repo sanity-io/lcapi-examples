@@ -1,23 +1,26 @@
 'use server'
 
 import type {SyncTag} from '@sanity/client'
-import {unstable_expireTag as expireTag} from 'next/cache'
+import {refresh, updateTag} from 'next/cache'
 
-export async function expireTags(tags: SyncTag[]) {
-  expireTag(...tags)
-  console.log(`<SanityLive /> expired tags: ${tags.join(', ')}`)
+export async function updateTags(tags: SyncTag[]) {
+  for (const tag of tags) {
+    updateTag(tag)
+  }
+  console.log(`<SanityLive /> updated tags: ${tags.join(', ')}`)
 }
 
-export async function randomColorTheme() {
-  const response = await fetch('https://lcapi-examples-api.sanity.dev/api/random-color-theme', {
+export async function randomColorTheme(background: string, text: string) {
+  const formData = new FormData()
+  formData.append('background', background)
+  formData.append('text', text)
+  await fetch('https://lcapi-examples-api.sanity.dev/api/random-color-theme', {
     method: 'PUT',
+    body: formData,
   })
-  if (!response.ok) {
-    return null
-  }
-  const data = await response.json()
-  if (typeof data === 'object' && 'background' in data && 'text' in data) {
-    return data as {background: string; text: string}
-  }
-  return null
+  updateTag('theme')
+}
+
+export async function liveRefresh() {
+  refresh()
 }

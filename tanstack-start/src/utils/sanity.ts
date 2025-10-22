@@ -3,7 +3,7 @@ import {createClient, type ClientReturn, type QueryParams, type SyncTag} from '@
 export const client = createClient({
   projectId: 'hiomol4a',
   dataset: 'lcapi',
-  apiVersion: '2024-09-18',
+  apiVersion: '2025-10-21',
   useCdn: true,
 })
 

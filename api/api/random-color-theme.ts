@@ -2,9 +2,9 @@
  * It's a bit annoying to handle tokens in 50 different apps and frameworks, so this edge API contains the logic for us in one place
  */
 
+import {generateThemeColors} from '@repo/generate-theme-colors'
 import {createClient} from '@sanity/client'
 import {waitUntil} from '@vercel/functions'
-import {lch} from 'd3-color'
 import {defineQuery} from 'groq'
 
 export const config = {runtime: 'edge'}
@@ -14,44 +14,6 @@ const headers = new Headers({
   'Access-Control-Allow-Methods': 'OPTIONS, PUT',
   'Content-Type': 'application/json',
 })
-
-function getRandomHue() {
-  // Get a cryptographically strong random number between 0-360
-  const array = new Uint16Array(1)
-  crypto.getRandomValues(array)
-  return array[0] % 360
-}
-
-function getHarmonizingHues(baseHue: number) {
-  // Return an array of harmonizing hues based on color theory
-  return [
-    (baseHue + 180) % 360, // Complementary
-    (baseHue + 120) % 360, // Triadic 1
-    (baseHue + 240) % 360, // Triadic 2
-    (baseHue + 90) % 360, // Tetradic
-    (baseHue + 270) % 360, // Tetradic
-    (baseHue + 30) % 360, // Analogous 1
-    (baseHue + 330) % 360, // Analogous 2
-  ]
-}
-
-function generateThemeColors() {
-  const bgHue = getRandomHue()
-
-  // Get harmonizing hues and pick one randomly
-  const harmonicHues = getHarmonizingHues(bgHue)
-  const textHue =
-    harmonicHues[
-      Math.floor((crypto.getRandomValues(new Uint8Array(1))[0] / 256) * harmonicHues.length)
-    ]
-
-  return {
-    // background: `lch(5% 25 ${bgHue})`,
-    background: lch(5, 25, bgHue).formatHex(),
-    // text: `lch(50% 50 ${textHue})`,
-    text: lch(50, 50, textHue).formatHex(),
-  }
-}
 
 export default async function handler(request: Request) {
   if (request.method === 'OPTIONS') {
@@ -66,28 +28,26 @@ export default async function handler(request: Request) {
     const client = createClient({
       projectId: 'hiomol4a',
       dataset: 'lcapi',
-      apiVersion: '2024-09-18',
+      apiVersion: '2025-10-21',
       useCdn: false,
       token: process.env.SANITY_API_WRITE_TOKEN,
     })
-    const THEME_QUERY = defineQuery(`*[_id == "theme"][0]{background,text}`)
-    const prevTheme = await client.fetch(THEME_QUERY, {}, {perspective: 'published'})
-    const _id = 'theme'
-    const nextTheme = generateThemeColors()
 
-    waitUntil(
-      client
-        .patch(_id)
-        .set(
-          // If the new theme is the same as the previous theme, swap the background and text colors
-          prevTheme?.background === nextTheme.background && prevTheme?.text === nextTheme.text
-            ? {background: nextTheme.text, text: nextTheme.background}
-            : nextTheme,
-        )
-        .commit(),
-    )
-
-    return new Response(JSON.stringify(nextTheme), {status: 200, headers})
+    const formData = await request.formData()
+    if (formData.has('background') && formData.has('text')) {
+      // If the new theme is provided, use it and await for the commit to complete
+      const nextTheme = {
+        background: formData.get('background') as string,
+        text: formData.get('text') as string,
+      }
+      await client.patch('theme').set(nextTheme).commit({visibility: 'sync'})
+      return new Response(JSON.stringify(nextTheme), {status: 200, headers})
+    } else {
+      // Otherwise generate it, and return it immediately, using waitUntil to keep the serverless function alive until the commit is complete
+      const nextTheme = generateThemeColors()
+      waitUntil(client.patch('theme').set(nextTheme).commit())
+      return new Response(JSON.stringify(nextTheme), {status: 200, headers})
+    }
   } catch (err) {
     return new Response(JSON.stringify(err?.message || err?.name || 'Unknown error'), {
       status: 500,

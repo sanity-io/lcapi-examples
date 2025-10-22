@@ -12,8 +12,6 @@ const REACTION_QUERY_STATIC_PARAMS = defineQuery(
   `*[_type == "demo" && slug.current == $slug][0].reactions[0..4]{"id": _ref}`,
 )
 
-export const revalidate = 1
-
 export async function generateStaticParams() {
   const ids = await client.fetch(REACTION_QUERY_STATIC_PARAMS, {slug: 'next-enterprise'})
   if (!Array.isArray(ids)) return []

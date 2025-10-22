@@ -1,5 +1,6 @@
 packages:
   - '*'
+  - 'packages/*'
   - 'next-enterprise/expirator-service'
   - '!node_modules'
 

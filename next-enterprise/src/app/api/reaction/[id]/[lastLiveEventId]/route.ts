@@ -7,8 +7,6 @@ import {client} from '@/sanity/client'
 import {NextResponse} from 'next/server'
 import {API_REACTION_QUERY, type RouteResponse} from '../shared'
 
-export const dynamic = 'force-static'
-
 export async function GET(
   request: Request,
   {params}: {params: Promise<{id: string; lastLiveEventId: string}>},

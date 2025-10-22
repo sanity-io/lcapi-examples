@@ -10,7 +10,7 @@ export async function POST(request: Request) {
   const tags = url.searchParams.getAll('tag')
   console.log('Expiring tags from expirator service', tags)
   for (const tag of tags) {
-    revalidateTag(tag)
+    revalidateTag(tag, {expire: 0})
   }
   return Response.json(tags)
 }
