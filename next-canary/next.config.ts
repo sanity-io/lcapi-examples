@@ -1,18 +1,13 @@
 import type {NextConfig} from 'next'
 
 const nextConfig: NextConfig = {
+  cacheComponents: true,
   logging: {
     fetches: {
       fullUrl: true,
     },
   },
-  experimental: {
-    ppr: 'incremental',
-    reactCompiler: true,
-    useCache: true,
-  },
-  eslint: {ignoreDuringBuilds: true},
-  typescript: {ignoreBuildErrors: true},
+  reactCompiler: true,
 }
 
 export default nextConfig
