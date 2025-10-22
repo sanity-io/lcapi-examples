@@ -33,17 +33,21 @@ export default async function handler(request: Request) {
       token: process.env.SANITY_API_WRITE_TOKEN,
     })
 
-    const fallbackTheme = generateThemeColors()
     const formData = await request.formData()
-    const background = formData.has('background')
-      ? formData.get('background')
-      : fallbackTheme.background
-    const text = formData.has('text') ? formData.get('text') : fallbackTheme.text
-    const nextTheme = {background, text}
-
-    waitUntil(client.patch('theme').set(nextTheme).commit())
-
-    return new Response(JSON.stringify(nextTheme), {status: 200, headers})
+    if (formData.has('background') && formData.has('text')) {
+      // If the new theme is provided, use it and await for the commit to complete
+      const nextTheme = {
+        background: formData.get('background') as string,
+        text: formData.get('text') as string,
+      }
+      await client.patch('theme').set(nextTheme).commit()
+      return new Response(JSON.stringify(nextTheme), {status: 200, headers})
+    } else {
+      // Otherwise generate it, and return it immediately, using waitUntil to keep the serverless function alive until the commit is complete
+      const nextTheme = generateThemeColors()
+      waitUntil(client.patch('theme').set(nextTheme).commit())
+      return new Response(JSON.stringify(nextTheme), {status: 200, headers})
+    }
   } catch (err) {
     return new Response(JSON.stringify(err?.message || err?.name || 'Unknown error'), {
       status: 500,
