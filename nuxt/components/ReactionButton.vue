@@ -68,7 +68,7 @@ async function handleClick() {
         :emoji="emoji"
         :delay="stagger ? i * delay : 0"
         :emojis="emojis"
-        @update:emojis="(newEmojis) => (emojis = newEmojis)"
+        @update:emojis="(newEmojis: Emoji[]) => (emojis = newEmojis)"
       />
     </TransitionGroup>
   </div>
