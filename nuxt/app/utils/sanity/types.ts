@@ -185,7 +185,7 @@ export type AllSanitySchemaTypes =
   | Slug
   | SanityAssetSourceData
 export declare const internalGroqTypeReferenceTo: unique symbol
-// Source: ./utils/sanity/queries.ts
+// Source: ./app/utils/sanity/queries.ts
 // Variable: INDEX_QUERY
 // Query: {  "theme": *[_id == "theme"][0]{background,text},  "demo": *[_type == "demo" && slug.current == $slug][0]{title,reactions[0..4]{_key,_ref}}}
 export type INDEX_QUERYResult = {
