@@ -20,7 +20,7 @@
     "@vueuse/motion": "^3.0.3",
     "eslint": "^9.38.0",
     "groq": "^4.10.3",
-    "nuxt": "^3.17.5",
+    "nuxt": "^3.19.3",
     "tailwindcss": "^4.1.14",
     "vue": "latest",
     "vue-router": "latest"
