@@ -1,5 +1,5 @@
 {
-  "path": "./utils/sanity/**/*.ts",
+  "path": "./app/utils/sanity/**/*.ts",
   "schema": "../studio/schema.json",
-  "generates": "./utils/sanity/types.ts"
+  "generates": "./app/utils/sanity/types.ts"
 }
