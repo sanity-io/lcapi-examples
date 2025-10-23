@@ -33,8 +33,13 @@ export default async function handler(request: Request) {
       token: process.env.SANITY_API_WRITE_TOKEN,
     })
 
-    const formData = await request.formData()
-    if (formData.has('background') && formData.has('text')) {
+    let formData: FormData | null = null
+    try {
+      formData = await request.formData()
+    } catch {
+      // do nothing
+    }
+    if (formData?.has('background') && formData?.has('text')) {
       // If the new theme is provided, use it and await for the commit to complete
       const nextTheme = {
         background: formData.get('background') as string,
