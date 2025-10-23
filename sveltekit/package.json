@@ -14,23 +14,23 @@
   "dependencies": {
     "@sanity/client": "^7.12.0",
     "@vercel/speed-insights": "^1.2.0",
-    "groq": "^4.10.3"
+    "groq": "^4.11.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.38.0",
     "@sveltejs/adapter-auto": "^7.0.0",
-    "@sveltejs/kit": "^2.47.2",
+    "@sveltejs/kit": "^2.47.3",
     "@sveltejs/vite-plugin-svelte": "^6.2.1",
-    "@tailwindcss/postcss": "^4.1.14",
+    "@tailwindcss/postcss": "^4.1.16",
     "@types/eslint": "^9.6.1",
     "eslint": "^9.38.0",
     "eslint-plugin-svelte": "^3.12.5",
     "globals": "^16.4.0",
-    "svelte": "^5.41.0",
+    "svelte": "^5.41.2",
     "svelte-check": "^4.3.3",
-    "tailwindcss": "^4.1.14",
+    "tailwindcss": "^4.1.16",
     "typescript": "5.9.3",
-    "typescript-eslint": "^8.46.1",
-    "vite": "^7.1.11"
+    "typescript-eslint": "^8.46.2",
+    "vite": "^7.1.12"
   }
 }

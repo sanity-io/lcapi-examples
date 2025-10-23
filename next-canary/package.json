@@ -15,21 +15,21 @@
     "@vercel/speed-insights": "^1.2.0",
     "groq": "^4.11.0",
     "motion": "^12.23.24",
-    "next": "16.0.0-canary.18",
+    "next": "16.0.1-canary.0",
     "react": "19.3.0-canary-71b3a03c-20251021",
     "react-dom": "19.3.0-canary-71b3a03c-20251021"
   },
   "devDependencies": {
-    "@tailwindcss/postcss": "^4.1.14",
-    "@types/node": "^22.18.11",
+    "@tailwindcss/postcss": "^4.1.16",
+    "@types/node": "^22.18.12",
     "@types/react": "^19.2.2",
     "@types/react-dom": "^19.2.2",
     "babel-plugin-react-compiler": "1.0.0",
     "eslint": "^9.38.0",
-    "eslint-config-next": "16.0.0-canary.18",
+    "eslint-config-next": "16.0.1-canary.0",
     "eslint-plugin-react-hooks": "7.0.0",
     "postcss": "^8.5.6",
-    "tailwindcss": "^4.1.14",
+    "tailwindcss": "^4.1.16",
     "typescript": "5.9.3"
   }
 }
