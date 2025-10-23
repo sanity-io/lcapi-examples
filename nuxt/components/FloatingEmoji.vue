@@ -66,7 +66,7 @@ onMounted(() => {
 <template>
   <div
     ref="element"
-    class="pointer-events-none absolute inset-0 flex select-none items-center justify-center text-2xl will-change-transform"
+    class="pointer-events-none absolute inset-0 flex items-center justify-center text-2xl will-change-transform select-none"
   >
     {{ emoji }}
   </div>
