@@ -1,11 +1,11 @@
 'use server'
 
 import type {SyncTag} from '@sanity/client'
-import {updateTag} from 'next/cache'
+import {updateTag, revalidateTag} from 'next/cache'
 
 export async function updateTags(tags: SyncTag[]) {
   for (const tag of tags) {
-    updateTag(tag)
+    revalidateTag(tag, {expire: 0})
   }
   console.log(`<SanityLive /> updated tags: ${tags.join(', ')}`)
 }
