@@ -13,13 +13,11 @@ export function ThemeLayout({
   background: string | null | undefined
   text: string | null | undefined
 }) {
-  const [optimisticBackground, setOptimisticBackground] = useOptimistic(background)
-  const [optimisticText, setOptimisticText] = useOptimistic(text)
+  const [theme, setOptimisticTheme] = useOptimistic({background, text})
   const [pending, startTransition] = useTransition()
   function formAction() {
     const nextTheme = generateThemeColors()
-    setOptimisticBackground(nextTheme.background)
-    setOptimisticText(nextTheme.text)
+    setOptimisticTheme(nextTheme)
     startTransition(() => randomColorTheme(nextTheme.background, nextTheme.text))
   }
   return (
@@ -27,8 +25,8 @@ export function ThemeLayout({
       lang="en"
       className="bg-theme text-theme transition-colors duration-1000 ease-in-out"
       style={{
-        ['--theme-background' as string]: optimisticBackground,
-        ['--theme-text' as string]: optimisticText,
+        ['--theme-background' as string]: theme.background,
+        ['--theme-text' as string]: theme.text,
       }}
     >
       <body>
