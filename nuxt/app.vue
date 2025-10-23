@@ -35,7 +35,7 @@ useHead({
     <NuxtRouteAnnouncer />
     <div class="relative flex min-h-dvh flex-col items-center justify-evenly overflow-auto">
       <h1
-        class="text-balance text-4xl font-bold leading-tight tracking-tighter md:text-6xl lg:pr-8 lg:text-8xl"
+        class="text-4xl leading-tight font-bold tracking-tighter text-balance md:text-6xl lg:pr-8 lg:text-8xl"
       >
         {{ data?.data.demo?.title || 'Nuxt' }}
       </h1>

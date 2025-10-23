@@ -52,10 +52,10 @@ async function handleClick() {
 
 <template>
   <div
-    class="bg-(--theme-text)/40 focus-within:ring-(--theme-text) focus-within:ring-offset-(--theme-background) relative aspect-square rounded-lg transition duration-1000 ease-in-out focus-within:ring-2 focus-within:ring-offset-2 focus-within:duration-0"
+    class="relative aspect-square rounded-lg bg-(--theme-text)/40 transition duration-1000 ease-in-out focus-within:ring-2 focus-within:ring-(--theme-text) focus-within:ring-offset-2 focus-within:ring-offset-(--theme-background) focus-within:duration-0"
   >
     <button
-      class="flex transform-gpu cursor-pointer select-none items-center justify-center text-2xl subpixel-antialiased will-change-transform focus:outline-none"
+      class="flex transform-gpu cursor-pointer items-center justify-center text-2xl subpixel-antialiased will-change-transform select-none focus:outline-none"
       @click="handleClick"
     >
       <Square>{{ emoji }}</Square>
