@@ -4,8 +4,8 @@ import {SpeedInsights} from '@vercel/speed-insights/next'
 import {defineQuery} from 'groq'
 import {Suspense} from 'react'
 import {SanityLive} from './SanityLive'
-import {ThemeButton} from './ThemeButton'
 import {TimeSince} from './TimeSince'
+import {ThemeLayout} from './ThemeLayout'
 
 const THEME_QUERY = defineQuery(`*[_id == "theme"][0]{background,text,"fetchedAt":now()}`)
 
@@ -16,34 +16,21 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
-  const {data} = await sanityFetch({query: THEME_QUERY})
+  const {data, tags} = await sanityFetch({query: THEME_QUERY})
+  console.log('RootLayout', data, tags)
 
   return (
-    <html
-      lang="en"
-      className="bg-theme text-theme transition-colors duration-1000 ease-in-out"
-      style={{
-        ['--theme-background' as string]: data?.background,
-        ['--theme-text' as string]: data?.text,
-      }}
-    >
-      <body>
-        <div className="relative flex min-h-dvh flex-col items-center justify-evenly overflow-auto">
-          {data?.fetchedAt && (
-            <Suspense>
-              <TimeSince label="layout.tsx" since={data.fetchedAt} />
-            </Suspense>
-          )}
-          {children}
-          <Suspense>
-            <ThemeButton />
-          </Suspense>
-        </div>
+    <ThemeLayout background={data?.background} text={data?.text}>
+      {data?.fetchedAt && (
         <Suspense>
-          <SanityLive />
+          <TimeSince label="layout.tsx" since={data.fetchedAt} />
         </Suspense>
-        <SpeedInsights />
-      </body>
-    </html>
+      )}
+      {children}
+      <Suspense>
+        <SanityLive />
+      </Suspense>
+      <SpeedInsights />
+    </ThemeLayout>
   )
 }

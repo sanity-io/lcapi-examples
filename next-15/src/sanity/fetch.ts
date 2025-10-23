@@ -12,9 +12,11 @@ import {client} from './client'
 export async function sanityFetch<const QueryString extends string>({
   query,
   params = {},
+  tags = [],
 }: {
   query: QueryString
   params?: QueryParams
+  tags?: string[]
 }): Promise<{data: ClientReturn<QueryString, unknown>; tags?: string[]}> {
   // We have to fetch the sync tags first (this double-fetching is required until the new `cacheTag` API, related to 'use cache', is available in a stable next.js release)
   const {syncTags} = await client.fetch(query, params, {
@@ -23,13 +25,13 @@ export async function sanityFetch<const QueryString extends string>({
     perspective: 'published',
     cacheMode: 'noStale',
     tag: 'fetch-sync-tags', // The request tag makes the fetch unique, avoids deduping with the cached query that has tags
-    cache: 'force-cache',
   })
+  const cacheTags = [...(syncTags || []), ...tags]
   const data = await client.fetch(query, params, {
     useCdn: false,
     perspective: 'published',
     cache: 'force-cache',
-    next: {tags: syncTags},
+    next: {tags: cacheTags},
   })
-  return {data, tags: syncTags}
+  return {data, tags: cacheTags}
 }
