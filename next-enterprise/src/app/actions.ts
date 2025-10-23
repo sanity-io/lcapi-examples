@@ -1,6 +1,6 @@
 'use server'
 
-import {refresh, updateTag} from 'next/cache'
+import {updateTag} from 'next/cache'
 
 export async function randomColorTheme(background: string, text: string) {
   const formData = new FormData()
@@ -11,8 +11,4 @@ export async function randomColorTheme(background: string, text: string) {
     body: formData,
   })
   updateTag('theme')
-}
-
-export async function liveRefresh() {
-  refresh()
 }

@@ -3,24 +3,25 @@
 import {client} from '@/sanity/client'
 import type {LiveEvent} from '@sanity/client'
 import {CorsOriginError} from '@sanity/client'
-import {startTransition, useEffect, useEffectEvent} from 'react'
-import {liveRefresh} from './actions'
+import {useRouter} from 'next/navigation'
+import {useEffect, useEffectEvent} from 'react'
 
 export function SanityLive() {
+  const router = useRouter()
   const handleLiveEvent = useEffectEvent((event: LiveEvent, signal: AbortSignal) => {
     if (event.type === 'welcome') {
       console.info('Sanity is live with automatic refresh of published content')
     } else if (event.type === 'message') {
       console.log('<SanityLive> refreshing')
-      startTransition(() => liveRefresh())
+      router.refresh()
       console.log('<SanityLive> schedule 2nd refresh')
       setTimeout(() => {
         if (signal.aborted) return
         console.log('<SanityLive> refreshing again')
-        startTransition(() => liveRefresh())
+        router.refresh()
       }, 1_000)
     } else if (event.type === 'restart' || event.type === 'reconnect') {
-      startTransition(() => liveRefresh())
+      router.refresh()
     }
   })
   useEffect(() => {
@@ -57,13 +58,14 @@ SanityLive.displayName = 'SanityLive'
 
 const focusThrottleInterval = 5_000
 function RefreshOnFocus() {
+  const router = useRouter()
   useEffect(() => {
     const controller = new AbortController()
     let nextFocusRevalidatedAt = 0
     const callback = () => {
       const now = Date.now()
       if (now > nextFocusRevalidatedAt && document.visibilityState !== 'hidden') {
-        startTransition(() => liveRefresh())
+        router.refresh()
         nextFocusRevalidatedAt = now + focusThrottleInterval
       }
     }
@@ -71,7 +73,7 @@ function RefreshOnFocus() {
     document.addEventListener('visibilitychange', callback, {passive: true, signal})
     window.addEventListener('focus', callback, {passive: true, signal})
     return () => controller.abort()
-  }, [])
+  }, [router])
 
   return null
 }
