@@ -18,8 +18,8 @@ export async function sanityFetch<const QueryString extends string>({
   query: QueryString
   params?: QueryParams
   tags?: string[]
-}): Promise<{data: ClientReturn<QueryString, unknown>; tags?: string[]}> {
-  'use cache'
+}): Promise<{data: ClientReturn<QueryString, unknown>; tags?: string[]; fetchedAt: string}> {
+  'use cache: remote'
   const {result, syncTags} = await client.fetch(query, params, {
     /**
      * The default value is `filterResponse: true`, which is equivalent to `client.fetch(query, params, {filterResponse: false}).then(response => response.result)`,
@@ -49,5 +49,5 @@ export async function sanityFetch<const QueryString extends string>({
     revalidate: 60 * 60 * 24 * 90,
   })
 
-  return {data: result, tags: cacheTags}
+  return {data: result, tags: cacheTags, fetchedAt: new Date().toJSON()}
 }

@@ -195,38 +195,34 @@ export type REACTION_QUERYResult = {
 
 // Source: ./src/app/dynamic/page.tsx
 // Variable: DYNAMIC_DEMO_QUERY
-// Query: *[_type == "demo" && slug.current == $slug][0]{title,"fetchedAt": now()}
+// Query: *[_type == "demo" && slug.current == $slug][0]{title}
 export type DYNAMIC_DEMO_QUERYResult = {
   title: string | null
-  fetchedAt: string
 } | null
 
 // Source: ./src/app/layout.tsx
 // Variable: THEME_QUERY
-// Query: *[_id == "theme"][0]{background,text,"fetchedAt":now()}
+// Query: *[_id == "theme"][0]{background,text}
 export type THEME_QUERYResult =
   | {
       background: null
       text: null
-      fetchedAt: string
     }
   | {
       background: string | null
       text: string | null
-      fetchedAt: string
     }
   | null
 
 // Source: ./src/app/page.tsx
 // Variable: DEMO_QUERY
-// Query: *[_type == "demo" && slug.current == $slug][0]{title,reactions[0..4]{_key,_ref},"fetchedAt": now()}
+// Query: *[_type == "demo" && slug.current == $slug][0]{title,reactions[0..4]{_key,_ref}}
 export type DEMO_QUERYResult = {
   title: string | null
   reactions: Array<{
     _key: string
     _ref: string
   }> | null
-  fetchedAt: string
 } | null
 
 // Query TypeMap
@@ -234,8 +230,8 @@ import '@sanity/client'
 declare module '@sanity/client' {
   interface SanityQueries {
     '*[_type == "reaction" && _id == $id][0]{emoji,reactions}': REACTION_QUERYResult
-    '*[_type == "demo" && slug.current == $slug][0]{title,"fetchedAt": now()}': DYNAMIC_DEMO_QUERYResult
-    '*[_id == "theme"][0]{background,text,"fetchedAt":now()}': THEME_QUERYResult
-    '*[_type == "demo" && slug.current == $slug][0]{title,reactions[0..4]{_key,_ref},"fetchedAt": now()}': DEMO_QUERYResult
+    '*[_type == "demo" && slug.current == $slug][0]{title}': DYNAMIC_DEMO_QUERYResult
+    '*[_id == "theme"][0]{background,text}': THEME_QUERYResult
+    '*[_type == "demo" && slug.current == $slug][0]{title,reactions[0..4]{_key,_ref}}': DEMO_QUERYResult
   }
 }

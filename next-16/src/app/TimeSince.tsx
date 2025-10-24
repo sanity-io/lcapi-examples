@@ -2,25 +2,35 @@
 
 import {startTransition, useEffect, useState} from 'react'
 
-export function TimeSince({label, since}: {label: string; since: string}) {
-  const [from, setFrom] = useState<null | Date>(null)
+export function TimeSince({
+  label,
+  since,
+  rendered,
+}: {
+  label: string
+  since: string
+  rendered: string
+}) {
   const [now, setNow] = useState<null | Date>(null)
   useEffect(() => {
-    startTransition(() => setFrom(new Date(since)))
-    const interval = setInterval(() => setNow(new Date()), 1000)
+    const interval = setInterval(() => startTransition(() => setNow(new Date())), 1_000)
     return () => clearInterval(interval)
-  }, [since])
+  }, [])
 
-  let timeSince = '…'
-  if (from && now) {
-    timeSince = formatTimeSince(from, now)
+  let value = '…'
+  if (now) {
+    const fetchedSince = formatTimeSince(new Date(since), now)
+    const renderedSince = formatTimeSince(new Date(rendered), now)
+    value =
+      fetchedSince === renderedSince
+        ? `fetched & rendered ${fetchedSince}`
+        : `fetched ${fetchedSince}, rendered ${renderedSince}`
   }
-
   return (
-    <div className="bg-theme-button text-theme-button absolute left-2 top-2 block rounded-sm text-xs transition duration-1000 ease-in-out">
+    <div className="bg-(--theme-text) text-(--theme-background) absolute left-2 top-2 block rounded-sm text-xs transition-colors duration-1000 ease-in-out">
       <span className="inline-block py-1 pl-2 pr-0.5">{label}:</span>
-      <span className="bg-theme text-theme mr-0.5 inline-block rounded-r-sm px-1 py-0.5 tabular-nums transition duration-1000 ease-in-out">
-        fetched {timeSince}
+      <span className="bg-(--theme-background) text-(--theme-text) mr-0.5 inline-block rounded-r-sm px-1 py-0.5 tabular-nums transition-colors duration-1000 ease-in-out">
+        {value}
       </span>
     </div>
   )
