@@ -27,7 +27,7 @@ export function TimeSince({
         : `fetched ${fetchedSince}, rendered ${renderedSince}`
   }
   return (
-    <div className="bg-(--theme-text) text-(--theme-background) absolute left-2 top-2 block rounded-sm text-xs transition-colors duration-1000 ease-in-out">
+    <div className="bg-(--theme-text) text-(--theme-background) absolute left-2 top-2 block rounded-sm text-[0.5rem] transition-colors duration-1000 ease-in-out">
       <span className="inline-block py-1 pl-2 pr-0.5">{label}:</span>
       <span className="bg-(--theme-background) text-(--theme-text) mr-0.5 inline-block rounded-r-sm px-1 py-0.5 tabular-nums transition-colors duration-1000 ease-in-out">
         {value}

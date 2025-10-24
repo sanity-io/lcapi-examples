@@ -15,7 +15,7 @@ export default function TimeSince({label, since}: {label: string; since: string}
   }
 
   return (
-    <div className="bg-theme-button text-theme-button absolute left-2 top-2 block rounded text-xs transition duration-1000 ease-in-out">
+    <div className="bg-theme-button text-theme-button absolute left-2 top-2 block rounded text-[0.5rem] transition duration-1000 ease-in-out">
       <span className="inline-block py-1 pl-2 pr-0.5">{label}:</span>
       <span className="bg-theme text-theme mr-0.5 inline-block rounded-r-sm px-1 py-0.5 tabular-nums transition duration-1000 ease-in-out">
         fetched {timeSince}
