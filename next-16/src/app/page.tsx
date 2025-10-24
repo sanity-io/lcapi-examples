@@ -18,7 +18,7 @@ export default async function Home() {
   return (
     <div className="relative mx-2 rounded-lg px-2 pb-1 pt-8 ring-1 ring-current">
       <title>{title}</title>
-      <h1 className="min-w-64 text-balance text-4xl font-bold leading-tight tracking-tighter md:text-6xl lg:pr-8 lg:text-8xl">
+      <h1 className="min-w-96 text-balance text-4xl font-bold leading-tight tracking-tighter md:text-6xl lg:pr-8 lg:text-8xl">
         {title}
       </h1>
       <Suspense>
