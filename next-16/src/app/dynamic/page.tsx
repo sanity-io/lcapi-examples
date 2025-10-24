@@ -4,9 +4,7 @@ import {Suspense} from 'react'
 import {TimeSince} from '../TimeSince'
 import {UserAgent} from './UserAgent'
 
-const DYNAMIC_DEMO_QUERY = defineQuery(
-  `*[_type == "demo" && slug.current == $slug][0]{title,"fetchedAt": now()}`,
-)
+const DYNAMIC_DEMO_QUERY = defineQuery(`*[_type == "demo" && slug.current == $slug][0]{title}`)
 const slug = 'next-16'
 
 export default function Home() {
@@ -41,11 +39,9 @@ async function CachedHome() {
   return (
     <>
       <Title>{data?.title}</Title>
-      {data?.fetchedAt && (
-        <Suspense>
-          <TimeSince label="page.tsx" since={data.fetchedAt} />
-        </Suspense>
-      )}
+      <Suspense>
+        <TimeSince label="page.tsx" since={fetchedAt} rendered={new Date().toJSON()} />
+      </Suspense>
     </>
   )
 }
