@@ -1,5 +1,3 @@
-'use cache'
-
 import './globals.css'
 import {sanityFetch} from '@/sanity/fetch'
 import {SpeedInsights} from '@vercel/speed-insights/next'
@@ -10,6 +8,8 @@ import {ThemeLayout} from './ThemeLayout'
 import {TimeSince} from './TimeSince'
 
 const THEME_QUERY = defineQuery(`*[_id == "theme"][0]{background,text,"fetchedAt":now()}`)
+
+export const preferredRegion = 'cdg1' // Paris is closest to Sanity Content Lake in Belgium
 
 export default async function RootLayout({
   children,

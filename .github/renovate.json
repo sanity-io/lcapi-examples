@@ -36,11 +36,6 @@
       "matchFileNames": ["next-13/package.json"],
       "matchPackageNames": ["tailwindcss"],
       "allowedVersions": "<=3"
-    },
-    {
-      "matchFileNames": ["next-canary/package.json"],
-      "matchPackageNames": ["next", "eslint-config-next", "react", "react-dom"],
-      "followTag": "canary"
     }
   ]
 }

@@ -1,5 +1,3 @@
-'use cache'
-
 import {sanityFetch} from '@/sanity/fetch'
 import {defineQuery} from 'groq'
 import {Suspense} from 'react'
@@ -13,20 +11,22 @@ const slug = 'next-16'
 
 export default async function Home() {
   const {data} = await sanityFetch({query: DEMO_QUERY, params: {slug}})
-  const title = data?.title || 'Next 16'
+  const title = data?.title || 'Next Canary'
 
   return (
-    <div className="relative mx-2 rounded-lg px-2 pb-1 pt-8 ring-1 ring-current">
-      <title>{title}</title>
-      <h1 className="min-w-64 text-balance text-4xl font-bold leading-tight tracking-tighter md:text-6xl lg:pr-8 lg:text-8xl">
-        {title}
-      </h1>
-      {data?.fetchedAt && (
-        <Suspense>
-          <TimeSince label="page.tsx" since={data.fetchedAt} />
-        </Suspense>
-      )}
+    <>
+      <div className="relative mx-2 rounded-lg px-2 pb-1 pt-8 ring-1 ring-current">
+        <title>{title}</title>
+        <h1 className="min-w-64 text-balance text-4xl font-bold leading-tight tracking-tighter md:text-6xl lg:pr-8 lg:text-8xl">
+          {title}
+        </h1>
+        {data?.fetchedAt && (
+          <Suspense>
+            <TimeSince label="page.tsx" since={data.fetchedAt} />
+          </Suspense>
+        )}
+      </div>
       {Array.isArray(data?.reactions) && <Reactions data={data.reactions} />}
-    </div>
+    </>
   )
 }

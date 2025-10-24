@@ -35,7 +35,8 @@ export default function Home() {
 
 async function CachedHome() {
   'use cache'
-  const {data} = await sanityFetch({query: DYNAMIC_DEMO_QUERY, params: {slug}})
+  const {data, fetchedAt} = await sanityFetch({query: DYNAMIC_DEMO_QUERY, params: {slug}})
+  console.log('CachedHome', data, fetchedAt)
 
   return (
     <>

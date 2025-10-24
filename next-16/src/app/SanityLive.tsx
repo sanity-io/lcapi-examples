@@ -4,19 +4,9 @@ import {client} from '@/sanity/client'
 import type {LiveEvent} from '@sanity/client'
 import {CorsOriginError} from '@sanity/client'
 import {startTransition, useEffect, useEffectEvent} from 'react'
-import {updateTags} from './actions'
-import {useRouter} from 'next/navigation'
+import {liveRefresh, updateTags} from './actions'
 
-/**
- * Next v16 has a first class API in `next-sanity` that should be used instead of this function.
- * It's here to show what the fetch function would look like if you were to implement it yourself, solving for production data.
- * The `defineLive` utility in `next-sanity` handles more advanced use cases, such as live preview, integrating with `sanity/presentation`, and more.
- * @example
- * import {createClient, defineLive} from 'next-sanity/experimental/live'
- * export const {sanityFetch, SanityLive} = defineLive({client: createClient({projectId, dataset, ...})})
- */
 export function SanityLive() {
-  const router = useRouter()
   const handleLiveEvent = useEffectEvent((event: LiveEvent) => {
     switch (event.type) {
       case 'welcome':
@@ -27,7 +17,7 @@ export function SanityLive() {
         break
       case 'reconnect':
       case 'restart':
-        router.refresh()
+        startTransition(() => liveRefresh())
         break
     }
   })
