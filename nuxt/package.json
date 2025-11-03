@@ -19,7 +19,7 @@
     "@vercel/speed-insights": "^1.2.0",
     "@vueuse/motion": "^3.0.3",
     "eslint": "^9.38.0",
-    "groq": "^4.12.0",
+    "groq": "^4.13.0",
     "nuxt": "^4.2.0",
     "tailwindcss": "^4.1.16",
     "vue": "latest",

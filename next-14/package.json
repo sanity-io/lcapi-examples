@@ -12,7 +12,7 @@
   "dependencies": {
     "@sanity/client": "^7.12.0",
     "@vercel/speed-insights": "^1.2.0",
-    "groq": "^4.12.0",
+    "groq": "^4.13.0",
     "motion": "^12.23.24",
     "next": "14.2.33",
     "react": "^18.3.1",
