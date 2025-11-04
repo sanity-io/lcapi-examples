@@ -17,13 +17,13 @@
     "groq": "^4.13.0"
   },
   "devDependencies": {
-    "@eslint/js": "^9.38.0",
+    "@eslint/js": "^9.39.0",
     "@sveltejs/adapter-auto": "^7.0.0",
     "@sveltejs/kit": "^2.48.4",
     "@sveltejs/vite-plugin-svelte": "^6.2.1",
     "@tailwindcss/postcss": "^4.1.16",
     "@types/eslint": "^9.6.1",
-    "eslint": "^9.38.0",
+    "eslint": "^9.39.0",
     "eslint-plugin-svelte": "^3.13.0",
     "globals": "^16.4.0",
     "svelte": "^5.43.2",
