@@ -10,9 +10,9 @@
     "typegen:generate": "sanity typegen generate"
   },
   "dependencies": {
-    "@sanity/client": "^7.12.0",
+    "@sanity/client": "^7.12.1",
     "@vercel/speed-insights": "^1.2.0",
-    "groq": "^4.13.0",
+    "groq": "^4.15.0",
     "motion": "^12.23.24",
     "next": "13.5.7",
     "react": "^18.3.1",
@@ -20,10 +20,10 @@
     "use-effect-event": "^2.0.3"
   },
   "devDependencies": {
-    "@types/node": "^24.10.0",
+    "@types/node": "^24.10.1",
     "@types/react": "^18.3.26",
     "@types/react-dom": "^18.3.7",
-    "autoprefixer": "^10.4.21",
+    "autoprefixer": "^10.4.22",
     "eslint": "^8.57.1",
     "eslint-config-next": "13.5.11",
     "eslint-plugin-react-hooks": "^7.0.1",
