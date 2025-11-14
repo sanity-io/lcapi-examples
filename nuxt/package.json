@@ -14,19 +14,19 @@
   },
   "dependencies": {
     "@nuxt/eslint": "1.10.0",
-    "@sanity/client": "^7.12.0",
-    "@tailwindcss/vite": "^4.1.16",
+    "@sanity/client": "^7.12.1",
+    "@tailwindcss/vite": "^4.1.17",
     "@vercel/speed-insights": "^1.2.0",
     "@vueuse/motion": "^3.0.3",
-    "eslint": "^9.39.0",
-    "groq": "^4.13.0",
-    "nuxt": "^4.2.0",
-    "tailwindcss": "^4.1.16",
+    "eslint": "^9.39.1",
+    "groq": "^4.15.0",
+    "nuxt": "^4.2.1",
+    "tailwindcss": "^4.1.17",
     "vue": "latest",
     "vue-router": "latest"
   },
   "devDependencies": {
     "typescript": "5.9.3",
-    "vue-tsc": "^3.1.2"
+    "vue-tsc": "^3.1.3"
   }
 }

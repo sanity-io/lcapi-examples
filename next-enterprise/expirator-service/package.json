@@ -7,7 +7,7 @@
     "start": "bun run index.ts"
   },
   "dependencies": {
-    "@sanity/client": "7.12.0"
+    "@sanity/client": "7.12.1"
   },
   "devDependencies": {
     "@flydotio/dockerfile": "^0.7.10",

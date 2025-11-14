@@ -11,9 +11,9 @@
   },
   "dependencies": {
     "@repo/generate-theme-colors": "workspace:*",
-    "@sanity/client": "^7.12.0",
+    "@sanity/client": "^7.12.1",
     "@vercel/speed-insights": "^1.2.0",
-    "groq": "^4.13.0",
+    "groq": "^4.15.0",
     "motion": "^12.23.24",
     "next": "15.5.6",
     "react": "^19.2.0",
@@ -21,16 +21,16 @@
     "use-effect-event": "^2.0.3"
   },
   "devDependencies": {
-    "@tailwindcss/postcss": "^4.1.16",
-    "@types/node": "^24.10.0",
-    "@types/react": "^19.2.2",
-    "@types/react-dom": "^19.2.2",
+    "@tailwindcss/postcss": "^4.1.17",
+    "@types/node": "^24.10.1",
+    "@types/react": "^19.2.4",
+    "@types/react-dom": "^19.2.3",
     "babel-plugin-react-compiler": "1.0.0",
-    "eslint": "^9.39.0",
+    "eslint": "^9.39.1",
     "eslint-config-next": "15.5.6",
     "eslint-plugin-react-hooks": "7.0.1",
     "postcss": "^8.5.6",
-    "tailwindcss": "^4.1.16",
+    "tailwindcss": "^4.1.17",
     "typescript": "5.9.3"
   }
 }
