@@ -8,7 +8,7 @@
   "dependencies": {
     "@repo/generate-theme-colors": "workspace:*",
     "@sanity/client": "^7.12.1",
-    "@vercel/functions": "^3.3.0",
+    "@vercel/functions": "^3.3.2",
     "groq": "^4.15.0"
   },
   "devDependencies": {
