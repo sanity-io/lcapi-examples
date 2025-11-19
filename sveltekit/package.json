@@ -12,9 +12,9 @@
     "typegen:generate": "sanity typegen generate"
   },
   "dependencies": {
-    "@sanity/client": "^7.12.1",
+    "@sanity/client": "^7.13.0",
     "@vercel/speed-insights": "^1.2.0",
-    "groq": "^4.15.0"
+    "groq": "^4.16.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.1",
