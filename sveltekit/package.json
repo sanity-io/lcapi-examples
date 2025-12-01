@@ -12,9 +12,9 @@
     "typegen:generate": "sanity typegen generate"
   },
   "dependencies": {
-    "@sanity/client": "^7.13.0",
+    "@sanity/client": "^7.13.1",
     "@vercel/speed-insights": "^1.2.0",
-    "groq": "^4.18.0"
+    "groq": "^4.19.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.1",
@@ -26,7 +26,7 @@
     "eslint": "^9.39.1",
     "eslint-plugin-svelte": "^3.13.0",
     "globals": "^16.5.0",
-    "svelte": "^5.44.0",
+    "svelte": "^5.45.2",
     "svelte-check": "^4.3.4",
     "tailwindcss": "^4.1.17",
     "typescript": "5.9.3",
