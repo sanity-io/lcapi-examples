@@ -13,13 +13,13 @@
     "typegen:generate": "sanity typegen generate"
   },
   "dependencies": {
-    "@nuxt/eslint": "1.10.0",
-    "@sanity/client": "^7.13.0",
+    "@nuxt/eslint": "1.11.0",
+    "@sanity/client": "^7.13.1",
     "@tailwindcss/vite": "^4.1.17",
     "@vercel/speed-insights": "^1.2.0",
     "@vueuse/motion": "^3.0.3",
     "eslint": "^9.39.1",
-    "groq": "^4.18.0",
+    "groq": "^4.19.0",
     "nuxt": "^4.2.1",
     "tailwindcss": "^4.1.17",
     "vue": "latest",
