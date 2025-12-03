@@ -14,7 +14,7 @@
   "dependencies": {
     "@sanity/client": "^7.13.1",
     "@vercel/speed-insights": "^1.2.0",
-    "groq": "^4.19.0"
+    "groq": "^4.20.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.1",
