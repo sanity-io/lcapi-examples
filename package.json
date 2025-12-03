@@ -31,7 +31,9 @@
     "overrides": {
       "@types/react": "$@types/react",
       "@types/react-dom": "$@types/react-dom",
-      "eslint-plugin-react-hooks": "$eslint-plugin-react-hooks"
+      "eslint-plugin-react-hooks": "$eslint-plugin-react-hooks",
+      "sanity": "https://pkg.pr.new/sanity@24b3169",
+      "@sanity/vision": "https://pkg.pr.new/@sanity/vision@24b3169"
     }
   }
 }
