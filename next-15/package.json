@@ -13,7 +13,7 @@
     "@repo/generate-theme-colors": "workspace:*",
     "@sanity/client": "^7.13.1",
     "@vercel/speed-insights": "^1.2.0",
-    "groq": "^4.19.0",
+    "groq": "^4.20.0",
     "motion": "^12.23.24",
     "next": "15.5.6",
     "react": "^19.2.0",
