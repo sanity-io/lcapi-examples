@@ -1,4 +1,5 @@
 import {type ClientReturn, type QueryParams} from '@sanity/client'
+
 import {client} from './client'
 
 /**

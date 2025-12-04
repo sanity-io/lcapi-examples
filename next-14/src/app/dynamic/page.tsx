@@ -1,8 +1,11 @@
-import {sanityFetch} from '@/sanity/fetch'
-import {defineQuery} from 'groq'
 import type {Metadata} from 'next'
+
+import {defineQuery} from 'groq'
 import {headers} from 'next/headers'
 import {Suspense} from 'react'
+
+import {sanityFetch} from '@/sanity/fetch'
+
 import {TimeSince} from '../TimeSince'
 
 const DYNAMIC_DEMO_QUERY = defineQuery(

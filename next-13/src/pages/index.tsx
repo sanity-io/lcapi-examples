@@ -1,11 +1,13 @@
+import type {ClientReturn, SyncTag} from '@sanity/client'
+import type {GetServerSideProps, InferGetServerSidePropsType} from 'next'
+
+import {defineQuery} from 'groq'
+import Head from 'next/head'
+import {lazy, Suspense} from 'react'
+
 import {Reactions} from '@/components/Reactions'
 import {client} from '@/sanity/client'
 import {SanityLive} from '@/sanity/live'
-import type {ClientReturn, SyncTag} from '@sanity/client'
-import {defineQuery} from 'groq'
-import type {GetServerSideProps, InferGetServerSidePropsType} from 'next'
-import Head from 'next/head'
-import {lazy, Suspense} from 'react'
 
 const ThemeButton = lazy(() => import('@/components/ThemeButton'))
 const TimeSince = lazy(() => import('@/components/TimeSince'))

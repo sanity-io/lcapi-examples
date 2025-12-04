@@ -9,11 +9,11 @@ const config: Config = {
   theme: {
     extend: {
       backgroundColor: {
-        'theme': 'var(--theme-background,#fff)',
+        theme: 'var(--theme-background,#fff)',
         'theme-button': 'var(--theme-text,#fff)',
       },
       textColor: {
-        'theme': 'var(--theme-text,#000)',
+        theme: 'var(--theme-text,#000)',
         'theme-button': 'var(--theme-background,#fff)',
       },
       ringColor: {

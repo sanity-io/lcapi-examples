@@ -1,4 +1,5 @@
 import type {ClientReturn, SyncTag} from '@sanity/client'
+
 import {defineQuery} from 'groq'
 
 export const API_REACTION_QUERY = defineQuery(

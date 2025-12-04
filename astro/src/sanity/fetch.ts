@@ -1,4 +1,5 @@
 import {type ClientReturn, type QueryParams, type SyncTag} from '@sanity/client'
+
 import {client} from './client'
 
 export async function sanityFetch<const QueryString extends string>({

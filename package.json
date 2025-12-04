@@ -2,21 +2,15 @@
   "name": "lcapi-examples",
   "private": true,
   "scripts": {
-    "format": "prettier --cache --write .",
+    "format": "oxfmt . --no-error-on-unmatched-pattern",
     "lint": "pnpm -r lint",
     "type-check": "pnpm -r type-check",
     "typegen": "pnpm -r run schema:extract && pnpm -r run typegen:generate"
   },
   "dependencies": {
-    "@ianvs/prettier-plugin-sort-imports": "^4.7.0",
-    "@sanity/prettier-config": "^2.0.2",
     "@types/react": "^19.2.7",
     "@types/react-dom": "^19.2.3",
     "eslint-plugin-react-hooks": "^7.0.1",
-    "prettier": "^3.7.4",
-    "prettier-plugin-astro": "^0.14.1",
-    "prettier-plugin-svelte": "^3.4.0",
-    "prettier-plugin-tailwindcss": "^0.7.2",
     "sanity": "4.20.0",
     "typescript": "5.9.3"
   },
@@ -33,5 +27,8 @@
       "@types/react-dom": "$@types/react-dom",
       "eslint-plugin-react-hooks": "$eslint-plugin-react-hooks"
     }
+  },
+  "devDependencies": {
+    "oxfmt": "^0.16.0"
   }
 }

@@ -1,8 +1,9 @@
-import {sanityFetch} from '@/utils/sanity'
 import {createFileRoute} from '@tanstack/react-router'
 import {createServerFn} from '@tanstack/react-start'
 import {defineQuery} from 'groq'
 import z from 'zod'
+
+import {sanityFetch} from '@/utils/sanity'
 
 const DEMO_QUERY = defineQuery(`*[_type == "demo" && slug.current == $slug][0].title`)
 

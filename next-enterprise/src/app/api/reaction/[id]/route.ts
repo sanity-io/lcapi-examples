@@ -3,9 +3,11 @@
  * the same predictable way as data fetching in React Server Components achieve.
  */
 
-import {client} from '@/sanity/client'
 import {defineQuery} from 'groq'
 import {NextResponse} from 'next/server'
+
+import {client} from '@/sanity/client'
+
 import {API_REACTION_QUERY, RouteResponse} from './shared'
 
 const REACTION_QUERY_STATIC_PARAMS = defineQuery(

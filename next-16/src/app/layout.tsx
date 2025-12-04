@@ -1,10 +1,12 @@
 'use cache'
 
 import './globals.css'
-import {sanityFetch} from '@/sanity/fetch'
 import {SpeedInsights} from '@vercel/speed-insights/next'
 import {defineQuery} from 'groq'
 import {Suspense} from 'react'
+
+import {sanityFetch} from '@/sanity/fetch'
+
 import {SanityLive} from './SanityLive'
 import {ThemeLayout} from './ThemeLayout'
 import {TimeSince} from './TimeSince'

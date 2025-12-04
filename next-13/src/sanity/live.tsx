@@ -1,9 +1,11 @@
-import {client} from '@/sanity/client'
 import type {LiveEvent} from '@sanity/client'
+
 import {CorsOriginError} from '@sanity/client'
 import {useRouter} from 'next/router'
 import {useEffect} from 'react'
 import {useEffectEvent} from 'use-effect-event'
+
+import {client} from '@/sanity/client'
 
 /**
  * Next v14 and later, on App Router, has a first class API in `next-sanity/live`, `defineLive`, that should be used instead of this function.

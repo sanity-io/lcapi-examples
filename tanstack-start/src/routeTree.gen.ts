@@ -9,7 +9,9 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import type {createStart} from '@tanstack/react-start'
+
 import type {getRouter} from './router.tsx'
+
 import {Route as rootRouteImport} from './routes/__root'
 import {Route as IndexRouteImport} from './routes/index'
 
@@ -26,7 +28,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
 }
 export interface FileRoutesById {
-  '__root__': typeof rootRouteImport
+  __root__: typeof rootRouteImport
   '/': typeof IndexRoute
 }
 export interface FileRouteTypes {

@@ -1,9 +1,12 @@
 'use client'
 
-import {client} from '@/sanity/client'
 import type {LiveEvent} from '@sanity/client'
+
 import {CorsOriginError} from '@sanity/client'
 import {startTransition, useEffect, useEffectEvent} from 'react'
+
+import {client} from '@/sanity/client'
+
 import {liveRefresh, updateTags} from './actions'
 
 export function SanityLive() {

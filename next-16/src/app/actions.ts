@@ -1,6 +1,7 @@
 'use server'
 
 import type {SyncTag} from '@sanity/client'
+
 import {refresh, updateTag} from 'next/cache'
 
 export async function updateTags(tags: SyncTag[]) {

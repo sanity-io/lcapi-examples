@@ -1,11 +1,13 @@
 import './globals.css'
-import {sanityFetch} from '@/sanity/fetch'
 import {SpeedInsights} from '@vercel/speed-insights/next'
 import {defineQuery} from 'groq'
 import {Suspense} from 'react'
+
+import {sanityFetch} from '@/sanity/fetch'
+
 import {SanityLive} from './SanityLive'
-import {TimeSince} from './TimeSince'
 import {ThemeLayout} from './ThemeLayout'
+import {TimeSince} from './TimeSince'
 
 const THEME_QUERY = defineQuery(`*[_id == "theme"][0]{background,text,"fetchedAt":now()}`)
 

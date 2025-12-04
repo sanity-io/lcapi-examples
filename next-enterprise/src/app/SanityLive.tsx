@@ -1,10 +1,12 @@
 'use client'
 
-import {client} from '@/sanity/client'
 import type {LiveEvent} from '@sanity/client'
+
 import {CorsOriginError} from '@sanity/client'
 import {useRouter} from 'next/navigation'
 import {useEffect, useEffectEvent} from 'react'
+
+import {client} from '@/sanity/client'
 
 export function SanityLive() {
   const router = useRouter()

@@ -1,7 +1,9 @@
-import {CorsOriginError} from '@sanity/client'
 import type {LiveEventMessage, LiveEventRestart, LiveEventWelcome} from '@sanity/client'
+
+import {CorsOriginError} from '@sanity/client'
 import {useNavigate, useRouter, useRouterState, useSearch} from '@tanstack/react-router'
 import {useEffect, useEffectEvent} from 'react'
+
 import {client} from '../utils/sanity'
 
 export function SanityLive() {

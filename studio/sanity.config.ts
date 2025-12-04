@@ -4,6 +4,7 @@ import {visionTool} from '@sanity/vision'
  */
 import {defineConfig, type DocumentDefinition} from 'sanity'
 import {structureTool, type StructureResolver} from 'sanity/structure'
+
 import {demoType, reactionType, themeType} from './schemaTypes'
 
 // The StructureResolver is how we're changing the DeskTool structure to linking to document (named Singleton)

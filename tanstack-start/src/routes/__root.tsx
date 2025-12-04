@@ -1,6 +1,3 @@
-import {SanityLive} from '@/components/SanityLive'
-import {ThemeButton} from '@/components/ThemeButton'
-import {sanityFetch} from '@/utils/sanity'
 import {TanStackDevtools} from '@tanstack/react-devtools'
 import {createRootRoute, HeadContent, Scripts} from '@tanstack/react-router'
 import {TanStackRouterDevtoolsPanel} from '@tanstack/react-router-devtools'
@@ -9,6 +6,11 @@ import {zodValidator} from '@tanstack/zod-adapter'
 import {injectSpeedInsights} from '@vercel/speed-insights'
 import {defineQuery} from 'groq'
 import {z} from 'zod'
+
+import {SanityLive} from '@/components/SanityLive'
+import {ThemeButton} from '@/components/ThemeButton'
+import {sanityFetch} from '@/utils/sanity'
+
 import appCss from '../styles.css?url'
 
 if (typeof window !== 'undefined') {

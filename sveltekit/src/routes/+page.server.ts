@@ -1,5 +1,6 @@
 import {sanityFetch} from '$lib/sanity/fetch'
 import {defineQuery} from 'groq'
+
 import type {PageServerLoad} from './$types'
 
 const INDEX_QUERY = defineQuery(`*[_type == "demo" && slug.current == $slug][0].title`)

@@ -1,8 +1,10 @@
 'use cache'
 
-import {sanityFetch} from '@/sanity/fetch'
 import {defineQuery} from 'groq'
 import {Suspense} from 'react'
+
+import {sanityFetch} from '@/sanity/fetch'
+
 import {Reactions} from './Reactions'
 import {TimeSince} from './TimeSince'
 

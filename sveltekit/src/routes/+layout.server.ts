@@ -1,5 +1,6 @@
 import {sanityFetch} from '$lib/sanity/fetch'
 import {defineQuery} from 'groq'
+
 import type {LayoutServerLoad} from './$types'
 
 const LAYOUT_QUERY = defineQuery(`*[_id == "theme"][0]{background,text}`)

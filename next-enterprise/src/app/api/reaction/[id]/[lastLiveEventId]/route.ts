@@ -3,8 +3,10 @@
  * the same predictable way as data fetching in React Server Components achieve.
  */
 
-import {client} from '@/sanity/client'
 import {NextResponse} from 'next/server'
+
+import {client} from '@/sanity/client'
+
 import {API_REACTION_QUERY, type RouteResponse} from '../shared'
 
 export async function GET(

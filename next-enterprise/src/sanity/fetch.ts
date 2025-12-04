@@ -1,5 +1,6 @@
 import {type ClientReturn, type QueryParams} from '@sanity/client'
 import {cacheLife, cacheTag} from 'next/cache'
+
 import {client} from './client'
 
 /**
