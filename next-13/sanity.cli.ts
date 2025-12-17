@@ -6,4 +6,3 @@ export default defineCliConfig({
     schema: '../studio/schema.json',
   },
 })
-

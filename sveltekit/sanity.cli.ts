@@ -8,4 +8,3 @@ export default defineCliConfig({
     generates: './src/sanity.types.ts',
   },
 })
-
