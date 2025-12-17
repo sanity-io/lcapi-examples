@@ -1,6 +1,6 @@
 @import 'tailwindcss';
 
-@theme {
+@theme inline {
   --background-color-theme: var(--theme-background, #fff);
   --background-color-theme-button: var(--theme-text, #fff);
 

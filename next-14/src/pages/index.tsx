@@ -15,7 +15,7 @@ const INDEX_QUERY = defineQuery(`{
   "demo": *[_type == "demo" && slug.current == $slug][0]{title,reactions[0..4]{_key,_ref}},
   "fetchedAt":now()
 }`)
-const slug = 'next-13'
+const slug = 'next-14'
 
 export const getServerSideProps: GetServerSideProps<{
   data: ClientReturn<typeof INDEX_QUERY, unknown>
@@ -45,7 +45,7 @@ export const getServerSideProps: GetServerSideProps<{
 
 export default function Home(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const {data, tags} = props
-  const title = data.demo?.title || 'Next 13'
+  const title = data.demo?.title || 'Next 14'
 
   return (
     <>

@@ -196,7 +196,7 @@ export type AllSanitySchemaTypes =
 
 export declare const internalGroqTypeReferenceTo: unique symbol
 
-// Source: src/app/Reactions.tsx
+// Source: src/components/Reactions.tsx
 // Variable: REACTION_QUERY
 // Query: *[_type == "reaction" && _id == $id][0]{emoji,reactions}
 export type REACTION_QUERY_RESULT = {
@@ -204,47 +204,33 @@ export type REACTION_QUERY_RESULT = {
   reactions: number | null
 } | null
 
-// Source: src/app/dynamic/page.tsx
-// Variable: DYNAMIC_DEMO_QUERY
-// Query: *[_type == "demo" && slug.current == $slug][0]{title,"fetchedAt": now()}
-export type DYNAMIC_DEMO_QUERY_RESULT = {
-  title: string | null
+// Source: src/pages/index.tsx
+// Variable: INDEX_QUERY
+// Query: {  "theme": *[_id == "theme"][0]{background,text},  "demo": *[_type == "demo" && slug.current == $slug][0]{title,reactions[0..4]{_key,_ref}},  "fetchedAt":now()}
+export type INDEX_QUERY_RESULT = {
+  theme:
+    | {
+        background: null
+        text: null
+      }
+    | {
+        background: string | null
+        text: string | null
+      }
+    | null
+  demo: {
+    title: string | null
+    reactions: Array<{
+      _key: string
+      _ref: string
+    }> | null
+  } | null
   fetchedAt: string
-} | null
-
-// Source: src/app/layout.tsx
-// Variable: THEME_QUERY
-// Query: *[_id == "theme"][0]{background,text,"fetchedAt":now()}
-export type THEME_QUERY_RESULT =
-  | {
-      background: null
-      text: null
-      fetchedAt: string
-    }
-  | {
-      background: string | null
-      text: string | null
-      fetchedAt: string
-    }
-  | null
-
-// Source: src/app/page.tsx
-// Variable: DEMO_QUERY
-// Query: *[_type == "demo" && slug.current == $slug][0]{title,reactions[0..4]{_key,_ref},"fetchedAt": now()}
-export type DEMO_QUERY_RESULT = {
-  title: string | null
-  reactions: Array<{
-    _key: string
-    _ref: string
-  }> | null
-  fetchedAt: string
-} | null
+}
 
 declare module '@sanity/client' {
   interface SanityQueries {
     '*[_type == "reaction" && _id == $id][0]{emoji,reactions}': REACTION_QUERY_RESULT
-    '*[_type == "demo" && slug.current == $slug][0]{title,"fetchedAt": now()}': DYNAMIC_DEMO_QUERY_RESULT
-    '*[_id == "theme"][0]{background,text,"fetchedAt":now()}': THEME_QUERY_RESULT
-    '*[_type == "demo" && slug.current == $slug][0]{title,reactions[0..4]{_key,_ref},"fetchedAt": now()}': DEMO_QUERY_RESULT
+    '{\n  "theme": *[_id == "theme"][0]{background,text},\n  "demo": *[_type == "demo" && slug.current == $slug][0]{title,reactions[0..4]{_key,_ref}},\n  "fetchedAt":now()\n}': INDEX_QUERY_RESULT
   }
 }

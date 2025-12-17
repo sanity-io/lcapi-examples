@@ -1,10 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  logging: {
-    fetches: {
-      fullUrl: true,
-    },
-  },
+  // Pages router does not enable strict mode by default
+  reactStrictMode: true,
   eslint: {ignoreDuringBuilds: true},
 }
 

@@ -1,4 +1,4 @@
-import '@/styles/globals.css'
+import '@/globals.css'
 import {SpeedInsights} from '@vercel/speed-insights/next'
 import type {AppProps} from 'next/app'
 

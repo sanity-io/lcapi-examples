@@ -13,6 +13,7 @@ export function SanityLive(props: {tags?: string[]}) {
   const {tags = []} = props
 
   const handleLiveEvent = useEffectEvent((event: LiveEvent) => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const {lastLiveEventId, ...queryWithoutLastLiveEventId} = router.query
 
     switch (event.type) {
@@ -32,8 +33,8 @@ export function SanityLive(props: {tags?: string[]}) {
           {scroll: false},
         )
         break
-      case 'message':
-        event.tags.some((tag) => tags.includes(tag)) &&
+      case 'message': {
+        if(event.tags.some((tag) => tags.includes(tag))) {
           router.replace(
             {
               pathname: router.pathname,
@@ -42,7 +43,9 @@ export function SanityLive(props: {tags?: string[]}) {
             undefined,
             {scroll: false},
           )
+        }
         break
+      }
       case 'reconnect':
       case 'restart':
         router.replace(
