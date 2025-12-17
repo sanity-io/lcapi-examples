@@ -4,20 +4,20 @@ import {client} from '@/sanity/client'
 import type {LiveEvent} from '@sanity/client'
 import {CorsOriginError} from '@sanity/client'
 import {useRouter} from 'next/navigation'
-import {useEffect, useEffectEvent} from 'react'
+import {useEffect, useEffectEvent, useRef} from 'react'
 
 export function SanityLive() {
   const router = useRouter()
+  const refreshRef = useRef(0)
   const handleLiveEvent = useEffectEvent((event: LiveEvent, signal: AbortSignal) => {
     if (event.type === 'welcome') {
       console.info('Sanity is live with automatic refresh of published content')
     } else if (event.type === 'message') {
-      console.log('<SanityLive> refreshing')
-      router.refresh()
-      console.log('<SanityLive> schedule 2nd refresh')
-      setTimeout(() => {
+      console.log('<SanityLive> schedule refresh')
+      clearTimeout(refreshRef.current)
+      refreshRef.current = window.setTimeout(() => {
         if (signal.aborted) return
-        console.log('<SanityLive> refreshing again')
+        console.log('<SanityLive> refreshing')
         router.refresh()
       }, 1_000)
     } else if (event.type === 'restart' || event.type === 'reconnect') {
