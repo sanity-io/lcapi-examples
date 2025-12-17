@@ -11,8 +11,8 @@ export async function POST(request: Request) {
   console.log('Expiring tags from expirator service', tags)
   for (const tag of tags) {
     // Temp test swr pattern
-    // revalidateTag(tag, {expire: 0})
-    revalidateTag(tag, {expire: 1})
+    revalidateTag(tag, {expire: 0})
+    // revalidateTag(tag, {expire: 1})
   }
   return Response.json(tags)
 }
