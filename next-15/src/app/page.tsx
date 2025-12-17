@@ -21,8 +21,8 @@ export default async function Home() {
   const {data} = await sanityFetch({query: DEMO_QUERY, params: {slug}})
 
   return (
-    <div className="relative mx-2 rounded-lg px-2 pb-1 pt-8 ring-1 ring-current">
-      <h1 className="min-w-64 text-balance text-4xl font-bold leading-tight tracking-tighter md:text-6xl lg:pr-8 lg:text-8xl">
+    <div className="relative mx-2 rounded-lg px-2 pt-8 pb-1 ring-1 ring-current">
+      <h1 className="min-w-64 text-4xl leading-tight font-bold tracking-tighter text-balance md:text-6xl lg:pr-8 lg:text-8xl">
         {data?.title || 'Next 15'}
       </h1>
       {data?.fetchedAt && (

@@ -10,16 +10,16 @@ const slug = 'next-16'
 export default function Home() {
   return (
     <>
-      <div className="relative mx-2 rounded-lg px-2 pb-1 pt-8 ring-1 ring-current">
+      <div className="relative mx-2 rounded-lg px-2 pt-8 pb-1 ring-1 ring-current">
         <Suspense fallback={<Title>{'Loading...'}</Title>}>
           <CachedHome />
         </Suspense>
       </div>
       <Suspense
         fallback={
-          <div className="bg-(--theme-text) text-(--theme-background) absolute bottom-2 left-2 block rounded-sm text-xs transition-colors duration-1000 ease-in-out">
-            <span className="inline-block py-1 pl-2 pr-0.5">User Agent:</span>
-            <span className="bg-(--theme-background) text-(--theme-text) mr-0.5 inline-block rounded-r-sm px-1 py-0.5 tabular-nums transition-colors duration-1000 ease-in-out">
+          <div className="absolute bottom-2 left-2 block rounded-sm bg-(--theme-text) text-xs text-(--theme-background) transition-colors duration-1000 ease-in-out">
+            <span className="inline-block py-1 pr-0.5 pl-2">User Agent:</span>
+            <span className="mr-0.5 inline-block rounded-r-sm bg-(--theme-background) px-1 py-0.5 text-(--theme-text) tabular-nums transition-colors duration-1000 ease-in-out">
               ...
             </span>
           </div>
@@ -51,7 +51,7 @@ function Title(props: {children: string | null | undefined}) {
   return (
     <>
       <title>{title}</title>
-      <h1 className="min-w-64 text-balance text-4xl font-bold leading-tight tracking-tighter md:text-6xl lg:pr-8 lg:text-8xl">
+      <h1 className="min-w-64 text-4xl leading-tight font-bold tracking-tighter text-balance md:text-6xl lg:pr-8 lg:text-8xl">
         {title}
       </h1>
     </>

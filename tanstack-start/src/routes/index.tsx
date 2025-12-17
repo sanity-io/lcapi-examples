@@ -34,7 +34,7 @@ function App() {
   const state = Route.useLoaderData()
   return (
     <>
-      <h1 className="text-balance text-4xl font-bold leading-tight tracking-tighter [view-transition-name:title] md:text-6xl lg:pr-8 lg:text-8xl">
+      <h1 className="text-4xl leading-tight font-bold tracking-tighter text-balance [view-transition-name:title] md:text-6xl lg:pr-8 lg:text-8xl">
         {state.data || 'TanStack Start Starter'}
       </h1>
     </>

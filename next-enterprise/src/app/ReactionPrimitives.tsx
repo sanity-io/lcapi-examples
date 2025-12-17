@@ -3,7 +3,7 @@ export function ReactionFallback() {
     <ButtonContainer>
       <button
         disabled
-        className="bg-(--theme-text)/40 flex animate-pulse rounded-lg transition-colors duration-1000 ease-in-out"
+        className="flex animate-pulse rounded-lg bg-(--theme-text)/40 transition-colors duration-1000 ease-in-out"
       >
         <Square> </Square>
       </button>

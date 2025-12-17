@@ -24,8 +24,8 @@ export default async function Home() {
 
   return (
     <>
-      <div className="relative mx-2 rounded-lg px-2 pb-1 pt-8 ring-1 ring-current">
-        <h1 className="min-w-64 text-balance text-4xl font-bold leading-tight tracking-tighter md:text-6xl lg:pr-8 lg:text-8xl">
+      <div className="relative mx-2 rounded-lg px-2 pt-8 pb-1 ring-1 ring-current">
+        <h1 className="min-w-64 text-4xl leading-tight font-bold tracking-tighter text-balance md:text-6xl lg:pr-8 lg:text-8xl">
           {data?.title || 'Next 15'}
         </h1>
         {data?.fetchedAt && (
@@ -35,7 +35,7 @@ export default async function Home() {
         )}
       </div>
       <div className="bg-theme-button text-theme-button absolute bottom-2 left-2 block rounded-sm text-xs transition duration-1000 ease-in-out">
-        <span className="inline-block py-1 pl-2 pr-0.5">User Agent:</span>
+        <span className="inline-block py-1 pr-0.5 pl-2">User Agent:</span>
         <span className="bg-theme text-theme mr-0.5 inline-block rounded-r-sm px-1 py-0.5 tabular-nums transition duration-1000 ease-in-out">
           {userAgent}
         </span>
