@@ -34,7 +34,7 @@ export function SanityLive(props: {tags?: string[]}) {
         )
         break
       case 'message': {
-        if(event.tags.some((tag) => tags.includes(tag))) {
+        if (event.tags.some((tag) => tags.includes(tag))) {
           router.replace(
             {
               pathname: router.pathname,

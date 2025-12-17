@@ -66,7 +66,7 @@ export default function Home(props: InferGetServerSidePropsType<typeof getServer
             </Suspense>
           )}
           <div className="relative mx-2 rounded-lg px-2 py-1 ring-1 ring-current">
-            <h1 className="min-w-64 text-balance text-4xl font-bold leading-tight tracking-tighter md:text-6xl lg:text-8xl">
+            <h1 className="min-w-64 text-4xl leading-tight font-bold tracking-tighter text-balance md:text-6xl lg:text-8xl">
               {title}
             </h1>
           </div>

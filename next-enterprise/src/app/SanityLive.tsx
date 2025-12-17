@@ -13,13 +13,17 @@ export function SanityLive() {
     if (event.type === 'welcome') {
       console.info('Sanity is live with automatic refresh of published content')
     } else if (event.type === 'message') {
-      console.log('<SanityLive> schedule refresh, giving the server a change to delete from the cache')
+      console.log(
+        '<SanityLive> schedule refresh, giving the server a change to delete from the cache',
+      )
       clearTimeout(refreshRef.current)
       refreshRef.current = window.setTimeout(() => {
         if (signal.aborted) return
         console.log('<SanityLive> refreshing')
         router.refresh()
-        console.log('<SanityLive> schedule second refresh, in case a stale response was served while a background revalidation was in progress')
+        console.log(
+          '<SanityLive> schedule second refresh, in case a stale response was served while a background revalidation was in progress',
+        )
         refreshRef.current = window.setTimeout(() => {
           console.log('<SanityLive> refreshing for a second time')
           router.refresh()
