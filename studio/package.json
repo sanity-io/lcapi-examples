@@ -25,9 +25,9 @@
   "devDependencies": {
     "@sanity/eslint-config-studio": "^5.0.2",
     "@types/react": "^19.2.7",
-    "babel-plugin-react-compiler": "1.0.0",
+    "babel-plugin-react-compiler": "^1.0.0",
     "eslint": "^9.39.2",
-    "eslint-plugin-react-hooks": "7.0.1",
+    "eslint-plugin-react-hooks": "^7.0.1",
     "typescript": "5.9.3"
   }
 }

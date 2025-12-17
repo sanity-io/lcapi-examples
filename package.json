@@ -15,7 +15,7 @@
     "eslint-plugin-react-hooks": "^7.0.1",
     "prettier": "^3.7.4",
     "prettier-plugin-astro": "^0.14.1",
-    "prettier-plugin-svelte": "^3.4.0",
+    "prettier-plugin-svelte": "^3.4.1",
     "prettier-plugin-tailwindcss": "^0.7.2",
     "sanity": "5.0.0",
     "typescript": "5.9.3"
