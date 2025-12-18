@@ -20,7 +20,7 @@ export function Reactions(props: Props) {
 
   return (
     <aside
-      className="bg-[--theme-text]/30 fixed bottom-2 left-[50%] grid -translate-x-[50%] grid-flow-col grid-rows-1 gap-2 rounded-2xl p-2 transition-colors duration-1000 ease-in-out"
+      className="fixed bottom-2 left-[50%] grid -translate-x-[50%] grid-flow-col grid-rows-1 gap-2 rounded-2xl bg-[--theme-text]/30 p-2 transition-colors duration-1000 ease-in-out"
       style={{backgroundColor: 'color-mix(in oklab, var(--theme-text) 30%, transparent)'}}
     >
       {data.map(({_key, _ref}) => (
@@ -122,10 +122,10 @@ function ReactionButton(props: {id: string; emoji: string; reactions: number}) {
   return (
     <div
       style={{backgroundColor: 'color-mix(in oklab, var(--theme-text) 40%, transparent)'}}
-      className="bg-[--theme-text]/40 relative aspect-square rounded-lg transition duration-1000 ease-in-out focus-within:ring-2 focus-within:ring-[--theme-text] focus-within:ring-offset-2 focus-within:ring-offset-[--theme-background] focus-within:duration-0"
+      className="relative aspect-square rounded-lg bg-[--theme-text]/40 transition duration-1000 ease-in-out focus-within:ring-2 focus-within:ring-[--theme-text] focus-within:ring-offset-2 focus-within:ring-offset-[--theme-background] focus-within:duration-0"
     >
       <motion.button
-        className="flex transform-gpu cursor-pointer select-none items-center justify-center text-2xl subpixel-antialiased will-change-transform focus:outline-none"
+        className="flex transform-gpu cursor-pointer items-center justify-center text-2xl subpixel-antialiased will-change-transform select-none focus:outline-none"
         onClick={() => {
           setEmojis((emojis) => insert(emojis, false))
           const formData = new FormData()
@@ -167,7 +167,7 @@ function FloatingEmoji({emoji, _key, setEmojis, ...props}: FloatingEmojiProps) {
 
   return (
     <motion.div
-      className="pointer-events-none absolute inset-0 flex select-none items-center justify-center text-2xl will-change-transform"
+      className="pointer-events-none absolute inset-0 flex items-center justify-center text-2xl will-change-transform select-none"
       initial={{
         opacity: 0,
         scale: 0.5,
@@ -202,7 +202,7 @@ function ReactionFallback() {
       <button
         disabled
         style={{backgroundColor: 'color-mix(in oklab, var(--theme-text) 40%, transparent)'}}
-        className="bg-[--theme-text]/40 flex animate-pulse rounded-lg transition-colors duration-1000 ease-in-out"
+        className="flex animate-pulse rounded-lg bg-[--theme-text]/40 transition-colors duration-1000 ease-in-out"
       >
         <Square> </Square>
       </button>
