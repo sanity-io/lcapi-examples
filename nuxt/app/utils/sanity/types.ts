@@ -196,6 +196,14 @@ export type AllSanitySchemaTypes =
 
 export declare const internalGroqTypeReferenceTo: unique symbol
 
+// Source: app/components/Reaction.vue
+// Variable: REACTION_QUERY
+// Query: *[_type == "reaction" && _id == $id][0]{emoji,reactions}
+export type REACTION_QUERY_RESULT = {
+  emoji: string | null
+  reactions: number | null
+} | null
+
 // Source: app/utils/sanity/queries.ts
 // Variable: INDEX_QUERY
 // Query: {  "theme": *[_id == "theme"][0]{background,text},  "demo": *[_type == "demo" && slug.current == $slug][0]{title,reactions[0..4]{_key,_ref}}}
@@ -221,6 +229,7 @@ export type INDEX_QUERY_RESULT = {
 
 declare module '@sanity/client' {
   interface SanityQueries {
+    '*[_type == "reaction" && _id == $id][0]{emoji,reactions}': REACTION_QUERY_RESULT
     '{\n  "theme": *[_id == "theme"][0]{background,text},\n  "demo": *[_type == "demo" && slug.current == $slug][0]{title,reactions[0..4]{_key,_ref}}\n}': INDEX_QUERY_RESULT
   }
 }
