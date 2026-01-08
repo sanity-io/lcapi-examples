@@ -7,9 +7,9 @@
   },
   "dependencies": {
     "@repo/generate-theme-colors": "workspace:*",
-    "@sanity/client": "^7.13.2",
+    "@sanity/client": "^7.14.0",
     "@vercel/functions": "^3.3.4",
-    "groq": "^5.1.0"
+    "groq": "^5.2.0"
   },
   "devDependencies": {
     "@edge-runtime/types": "^4.0.0",
