@@ -8,12 +8,12 @@
   "dependencies": {
     "@repo/generate-theme-colors": "workspace:*",
     "@sanity/client": "^7.14.0",
-    "@vercel/functions": "^3.3.5",
-    "groq": "^5.2.0"
+    "@vercel/functions": "^3.3.6",
+    "groq": "^5.4.0"
   },
   "devDependencies": {
     "@edge-runtime/types": "^4.0.0",
-    "@types/node": "^24.10.7",
+    "@types/node": "^24.10.9",
     "typescript": "5.9.3"
   }
 }
