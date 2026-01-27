@@ -4,7 +4,7 @@ import {client} from '@/sanity/client'
 import type {LiveEvent} from '@sanity/client'
 import {CorsOriginError} from '@sanity/client'
 import {startTransition, useEffect, useEffectEvent} from 'react'
-import {liveRefresh, updateTags} from './actions'
+import {liveRefresh} from './actions'
 
 export function SanityLive() {
   const handleLiveEvent = useEffectEvent((event: LiveEvent) => {
@@ -13,8 +13,6 @@ export function SanityLive() {
         console.info('Sanity is live with automatic revalidation of published content')
         break
       case 'message':
-        startTransition(() => updateTags(event.tags))
-        break
       case 'reconnect':
       case 'restart':
         startTransition(() => liveRefresh())
@@ -22,7 +20,7 @@ export function SanityLive() {
     }
   })
   useEffect(() => {
-    const subscription = client.live.events().subscribe({
+    const subscription = client.live.events({ waitFor: 'function' }).subscribe({
       next: handleLiveEvent,
       error: (error: unknown) => {
         if (error instanceof CorsOriginError) {
