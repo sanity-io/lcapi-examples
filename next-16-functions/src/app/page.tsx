@@ -1,0 +1,30 @@
+'use cache'
+
+import {sanityFetch} from '@/sanity/fetch'
+import {defineQuery} from 'groq'
+import {Suspense} from 'react'
+import {Reactions} from './Reactions'
+import {TimeSince} from './TimeSince'
+
+const DEMO_QUERY = defineQuery(
+  `*[_type == "demo" && slug.current == $slug][0]{title,reactions[0..4]{_key,_ref}}`,
+)
+const slug = 'next-16'
+
+export default async function Home() {
+  const {data, fetchedAt} = await sanityFetch({query: DEMO_QUERY, params: {slug}})
+  const title = data?.title || 'Next 16'
+
+  return (
+    <div className="relative mx-2 rounded-lg px-2 pt-8 pb-1 ring-1 ring-current">
+      <title>{title}</title>
+      <h1 className="min-w-96 text-4xl leading-tight font-bold tracking-tighter text-balance md:text-6xl lg:pr-8 lg:text-8xl">
+        {title}
+      </h1>
+      <Suspense>
+        <TimeSince label="page.tsx" since={fetchedAt} rendered={new Date().toJSON()} />
+      </Suspense>
+      {Array.isArray(data?.reactions) && <Reactions data={data.reactions} />}
+    </div>
+  )
+}
