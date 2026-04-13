@@ -12,14 +12,16 @@
     "start": "sanity start"
   },
   "dependencies": {
+    "@sanity/blueprints": "^0.15.0",
+    "@sanity/functions": "^1.3.0",
     "@sanity/icons": "^3.7.4",
     "@sanity/ui": "^3.1.11",
-    "@sanity/vision": "^5.7.0",
+    "@sanity/vision": "^5.20.0",
     "polished": "^4.3.1",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
     "react-is": "^19.2.4",
-    "sanity": "^5.7.0",
+    "sanity": "^5.20.0",
     "styled-components": "^6.3.8"
   },
   "devDependencies": {
