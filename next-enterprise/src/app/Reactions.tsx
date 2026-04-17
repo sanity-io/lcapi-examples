@@ -5,9 +5,10 @@
  * efficient to fetch these counters client side than to have them pass through SSR.
  */
 import {client} from '@/sanity/client'
+import type {ClientReturn, SyncTag} from '@sanity/client'
+import {defineQuery} from 'groq'
 import {AnimatePresence, motion} from 'motion/react'
 import {startTransition, useEffect, useRef, useState} from 'react'
-import type {RouteResponse} from './api/reaction/[id]/shared'
 
 interface Props {
   data: {
@@ -29,12 +30,14 @@ export function Reactions(props: Props) {
 }
 Reactions.displayName = 'Reactions'
 
+const REACTION_QUERY = defineQuery(`*[_type == "reaction" && _id == $id][0]{emoji,reactions}`)
+
 function Reaction(props: {_ref: string}) {
   const {_ref} = props
 
-  const [data, setData] = useState<RouteResponse['result']>(null)
+  const [data, setData] = useState<ClientReturn<typeof REACTION_QUERY, unknown> | null>(null)
   const [lastLiveEventId, setLastLiveEventId] = useState<string | null>(null)
-  const syncTagsRef = useRef<RouteResponse['syncTags']>(undefined)
+  const syncTagsRef = useRef<SyncTag[] | undefined>(undefined)
 
   useEffect(() => {
     const subscription = client.live.events().subscribe((event) => {
@@ -51,18 +54,19 @@ function Reaction(props: {_ref: string}) {
   }, [])
   useEffect(() => {
     const controller = new AbortController()
-    fetch(lastLiveEventId ? `/api/reaction/${_ref}/${lastLiveEventId}` : `/api/reaction/${_ref}`, {
-      signal: controller.signal,
-    })
-      .then((res) => res.json())
-      .then(({result, syncTags}: RouteResponse) => {
+    client
+      .fetch(
+        REACTION_QUERY,
+        {id: _ref},
+        {filterResponse: false, lastLiveEventId, signal: controller.signal, returnQuery: false},
+      )
+      .then(({result, syncTags}) =>
         startTransition(() => {
           setData(result)
           syncTagsRef.current = syncTags
-        })
-      })
+        }),
+      )
       .catch(console.error)
-
     return () => controller.abort()
   }, [_ref, lastLiveEventId])
 
