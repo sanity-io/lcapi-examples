@@ -5,10 +5,9 @@
  * efficient to fetch these counters client side than to have them pass through SSR.
  */
 import {client} from '@/sanity/client'
-import type {ClientReturn, SyncTag} from '@sanity/client'
-import {defineQuery} from 'groq'
 import {AnimatePresence, motion} from 'motion/react'
-import {startTransition, useEffect, useRef, useState} from 'react'
+import {memo, startTransition, useEffect, useRef, useState} from 'react'
+import type {RouteResponse} from './api/reaction/[id]/shared'
 
 interface Props {
   data: {
@@ -30,14 +29,12 @@ export function Reactions(props: Props) {
 }
 Reactions.displayName = 'Reactions'
 
-const REACTION_QUERY = defineQuery(`*[_type == "reaction" && _id == $id][0]{emoji,reactions}`)
-
 function Reaction(props: {_ref: string}) {
   const {_ref} = props
 
-  const [data, setData] = useState<ClientReturn<typeof REACTION_QUERY, unknown> | null>(null)
+  const [data, setData] = useState<RouteResponse['result']>(null)
   const [lastLiveEventId, setLastLiveEventId] = useState<string | null>(null)
-  const syncTagsRef = useRef<SyncTag[] | undefined>(undefined)
+  const syncTagsRef = useRef<RouteResponse['syncTags']>(undefined)
 
   useEffect(() => {
     const subscription = client.live.events().subscribe((event) => {
@@ -54,19 +51,18 @@ function Reaction(props: {_ref: string}) {
   }, [])
   useEffect(() => {
     const controller = new AbortController()
-    client
-      .fetch(
-        REACTION_QUERY,
-        {id: _ref},
-        {filterResponse: false, lastLiveEventId, signal: controller.signal, returnQuery: false},
-      )
-      .then(({result, syncTags}) =>
+    fetch(lastLiveEventId ? `/api/reaction/${_ref}/${lastLiveEventId}` : `/api/reaction/${_ref}`, {
+      signal: controller.signal,
+    })
+      .then((res) => res.json())
+      .then(({result, syncTags}: RouteResponse) => {
         startTransition(() => {
           setData(result)
           syncTagsRef.current = syncTags
-        }),
-      )
+        })
+      })
       .catch(console.error)
+
     return () => controller.abort()
   }, [_ref, lastLiveEventId])
 
@@ -156,7 +152,12 @@ type FloatingEmojiProps = {
   delay: number
   setEmojis: React.Dispatch<React.SetStateAction<Emoji[]>>
 }
-function FloatingEmoji({emoji, _key, setEmojis, ...props}: FloatingEmojiProps) {
+const FloatingEmoji = memo(function FloatingEmoji({
+  emoji,
+  _key,
+  setEmojis,
+  ...props
+}: FloatingEmojiProps) {
   const [delay] = useState(props.delay)
   const [randomOffset] = useState(() => (Math.random() - 0.5) * 200)
   const [randomDelay] = useState(() => (delay ? Math.random() * 0.15 : 0)) // Add up to 150ms random delay
@@ -190,7 +191,7 @@ function FloatingEmoji({emoji, _key, setEmojis, ...props}: FloatingEmojiProps) {
       {emoji}
     </motion.div>
   )
-}
+})
 
 function ReactionFallback() {
   return (

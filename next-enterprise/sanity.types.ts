@@ -15,6 +15,8 @@ import '@sanity/client'
  * ---------------------------------------------------------------------------------
  */
 
+export declare const internalGroqTypeReferenceTo: unique symbol
+
 // Source: ../studio/schema.json
 export type Reaction = {
   _id: string
@@ -194,12 +196,17 @@ export type AllSanitySchemaTypes =
   | SanityImageAsset
   | Geopoint
 
-export declare const internalGroqTypeReferenceTo: unique symbol
+// Source: src/app/api/reaction/[id]/route.ts
+// Variable: REACTION_QUERY_STATIC_PARAMS
+// Query: *[_type == "demo" && slug.current == $slug][0].reactions[0..4]{"id": _ref}
+export type REACTION_QUERY_STATIC_PARAMS_RESULT = Array<{
+  id: string
+}> | null
 
-// Source: src/app/Reactions.tsx
-// Variable: REACTION_QUERY
+// Source: src/app/api/reaction/[id]/shared.ts
+// Variable: API_REACTION_QUERY
 // Query: *[_type == "reaction" && _id == $id][0]{emoji,reactions}
-export type REACTION_QUERY_RESULT = {
+export type API_REACTION_QUERY_RESULT = {
   emoji: string | null
   reactions: number | null
 } | null
@@ -238,7 +245,8 @@ export type DEMO_QUERY_RESULT = {
 
 declare module '@sanity/client' {
   interface SanityQueries {
-    '*[_type == "reaction" && _id == $id][0]{emoji,reactions}': REACTION_QUERY_RESULT
+    '*[_type == "demo" && slug.current == $slug][0].reactions[0..4]{"id": _ref}': REACTION_QUERY_STATIC_PARAMS_RESULT
+    '*[_type == "reaction" && _id == $id][0]{emoji,reactions}': API_REACTION_QUERY_RESULT
     '*[_type == "demo" && slug.current == $slug][0]{title}': DYNAMIC_DEMO_QUERY_RESULT
     '*[_id == "theme"][0]{background,text}': THEME_QUERY_RESULT
     '*[_type == "demo" && slug.current == $slug][0]{title,reactions[0..4]{_key,_ref}}': DEMO_QUERY_RESULT
