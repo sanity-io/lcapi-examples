@@ -3,25 +3,51 @@
 import {client} from '@/sanity/client'
 import type {LiveEvent} from '@sanity/client'
 import {CorsOriginError} from '@sanity/client'
-import {startTransition, useEffect, useEffectEvent} from 'react'
-import {liveRefresh} from './actions'
+import {useRouter} from 'next/navigation'
+import {useEffect, useEffectEvent, useRef} from 'react'
 
 export function SanityLive() {
-  const handleLiveEvent = useEffectEvent((event: LiveEvent) => {
-    switch (event.type) {
-      case 'welcome':
-        console.info('Sanity is live with automatic revalidation of published content')
-        break
-      case 'message':
-      case 'reconnect':
-      case 'restart':
-        startTransition(() => liveRefresh())
-        break
+  const router = useRouter()
+  const refreshRef = useRef(0)
+  const handleLiveEvent = useEffectEvent((event: LiveEvent, signal: AbortSignal) => {
+    if (event.type === 'welcome') {
+      console.info('Sanity is live with automatic refresh of published content')
+    } else if (event.type === 'message') {
+      console.log(
+        '<SanityLive> schedule refresh, giving the server a change to delete from the cache',
+      )
+      clearTimeout(refreshRef.current)
+      refreshRef.current = window.setTimeout(() => {
+        if (signal.aborted) return
+        console.log('<SanityLive> refreshing')
+        router.refresh()
+        console.log(
+          '<SanityLive> schedule second refresh, in case a stale response was served while a background revalidation was in progress',
+        )
+        refreshRef.current = window.setTimeout(() => {
+          console.log('<SanityLive> refreshing for a second time')
+          router.refresh()
+          console.log('<SanityLive> schedule third refresh, just to be sure')
+          refreshRef.current = window.setTimeout(() => {
+            console.log('<SanityLive> refreshing for a third time')
+            router.refresh()
+          }, 4_000)
+        }, 2_000)
+      }, 1_000)
+    } else if (event.type === 'restart' || event.type === 'reconnect') {
+      router.refresh()
     }
   })
   useEffect(() => {
-    const subscription = client.live.events({ waitFor: 'function' }).subscribe({
-      next: handleLiveEvent,
+    let controller = new AbortController()
+    const subscription = client.live.events({waitFor: 'function'}).subscribe({
+      next: (event) => {
+        if (event.type === 'message' || event.type === 'restart' || event.type === 'welcome') {
+          controller.abort()
+          controller = new AbortController()
+          handleLiveEvent(event, controller.signal)
+        }
+      },
       error: (error: unknown) => {
         if (error instanceof CorsOriginError) {
           console.warn(
@@ -34,7 +60,10 @@ export function SanityLive() {
         }
       },
     })
-    return () => subscription.unsubscribe()
+    return () => {
+      controller.abort()
+      subscription.unsubscribe()
+    }
   }, [])
 
   return null

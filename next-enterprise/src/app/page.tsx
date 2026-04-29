@@ -16,15 +16,17 @@ export default async function Home() {
   const title = data?.title || 'Next Enterprise'
 
   return (
-    <div className="relative mx-2 rounded-lg px-2 pt-8 pb-1 ring-1 ring-current">
-      <title>{title}</title>
-      <h1 className="min-w-96 text-4xl leading-tight font-bold tracking-tighter text-balance md:text-6xl lg:pr-8 lg:text-8xl">
-        {title}
-      </h1>
-      <Suspense>
-        <TimeSince label="page.tsx" since={fetchedAt} rendered={new Date().toJSON()} />
-      </Suspense>
+    <>
+      <div className="relative mx-2 rounded-lg px-2 pt-8 pb-1 ring-1 ring-current">
+        <title>{title}</title>
+        <h1 className="min-w-64 text-4xl leading-tight font-bold tracking-tighter text-balance md:text-6xl lg:pr-8 lg:text-8xl">
+          {title}
+        </h1>
+        <Suspense>
+          <TimeSince label="page.tsx" since={fetchedAt} rendered={new Date().toJSON()} />
+        </Suspense>
+      </div>
       {Array.isArray(data?.reactions) && <Reactions data={data.reactions} />}
-    </div>
+    </>
   )
 }

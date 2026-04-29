@@ -1,6 +1,12 @@
 import {revalidateTag} from 'next/cache'
 
 /**
+ * Previously this route was hit by a hosted "expirator" service that called it
+ * with `?secret=...&tag=...` query strings. It is now invoked by the Sanity
+ * Function in `studio/functions/cache-invalidate` which POSTs a JSON body of
+ * sync tags. Keeping the same path makes it easier to compare the two
+ * approaches in git history.
+ *
  * NOTE: This endpoint is intentionally unauthenticated for the demo so the
  * Sanity Function can call it without extra setup. In a production deployment
  * you MUST authenticate the request (e.g. shared bearer token in an

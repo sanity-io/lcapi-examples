@@ -1,77 +1,8 @@
 'use client'
 
-/**
- * As the Emoji Reactions are a ton of numbers that increment constantly it's far more
- * efficient to fetch these counters client side than to have them pass through SSR.
- */
-import {client} from '@/sanity/client'
 import {AnimatePresence, motion} from 'motion/react'
-import {startTransition, useEffect, useRef, useState} from 'react'
-import type {RouteResponse} from './api/reaction/[id]/shared'
-
-interface Props {
-  data: {
-    _key: string
-    _ref: string
-  }[]
-}
-
-export function Reactions(props: Props) {
-  const {data} = props
-
-  return (
-    <aside className="fixed bottom-2 left-[50%] grid -translate-x-[50%] grid-flow-col grid-rows-1 gap-2 rounded-2xl bg-(--theme-text)/30 p-2 transition-colors duration-1000 ease-in-out">
-      {data.map(({_key, _ref}) => (
-        <Reaction key={_key} _ref={_ref} />
-      ))}
-    </aside>
-  )
-}
-Reactions.displayName = 'Reactions'
-
-function Reaction(props: {_ref: string}) {
-  const {_ref} = props
-
-  const [data, setData] = useState<RouteResponse['result']>(null)
-  const [lastLiveEventId, setLastLiveEventId] = useState<string | null>(null)
-  const syncTagsRef = useRef<RouteResponse['syncTags']>(undefined)
-
-  useEffect(() => {
-    const subscription = client.live.events().subscribe((event) => {
-      const syncTags = syncTagsRef.current
-      if (
-        event.type === 'message' &&
-        Array.isArray(syncTags) &&
-        event.tags.some((tag) => syncTags.includes(tag))
-      ) {
-        setLastLiveEventId(event.id)
-      }
-    })
-    return () => subscription.unsubscribe()
-  }, [])
-  useEffect(() => {
-    const controller = new AbortController()
-    fetch(lastLiveEventId ? `/api/reaction/${_ref}/${lastLiveEventId}` : `/api/reaction/${_ref}`, {
-      signal: controller.signal,
-    })
-      .then((res) => res.json())
-      .then(({result, syncTags}: RouteResponse) => {
-        startTransition(() => {
-          setData(result)
-          syncTagsRef.current = syncTags
-        })
-      })
-      .catch(console.error)
-
-    return () => controller.abort()
-  }, [_ref, lastLiveEventId])
-
-  if (data?.emoji && typeof data.reactions === 'number') {
-    return <ReactionButton id={_ref} emoji={data.emoji} reactions={data.reactions} />
-  }
-
-  return <ReactionFallback />
-}
+import {memo, useState} from 'react'
+import {Square} from './ReactionPrimitives'
 
 interface Emoji {
   key: string
@@ -99,7 +30,7 @@ function insertMany(emojis: Emoji[], needed: number) {
   return nextEmojis
 }
 
-function ReactionButton(props: {id: string; emoji: string; reactions: number}) {
+export function ReactionButton(props: {id: string; emoji: string; reactions: number}) {
   const {id, emoji, reactions} = props
   const [initialReactions] = useState(reactions)
 
@@ -152,7 +83,12 @@ type FloatingEmojiProps = {
   delay: number
   setEmojis: React.Dispatch<React.SetStateAction<Emoji[]>>
 }
-function FloatingEmoji({emoji, _key, setEmojis, ...props}: FloatingEmojiProps) {
+const FloatingEmoji = memo(function FloatingEmoji({
+  emoji,
+  _key,
+  setEmojis,
+  ...props
+}: FloatingEmojiProps) {
   const [delay] = useState(props.delay)
   const [randomOffset] = useState(() => (Math.random() - 0.5) * 200)
   const [randomDelay] = useState(() => (delay ? Math.random() * 0.15 : 0)) // Add up to 150ms random delay
@@ -186,23 +122,4 @@ function FloatingEmoji({emoji, _key, setEmojis, ...props}: FloatingEmojiProps) {
       {emoji}
     </motion.div>
   )
-}
-
-function ReactionFallback() {
-  return (
-    <div className="relative aspect-square">
-      <button
-        disabled
-        className="flex animate-pulse rounded-lg bg-(--theme-text)/40 transition-colors duration-1000 ease-in-out"
-      >
-        <Square> </Square>
-      </button>
-    </div>
-  )
-}
-
-function Square({children}: {children: React.ReactNode}) {
-  return (
-    <div className="inline-flex aspect-square size-12 items-center justify-center">{children}</div>
-  )
-}
+})

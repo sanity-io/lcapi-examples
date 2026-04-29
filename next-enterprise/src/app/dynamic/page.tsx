@@ -5,7 +5,7 @@ import {TimeSince} from '../TimeSince'
 import {UserAgent} from './UserAgent'
 
 const DYNAMIC_DEMO_QUERY = defineQuery(`*[_type == "demo" && slug.current == $slug][0]{title}`)
-const slug = 'next-16'
+const slug = 'next-enterprise'
 
 export default function Home() {
   return (
@@ -47,7 +47,7 @@ async function CachedHome() {
 }
 
 function Title(props: {children: string | null | undefined}) {
-  const title = props.children || 'Next 16'
+  const title = props.children || 'Next Enterprise'
   return (
     <>
       <title>{title}</title>
