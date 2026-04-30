@@ -1,7 +1,6 @@
 import {syncTagInvalidateEventHandler} from '@sanity/functions'
 
-const REVALIDATE_URL =
-  'https://lcapi-examples-next-enterprise.sanity.dev/api/expire-tags'
+const REVALIDATE_URL = 'https://lcapi-examples-next-enterprise.sanity.dev/api/expire-tags'
 
 export const handler = syncTagInvalidateEventHandler(async ({event, done}) => {
   const {syncTags} = event.data
