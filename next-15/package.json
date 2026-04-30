@@ -26,7 +26,7 @@
     "@types/react": "^19.2.10",
     "@types/react-dom": "^19.2.3",
     "babel-plugin-react-compiler": "^1.0.0",
-    "eslint": "^9.39.2",
+    "eslint": "^10.2.1",
     "eslint-config-next": "15.5.9",
     "eslint-plugin-react-hooks": "^7.0.1",
     "postcss": "^8.5.6",
