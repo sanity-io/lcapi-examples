@@ -27,7 +27,9 @@ export async function POST(request: Request) {
   }
 
   for (const tag of tags) {
-    revalidateTag(tag, {expire: 0})
+    // A 'max' expiration (instead of {expire: 0}) ensures the ISR cache is updated in the background, instead of blocking the `router.refresh()` render.
+    // This works since `router.refresh()` is called multiple times in a sequence to ensure distributed eventual consistency.
+    revalidateTag(tag, 'max')
   }
 
   return Response.json({revalidated: tags})
