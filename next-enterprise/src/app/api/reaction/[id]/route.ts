@@ -6,7 +6,7 @@
 import {client} from '@/sanity/client'
 import {defineQuery} from 'groq'
 import {NextResponse} from 'next/server'
-import {API_REACTION_QUERY, RouteResponse} from './shared'
+import {API_REACTION_QUERY, type RouteResponse} from './shared'
 
 const REACTION_QUERY_STATIC_PARAMS = defineQuery(
   `*[_type == "demo" && slug.current == $slug][0].reactions[0..4]{"id": _ref}`,

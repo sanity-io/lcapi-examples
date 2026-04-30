@@ -40,7 +40,7 @@ export function SanityLive() {
   })
   useEffect(() => {
     let controller = new AbortController()
-    const subscription = client.live.events().subscribe({
+    const subscription = client.live.events({waitFor: 'function'}).subscribe({
       next: (event) => {
         if (event.type === 'message' || event.type === 'restart' || event.type === 'welcome') {
           controller.abort()
