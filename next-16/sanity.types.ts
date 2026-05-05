@@ -15,6 +15,8 @@ import '@sanity/client'
  * ---------------------------------------------------------------------------------
  */
 
+export declare const internalGroqTypeReferenceTo: unique symbol
+
 // Source: ../studio/schema.json
 export type Reaction = {
   _id: string
@@ -194,8 +196,6 @@ export type AllSanitySchemaTypes =
   | SanityAssetSourceData
   | SanityImageAsset
   | Geopoint
-
-export declare const internalGroqTypeReferenceTo: unique symbol
 
 // Source: src/app/Reactions.tsx
 // Variable: REACTION_QUERY
