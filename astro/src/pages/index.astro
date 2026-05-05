@@ -1,24 +1,25 @@
 ---
+import {getLiveEntry} from 'astro:content'
 import {defineQuery} from 'groq'
 import Reactions from '../components/Reactions'
-import SanityLive from '../components/SanityLive.astro'
 import Layout from '../layouts/Layout.astro'
-import {sanityFetch} from '../sanity/fetch'
 
 export const prerender = false
-
-const url = new URL(Astro.request.url)
 
 const INDEX_QUERY = defineQuery(
   `*[_type == "demo" && slug.current == $slug][0]{title,reactions[0..4]{_key,_ref}}`,
 )
 const slug = 'astro'
-const lastLiveEventId = url.searchParams.get('lastLiveEventId')
-const {data, tags} = await sanityFetch({query: INDEX_QUERY, params: {slug}, lastLiveEventId})
+const {entry} = await getLiveEntry('sanity', {
+  id: `demo-${slug}`,
+  query: INDEX_QUERY,
+  params: {slug},
+})
+const data = entry?.data as {title?: string; reactions?: {_key: string; _ref: string}[]} | undefined
 const title = data?.title || 'Astro'
 ---
 
-<Layout lastLiveEventId={lastLiveEventId} title={title}>
+<Layout title={title}>
   <h1
     class="text-4xl leading-tight font-bold tracking-tighter text-balance md:text-6xl lg:pr-8 lg:text-8xl"
   >
@@ -26,4 +27,3 @@ const title = data?.title || 'Astro'
   </h1>
   {data?.reactions && <Reactions client:load data={data.reactions} />}
 </Layout>
-{Array.isArray(tags) && tags.length > 0 && <SanityLive tags={tags} />}

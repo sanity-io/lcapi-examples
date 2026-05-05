@@ -1,20 +1,22 @@
 ---
 import '../styles/global.css'
+import {getLiveEntry} from 'astro:content'
 import SpeedInsights from '@vercel/speed-insights/astro'
 import {ClientRouter} from 'astro:transitions'
 import {defineQuery} from 'groq'
-import SanityLive from '../components/SanityLive.astro'
 import ThemeButton from '../components/ThemeButton'
-import {sanityFetch} from '../sanity/fetch'
 
 interface Props {
-  lastLiveEventId: string | null
   title: string
 }
 
-const {lastLiveEventId, title} = Astro.props
+const {title} = Astro.props
 const LAYOUT_QUERY = defineQuery(`*[_id == "theme"][0]{background,text}`)
-const {data, tags} = await sanityFetch({query: LAYOUT_QUERY, lastLiveEventId})
+const {entry} = await getLiveEntry('sanity', {
+  id: 'theme',
+  query: LAYOUT_QUERY,
+})
+const data = entry?.data as {background?: string; text?: string} | undefined
 ---
 
 <!doctype html>
@@ -39,7 +41,6 @@ const {data, tags} = await sanityFetch({query: LAYOUT_QUERY, lastLiveEventId})
       <slot />
       <ThemeButton client:load />
     </div>
-    {Array.isArray(tags) && tags.length > 0 && <SanityLive tags={tags} />}
     <SpeedInsights />
   </body>
 </html>

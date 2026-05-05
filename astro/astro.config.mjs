@@ -9,10 +9,7 @@ export default defineConfig({
   adapter: vercel(),
 
   vite: {
-    plugins: [
-      // @ts-expect-error - tailwindcss typings are wonky for some reason
-      tailwindcss(),
-    ],
+    plugins: [tailwindcss()],
   },
 
   integrations: [react()],
