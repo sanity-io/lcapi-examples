@@ -7,6 +7,7 @@ import {defineQuery} from 'groq'
 import {Suspense} from 'react'
 import {ThemeLayout} from './ThemeLayout'
 import {TimeSince} from './TimeSince'
+import { updateTags } from './actions';
 
 const THEME_QUERY = defineQuery(`*[_id == "theme"][0]{background,text}`)
 
@@ -24,7 +25,7 @@ export default async function RootLayout({
         <TimeSince label="layout.tsx" since={fetchedAt} rendered={new Date().toJSON()} />
       </Suspense>
       {children}
-      <SanityLive requestTag="next-16" />
+      <SanityLive action={updateTags} requestTag="next-16" />
       <SpeedInsights />
     </ThemeLayout>
   )
