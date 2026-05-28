@@ -1,6 +1,6 @@
 'use server'
 
-import { parseTags } from 'next-sanity/live';
+import {parseTags} from 'next-sanity/live'
 import {refresh, updateTag} from 'next/cache'
 
 export async function updateTags(unsafeTags: unknown) {
