@@ -9,7 +9,7 @@
     "dev": "vite dev",
     "lint": "eslint --cache .",
     "preview": "vite preview",
-    "typegen:generate": "sanity typegen generate"
+    "typegen:generate": "svelte-kit sync && sanity typegen generate"
   },
   "dependencies": {
     "@sanity/client": "^7.22.0",
