@@ -28,7 +28,7 @@ export async function POST(request: Request) {
 
   for (const tag of tags) {
     // Using {expire: 0} ensures the cache is invalidated immediately, without waiting for the background revalidation to complete, ensuring all visitors see the updated content immediately.
-    revalidateTag(tag, {expire: 0})
+    revalidateTag(`sanity:${tag}`, {expire: 0})
   }
 
   return Response.json({revalidated: tags})
