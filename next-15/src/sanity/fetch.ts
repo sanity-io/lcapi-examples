@@ -5,10 +5,10 @@ import {client} from './client'
  * Next v15 has a first class API in `next-sanity` that should be used instead of this function.
  * It's here to show what the fetch function would look like if you were to implement it yourself, solving for production data.
  * The `defineLive` utility in `next-sanity@^11` handles more advanced use cases, such as live preview, integrating with `sanity/presentation`, and more.
- * * Though the implementation for Next v16 in `next-sanity@12` that uses `'use cache'` is recommended.
+ * * Though the implementation for Next v16 in `next-sanity@13` that uses `'use cache'` is recommended.
  * @example
  * import {createClient, defineLive} from 'next-sanity/live'
- *  export const {sanityFetch, SanityLive} = defineLive({client: createClient({projectId, dataset, ...})})
+ * export const {sanityFetch, SanityLive} = defineLive({client: createClient({projectId, dataset, ...})})
  */
 export async function sanityFetch<const QueryString extends string>({
   query,

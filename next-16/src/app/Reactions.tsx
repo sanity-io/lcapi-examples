@@ -40,7 +40,8 @@ function Reaction(props: {_ref: string}) {
   const syncTagsRef = useRef<SyncTag[] | undefined>(undefined)
 
   useEffect(() => {
-    const subscription = client.live.events().subscribe((event) => {
+    // setting `tag` here to the same value as `requestTag` on `<SanityLive>` ensures that we re-use the same EventSource instance instead of spawning multiple
+    const subscription = client.live.events({tag: 'next-16'}).subscribe((event) => {
       const syncTags = syncTagsRef.current
       if (
         event.type === 'message' &&

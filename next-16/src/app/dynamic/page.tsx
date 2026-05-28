@@ -1,4 +1,4 @@
-import {sanityFetch} from '@/sanity/fetch'
+import {sanityFetch} from '@/sanity/live'
 import {defineQuery} from 'groq'
 import {Suspense} from 'react'
 import {TimeSince} from '../TimeSince'

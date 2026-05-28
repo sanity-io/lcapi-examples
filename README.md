@@ -26,8 +26,8 @@ instead of defining your own `sanityFetch` function and `SanityLive` component.
 - [Nuxt](./nuxt/) – [https://lcapi-examples-nuxt.sanity.dev]
 - [Next.js 14 Pages Router](./next-14/) – [https://lcapi-examples-next-14.sanity.dev]
 - [Next.js 15 App Router](./next-15/) – [https://lcapi-examples-next-15.sanity.dev]
-- [Next.js 16 with the 'use cache: remote' directive](./next-16) - [https://lcapi-examples-next-16.sanity.dev/]
-- [Next.js with Enterprise grade revalidation efficiency](./next-enterprise/) - [https://lcapi-examples-next-enterprise.sanity.dev] – uses Next.js 16 with `'use cache'` and a Sanity Function with `syncTagInvalidateEventHandler` to revalidate tags on content changes. The technique can be adapted to any framework that supports on-demand revalidation similar to ISR in Next.js on Vercel.
+- [Next.js 16 with Cache Components](./next-16) - [https://lcapi-examples-next-16.sanity.dev/]
+- [Next.js with Cache Components and Enterprise grade revalidation efficiency](./next-enterprise/) - [https://lcapi-examples-next-enterprise.sanity.dev] – uses Next.js 16 with `'use cache'` and a Sanity Function with `syncTagInvalidateEventHandler` to revalidate tags on content changes. The technique can be adapted to any framework that supports on-demand revalidation similar to ISR in Next.js on Vercel.
 
 # TODO
 

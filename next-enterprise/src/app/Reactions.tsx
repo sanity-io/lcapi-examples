@@ -37,7 +37,7 @@ function Reaction(props: {_ref: string}) {
   const syncTagsRef = useRef<RouteResponse['syncTags']>(undefined)
 
   useEffect(() => {
-    const subscription = client.live.events().subscribe((event) => {
+    const subscription = client.live.events({tag: 'next-enterprise'}).subscribe((event) => {
       const syncTags = syncTagsRef.current
       if (
         event.type === 'message' &&
