@@ -1,13 +1,13 @@
 'use cache'
 
 import './globals.css'
-import {SanityLive, sanityFetch} from '@/sanity/live'
+import {sanityFetch, SanityLive} from '@/sanity/live'
 import {SpeedInsights} from '@vercel/speed-insights/next'
 import {defineQuery} from 'groq'
 import {Suspense} from 'react'
+import {updateTags} from './actions'
 import {ThemeLayout} from './ThemeLayout'
 import {TimeSince} from './TimeSince'
-import { updateTags } from './actions';
 
 const THEME_QUERY = defineQuery(`*[_id == "theme"][0]{background,text}`)
 

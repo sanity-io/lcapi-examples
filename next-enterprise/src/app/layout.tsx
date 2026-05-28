@@ -24,7 +24,10 @@ export default async function RootLayout({
         <TimeSince label="layout.tsx" since={fetchedAt} rendered={new Date().toJSON()} />
       </Suspense>
       {children}
-      <SanityLive requestTag="next-enterprise" waitFor={process.env.VERCEL_ENV === 'production' ? 'function' : undefined} />
+      <SanityLive
+        requestTag="next-enterprise"
+        waitFor={process.env.VERCEL_ENV === 'production' ? 'function' : undefined}
+      />
       <SpeedInsights />
     </ThemeLayout>
   )
