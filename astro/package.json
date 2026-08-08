@@ -12,7 +12,7 @@
   "dependencies": {
     "@astrojs/check": "^0.9.9",
     "@astrojs/react": "^4.4.2",
-    "@astrojs/vercel": "^9.0.4",
+    "@astrojs/vercel": "^10.0.0",
     "@sanity/client": "^7.22.0",
     "@tailwindcss/vite": "^4.2.4",
     "@types/react": "^19.2.14",
