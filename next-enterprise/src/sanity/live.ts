@@ -12,6 +12,18 @@ const {sanityFetch: _sanityFetch, SanityLive} = defineLive({
 export {SanityLive}
 
 /**
+ * The `cache-invalidate` Sanity Function in `studio/functions` POSTs sync tags to
+ * `/api/revalidate-tags` on the deployments listed in its `REVALIDATE_URLS`, then tells the
+ * Live Content API it is done. Deployments it covers pass `waitFor="function"` to `<SanityLive>`,
+ * so events are held until the cache is already fresh and the browser only refreshes.
+ * Other deployments (local dev, previews) are not on that list and fall back to the default
+ * server action that revalidates tags on the deployment itself.
+ */
+export const revalidatedBySanityFunction = Boolean(
+  process.env.SANITY_CACHE_INVALIDATE_FUNCTION || process.env.VERCEL_ENV === 'production',
+)
+
+/**
  * This re-export simply adds the `use cache: remote` directive to the function, and adds the `fetchedAt` debug property
  */
 export async function sanityFetch<const QueryString extends string>({
