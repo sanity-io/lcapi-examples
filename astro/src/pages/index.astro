@@ -1,29 +1,30 @@
 ---
-import {defineQuery} from 'groq'
+import {getLiveEntry} from 'astro:content'
 import Reactions from '../components/Reactions'
-import SanityLive from '../components/SanityLive.astro'
 import Layout from '../layouts/Layout.astro'
-import {sanityFetch} from '../sanity/fetch'
 
-export const prerender = false
+const [theme, demo] = await Promise.all([
+  getLiveEntry('theme', 'theme'),
+  getLiveEntry('demo', 'astro'),
+])
+if (theme.error) throw theme.error
+if (demo.error) throw demo.error
 
-const url = new URL(Astro.request.url)
+// The page is cached on the CDN, keyed by the sync tags of everything it rendered, until one of
+// them is purged through `/api/revalidate-tags`. The TTL is only a backstop.
+const tags = [
+  ...new Set([...(theme.entry?.cacheHint?.tags ?? []), ...(demo.entry?.cacheHint?.tags ?? [])]),
+]
+Astro.cache.set({tags, maxAge: 60 * 60 * 24 * 365})
 
-const INDEX_QUERY = defineQuery(
-  `*[_type == "demo" && slug.current == $slug][0]{title,reactions[0..4]{_key,_ref}}`,
-)
-const slug = 'astro'
-const lastLiveEventId = url.searchParams.get('lastLiveEventId')
-const {data, tags} = await sanityFetch({query: INDEX_QUERY, params: {slug}, lastLiveEventId})
-const title = data?.title || 'Astro'
+const title = demo.entry?.data.title || 'Astro'
 ---
 
-<Layout lastLiveEventId={lastLiveEventId} title={title}>
+<Layout title={title} theme={theme.entry?.data} tags={tags}>
   <h1
     class="text-4xl leading-tight font-bold tracking-tighter text-balance md:text-6xl lg:pr-8 lg:text-8xl"
   >
     {title}
   </h1>
-  {data?.reactions && <Reactions client:load data={data.reactions} />}
+  {demo.entry?.data.reactions && <Reactions client:load data={demo.entry.data.reactions} />}
 </Layout>
-{Array.isArray(tags) && tags.length > 0 && <SanityLive tags={tags} />}
