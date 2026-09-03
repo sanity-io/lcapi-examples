@@ -1,41 +1,60 @@
 <script lang="ts">
-  import {CorsOriginError} from '@sanity/client'
-  import {goto} from '$app/navigation'
-  import {onDestroy, onMount} from 'svelte'
+  import {CorsOriginError, type LiveEvent} from '@sanity/client'
+  import {goto, invalidateAll} from '$app/navigation'
+  import {onMount} from 'svelte'
   import {client} from './client'
 
-  let subscription: ReturnType<ReturnType<typeof client.live.events>['subscribe']> | null = null
+  let {waitFor}: {waitFor: 'function' | undefined} = $props()
+
+  function refresh(lastLiveEventId: string | null) {
+    if (waitFor === 'function') return invalidateAll()
+
+    const url = new URL(window.location.href)
+    if (lastLiveEventId) {
+      url.searchParams.set('lastLiveEventId', lastLiveEventId)
+    } else {
+      url.searchParams.delete('lastLiveEventId')
+    }
+    // eslint-disable-next-line svelte/no-navigation-without-resolve
+    return goto(url, {replaceState: true})
+  }
+
+  function handleLiveEvent(event: LiveEvent) {
+    switch (event.type) {
+      case 'welcome':
+        console.info(
+          waitFor === 'function'
+            ? 'Sanity is live, events are released once the sync-tag invalidate function has expired the cache'
+            : 'Sanity is live with automatic revalidation of published content',
+        )
+        if (
+          waitFor !== 'function' &&
+          !new URL(window.location.href).searchParams.has('lastLiveEventId')
+        ) {
+          // @ts-expect-error - @TODO upgrade `@sanity/client` with the id of welcome events
+          refresh(event.id)
+        }
+        break
+      case 'message':
+        refresh(event.id)
+        break
+      case 'restart':
+      case 'reconnect':
+        refresh(null)
+        break
+      case 'goaway':
+        console.warn(
+          `Sanity Live connection closed, automatic revalidation is disabled: ${event.reason}`,
+        )
+        break
+      default:
+        event satisfies never
+    }
+  }
 
   onMount(() => {
-    subscription = client.live.events().subscribe({
-      next: (event) => {
-        const url = new URL(window.location.href)
-
-        if (event.type === 'welcome') {
-          console.info('Sanity is live with automatic revalidation of published content')
-          if (!url.searchParams.has('lastLiveEventId')) {
-            url.searchParams.set(
-              'lastLiveEventId',
-              // @ts-expect-error - @TODO upgrade `@sanity/client` with the id of welcome events
-              event.id,
-            )
-            // eslint-disable-next-line svelte/no-navigation-without-resolve
-            goto(url.toString(), {replaceState: true})
-          }
-        } else if (event.type === 'message') {
-          // @TODO add tags matching here, somehow
-          // Check if the event tags intersect with our component tags
-          // if (event.tags?.some((tag) => tags.includes(tag))) {
-          url.searchParams.set('lastLiveEventId', event.id)
-          // eslint-disable-next-line svelte/no-navigation-without-resolve
-          goto(url.toString(), {replaceState: true})
-          // }
-        } else if (event.type === 'restart' || event.type === 'reconnect') {
-          url.searchParams.delete('lastLiveEventId')
-          // eslint-disable-next-line svelte/no-navigation-without-resolve
-          goto(url.toString(), {replaceState: true})
-        }
-      },
+    const subscription = client.live.events({waitFor}).subscribe({
+      next: handleLiveEvent,
       error: (error) => {
         if (error instanceof CorsOriginError) {
           console.warn(
@@ -48,11 +67,6 @@
         }
       },
     })
-  })
-
-  onDestroy(() => {
-    if (subscription) {
-      subscription.unsubscribe()
-    }
+    return () => subscription.unsubscribe()
   })
 </script>
