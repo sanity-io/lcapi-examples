@@ -11,6 +11,7 @@
 import type {createStart} from '@tanstack/react-start'
 import type {getRouter} from './router.tsx'
 import {Route as rootRouteImport} from './routes/__root'
+import {Route as ApiRevalidateTagsRouteImport} from './routes/api/revalidate-tags'
 import {Route as IndexRouteImport} from './routes/index'
 
 const IndexRoute = IndexRouteImport.update({
@@ -18,27 +19,36 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiRevalidateTagsRoute = ApiRevalidateTagsRouteImport.update({
+  id: '/api/revalidate-tags',
+  path: '/api/revalidate-tags',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/api/revalidate-tags': typeof ApiRevalidateTagsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/api/revalidate-tags': typeof ApiRevalidateTagsRoute
 }
 export interface FileRoutesById {
   '__root__': typeof rootRouteImport
   '/': typeof IndexRoute
+  '/api/revalidate-tags': typeof ApiRevalidateTagsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/api/revalidate-tags'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/api/revalidate-tags'
+  id: '__root__' | '/' | '/api/revalidate-tags'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ApiRevalidateTagsRoute: typeof ApiRevalidateTagsRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -50,11 +60,19 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/revalidate-tags': {
+      id: '/api/revalidate-tags'
+      path: '/api/revalidate-tags'
+      fullPath: '/api/revalidate-tags'
+      preLoaderRoute: typeof ApiRevalidateTagsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ApiRevalidateTagsRoute: ApiRevalidateTagsRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

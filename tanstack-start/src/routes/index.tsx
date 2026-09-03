@@ -1,4 +1,4 @@
-import {sanityFetch} from '@/utils/sanity'
+import {sanityFetch} from '@/utils/sanity.server'
 import {createFileRoute} from '@tanstack/react-router'
 import {createServerFn} from '@tanstack/react-start'
 import {defineQuery} from 'groq'

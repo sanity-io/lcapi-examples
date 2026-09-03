@@ -1,6 +1,6 @@
 import {SanityLive} from '@/components/SanityLive'
 import {ThemeButton} from '@/components/ThemeButton'
-import {sanityFetch} from '@/utils/sanity'
+import {sanityFetch, waitFor} from '@/utils/sanity.server'
 import {TanStackDevtools} from '@tanstack/react-devtools'
 import {createRootRoute, HeadContent, Scripts} from '@tanstack/react-router'
 import {TanStackRouterDevtoolsPanel} from '@tanstack/react-router-devtools'
@@ -25,8 +25,9 @@ const getTheme = createServerFn({
       lastLiveEventId: z.string().optional(),
     }),
   )
-  .handler(({data: {lastLiveEventId}}) => {
-    return sanityFetch({query: THEME_QUERY, lastLiveEventId})
+  .handler(async ({data: {lastLiveEventId}}) => {
+    const theme = await sanityFetch({query: THEME_QUERY, lastLiveEventId})
+    return {...theme, live: {waitFor}}
   })
 
 export const Route = createRootRoute({
@@ -54,7 +55,7 @@ export const Route = createRootRoute({
 })
 
 function RootDocument({children}: {children: React.ReactNode}) {
-  const {data} = Route.useLoaderData()
+  const {data, live} = Route.useLoaderData()
 
   return (
     <html
@@ -70,7 +71,7 @@ function RootDocument({children}: {children: React.ReactNode}) {
       </head>
       <body>
         <RootLayout>{children}</RootLayout>
-        <SanityLive />
+        <SanityLive {...live} />
         <TanStackDevtools
           config={{
             position: 'bottom-right',
