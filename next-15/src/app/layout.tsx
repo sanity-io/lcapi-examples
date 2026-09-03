@@ -1,9 +1,8 @@
 import './globals.css'
-import {sanityFetch} from '@/sanity/fetch'
+import {sanityFetch, SanityLive} from '@/sanity/live'
 import {SpeedInsights} from '@vercel/speed-insights/next'
 import {defineQuery} from 'groq'
 import {Suspense} from 'react'
-import {SanityLive} from './SanityLive'
 import {ThemeLayout} from './ThemeLayout'
 import {TimeSince} from './TimeSince'
 
@@ -27,9 +26,7 @@ export default async function RootLayout({
         </Suspense>
       )}
       {children}
-      <Suspense>
-        <SanityLive />
-      </Suspense>
+      <SanityLive requestTag="next-15" />
       <SpeedInsights />
     </ThemeLayout>
   )

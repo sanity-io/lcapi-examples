@@ -1,4 +1,4 @@
-import {sanityFetch} from '@/sanity/fetch'
+import {sanityFetch} from '@/sanity/live'
 import {defineQuery} from 'groq'
 import type {Metadata} from 'next'
 import {headers} from 'next/headers'
