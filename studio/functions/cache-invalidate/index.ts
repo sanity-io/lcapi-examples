@@ -27,15 +27,20 @@ export const handler = syncTagInvalidateEventHandler(async ({event, done}) => {
 
   await Promise.all(
     targets.map(async ({url, secret}) => {
-      const res = await fetch(url, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          ...(secret ? {Authorization: `Bearer ${secret}`} : {}),
-        },
-        body: JSON.stringify({tags: syncTags}),
-      })
-      console.log(`Revalidated ${syncTags.length} tags at ${url}, HTTP ${res.status}`)
+      try {
+        const res = await fetch(url, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            ...(secret ? {Authorization: `Bearer ${secret}`} : {}),
+          },
+          body: JSON.stringify({tags: syncTags}),
+        })
+        console.log(`Revalidated ${syncTags.length} tags at ${url}, HTTP ${res.status}`)
+      } catch (err) {
+        // An unreachable target must not keep `done` from releasing the live event to the others.
+        console.error(`Failed to revalidate ${syncTags.length} tags at ${url}`, err)
+      }
     }),
   )
 
