@@ -2,7 +2,7 @@
   import type {PageProps} from './$types'
 
   let {data}: PageProps = $props()
-  let title = data.page || 'SvelteKit'
+  const title = $derived(data.page || 'SvelteKit')
 </script>
 
 <svelte:head>
