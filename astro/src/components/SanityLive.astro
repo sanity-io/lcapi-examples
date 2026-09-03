@@ -26,12 +26,7 @@ const {tags} = Astro.props
       if (!eventsUrl) return
       const own = tags.split(',')
 
-      this.#events = new EventSource(eventsUrl)
-      this.#events.addEventListener('message', async (event) => {
-        const {tags: changed} = JSON.parse(event.data) as {tags: string[]}
-        const overlap = changed.filter((tag) => own.includes(tag))
-        if (overlap.length === 0) return
-
+      const refresh = async (stale: string[]) => {
         switch (invalidation) {
           case 'function':
             break
@@ -39,14 +34,25 @@ const {tags} = Astro.props
             await fetch('/api/revalidate-tags', {
               method: 'POST',
               headers: {'content-type': 'application/json'},
-              body: JSON.stringify({tags: overlap}),
+              body: JSON.stringify({tags: stale}),
             })
             break
           default:
             invalidation satisfies never
         }
         await navigate(window.location.href, {history: 'replace'})
+      }
+
+      this.#events = new EventSource(eventsUrl)
+      this.#events.addEventListener('message', (event) => {
+        const {tags: changed} = JSON.parse(event.data) as {tags: string[]}
+        const overlap = changed.filter((tag) => own.includes(tag))
+        if (overlap.length > 0) refresh(overlap)
       })
+      // Sanity could not resume from the `Last-Event-ID` the browser reconnected with, so the
+      // stream restarted at the end and events may have been missed. Nothing says which tags
+      // changed, so every tag on the page is treated as stale.
+      this.#events.addEventListener('restart', () => refresh(own))
     }
 
     disconnectedCallback(): void {
