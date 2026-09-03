@@ -1,7 +1,7 @@
 'use server'
 
-import { parseTags } from 'next-sanity/live';
-import {refresh, updateTag} from 'next/cache'
+import {parseTags} from 'next-sanity/live'
+import {updateTag} from 'next/cache'
 
 export async function updateTags(unsafeTags: unknown) {
   const {tags} = parseTags(unsafeTags)
@@ -20,8 +20,4 @@ export async function randomColorTheme(background: string, text: string) {
     body: formData,
   })
   updateTag('theme')
-}
-
-export async function liveRefresh() {
-  refresh()
 }

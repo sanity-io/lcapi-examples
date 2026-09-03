@@ -4,7 +4,7 @@
  * As the Emoji Reactions are a ton of numbers that increment constantly it's far more
  * efficient to fetch these counters client side than to have them pass through SSR.
  */
-import {client} from '@/sanity/client'
+import {client, requestTag} from '@/sanity/client'
 import type {ClientReturn, SyncTag} from '@sanity/client'
 import {defineQuery} from 'groq'
 import {AnimatePresence, motion} from 'motion/react'
@@ -40,8 +40,7 @@ function Reaction(props: {_ref: string}) {
   const syncTagsRef = useRef<SyncTag[] | undefined>(undefined)
 
   useEffect(() => {
-    // setting `tag` here to the same value as `requestTag` on `<SanityLive>` ensures that we re-use the same EventSource instance instead of spawning multiple
-    const subscription = client.live.events({tag: 'next-16'}).subscribe((event) => {
+    const subscription = client.live.events({tag: requestTag}).subscribe((event) => {
       const syncTags = syncTagsRef.current
       if (
         event.type === 'message' &&
