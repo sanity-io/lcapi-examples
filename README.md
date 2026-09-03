@@ -20,7 +20,7 @@ instead of defining your own `sanityFetch` function and `SanityLive` component.
 
 # Examples that are done
 
-- [Astro](./astro/) – [https://lcapi-examples-astro.sanity.dev]
+- [Astro](./astro/) – [https://lcapi-examples-astro.sanity.dev] – uses Astro 7 live content collections with sync tags as cache hints, and the same `cache-invalidate` Sanity Function as next-enterprise to purge the Vercel CDN in production. Locally and on preview deployments the browser purges instead, so no function setup is needed.
 - [TanStack Start](./tanstack-start/) – [https://lcapi-examples-tanstack-start.sanity.dev]
 - [SvelteKit](./sveltekit/) – [https://lcapi-examples-sveltekit.sanity.dev]
 - [Nuxt](./nuxt/) – [https://lcapi-examples-nuxt.sanity.dev]
