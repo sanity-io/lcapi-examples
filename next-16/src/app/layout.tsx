@@ -1,13 +1,13 @@
 'use cache'
 
 import './globals.css'
-import {SanityLive, sanityFetch} from '@/sanity/live'
+import {requestTag} from '@/sanity/client'
+import {revalidation, sanityFetch, SanityLive} from '@/sanity/live'
 import {SpeedInsights} from '@vercel/speed-insights/next'
 import {defineQuery} from 'groq'
 import {Suspense} from 'react'
 import {ThemeLayout} from './ThemeLayout'
 import {TimeSince} from './TimeSince'
-import { updateTags } from './actions';
 
 const THEME_QUERY = defineQuery(`*[_id == "theme"][0]{background,text}`)
 
@@ -25,7 +25,7 @@ export default async function RootLayout({
         <TimeSince label="layout.tsx" since={fetchedAt} rendered={new Date().toJSON()} />
       </Suspense>
       {children}
-      <SanityLive action={updateTags} requestTag="next-16" />
+      <SanityLive requestTag={requestTag} {...revalidation} />
       <SpeedInsights />
     </ThemeLayout>
   )
