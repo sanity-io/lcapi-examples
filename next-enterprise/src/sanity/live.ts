@@ -12,12 +12,10 @@ const {sanityFetch: _sanityFetch, SanityLive} = defineLive({
 export {SanityLive}
 
 /**
- * The `cache-invalidate` Sanity Function in `studio/functions` POSTs sync tags to
- * `/api/revalidate-tags` on the deployments listed in its `REVALIDATE_URLS`, then tells the
- * Live Content API it is done. Deployments it covers pass `waitFor="function"` to `<SanityLive>`,
- * so events are held until the cache is already fresh and the browser only refreshes.
- * Other deployments (local dev, previews) are not on that list and fall back to the default
- * server action that revalidates tags on the deployment itself.
+ * With `waitFor="function"`, `<SanityLive>` holds events until the `cache-invalidate` Sanity
+ * Function has revalidated tags, and then only refreshes the browser instead of revalidating here.
+ * That is correct only for deployments in the function's `REVALIDATE_URLS`. Production is on that
+ * list. Set `SANITY_CACHE_INVALIDATE_FUNCTION` to opt in another deployment after adding its URL.
  */
 export const revalidatedBySanityFunction = Boolean(
   process.env.SANITY_CACHE_INVALIDATE_FUNCTION || process.env.VERCEL_ENV === 'production',
