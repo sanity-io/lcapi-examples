@@ -1,50 +1,41 @@
 import {Reactions} from '@/components/Reactions'
 import {client} from '@/sanity/client'
 import {SanityLive} from '@/sanity/live'
+import {INDEX_PAGE, resolveRevalidatedBy, type RevalidatedBy} from '@/sanity/revalidation'
 import type {ClientReturn, SyncTag} from '@sanity/client'
-import {defineQuery} from 'groq'
-import type {GetServerSideProps, InferGetServerSidePropsType} from 'next'
+import type {GetStaticProps, InferGetStaticPropsType} from 'next'
 import Head from 'next/head'
 import {lazy, Suspense} from 'react'
 
 const ThemeButton = lazy(() => import('@/components/ThemeButton'))
 const TimeSince = lazy(() => import('@/components/TimeSince'))
 
-const INDEX_QUERY = defineQuery(`{
-  "theme": *[_id == "theme"][0]{background,text},
-  "demo": *[_type == "demo" && slug.current == $slug][0]{title,reactions[0..4]{_key,_ref}},
-  "fetchedAt":now()
-}`)
-const slug = 'next-14'
-
-export const getServerSideProps: GetServerSideProps<{
-  data: ClientReturn<typeof INDEX_QUERY, unknown>
-  tags?: SyncTag[]
-}> = async ({res, query}) => {
-  const {lastLiveEventId} = query
-  res.setHeader(
-    'Cache-Control',
-    // Sets the same cache header as the Sanity API CDN, with a short lifetime if there is no lastLiveEventId param, and a much longer one if there is
-    lastLiveEventId
-      ? 'public, max-age=60, s-maxage=3600, stale-while-revalidate=60, stale-if-error=3600'
-      : 'public, max-age=60, s-maxage=60, stale-while-revalidate=15, stale-if-error=3600',
-  )
-  const {result: data, syncTags: tags} = await client.fetch(
-    INDEX_QUERY,
-    {slug},
+export const getStaticProps: GetStaticProps<{
+  data: ClientReturn<typeof INDEX_PAGE.query, unknown>
+  tags: SyncTag[]
+  fetchedAt: string
+  revalidatedBy: RevalidatedBy
+}> = async () => {
+  const {result: data, syncTags: tags = []} = await client.fetch(
+    INDEX_PAGE.query,
+    INDEX_PAGE.params,
     {
       // Needed to access syncTags
       filterResponse: false,
-      // Used for cache busting on changes
-      lastLiveEventId,
+      // This page is regenerated right after an invalidation, so ask the Sanity CDN to wait for fresh content instead of serving stale
+      cacheMode: 'noStale',
     },
   )
 
-  return {props: {data, tags}}
+  return {
+    props: {data, tags, fetchedAt: new Date().toJSON(), revalidatedBy: resolveRevalidatedBy()},
+    // On-demand revalidation through `/api/revalidate-tags` keeps this page fresh. The hourly fallback covers a missed event.
+    revalidate: 3600,
+  }
 }
 
-export default function Home(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
-  const {data, tags} = props
+export default function Home(props: InferGetStaticPropsType<typeof getStaticProps>) {
+  const {data, tags, fetchedAt, revalidatedBy} = props
   const title = data.demo?.title || 'Next 14'
 
   return (
@@ -60,11 +51,9 @@ export default function Home(props: InferGetServerSidePropsType<typeof getServer
         }}
       >
         <div className="relative flex min-h-dvh flex-col items-center justify-evenly overflow-auto">
-          {data?.fetchedAt && (
-            <Suspense>
-              <TimeSince label="index.tsx" since={data.fetchedAt} />
-            </Suspense>
-          )}
+          <Suspense>
+            <TimeSince label="index.tsx" since={fetchedAt} />
+          </Suspense>
           <div className="relative mx-2 rounded-lg px-2 py-1 ring-1 ring-current">
             <h1 className="min-w-64 text-4xl leading-tight font-bold tracking-tighter text-balance md:text-6xl lg:text-8xl">
               {title}
@@ -76,7 +65,7 @@ export default function Home(props: InferGetServerSidePropsType<typeof getServer
         </div>
         {Array.isArray(data.demo?.reactions) && <Reactions data={data.demo.reactions} />}
       </main>
-      <SanityLive tags={tags} />
+      <SanityLive tags={tags} revalidatedBy={revalidatedBy} />
     </>
   )
 }

@@ -1,81 +1,74 @@
 import {client} from '@/sanity/client'
-import type {LiveEvent} from '@sanity/client'
-import {CorsOriginError} from '@sanity/client'
+import type {RevalidatedBy} from '@/sanity/revalidation'
+import {CorsOriginError, type LiveEvent, type SyncTag} from '@sanity/client'
 import {useRouter} from 'next/router'
 import {useEffect} from 'react'
 import {useEffectEvent} from 'use-effect-event'
 
 /**
- * Next v14 and later, on App Router, has a first class API in `next-sanity/live`, `defineLive`, that should be used instead of this function.
+ * `defineLive` from `next-sanity/live` needs Server Functions and `next/cache`, which the Pages
+ * Router does not have. This component does the same job for an ISR page: it listens for Live
+ * Content API events and refetches the page when one of its sync tags changes.
  */
-export function SanityLive(props: {tags?: string[]}) {
+export function SanityLive(props: {tags: SyncTag[]; revalidatedBy: RevalidatedBy}) {
+  const {tags, revalidatedBy} = props
   const router = useRouter()
-  const {tags = []} = props
+
+  const refresh = useEffectEvent(async (changedTags: SyncTag[]) => {
+    if (revalidatedBy === 'client') {
+      await fetch('/api/revalidate-tags', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({tags: changedTags}),
+      })
+    }
+    // The client router caches getStaticProps JSON per URL, so a plain replace would reuse the stale copy
+    router.replace(router.asPath, undefined, {scroll: false, unstable_skipClientCache: true})
+  })
 
   const handleLiveEvent = useEffectEvent((event: LiveEvent) => {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const {lastLiveEventId, ...queryWithoutLastLiveEventId} = router.query
-
     switch (event.type) {
       case 'welcome':
         console.info('Sanity is live with automatic revalidation of published content')
-        router.replace(
-          {
-            pathname: router.pathname,
-            query: {
-              ...router.query,
-              lastLiveEventId:
-                // @ts-expect-error - @TODO upgrade `@sanity/client` with the id of welcome events
-                event.id,
-            },
-          },
-          undefined,
-          {scroll: false},
-        )
         break
-      case 'message': {
+      case 'message':
         if (event.tags.some((tag) => tags.includes(tag))) {
-          router.replace(
-            {
-              pathname: router.pathname,
-              query: {...router.query, lastLiveEventId: event.id},
-            },
-            undefined,
-            {scroll: false},
-          )
+          refresh(event.tags)
         }
         break
-      }
-      case 'reconnect':
       case 'restart':
-        router.replace(
-          {
-            pathname: router.pathname,
-            query: queryWithoutLastLiveEventId,
-          },
-          undefined,
-          {scroll: false},
-        )
+      case 'reconnect':
+        // Events may have been missed while disconnected, so treat every tag on the page as changed
+        refresh(tags)
         break
+      case 'goaway':
+        break
+      default: {
+        const unhandled: never = event
+        throw new Error(`Unhandled live event: ${JSON.stringify(unhandled)}`)
+      }
     }
   })
+
   useEffect(() => {
-    const subscription = client.live.events().subscribe({
-      next: handleLiveEvent,
-      error: (error: unknown) => {
-        if (error instanceof CorsOriginError) {
-          console.warn(
-            `Sanity Live is unable to connect to the Sanity API as the current origin - ${window.origin} - is not in the list of allowed CORS origins for this Sanity Project.`,
-            error.addOriginUrl && `Add it here:`,
-            error.addOriginUrl?.toString(),
-          )
-        } else {
-          console.error(error)
-        }
-      },
-    })
+    const subscription = client.live
+      .events({tag: 'next-14', waitFor: revalidatedBy === 'function' ? 'function' : undefined})
+      .subscribe({
+        next: handleLiveEvent,
+        error: (error: unknown) => {
+          if (error instanceof CorsOriginError) {
+            console.warn(
+              `Sanity Live is unable to connect to the Sanity API as the current origin - ${window.origin} - is not in the list of allowed CORS origins for this Sanity Project.`,
+              error.addOriginUrl && `Add it here:`,
+              error.addOriginUrl?.toString(),
+            )
+          } else {
+            console.error(error)
+          }
+        },
+      })
     return () => subscription.unsubscribe()
-  }, [])
+  }, [revalidatedBy])
 
   return null
 }

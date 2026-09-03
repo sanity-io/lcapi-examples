@@ -205,9 +205,9 @@ export type REACTION_QUERY_RESULT = {
   reactions: number | null
 } | null
 
-// Source: src/pages/index.tsx
+// Source: src/sanity/revalidation.ts
 // Variable: INDEX_QUERY
-// Query: {  "theme": *[_id == "theme"][0]{background,text},  "demo": *[_type == "demo" && slug.current == $slug][0]{title,reactions[0..4]{_key,_ref}},  "fetchedAt":now()}
+// Query: {  "theme": *[_id == "theme"][0]{background,text},  "demo": *[_type == "demo" && slug.current == $slug][0]{title,reactions[0..4]{_key,_ref}}}
 export type INDEX_QUERY_RESULT = {
   theme:
     | {
@@ -226,12 +226,11 @@ export type INDEX_QUERY_RESULT = {
       _ref: string
     }> | null
   } | null
-  fetchedAt: string
 }
 
 declare module '@sanity/client' {
   interface SanityQueries {
     '*[_type == "reaction" && _id == $id][0]{emoji,reactions}': REACTION_QUERY_RESULT
-    '{\n  "theme": *[_id == "theme"][0]{background,text},\n  "demo": *[_type == "demo" && slug.current == $slug][0]{title,reactions[0..4]{_key,_ref}},\n  "fetchedAt":now()\n}': INDEX_QUERY_RESULT
+    '{\n  "theme": *[_id == "theme"][0]{background,text},\n  "demo": *[_type == "demo" && slug.current == $slug][0]{title,reactions[0..4]{_key,_ref}}\n}': INDEX_QUERY_RESULT
   }
 }
