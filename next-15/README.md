@@ -14,7 +14,19 @@ The route is unauthenticated to keep the demo small. Authenticate it before usin
 
 ## Environment variables
 
-None are required. The Sanity project ID and dataset are hardcoded in [`src/sanity/client.ts`](./src/sanity/client.ts).
+The Next.js app needs none. The Sanity project ID and dataset are hardcoded in [`src/sanity/client.ts`](./src/sanity/client.ts).
+
+The `cache-invalidate` Sanity Function reads one optional variable. It is set on the deployed function, not on the Next.js deployment:
+
+- `REVALIDATE_URLS`. Comma-separated list of `/api/revalidate-tags` URLs to POST sync tags to. Entries are trimmed and empty entries are dropped. When unset or empty the function falls back to the next-enterprise and next-15 production URLs.
+
+Set it after `sanity blueprints deploy` from the `studio` directory:
+
+```sh
+sanity functions env add cache-invalidate REVALIDATE_URLS "https://lcapi-examples-next-15.sanity.dev/api/revalidate-tags,https://example.com/api/revalidate-tags"
+```
+
+For local runs, prefix the command instead: `REVALIDATE_URLS=http://localhost:3000/api/revalidate-tags sanity functions dev`.
 
 ## Scripts
 
