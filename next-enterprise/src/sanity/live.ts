@@ -24,7 +24,7 @@ export async function sanityFetch<const QueryString extends string>({
   tags?: string[]
 }): Promise<{data: ClientReturn<QueryString, unknown>; tags?: string[]; fetchedAt: string}> {
   'use cache: remote'
-  const {data, tags: cacheTags} = await _sanityFetch({query, params, tags})
+  const {data, tags: cacheTags} = await _sanityFetch({query, params, tags, stega: false})
 
   return {data, tags: cacheTags, fetchedAt: new Date().toJSON()}
 }
