@@ -28,5 +28,12 @@ export default defineNuxtConfig({
   },
   typescript: {
     typeCheck: true,
+    // @nuxt/schema imports `vite` types without declaring the dependency, so in this
+    // workspace (sveltekit and tanstack-start pin vite 7) it can resolve to whichever
+    // copy pnpm hoisted. Pin it to the vite this package installs. The path names the
+    // declaration file because `paths` does not read vite's `exports` map.
+    nodeTsConfig: {
+      compilerOptions: {paths: {vite: ['../node_modules/vite/dist/node/index.d.ts']}},
+    },
   },
 })
