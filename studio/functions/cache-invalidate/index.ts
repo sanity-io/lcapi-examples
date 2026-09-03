@@ -1,7 +1,5 @@
 import {syncTagInvalidateEventHandler} from '@sanity/functions'
 
-declare const process: {env: Record<string, string | undefined>}
-
 /**
  * Comma-separated `/api/revalidate-tags` endpoints to notify, for example
  * `REVALIDATE_URLS=https://lcapi-examples-next-enterprise.sanity.dev/api/revalidate-tags,https://lcapi-examples-nuxt.sanity.dev/api/revalidate-tags`.
