@@ -9,7 +9,7 @@ const DEMO_QUERY = defineQuery(`*[_type == "demo" && slug.current == $slug][0].t
 const getDemo = createServerFn({
   method: 'GET',
 })
-  .inputValidator(
+  .validator(
     z.object({
       lastLiveEventId: z.string().optional(),
       slug: z.string(),

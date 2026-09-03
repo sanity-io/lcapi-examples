@@ -20,7 +20,7 @@ const THEME_QUERY = defineQuery(`*[_id == "theme"][0]{background,text}`)
 const getTheme = createServerFn({
   method: 'GET',
 })
-  .inputValidator(
+  .validator(
     z.object({
       lastLiveEventId: z.string().optional(),
     }),
