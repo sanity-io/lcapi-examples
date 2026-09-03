@@ -205,10 +205,10 @@ export type REACTION_QUERY_RESULT = {
   reactions: number | null
 } | null
 
-// Source: src/layouts/Layout.astro
-// Variable: LAYOUT_QUERY
-// Query: *[_id == "theme"][0]{background,text}
-export type LAYOUT_QUERY_RESULT =
+// Source: src/live.config.ts
+// Variable: THEME_QUERY
+// Query: *[_id == $id][0]{background,text}
+export type THEME_QUERY_RESULT =
   | {
       background: null
       text: null
@@ -219,10 +219,10 @@ export type LAYOUT_QUERY_RESULT =
     }
   | null
 
-// Source: src/pages/index.astro
-// Variable: INDEX_QUERY
-// Query: *[_type == "demo" && slug.current == $slug][0]{title,reactions[0..4]{_key,_ref}}
-export type INDEX_QUERY_RESULT = {
+// Source: src/live.config.ts
+// Variable: DEMO_QUERY
+// Query: *[_type == "demo" && slug.current == $id][0]{title,reactions[0..4]{_key,_ref}}
+export type DEMO_QUERY_RESULT = {
   title: string | null
   reactions: Array<{
     _key: string
@@ -233,7 +233,7 @@ export type INDEX_QUERY_RESULT = {
 declare module '@sanity/client' {
   interface SanityQueries {
     '*[_type == "reaction" && _id == $id][0]{emoji,reactions}': REACTION_QUERY_RESULT
-    '*[_id == "theme"][0]{background,text}': LAYOUT_QUERY_RESULT
-    '*[_type == "demo" && slug.current == $slug][0]{title,reactions[0..4]{_key,_ref}}': INDEX_QUERY_RESULT
+    '*[_id == $id][0]{background,text}': THEME_QUERY_RESULT
+    '*[_type == "demo" && slug.current == $id][0]{title,reactions[0..4]{_key,_ref}}': DEMO_QUERY_RESULT
   }
 }
