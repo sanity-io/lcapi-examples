@@ -1,7 +1,7 @@
 'use cache'
 
 import './globals.css'
-import {sanityFetch, SanityLive} from '@/sanity/live'
+import {revalidatedBySanityFunction, sanityFetch, SanityLive} from '@/sanity/live'
 import {SpeedInsights} from '@vercel/speed-insights/next'
 import {defineQuery} from 'groq'
 import {Suspense} from 'react'
@@ -24,7 +24,10 @@ export default async function RootLayout({
         <TimeSince label="layout.tsx" since={fetchedAt} rendered={new Date().toJSON()} />
       </Suspense>
       {children}
-      <SanityLive requestTag="next-enterprise" waitFor={process.env.VERCEL_ENV === 'production' ? 'function' : undefined} />
+      <SanityLive
+        requestTag="next-enterprise"
+        waitFor={revalidatedBySanityFunction ? 'function' : undefined}
+      />
       <SpeedInsights />
     </ThemeLayout>
   )
