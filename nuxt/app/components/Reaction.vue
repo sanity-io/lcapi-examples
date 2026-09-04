@@ -12,12 +12,12 @@ const REACTION_QUERY = defineQuery(`*[_type == "reaction" && _id == $id][0]{emoj
 const data = ref<ClientReturn<typeof REACTION_QUERY> | null>(null)
 const lastLiveEventId = ref<string | null>(null)
 const syncTags = ref<SyncTag[]>()
+const liveEvents = useSanityLiveEvents()
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-let subscription: any = null
+let subscription: ReturnType<typeof liveEvents.subscribe> | null = null
 
 onMounted(() => {
-  subscription = client.live.events().subscribe((event) => {
+  subscription = liveEvents.subscribe((event) => {
     if (
       event.type === 'message' &&
       Array.isArray(syncTags.value) &&

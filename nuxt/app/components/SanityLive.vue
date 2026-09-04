@@ -3,20 +3,19 @@
 import {CorsOriginError} from '@sanity/client'
 import {useRoute, useRouter} from '#app'
 import {onMounted, onUnmounted} from 'vue'
-import {client} from '../utils/sanity/client'
 
 const props = defineProps<{
   tags?: string[]
 }>()
 
-// Initialize route and router
 const router = useRouter()
 const route = useRoute()
+const liveEvents = useSanityLiveEvents()
 
-let subscription: ReturnType<ReturnType<typeof client.live.events>['subscribe']> | null = null
+let subscription: ReturnType<typeof liveEvents.subscribe> | null = null
 
 onMounted(() => {
-  subscription = client.live.events().subscribe({
+  subscription = liveEvents.subscribe({
     next: (event) => {
       if (event.type === 'welcome') {
         console.info('Sanity is live with automatic revalidation of published content')
