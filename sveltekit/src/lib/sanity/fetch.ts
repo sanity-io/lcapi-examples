@@ -1,5 +1,5 @@
 import {type ClientReturn, type QueryParams, type SyncTag} from '@sanity/client'
-import {getCache} from '@vercel/functions'
+import {dangerouslyDeleteByTag, getCache} from '@vercel/functions'
 import {getRequestEvent} from '$app/server'
 import {env} from '$env/dynamic/private'
 import {client} from './client'
@@ -62,6 +62,14 @@ async function fetchAndCache<const QueryString extends string>(
   return fresh
 }
 
-export function expireTags(tags: string[]): Promise<void> {
-  return cache.expireTag(tags.map(cacheTag))
+/**
+ * `dangerouslyDeleteByTag` drops the tagged CDN, runtime, and data cache entries so the next request
+ * reaches origin. `invalidateByTag` would serve one stale response first, and that response is the
+ * one the browser fetches right after a live event. Off Vercel the platform purge is a no-op, so the
+ * runtime cache is expired directly as well to keep local development working.
+ */
+export async function expireTags(tags: string[]): Promise<void> {
+  const cacheTags = tags.map(cacheTag)
+  if (!env.VERCEL) console.info('Skipped the Vercel CDN purge outside Vercel for', cacheTags)
+  await Promise.all([dangerouslyDeleteByTag(cacheTags), cache.expireTag(cacheTags)])
 }
