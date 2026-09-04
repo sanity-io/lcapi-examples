@@ -10,14 +10,15 @@ export default defineNuxtConfig({
     public: {
       sanity: {
         /**
-         * Live events wait for the studio's `cache-invalidate` Sanity Function
-         * (`waitFor: 'function'`) only where that function calls this deployment's
-         * `/api/revalidate-tags`: Vercel production, or anywhere
-         * `SANITY_SYNC_TAG_INVALIDATE_FUNCTION` is set. Local dev and previews are not
-         * called, so waiting would only delay updates. Runtime override:
-         * `NUXT_PUBLIC_SANITY_WAIT_FOR_FUNCTION`.
+         * True where the studio's `cache-invalidate` Sanity Function calls this
+         * deployment's `/api/revalidate-tags`: Vercel production, or anywhere
+         * `SANITY_SYNC_TAG_INVALIDATE_FUNCTION` is set. It drives one strategy: SSR
+         * responses are CDN-cached with sync tags and purged by the function, and live
+         * events wait for that purge (`waitFor: 'function'`). Local dev and previews
+         * are not called, so they are not CDN-cached and get live events at once.
+         * Runtime override: `NUXT_PUBLIC_SANITY_INVALIDATED_BY_FUNCTION`.
          */
-        waitForFunction:
+        invalidatedByFunction:
           Boolean(process.env.SANITY_SYNC_TAG_INVALIDATE_FUNCTION) ||
           process.env.VERCEL_ENV === 'production',
       },

@@ -6,6 +6,6 @@ import {client} from '~/utils/sanity/client'
  * through here or the page opens a second connection.
  */
 export function useSanityLiveEvents() {
-  const {waitForFunction} = useRuntimeConfig().public.sanity
-  return client.live.events({tag: 'nuxt', waitFor: waitForFunction ? 'function' : undefined})
+  const {invalidatedByFunction} = useRuntimeConfig().public.sanity
+  return client.live.events({tag: 'nuxt', waitFor: invalidatedByFunction ? 'function' : undefined})
 }
