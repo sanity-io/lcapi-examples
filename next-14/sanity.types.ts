@@ -205,7 +205,7 @@ export type REACTION_QUERY_RESULT = {
   reactions: number | null
 } | null
 
-// Source: src/sanity/revalidation.ts
+// Source: src/pages/index.tsx
 // Variable: INDEX_QUERY
 // Query: {  "theme": *[_id == "theme"][0]{background,text},  "demo": *[_type == "demo" && slug.current == $slug][0]{title,reactions[0..4]{_key,_ref}}}
 export type INDEX_QUERY_RESULT = {

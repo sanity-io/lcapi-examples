@@ -1,5 +1,5 @@
-import {client} from '@/sanity/client'
-import {STATIC_PAGES} from '@/sanity/revalidation'
+import {toCacheTag} from '@/sanity/revalidation'
+import {invalidateByTag} from '@vercel/functions'
 import type {NextApiRequest, NextApiResponse} from 'next'
 
 function parseTags(body: unknown): string[] | null {
@@ -20,17 +20,15 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     return res.status(400).json({error: 'Missing tags array'})
   }
 
-  const revalidated: string[] = []
-  for (const page of STATIC_PAGES) {
-    const {syncTags = []} = await client.fetch(page.query, page.params, {filterResponse: false})
-    if (syncTags.some((tag) => tags.includes(tag))) {
-      await res.revalidate(page.path)
-      revalidated.push(page.path)
-    }
+  const cacheTags = tags.map(toCacheTag)
+  // The purge API reaches the CDN through the Vercel request context, which only exists on Vercel
+  const onVercel = Boolean(process.env.VERCEL)
+  if (onVercel) {
+    await invalidateByTag(cacheTags)
+    console.log(`Invalidated CDN cache tags: ${cacheTags.join(', ')}`)
+  } else {
+    console.log(`Not on Vercel, skipped CDN cache invalidation for: ${cacheTags.join(', ')}`)
   }
-  console.log(
-    `Revalidated ${revalidated.length} of ${STATIC_PAGES.length} pages for tags: ${tags.join(', ')}`,
-  )
 
-  return res.status(200).json({revalidated})
+  return res.status(200).json({tags: cacheTags, purged: onVercel})
 }

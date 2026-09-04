@@ -7,14 +7,14 @@ import {useEffectEvent} from 'use-effect-event'
 
 /**
  * `defineLive` from `next-sanity/live` needs Server Functions and `next/cache`, which the Pages
- * Router does not have. This component does the same job for an ISR page: it listens for Live
- * Content API events and refetches the page when one of its sync tags changes.
+ * Router does not have. This component does the same job for a CDN-cached page: it listens for
+ * Live Content API events and refetches the page when one of its sync tags changes.
  */
 export function SanityLive(props: {tags: SyncTag[]; revalidatedBy: RevalidatedBy}) {
   const {tags, revalidatedBy} = props
   const router = useRouter()
 
-  const refresh = useEffectEvent(async (changedTags: SyncTag[]) => {
+  const refresh = useEffectEvent(async (changedTags: SyncTag[], lastLiveEventId?: string) => {
     if (revalidatedBy === 'client') {
       await fetch('/api/revalidate-tags', {
         method: 'POST',
@@ -22,8 +22,16 @@ export function SanityLive(props: {tags: SyncTag[]; revalidatedBy: RevalidatedBy
         body: JSON.stringify({tags: changedTags}),
       })
     }
-    // The client router caches getStaticProps JSON per URL, so a plain replace would reuse the stale copy
-    router.replace(router.asPath, undefined, {scroll: false, unstable_skipClientCache: true})
+    // A purged tag leaves the CDN serving stale while it revalidates in the background. The event id
+    // in the query gives this refetch its own cache key, so it reaches getServerSideProps.
+    const query = {...router.query, lastLiveEventId}
+    if (!lastLiveEventId) delete query.lastLiveEventId
+    router.replace(
+      {pathname: router.pathname, query},
+      undefined,
+      // The client router also caches page data per URL, so skip it for a URL it has seen before
+      {scroll: false, unstable_skipClientCache: true},
+    )
   })
 
   const handleLiveEvent = useEffectEvent((event: LiveEvent) => {
@@ -33,12 +41,14 @@ export function SanityLive(props: {tags: SyncTag[]; revalidatedBy: RevalidatedBy
         break
       case 'message':
         if (event.tags.some((tag) => tags.includes(tag))) {
-          refresh(event.tags)
+          refresh(event.tags, event.id)
         }
         break
+      // Events may have been missed while disconnected, so treat every tag on the page as changed
       case 'restart':
+        refresh(tags, event.id)
+        break
       case 'reconnect':
-        // Events may have been missed while disconnected, so treat every tag on the page as changed
         refresh(tags)
         break
       case 'goaway':

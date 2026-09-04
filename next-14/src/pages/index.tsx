@@ -1,40 +1,59 @@
 import {Reactions} from '@/components/Reactions'
 import {client} from '@/sanity/client'
 import {SanityLive} from '@/sanity/live'
-import {INDEX_PAGE, resolveRevalidatedBy, type RevalidatedBy} from '@/sanity/revalidation'
+import {
+  resolveRevalidatedBy,
+  SANITY_CACHE_TAG,
+  toCacheTag,
+  type RevalidatedBy,
+} from '@/sanity/revalidation'
 import type {ClientReturn, SyncTag} from '@sanity/client'
-import type {GetStaticProps, InferGetStaticPropsType} from 'next'
+import {defineQuery} from 'groq'
+import type {GetServerSideProps, InferGetServerSidePropsType} from 'next'
 import Head from 'next/head'
 import {lazy, Suspense} from 'react'
 
 const ThemeButton = lazy(() => import('@/components/ThemeButton'))
 const TimeSince = lazy(() => import('@/components/TimeSince'))
 
-export const getStaticProps: GetStaticProps<{
-  data: ClientReturn<typeof INDEX_PAGE.query, unknown>
+const INDEX_QUERY = defineQuery(`{
+  "theme": *[_id == "theme"][0]{background,text},
+  "demo": *[_type == "demo" && slug.current == $slug][0]{title,reactions[0..4]{_key,_ref}}
+}`)
+const slug = 'next-14'
+
+export const getServerSideProps: GetServerSideProps<{
+  data: ClientReturn<typeof INDEX_QUERY, unknown>
   tags: SyncTag[]
   fetchedAt: string
   revalidatedBy: RevalidatedBy
-}> = async () => {
+}> = async ({res, query}) => {
+  const {lastLiveEventId} = query
   const {result: data, syncTags: tags = []} = await client.fetch(
-    INDEX_PAGE.query,
-    INDEX_PAGE.params,
+    INDEX_QUERY,
+    {slug},
     {
       // Needed to access syncTags
       filterResponse: false,
-      // This page is regenerated right after an invalidation, so ask the Sanity CDN to wait for fresh content instead of serving stale
-      cacheMode: 'noStale',
+      // Tells the Sanity CDN which live event the response has to include
+      lastLiveEventId,
     },
+  )
+
+  // The CDN keeps this response until `/api/revalidate-tags` purges one of its tags. The HTML and the
+  // `_next/data` JSON both come through here, so both carry the tags.
+  res.setHeader('Vercel-Cache-Tag', [SANITY_CACHE_TAG, ...tags.map(toCacheTag)].join(','))
+  res.setHeader(
+    'Cache-Control',
+    'public, max-age=60, s-maxage=3600, stale-while-revalidate=60, stale-if-error=3600',
   )
 
   return {
     props: {data, tags, fetchedAt: new Date().toJSON(), revalidatedBy: resolveRevalidatedBy()},
-    // On-demand revalidation through `/api/revalidate-tags` keeps this page fresh. The hourly fallback covers a missed event.
-    revalidate: 3600,
   }
 }
 
-export default function Home(props: InferGetStaticPropsType<typeof getStaticProps>) {
+export default function Home(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const {data, tags, fetchedAt, revalidatedBy} = props
   const title = data.demo?.title || 'Next 14'
 
