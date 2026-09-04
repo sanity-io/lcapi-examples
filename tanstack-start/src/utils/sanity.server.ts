@@ -1,15 +1,17 @@
 import type {ClientReturn, QueryParams, SyncTag} from '@sanity/client'
-import {getCache} from '@vercel/functions'
+import {getResponseHeader, setResponseHeader} from '@tanstack/react-start/server'
+import {dangerouslyDeleteByTag} from '@vercel/functions'
 import {client} from './sanity'
 
 /**
  * Who invalidates content after Sanity publishes a change.
  *
  * - `function`: the `cache-invalidate` Sanity Function in `studio/functions` POSTs the changed
- *   sync tags to `/api/revalidate-tags`. Query results are cached on the server, tagged by sync
- *   tag, and browsers wait for the function (`waitFor: 'function'`) before refetching so the
- *   refetch never observes the cache before it was expired.
- * - `browser`: no function targets this deployment. Nothing is cached on the server and every
+ *   sync tags to `/api/revalidate-tags`. Every response that carries Sanity data (the SSR
+ *   document and server function GETs) is cached by the Vercel CDN and tagged with its sync
+ *   tags, the endpoint purges those tags, and browsers wait for the function
+ *   (`waitFor: 'function'`) before refetching so they never observe the CDN before the purge.
+ * - `browser`: no function targets this deployment. Responses are not CDN cached and every
  *   browser refetches with `lastLiveEventId` as soon as a live event arrives.
  *
  * Production on Vercel is what the function is pointed at. Set
@@ -27,9 +29,26 @@ export type QueryResult<QueryString extends string> = {
   tags?: SyncTag[]
 }
 
-const cache = getCache()
-
 const cacheTag = (tag: string) => `sanity:${tag}`
+
+/** https://vercel.com/docs/caching/cdn-cache/purge#limits */
+const MAX_CDN_TAGS = 128
+
+/**
+ * Tags the current response for the Vercel CDN, merging with tags recorded earlier in the same
+ * request (one SSR pass runs several `sanityFetch` calls). The purge is the real invalidation
+ * path; `max-age` only bounds staleness if a callback is lost. A response with more tags than the
+ * CDN can attach is left uncached rather than cached with tags that can never be purged.
+ */
+function tagResponse(syncTags: SyncTag[]) {
+  const tags = new Set(getResponseHeader('Vercel-Cache-Tag')?.split(',').filter(Boolean))
+  for (const tag of syncTags) tags.add(cacheTag(tag))
+  setResponseHeader('Vercel-Cache-Tag', [...tags].join(','))
+  setResponseHeader(
+    'Vercel-CDN-Cache-Control',
+    tags.size <= MAX_CDN_TAGS ? 'public, max-age=3600' : 'no-store',
+  )
+}
 
 export async function sanityFetch<const QueryString extends string>({
   query,
@@ -48,21 +67,20 @@ export async function sanityFetch<const QueryString extends string>({
     return {data: result, tags: syncTags}
   }
 
-  const key = JSON.stringify([query, params])
-  const cached = (await cache.get(key)) as QueryResult<QueryString> | null
-  if (cached) return cached
-
-  const {result, syncTags} = await client.fetch(query, params, {
+  const {result, syncTags = []} = await client.fetch(query, params, {
     filterResponse: false,
     lastLiveEventId,
     cacheMode: 'noStale',
   })
-  const fresh: QueryResult<QueryString> = {data: result, tags: syncTags}
-  // The function is the real invalidation path; the TTL only bounds staleness if a callback is lost.
-  await cache.set(key, fresh, {tags: syncTags?.map(cacheTag), ttl: 60 * 60})
-  return fresh
+  tagResponse(syncTags)
+  return {data: result, tags: syncTags}
 }
 
+/**
+ * Deletes instead of invalidating: `invalidateByTag` would serve the stale entry once more while
+ * revalidating in the background, and that one request is exactly the browser's refetch after the
+ * function completes. Purging by tag also clears the Runtime and Data caches for the same tags.
+ */
 export function expireSyncTags(tags: string[]): Promise<void> {
-  return cache.expireTag(tags.map(cacheTag))
+  return dangerouslyDeleteByTag(tags.map(cacheTag))
 }

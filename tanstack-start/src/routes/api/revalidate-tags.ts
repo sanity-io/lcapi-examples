@@ -4,7 +4,7 @@ import {z} from 'zod'
 
 /**
  * Called by the `cache-invalidate` Sanity Function in `studio/functions` with the sync tags that
- * changed. Expires every cached query tagged with them so the next loader run refetches.
+ * changed. Purges every Vercel CDN entry tagged with them so the next request reaches the origin.
  *
  * When `SANITY_REVALIDATE_SECRET` is set the function must send it as a bearer token. Without it
  * the endpoint is open, which is fine for this demo but not for a real deployment.
