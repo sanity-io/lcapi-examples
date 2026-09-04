@@ -1,6 +1,12 @@
 import {Reactions} from '@/components/Reactions'
 import {client} from '@/sanity/client'
 import {SanityLive} from '@/sanity/live'
+import {
+  resolveRevalidatedBy,
+  SANITY_CACHE_TAG,
+  toCacheTag,
+  type RevalidatedBy,
+} from '@/sanity/revalidation'
 import type {ClientReturn, SyncTag} from '@sanity/client'
 import {defineQuery} from 'groq'
 import type {GetServerSideProps, InferGetServerSidePropsType} from 'next'
@@ -12,39 +18,43 @@ const TimeSince = lazy(() => import('@/components/TimeSince'))
 
 const INDEX_QUERY = defineQuery(`{
   "theme": *[_id == "theme"][0]{background,text},
-  "demo": *[_type == "demo" && slug.current == $slug][0]{title,reactions[0..4]{_key,_ref}},
-  "fetchedAt":now()
+  "demo": *[_type == "demo" && slug.current == $slug][0]{title,reactions[0..4]{_key,_ref}}
 }`)
 const slug = 'next-14'
 
 export const getServerSideProps: GetServerSideProps<{
   data: ClientReturn<typeof INDEX_QUERY, unknown>
-  tags?: SyncTag[]
+  tags: SyncTag[]
+  fetchedAt: string
+  revalidatedBy: RevalidatedBy
 }> = async ({res, query}) => {
   const {lastLiveEventId} = query
-  res.setHeader(
-    'Cache-Control',
-    // Sets the same cache header as the Sanity API CDN, with a short lifetime if there is no lastLiveEventId param, and a much longer one if there is
-    lastLiveEventId
-      ? 'public, max-age=60, s-maxage=3600, stale-while-revalidate=60, stale-if-error=3600'
-      : 'public, max-age=60, s-maxage=60, stale-while-revalidate=15, stale-if-error=3600',
-  )
-  const {result: data, syncTags: tags} = await client.fetch(
+  const {result: data, syncTags: tags = []} = await client.fetch(
     INDEX_QUERY,
     {slug},
     {
       // Needed to access syncTags
       filterResponse: false,
-      // Used for cache busting on changes
+      // Tells the Sanity CDN which live event the response has to include
       lastLiveEventId,
     },
   )
 
-  return {props: {data, tags}}
+  // The CDN keeps this response until `/api/revalidate-tags` purges one of its tags. The HTML and the
+  // `_next/data` JSON both come through here, so both carry the tags.
+  res.setHeader('Vercel-Cache-Tag', [SANITY_CACHE_TAG, ...tags.map(toCacheTag)].join(','))
+  res.setHeader(
+    'Cache-Control',
+    'public, max-age=60, s-maxage=3600, stale-while-revalidate=60, stale-if-error=3600',
+  )
+
+  return {
+    props: {data, tags, fetchedAt: new Date().toJSON(), revalidatedBy: resolveRevalidatedBy()},
+  }
 }
 
 export default function Home(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
-  const {data, tags} = props
+  const {data, tags, fetchedAt, revalidatedBy} = props
   const title = data.demo?.title || 'Next 14'
 
   return (
@@ -60,11 +70,9 @@ export default function Home(props: InferGetServerSidePropsType<typeof getServer
         }}
       >
         <div className="relative flex min-h-dvh flex-col items-center justify-evenly overflow-auto">
-          {data?.fetchedAt && (
-            <Suspense>
-              <TimeSince label="index.tsx" since={data.fetchedAt} />
-            </Suspense>
-          )}
+          <Suspense>
+            <TimeSince label="index.tsx" since={fetchedAt} />
+          </Suspense>
           <div className="relative mx-2 rounded-lg px-2 py-1 ring-1 ring-current">
             <h1 className="min-w-64 text-4xl leading-tight font-bold tracking-tighter text-balance md:text-6xl lg:text-8xl">
               {title}
@@ -76,7 +84,7 @@ export default function Home(props: InferGetServerSidePropsType<typeof getServer
         </div>
         {Array.isArray(data.demo?.reactions) && <Reactions data={data.demo.reactions} />}
       </main>
-      <SanityLive tags={tags} />
+      <SanityLive tags={tags} revalidatedBy={revalidatedBy} />
     </>
   )
 }
