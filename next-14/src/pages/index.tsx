@@ -37,6 +37,9 @@ export const getServerSideProps: GetServerSideProps<{
       filterResponse: false,
       // Tells the Sanity CDN which live event the response has to include
       lastLiveEventId,
+      // The Vercel CDN revalidates this page right after a purge, so ask the Sanity CDN to wait for
+      // fresh content instead of serving stale
+      cacheMode: 'noStale',
     },
   )
 

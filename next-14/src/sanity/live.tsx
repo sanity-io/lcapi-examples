@@ -24,8 +24,12 @@ export function SanityLive(props: {tags: SyncTag[]; revalidatedBy: RevalidatedBy
     }
     // A purged tag leaves the CDN serving stale while it revalidates in the background. The event id
     // in the query gives this refetch its own cache key, so it reaches getServerSideProps.
-    const query = {...router.query, lastLiveEventId}
-    if (!lastLiveEventId) delete query.lastLiveEventId
+    // A reconnect has no event id, so a timestamp keys that refetch instead.
+    const query = {...router.query}
+    delete query.lastLiveEventId
+    delete query.refetchedAt
+    if (lastLiveEventId) query.lastLiveEventId = lastLiveEventId
+    else query.refetchedAt = Date.now().toString()
     router.replace(
       {pathname: router.pathname, query},
       undefined,
