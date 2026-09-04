@@ -1,5 +1,6 @@
 import {type ClientReturn, type QueryParams, type SyncTag} from '@sanity/client'
 import {getCache} from '@vercel/functions'
+import {getRequestEvent} from '$app/server'
 import {env} from '$env/dynamic/private'
 import {client} from './client'
 
@@ -39,10 +40,19 @@ export async function sanityFetch<const QueryString extends string>({
     return {data: result, tags: syncTags}
   }
 
+  const {locals} = getRequestEvent()
   const key = JSON.stringify([query, params])
   const cached = (await cache.get(key)) as SanityFetchResult<QueryString> | null
-  if (cached) return cached
+  const fresh = cached ?? (await fetchAndCache(query, params, key))
+  for (const tag of fresh.tags) locals.cacheTags.add(cacheTag(tag))
+  return fresh
+}
 
+async function fetchAndCache<const QueryString extends string>(
+  query: QueryString,
+  params: QueryParams,
+  key: string,
+): Promise<SanityFetchResult<QueryString>> {
   const {result, syncTags = []} = await client.fetch(query, params, {
     cacheMode: 'noStale',
     filterResponse: false,

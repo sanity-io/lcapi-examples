@@ -3,7 +3,9 @@
 declare global {
   namespace App {
     // interface Error {}
-    // interface Locals {}
+    interface Locals {
+      cacheTags: Set<string>
+    }
     // interface PageData {}
     // interface PageState {}
     // interface Platform {}
