@@ -20,4 +20,4 @@
     <ThemeButton />
   </div>
 </main>
-<SanityLive />
+<SanityLive waitFor={data.waitFor} />

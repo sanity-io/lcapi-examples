@@ -1,4 +1,4 @@
-import {sanityFetch} from '$lib/sanity/fetch'
+import {sanityFetch, waitFor} from '$lib/sanity/fetch'
 import {defineQuery} from 'groq'
 import type {LayoutServerLoad} from './$types'
 
@@ -9,5 +9,5 @@ export const load: LayoutServerLoad = async ({url}) => {
     query: LAYOUT_QUERY,
     lastLiveEventId: url.searchParams.get('lastLiveEventId'),
   })
-  return {theme}
+  return {theme, waitFor}
 }
