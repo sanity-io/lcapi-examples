@@ -4,7 +4,7 @@ import {useNavigate, useRouter, useRouterState, useSearch} from '@tanstack/react
 import {useEffect, useEffectEvent} from 'react'
 import {client} from '../utils/sanity'
 
-export function SanityLive() {
+export function SanityLive({waitFor}: {waitFor: 'function' | undefined}) {
   const selected = useRouterState({select: (state) => state.matches})
   const lastLiveEventId = useSearch({from: '__root__', select: (state) => state.lastLiveEventId})
   const navigate = useNavigate({from: '/'})
@@ -58,7 +58,7 @@ export function SanityLive() {
     },
   )
   useEffect(() => {
-    const subscription = client.live.events().subscribe({
+    const subscription = client.live.events({waitFor}).subscribe({
       next: (event) => {
         if (event.type === 'message' || event.type === 'restart' || event.type === 'welcome') {
           handleLiveEvent(event)
@@ -77,7 +77,7 @@ export function SanityLive() {
       },
     })
     return () => subscription.unsubscribe()
-  }, [])
+  }, [waitFor])
 
   return null
 }

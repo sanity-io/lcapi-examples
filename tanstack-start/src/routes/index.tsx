@@ -1,4 +1,4 @@
-import {sanityFetch} from '@/utils/sanity'
+import {sanityFetch} from '@/utils/sanity.server'
 import {createFileRoute} from '@tanstack/react-router'
 import {createServerFn} from '@tanstack/react-start'
 import {defineQuery} from 'groq'
@@ -9,7 +9,7 @@ const DEMO_QUERY = defineQuery(`*[_type == "demo" && slug.current == $slug][0].t
 const getDemo = createServerFn({
   method: 'GET',
 })
-  .inputValidator(
+  .validator(
     z.object({
       lastLiveEventId: z.string().optional(),
       slug: z.string(),

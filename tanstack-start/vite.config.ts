@@ -13,7 +13,7 @@ const config = defineConfig({
     }),
     tailwindcss(),
     tanstackStart(),
-    nitro({config: {preset: 'vercel'}}),
+    nitro({preset: 'vercel'}),
     viteReact({babel: {plugins: ['babel-plugin-react-compiler']}}),
   ],
 })
