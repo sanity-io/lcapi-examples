@@ -1,13 +1,13 @@
 import {syncTagInvalidateEventHandler} from '@sanity/functions'
 
 /**
- * Comma-separated `/api/revalidate-tags` endpoints to notify, for example
- * `REVALIDATE_URLS=https://lcapi-examples-next-enterprise.sanity.dev/api/revalidate-tags,https://lcapi-examples-nuxt.sanity.dev/api/revalidate-tags`.
- * Unset, only next-enterprise is notified, so existing deployments keep working.
+ * Comma-separated `/api/revalidate-tags` endpoints to notify. Unset, it covers every
+ * deployment that CDN-caches by sync tag and counts on this function to purge it:
+ * next-enterprise and nuxt (see `invalidatedByFunction` in `nuxt/nuxt.config.ts`).
  */
 const REVALIDATE_URLS = (
   process.env.REVALIDATE_URLS ??
-  'https://lcapi-examples-next-enterprise.sanity.dev/api/revalidate-tags'
+  'https://lcapi-examples-next-enterprise.sanity.dev/api/revalidate-tags,https://lcapi-examples-nuxt.sanity.dev/api/revalidate-tags'
 )
   .split(',')
   .map((url) => url.trim())
