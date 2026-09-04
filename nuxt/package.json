@@ -17,6 +17,7 @@
     "@nuxt/eslint": "^1.17.0",
     "@sanity/client": "^8.5.0",
     "@tailwindcss/vite": "^4.3.3",
+    "@vercel/functions": "^3.9.5",
     "@vercel/speed-insights": "^2.0.0",
     "@vueuse/motion": "^3.0.3",
     "eslint": "^10.9.1",
