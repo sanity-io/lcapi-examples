@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@astrojs/check": "^0.9.9",
-    "@astrojs/react": "^4.4.2",
+    "@astrojs/react": "^5.0.7",
     "@astrojs/vercel": "^9.0.4",
     "@sanity/client": "^7.22.0",
     "@tailwindcss/vite": "^4.2.4",
