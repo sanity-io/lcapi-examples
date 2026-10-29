@@ -7,13 +7,13 @@
   },
   "dependencies": {
     "@repo/generate-theme-colors": "workspace:*",
-    "@sanity/client": "^7.22.0",
-    "@vercel/functions": "^3.5.0",
-    "groq": "^5.23.0"
+    "@sanity/client": "^7.28.0",
+    "@vercel/functions": "^3.10.4",
+    "groq": "^5.31.2"
   },
   "devDependencies": {
     "@edge-runtime/types": "^4.0.0",
-    "@types/node": "^24.12.2",
+    "@types/node": "^24.19.2",
     "typescript": "5.9.3"
   }
 }
