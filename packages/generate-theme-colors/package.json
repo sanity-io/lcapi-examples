@@ -5,6 +5,6 @@
   "type": "module",
   "exports": "./index.js",
   "dependencies": {
-    "d3-color": "^3.1.0"
+    "d3-color": "^3.1.1"
   }
 }
